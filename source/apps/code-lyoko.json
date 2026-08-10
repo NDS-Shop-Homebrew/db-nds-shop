@@ -1,0 +1,47 @@
+{
+  "title": "Code Lyoko",
+  "author": "The Game Factory",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Code Lyoko (Europe) (En,Fr,Es,It).nds": {
+      "url": "https://db-nds-shop.fr/games/Code%20Lyoko%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20(Europe)%20(En%2CFr%2CEs%2CIt).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/codelyoko.png",
+  "version": "(Europe) (En,Fr,Es,It)",
+  "updated": "2024-08-10T22:24:58+02:00",
+  "scripts": {
+    "Code Lyoko (Europe) (En,Fr,Es,It).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20(Europe)%20(En%2CFr%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Code Lyoko (Europe) (En,Fr,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Code%20Lyoko%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Code Lyoko (Europe) (En,Fr,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Code%20Lyoko%20(Europe)%20(En%2CFr%2CEs%2CIt).cia",
+        "output": "/Code Lyoko (Europe) (En,Fr,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Code Lyoko (Europe) (En,Fr,Es,It).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Code Lyoko (Europe) (En,Fr,Es,It).cia"
+      }
+    ]
+  }
+}

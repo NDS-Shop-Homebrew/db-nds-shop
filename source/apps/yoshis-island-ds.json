@@ -1,0 +1,47 @@
+{
+  "title": "Yoshi's Island DS",
+  "author": "Nintendo",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Yoshi's Island DS (Europe) (En,Fr,De,Es,It).nds": {
+      "url": "https://db-nds-shop.fr/games/Yoshi%27s%20Island%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Yoshi%27s%20Island%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/yoshisisland.png",
+  "version": "(Europe) (En,Fr,De,Es,It)",
+  "updated": "2024-08-12T23:27:58+02:00",
+  "scripts": {
+    "Yoshi's Island DS (Europe) (En,Fr,De,Es,It).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Yoshi%27s%20Island%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Yoshi%27s%20Island%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Yoshi%27s%20Island%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).cia"
+      }
+    ]
+  }
+}

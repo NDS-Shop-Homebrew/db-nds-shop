@@ -1,0 +1,47 @@
+{
+  "title": "Mario & Sonic at the Olympic Games",
+  "author": "Nintendo/Sega",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds": {
+      "url": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/mario%26sonicolympicgames.png",
+  "version": "(Europe) (En,Fr,De,Es,It)",
+  "updated": "2024-08-10T18:10:58+02:00",
+  "scripts": {
+    "Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).cia"
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "title": "WarioWare - Touched!",
+  "author": "Nintendo",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds": {
+      "url": "https://db-nds-shop.fr/games/WarioWareTouched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/screenshots/wariowaretouched/wariowaretouched.png",
+      "description": "Game preview"
+    },
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/wariowaretouched.png",
+  "version": "(Europe) (En,Fr,De,Es,It)",
+  "updated": "2024-08-10T16:30:00+02:00",
+  "scripts": {
+    "WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/WarioWareTouched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/WarioWareTouched! (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/WarioWareTouched! (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/WarioWareTouched! (Europe) (En,Fr,De,Es,It).cia"
+      }
+    ]
+  }
+}

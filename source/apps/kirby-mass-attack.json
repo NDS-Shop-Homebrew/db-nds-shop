@@ -1,0 +1,47 @@
+{
+  "title": "Kirby - Mass Attack",
+  "author": "Nintendo",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds": {
+      "url": "https://db-nds-shop.fr/games/Kirby%20Mass%20Attack%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Kirby%20Mass%20Attack%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/kirbymassattack.png",
+  "version": "(Europe) (En,Fr,De,Es,It)",
+  "updated": "2024-08-13T15:39:00+02:00",
+  "scripts": {
+    "Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Kirby%20Mass%20Attack%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Kirby%20Mass%20Attack%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Kirby%20Mass%20Attack%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).cia"
+      }
+    ]
+  }
+}

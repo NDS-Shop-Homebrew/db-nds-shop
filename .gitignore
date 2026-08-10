@@ -1,0 +1,6 @@
+*__pycache__
+config.ini
+.venv
+*.env
+*temp/
+sent_games.txt

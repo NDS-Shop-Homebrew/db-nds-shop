@@ -1,0 +1,148 @@
+{
+  "nav": {
+    "home": "Home",
+    "gameList": "Game List",
+    "about": "About"
+  },
+  "gameList": {
+    "icon": "Icon",
+    "title": "Game List",
+    "sortBy": "Sort by",
+    "searchPlaceholder": "Search by name or author...",
+    "name": "Name",
+    "author": "Author",
+    "version": "Version",
+    "updated": "Updated at"
+  },
+  "home": {
+    "download": "Download",
+    "scan": "Scan",
+    "scan_instructions": "Scan this QR code with your device to download the app.",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How do I download a game?",
+      "a1": "Click on the download button above to get the latest version of the game.",
+      "q2": "How do I scan the QR code?",
+      "a2": "Open your camera app or QR scanner and point it at the QR code above.",
+      "q3": "Is this site free?",
+      "a3": "Yes! All the games listed here are completely free to download."
+    },
+    "latest_games": "Latest Games",
+    "loading_games": "Loading games..."
+  },
+  "about": {
+    "title": "About NDS-Shop",
+    "description": "NDS-Shop is your go-to platform for Nintendo DS games, regularly updated with new releases and easy-to-access downloads.",
+    "team": "Our Team",
+    "play": "Plays",
+    "listen": "Listening to",
+    "watch": "Watching",
+    "stream": "Streaming",
+    "roadmap": "Roadmap",
+    "project": "The Project",
+    "join_discord": "Join our Discord",
+    "project_description": "NDS-Shop is an open-source project developed by a community of video game enthusiasts. Our goal is to provide a user-friendly and accessible platform for Nintendo DS fans, offering a wide selection of games for easy downloading. We believe in the power of community and encourage contributions to continuously improve the site and expand our game catalog."
+  },
+  "gameDetail": {
+    "download": "Download:",
+    "author": "Author:",
+    "version": "Version:",
+    "categories": "Categories:",
+    "systems": "Systems:",
+    "qr_code": "QR Code:",
+    "updated": "Last updated at:",
+    "screenshots": "Screenshots:",
+    "notFound": "Game not found",
+    "backToList": "Back to list"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Simple, clear, and transparent for NDS-Shop",
+    "tableOfContents": "Table of Contents",
+    "dataCollection": "1. Data Collection",
+    "dataCollectionText": "NDS-Shop does not collect any personal data from its users. We respect your privacy and do not use tracking cookies.",
+    "dataCollectionItems": [
+      "No personal information is collected",
+      "No tracking cookies are used",
+      "No user data is stored",
+      "No information is shared with third parties",
+      "Important: We are not subject to GDPR or CCPA, but choose not to collect data as a principle"
+    ],
+    "technical": "2. Technical Information",
+    "technicalText": "When accessing our services, your browser may temporarily process some technical information:",
+    "technicalItems": [
+      "Basic access logs (automatically cleared)",
+      "Temporary cache files (managed by the browser)",
+      "Routing information via the CDN"
+    ],
+    "thirdParty": "3. Third-Party Services",
+    "thirdPartyText": "NDS-Shop uses third-party services to ensure site performance and security:",
+    "thirdPartyItems": [
+      "Content Delivery Networks (CDN)",
+      "DDoS protection services",
+      "DNS providers",
+      "Hosting services"
+    ],
+    "security": "4. Data Security",
+    "securityText": "We do not collect personal data, but maintain robust security measures to protect our infrastructure:",
+    "securityItems": [
+      "End-to-end encryption for all communications",
+      "Regular security audits",
+      "DDoS protection",
+      "Secure infrastructure configuration"
+    ],
+    "contact": "5. Contact",
+    "contactText": "For privacy-related inquiries, contact us at: privacy@nds-shop.com. We respond to inquiries but are not obliged to delete data we do not collect.",
+    "updates": "6. Policy Updates",
+    "updatesText": "This policy may be updated at any time without prior notice. Changes will be posted on this page with an updated effective date. Last updated: September 2025"
+  },
+  "dmca": {
+    "title": "DMCA Policy",
+    "subtitle": "Procedure de notification pour NDS-Shop",
+    "tableOfContents": "Table des matières",
+    "compliance": {
+      "title": "1. Conformité",
+      "content": "NDS-Shop respecte les droits de propriété intellectuelle...",
+      "important": "Important : Nous examinons chaque demande individuellement."
+    },
+    "notification": {
+      "title": "2. Conditions de notification",
+      "description": "Pour notifier une violation, merci de fournir :",
+      "items": [
+        "Signature du titulaire des droits",
+        "Identification de l'œuvre protégée",
+        "Localisation du contenu incriminé",
+        "Vos coordonnées",
+        "Déclaration de bonne foi",
+        "Confirmation de l'exactitude des informations"
+      ]
+    },
+    "counter": {
+      "title": "3. Contre-notification",
+      "description": "Si votre contenu a été retiré par erreur :",
+      "items": [
+        "Signature",
+        "Identification du contenu retiré",
+        "Déclaration de bonne foi",
+        "Coordonnées et consentement au tribunal"
+      ]
+    },
+    "filing": {
+      "title": "4. Dépôt d'une notification DMCA",
+      "content1": "Envoyez vos notifications à : dmca@nds-shop.com",
+      "content2": "Note : l'envoi ne garantit pas la suppression immédiate.",
+      "content3": "Fausse déclaration peut entraîner des pénalités légales."
+    },
+    "repeat": {
+      "title": "5. Contrevenants répétés",
+      "content": "Nous nous réservons le droit de bloquer ou supprimer l'accès aux utilisateurs répétitifs."
+    }
+  },
+  "footer": {
+    "privacyPolicy": "Privacy Policy",
+    "dmca": "DMCA Notice",
+    "copyright": "©  {{year}} NDS-Shop. All rights reserved.",
+    "developedBy": "Developed with ❤️ by {{author}}",
+    "version": "Version:"
+  }
+}

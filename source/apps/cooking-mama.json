@@ -1,0 +1,47 @@
+{
+  "title": "Cooking Mama",
+  "author": "Office Create",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Cooking Mama (Europe) (En,Fr,It).nds": {
+      "url": "https://db-nds-shop.fr/games/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/cookingmama.png",
+  "version": "(Europe) (En,Fr,It)",
+  "updated": "2024-08-10T20:38:58+02:00",
+  "scripts": {
+    "Cooking Mama (Europe) (En,Fr,It).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Cooking Mama (Europe) (En,Fr,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.nds",
+        "output": "/roms/nds/Cooking Mama (Europe) (En,Fr,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).cia",
+        "output": "/Cooking Mama (Europe) (En,Fr,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Cooking Mama (Europe) (En,Fr,It).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Cooking Mama (Europe) (En,Fr,It).cia"
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Chrono Trigger",
+  "author": "Square Enix",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Chrono Trigger (Europe) (En,Fr).nds": {
+      "url": "https://db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/chronotrigger.png",
+  "version": "(Europe) (En,Fr)",
+  "updated": "2024-08-10T19:42:58+02:00",
+  "scripts": {
+    "Chrono Trigger (Europe) (En,Fr).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Chrono Trigger (Europe) (En,Fr).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds",
+        "output": "/roms/nds/Chrono Trigger (Europe) (En,Fr).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Chrono%20Trigger%20(Europe)%20(En%2CFr).cia",
+        "output": "Chrono Trigger (Europe) (En,Fr).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Chrono Trigger (Europe) (En,Fr).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Chrono Trigger (Europe) (En,Fr).cia"
+      }
+    ]
+  }
+}

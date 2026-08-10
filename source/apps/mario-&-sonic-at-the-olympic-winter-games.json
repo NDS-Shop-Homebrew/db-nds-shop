@@ -1,0 +1,47 @@
+{
+  "title": "Mario & Sonic at the Olympic Winter Games",
+  "author": "Sega",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Mario & Sonic at the Olympic Winter Games.nds": {
+      "url": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/mario%26sonicwinterjo.png",
+  "version": "(Europe) (En,Fr,De,Es,It)",
+  "updated": "2024-08-15T21:59:58+02:00",
+  "scripts": {
+    "Mario & Sonic at the Olympic Winter Games.nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario & Sonic at the Olympic Winter Games.nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds",
+        "output": "/roms/nds/Mario & Sonic at the Olympic Winter Games.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.cia",
+        "output": "/Mario & Sonic at the Olympic Winter Games.cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario & Sonic at the Olympic Winter Games.cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario & Sonic at the Olympic Winter Games.cia"
+      }
+    ]
+  }
+}

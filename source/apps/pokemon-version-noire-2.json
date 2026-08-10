@@ -1,0 +1,47 @@
+{
+  "title": "Pokemon Version Noire 2",
+  "author": "Nintendo / GameFreak",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Pokemon Version Noire 2 (France) (NDSi Enhanced).nds": {
+      "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonnoir2.png",
+  "version": "(France)",
+  "updated": "2024-08-12T21:32:00+02:00",
+  "scripts": {
+    "Pokemon Version Noire 2 (France) (NDSi Enhanced).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Noire 2 (France) (NDSi Enhanced).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds",
+        "output": "/roms/nds/Pokemon-Version-Noire-2-France-NDSi-Enhanced.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).cia",
+        "output": "/Pokemon Version Noire 2 (France) (NDSi Enhanced).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Noire 2 (France) (NDSi Enhanced).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Noire 2 (France) (NDSi Enhanced).cia"
+      }
+    ]
+  }
+}

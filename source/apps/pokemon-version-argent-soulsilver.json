@@ -1,0 +1,47 @@
+{
+  "title": "Pokemon Version Argent SoulSilver",
+  "author": "Nintendo / GameFreak",
+  "categories": ["game"],
+  "systems": ["DS"],
+  "downloads": {
+    "Pokemon Version Argent SoulSilver (France) [b].nds": {
+      "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds"
+    }
+  },
+  "screenshots": [
+    {
+      "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds.png",
+      "description": "Boxart"
+    }
+  ],
+  "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonargent.png",
+  "version": "(France)",
+  "updated": "2024-08-10T17:13:00+02:00",
+  "scripts": {
+    "Pokemon Version Argent SoulSilver (France) [b].nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Argent SoulSilver (France) [b].nds).png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds",
+        "output": "/roms/nds/Pokemon Version Argent SoulSilver (France) [b].nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.cia",
+        "output": "/Pokemon Version Argent SoulSilver (France) [b].cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Argent SoulSilver (France) [b].cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Argent SoulSilver (France) [b].cia"
+      }
+    ]
+  }
+}
