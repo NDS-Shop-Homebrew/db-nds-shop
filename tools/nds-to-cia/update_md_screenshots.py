@@ -12,7 +12,12 @@ import frontmatter
 ROOT = Path(__file__).resolve().parent.parent.parent
 MDS_DIR = ROOT / "frontend/public/_ds"
 ICONS_DIR = ROOT / "frontend/public/assets/images/icons"
-SNAPS_MAP = json.loads((Path(__file__).resolve().parent / "cache/snaps-map.json").read_text())
+SNAPS_CACHE = Path(__file__).resolve().parent / "cache/snaps-map.json"
+if not SNAPS_CACHE.exists():
+    print("Avertissement : cache/snaps-map.json absent - screenshots inchangés")
+    SNAPS_MAP = {}
+else:
+    SNAPS_MAP = json.loads(SNAPS_CACHE.read_text())
 
 changed = 0
 missing = []
