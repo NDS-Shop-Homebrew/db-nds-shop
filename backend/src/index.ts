@@ -2,6 +2,7 @@ import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
 import dotenv from "dotenv";
+import apiRouter from "./routes/api.js";
 
 dotenv.config();
 
@@ -61,6 +62,9 @@ async function safeJson<T>(response: any): Promise<T> {
     throw new Error(`Invalid JSON response: ${text}`);
   }
 }
+
+// --- API v1 (jeux) ---
+app.use("/api/v1", apiRouter);
 
 // --- API Discord User ---
 app.get("/api/discord-user/:id", async (req, res) => {
