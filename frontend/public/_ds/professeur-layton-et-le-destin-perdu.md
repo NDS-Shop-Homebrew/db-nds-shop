@@ -2,20 +2,17 @@
 author: Level-5
 categories:
 - game
-color: '#927e65'
-color_bg: '#806e58'
 downloads:
   Professeur Layton et le Destin Perdu (France).nds:
     url: https://db-nds-shop.fr/games/Professeur%20Layton%20et%20le%20Destin%20Perdu%20%28France%29.nds
 icon: https://db-nds-shop.fr/assets/images/icons/professeurlaytonetledestinperdu.png
 image: https://db-nds-shop.fr/assets/images/icons/professeurlaytonetledestinperdu.png
-image_length: 1843
 layout: app
 qr:
   Professeur Layton et le Destin Perdu (France).nds: https://db-nds-shop.fr/qr/professeur-layton-et-le-destin-perdu-france-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Professeur%20Layton%20et%20le%20Destin%20Perdu%20%28France%29.png/Professeur%20Layton%20et%20le%20Destin%20Perdu%20%28France%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20le%20Destin%20Perdu%20(France).nds.png
 stars: 0
 systems:
 - DS

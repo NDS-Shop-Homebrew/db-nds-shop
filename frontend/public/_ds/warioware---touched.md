@@ -2,22 +2,19 @@
 author: Nintendo
 categories:
 - game
-color: '#a45d3f'
-color_bg: '#804831'
 downloads:
   WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds:
     url: https://db-nds-shop.fr/games/WarioWareTouched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds
 icon: https://db-nds-shop.fr/assets/images/icons/wariowaretouched.png
 image: https://db-nds-shop.fr/assets/images/icons/wariowaretouched.png
-image_length: 2754
 layout: app
 qr:
   WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/wariowaretouched-europe-enfrdeesit-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/WarioWare%20-%20Touched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/WarioWare%20-%20Touched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 - description: Game preview
   url: https://db-nds-shop.fr/assets/images/screenshots/wariowaretouched/wariowaretouched.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
 stars: 0
 systems:
 - DS
