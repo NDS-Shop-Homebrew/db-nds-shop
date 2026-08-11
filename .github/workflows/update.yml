@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
 
     - name: Configure Git to trust the directory
       run: git config --global --add safe.directory /__w/db-nds-shop/db-nds-shop
@@ -43,5 +45,5 @@ jobs:
           echo "No changes to commit"
         else
           git commit -m "Update UniStore"
-          git push https://NDSSHOPBOT:${{ secrets.MY_GITHUB_TOKEN }}@github.com/NDS-Shop-Homebrew/db-nds-shop.git dev
+          git push "https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/NDS-Shop-Homebrew/db-nds-shop.git" dev
         fi
