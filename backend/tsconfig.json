@@ -10,5 +10,5 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/index.ts", "backend/**/*.ts"]
+  "include": ["src"]
 }
