@@ -44,7 +44,39 @@ def webName(name: str) -> str:
 
 def byteCount(bytes: int) -> str:
 	"""Converts an int number of bytes to a str with the largest appropriate unit"""
+	power = 1024
+	n = 0
+	power_labels = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
+	while bytes > power:
+		bytes /= power
+		n += 1
+	return f"{int(round(bytes, 2))} {power_labels[n]}B"
 
+
+SITE_PREFIX = "https://db-nds-shop.fr/"
+
+
+def siteLocalPath(docsDir: str, url: str):
+	"""Maps a db-nds-shop.fr URL to its local file path (or None)."""
+	if url.startswith(SITE_PREFIX):
+		local = path.join(docsDir, url[len(SITE_PREFIX):])
+		return local if path.exists(local) else None
+	return None
+
+
+def headContentLength(url: str) -> int:
+	"""Returns the Content-Length of url (0 if the server is unreachable).
+
+	The build must not crash when the remote host is down: missing sizes are
+	just left absent and re-filled on the next successful run.
+	"""
+	try:
+		r = requests.head(url, allow_redirects=True, timeout=15)
+		if r.status_code == 200 and "Content-Length" in r.headers:
+			return int(r.headers["Content-Length"])
+	except (requests.RequestException, ValueError):
+		pass
+	return 0
 	if bytes == 1:
 		return "1 Byte"
 	elif bytes < (1 << 10):
@@ -577,14 +609,15 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 			if "downloads" in app:
 				for download in app["downloads"]:
 					if "size" not in app["downloads"][download]:
-						if app["downloads"][download]["url"][:30] == "https://db-nds-shop.fr/":
-							app["downloads"][download]["size"] = path.getsize(path.join(docsDir, app['downloads'][download]['url'][30:]))
+						localPath = siteLocalPath(docsDir, app["downloads"][download]["url"])
+						if localPath:
+							app["downloads"][download]["size"] = path.getsize(localPath)
 							app["downloads"][download]["size_str"] = byteCount(app["downloads"][download]["size"])
 						else:
-							r = requests.head(app["downloads"][download]["url"], allow_redirects=True)
-							if r.status_code == 200 and "Content-Length" in r.headers:
-								app["downloads"][download]["size"] = int(r.headers["Content-Length"])
-								app["downloads"][download]["size_str"] = byteCount(app["downloads"][download]["size"])
+							size = headContentLength(app["downloads"][download]["url"])
+							if size:
+								app["downloads"][download]["size"] = size
+								app["downloads"][download]["size_str"] = byteCount(size)
 
 			# Check for local icon / image
 			for ext in (".png", ".gif"):
@@ -602,12 +635,13 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 
 			# Get image size
 			if "image_length" not in app and "image" in app:
-				if app["image"][:30] == "https://db-nds-shop.fr/":
-					app["image_length"] = path.getsize(path.join(docsDir, app["image"][30:]))
+				localPath = siteLocalPath(docsDir, app["image"])
+				if localPath:
+					app["image_length"] = path.getsize(localPath)
 				else:
-					r = requests.head(app["image"], allow_redirects=True)
-					if r.status_code == 200 and "Content-Length" in r.headers:
-						app["image_length"] = int(r.headers["Content-Length"])
+					size = headContentLength(app["image"])
+					if size:
+						app["image_length"] = size
 
 			# Make icon for UniStore and QR
 			img = None
@@ -619,14 +653,18 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 
 				url = app["icon_static"] if "icon_static" in app else (app["icon"] if "icon" in app else app["image"] if "image" in app else "")
 				file = None
-				if url[:30] == "https://db-nds-shop.fr/":
-					file = open(path.join(docsDir, url[30:]), "rb")
+				localPath = siteLocalPath(docsDir, url)
+				if localPath:
+					file = open(localPath, "rb")
 				else:
-					r = requests.get(url)
-					if r.status_code == 200:
-						file = BytesIO(r.content)
-					else:
-						print(f"Error {r.status_code} downloading image!")
+					try:
+						r = requests.get(url, timeout=15)
+						if r.status_code == 200:
+							file = BytesIO(r.content)
+						else:
+							print(f"Error {r.status_code} downloading image!")
+					except requests.RequestException:
+						pass
 
 				if file:
 					if priorityOnlyMode:
@@ -824,7 +862,11 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 			# If scripts are specified, use those instead of the release files
 			if "scripts" in app:
 				for script in app["scripts"]:
-					entry.addScript(script, app["scripts"][script])
+					# Wrap the script with the matching download size when available
+					if script in app.get("downloads", {}) and "size" in app["downloads"][script]:
+						entry.addScript(script, {"size": byteCount(app["downloads"][script]["size"]), "script": app["scripts"][script]})
+					else:
+						entry.addScript(script, app["scripts"][script])
 
 			# If autogen_scripts is forced or no scripts, generate scripts from downloads
 			if "autogen_scripts" in app and app["autogen_scripts"] or "scripts" not in app:

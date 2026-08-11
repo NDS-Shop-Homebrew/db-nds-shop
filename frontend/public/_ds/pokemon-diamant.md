@@ -2,22 +2,20 @@
 author: Nintendo / GameFreak
 categories:
 - game
-color: '#52708e'
-color_bg: '#4a6580'
+color: '#537392'
+color_bg: '#486480'
 downloads:
   Pokemon Version Diamant (France) (Rev ).nds:
-    size: 67108864
-    size_str: 64 MiB
     url: https://db-nds-shop.fr/games/Pokemon%20Version%20Diamant%20%28France%29%20%28Rev%20%29.nds
 icon: https://db-nds-shop.fr/assets/images/icons/pokemondiamant.png
 image: https://db-nds-shop.fr/assets/images/icons/pokemondiamant.png
-image_length: 502
+image_length: 1918
 layout: app
 qr:
   Pokemon Version Diamant (France) (Rev ).nds: https://db-nds-shop.fr/qr/pokemon-version-diamant-france-rev--nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Diamant%20(France)%20(Rev%20).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Pokemon%20-%20Version%20Diamant%20%28France%29%20%28Rev%205%29.png/Pokemon%20-%20Version%20Diamant%20%28France%29%20%28Rev%205%29.png
 stars: 0
 systems:
 - DS

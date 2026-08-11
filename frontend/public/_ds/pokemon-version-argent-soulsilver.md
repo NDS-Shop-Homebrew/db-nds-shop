@@ -2,22 +2,20 @@
 author: Nintendo / GameFreak
 categories:
 - game
-color: '#9cadca'
-color_bg: '#626d80'
+color: '#a0b1cf'
+color_bg: '#636d80'
 downloads:
   Pokemon Version Argent SoulSilver (France) [b].nds:
-    size: 134217728
-    size_str: 128 MiB
     url: https://db-nds-shop.fr/games/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds
 icon: https://db-nds-shop.fr/assets/images/icons/pokemonargent.png
 image: https://db-nds-shop.fr/assets/images/icons/pokemonargent.png
-image_length: 552
+image_length: 2303
 layout: app
 qr:
   Pokemon Version Argent SoulSilver (France) [b].nds: https://db-nds-shop.fr/qr/pokemon-version-argent-soulsilver-france-b-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Pokemon%20-%20Version%20Argent%20SoulSilver%20%28France%29.png/Pokemon%20-%20Version%20Argent%20SoulSilver%20%28France%29.png
 stars: 0
 systems:
 - DS

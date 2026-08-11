@@ -2,22 +2,20 @@
 author: Nintendo
 categories:
 - game
-color: '#5d4343'
-color_bg: '#5d4343'
+color: '#5d709b'
+color_bg: '#4d5c80'
 downloads:
   Mario Kart DS (Europe) (En,Fr,De,Es,It).nds:
-    size: 33554432
-    size_str: 32 MiB
     url: https://db-nds-shop.fr/games/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds
 icon: https://db-nds-shop.fr/assets/images/icons/mariokartds.png
 image: https://db-nds-shop.fr/assets/images/icons/mariokartds.png
-image_length: 940
+image_length: 2690
 layout: app
 qr:
   Mario Kart DS (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/mario-kart-ds-europe-enfrdeesit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS

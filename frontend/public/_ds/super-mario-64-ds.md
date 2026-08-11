@@ -2,22 +2,20 @@
 author: Nintendo
 categories:
 - game
-color: '#92586b'
-color_bg: '#804d5d'
+color: '#955a6e'
+color_bg: '#804d5e'
 downloads:
   Super Mario DS (Europe) (En,Fr,De,Es,It).nds:
-    size: 16777216
-    size_str: 16 MiB
     url: https://db-nds-shop.fr/games/Super%20Mario%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds
 icon: https://db-nds-shop.fr/assets/images/icons/mario64ds.png
 image: https://db-nds-shop.fr/assets/images/icons/mario64ds.png
-image_length: 871
+image_length: 4023
 layout: app
 qr:
   Super Mario DS (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/super-mario-ds-europe-enfrdeesit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Super%20Mario%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Super%20Mario%2064%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Super%20Mario%2064%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS
