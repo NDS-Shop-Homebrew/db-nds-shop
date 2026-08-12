@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 import apiRouter from "./routes/api.js";
+import ndsdbRouter from "./routes/ndsdb.js";
 
 dotenv.config();
 
@@ -73,6 +74,9 @@ async function safeJson<T>(response: any): Promise<T> {
 
 // --- API v1 (jeux) ---
 app.use("/api/v1", apiRouter);
+
+// --- API v2 (ndsdb - metadata enrichie par serial) ---
+app.use("/api/v2/ndsdb", ndsdbRouter);
 
 if (DISCORD_BOT_TOKEN) {
   // --- API Discord User ---

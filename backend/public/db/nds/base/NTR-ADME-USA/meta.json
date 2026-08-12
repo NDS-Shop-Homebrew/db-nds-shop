@@ -1,0 +1,23 @@
+{
+  "name": "Animal Crossing: Wild World",
+  "formal_name": "Animal Crossing: Wild World",
+  "description": "Vivez une nouvelle vie dans un charmant village où vous pouvez vous lier d'amitié avec les animaux, pêcher, attraper des insectes et décorer votre maison.<br/><br/>Connectez-vous en Wi-Fi Nintendo pour visiter les villages de vos amis.",
+  "release_date": "2005-12-05",
+  "product_code": "NTR-ADME-USA",
+  "platform_name": "Nintendo DS",
+  "region": "USA",
+  "genres": ["RPG"],
+  "features": [
+    "Nintendo Wi-Fi Connection",
+    "Multi-cart Play",
+    "Single-cart Download Play",
+    "Touch Screen"
+  ],
+  "languages": ["English", "Spanish", "French"],
+  "rating_system": {
+    "name": "ESRB",
+    "age": "E"
+  },
+  "developer": "SCZ",
+  "publisher": "Nintendo"
+}
