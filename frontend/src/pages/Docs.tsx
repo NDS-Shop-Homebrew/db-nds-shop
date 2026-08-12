@@ -17,7 +17,7 @@ const endpoints: { section: "games" | "ndsdb" | "discord"; items: Endpoint[] }[]
     items: [
       { method: "GET", path: "/api/v1/health", descKey: "docs.route_health", example: "/api/v1/health" },
       { method: "GET", path: "/api/v1/games", descKey: "docs.route_games", example: "/api/v1/games" },
-      { method: "GET", path: "/api/v1/games/:slug", descKey: "docs.route_game", example: "/api/v1/games/nsmb" },
+      { method: "GET", path: "/api/v1/games/:slug", descKey: "docs.route_game", example: "/api/v1/games/animal-crossing---wild-world" },
       { method: "GET", path: "/api/v1/stats", descKey: "docs.route_stats", example: "/api/v1/stats" },
     ],
   },
@@ -26,8 +26,8 @@ const endpoints: { section: "games" | "ndsdb" | "discord"; items: Endpoint[] }[]
     items: [
       { method: "GET", path: "/api/v1/ndsdb/version", descKey: "docs.route_ndsdb_version", example: "/api/v1/ndsdb/version" },
       { method: "GET", path: "/api/v1/ndsdb/stats/stats", descKey: "docs.route_ndsdb_stats", example: "/api/v1/ndsdb/stats/stats" },
-      { method: "GET", path: "/api/v1/ndsdb/stats/category/:category", descKey: "docs.route_ndsdb_category", example: "/api/v1/ndsdb/stats/category/action" },
-      { method: "GET", path: "/api/v1/ndsdb/metadata/:serial", descKey: "docs.route_ndsdb_metadata", example: "/api/v1/ndsdb/metadata/NTR-APDE" },
+      { method: "GET", path: "/api/v1/ndsdb/stats/category/:category", descKey: "docs.route_ndsdb_category", example: "/api/v1/ndsdb/stats/category/base" },
+      { method: "GET", path: "/api/v1/ndsdb/metadata/:serial", descKey: "docs.route_ndsdb_metadata", example: "/api/v1/ndsdb/metadata/A2DP" },
     ],
   },
   {

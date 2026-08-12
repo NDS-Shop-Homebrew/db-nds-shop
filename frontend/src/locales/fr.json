@@ -90,9 +90,9 @@
     "route_ndsdb_stats": "Statistiques de la base NDSDB.",
     "route_ndsdb_category": "Statistiques par catégorie.",
     "route_ndsdb_metadata": "Métadonnées d'un jeu par son numéro de série.",
-    "param_slug": "Slug du jeu (ex : nsmb, mario-kart-ds)",
-    "param_serial": "Numéro de série du jeu (ex : NTR-APDE)",
-    "param_category": "Catégorie (ex : action, rpg)",
+    "param_slug": "Slug du jeu (ex : animal-crossing---wild-world)",
+    "param_serial": "Numéro de série du jeu (ex : A2DP)",
+    "param_category": "Catégorie (seule : base)",
     "param_meta": "Nom du fichier de métadonnées (ex : meta.json)",
     "no_content": "Aucun contenu à afficher."
   },

@@ -44,12 +44,10 @@ interface DiscordGuild {
 const DISCORD_INVITE = "https://discord.gg/udw7Z4mdKJ";
 
 // --- Helpers ---
+// ponytail: Discord renvoie 415 sur les GIF (a_*.gif) hors de ses clients, on force le PNG
 const getAvatarUrl = (user: DiscordUser) => {
   if (user.avatar) {
-    const isGif = user.avatar.startsWith("a_");
-    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${
-      isGif ? "gif" : "png"
-    }?size=128`;
+    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
   }
   return `https://cdn.discordapp.com/embed/avatars/${
     parseInt(user.discriminator) % 5
@@ -58,10 +56,7 @@ const getAvatarUrl = (user: DiscordUser) => {
 
 const getBannerUrl = (user: DiscordUser) => {
   if (!user.banner) return null;
-  const isGif = user.banner.startsWith("a_");
-  return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${
-    isGif ? "gif" : "png"
-  }?size=512`;
+  return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.png?size=512`;
 };
 
 const getActivityImageUrl = (activity: any) => {
@@ -215,21 +210,21 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
-          className="relative rounded-2xl bg-card border border-border shadow-lg"
+          className="rounded-2xl bg-card border border-border shadow-lg overflow-hidden"
         >
-          <div className="h-24 rounded-t-2xl bg-gradient-to-r from-[#5865F2] via-[#4752C4] to-[#7289da] relative overflow-hidden">
+          <div className="h-24 bg-gradient-to-r from-[#5865F2] via-[#4752C4] to-[#7289da] relative">
             <div className="absolute inset-0 opacity-20"
               style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
           </div>
-          <div className="p-6 flex flex-col sm:flex-row items-center gap-4 -mt-14">
+          <div className="p-6 flex flex-col sm:flex-row items-center gap-4">
             {guild.icon && (
               <img
                 src={guild.icon}
                 alt={guild.name}
-                className="w-24 h-24 rounded-full border-4 border-background shadow-lg bg-background shrink-0"
+                className="w-20 h-20 rounded-full border-4 border-background shadow-lg bg-background shrink-0"
               />
             )}
-            <div className="flex-1 min-w-0 text-center sm:text-left pt-2 sm:pt-0">
+            <div className="flex-1 min-w-0 text-center sm:text-left">
               <h2 className="text-2xl font-bold text-foreground">{guild.name}</h2>
               <p className="text-sm text-muted-foreground mt-1 max-w-xl mx-auto sm:mx-0">
                 {guild.description || t("about.discord_section_desc")}
