@@ -118,6 +118,10 @@ if (DISCORD_BOT_TOKEN) {
 
     try {
       const response = await fetch(`https://api.lanyard.rest/v1/users/${id}`);
+      if (response.status === 404) {
+        // Utilisateur non suivi par Lanyard → statut inconnu
+        return res.json({ discord_status: "offline", activities: [] });
+      }
       if (!response.ok) {
         return res
           .status(response.status)

@@ -61,7 +61,7 @@ const getBannerUrl = (user: DiscordUser) => {
   const isGif = user.banner.startsWith("a_");
   return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${
     isGif ? "gif" : "png"
-  }?size=600`;
+  }?size=512`;
 };
 
 const getActivityImageUrl = (activity: any) => {
@@ -215,26 +215,26 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl bg-card border border-border shadow-lg"
+          className="relative rounded-2xl bg-card border border-border shadow-lg"
         >
-          <div className="h-28 bg-gradient-to-r from-[#5865F2] via-[#4752C4] to-[#7289da] relative">
+          <div className="h-24 rounded-t-2xl bg-gradient-to-r from-[#5865F2] via-[#4752C4] to-[#7289da] relative overflow-hidden">
             <div className="absolute inset-0 opacity-20"
               style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
           </div>
-          <div className="p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 -mt-14">
+          <div className="p-6 flex flex-col sm:flex-row items-center gap-4 -mt-14">
             {guild.icon && (
               <img
                 src={guild.icon}
                 alt={guild.name}
-                className="w-28 h-28 rounded-full border-4 border-background shadow-lg bg-background"
+                className="w-24 h-24 rounded-full border-4 border-background shadow-lg bg-background shrink-0"
               />
             )}
-            <div className="flex-1 min-w-0 pt-4 sm:pt-0">
+            <div className="flex-1 min-w-0 text-center sm:text-left pt-2 sm:pt-0">
               <h2 className="text-2xl font-bold text-foreground">{guild.name}</h2>
-              <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+              <p className="text-sm text-muted-foreground mt-1 max-w-xl mx-auto sm:mx-0">
                 {guild.description || t("about.discord_section_desc")}
               </p>
-              <div className="flex items-center gap-4 mt-3 text-sm text-muted-foreground">
+              <div className="flex items-center justify-center sm:justify-start gap-4 mt-3 text-sm text-muted-foreground">
                 {typeof guild.memberCount === "number" && (
                   <span className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-green-500" />
