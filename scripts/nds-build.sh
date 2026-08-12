@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build complet de db-nds-shop — à exécuter sur le serveur.
 #
-# 1. Icônes extraites des ROMs (local, pas d'internet)
+# 1. Icônes (ROMs) + boxarts + screenshots (libretro, cache skip si déjà là)
 # 2. Pages + QR + unistore (generate.py)
 # 3. Frontmatter + games.json (update_md + generate_games)
 # 4. Forwarders .cia (optionnel, long)
@@ -25,18 +25,19 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Reset les fichiers générés localement (le build les régénère) pour un pull propre
+git checkout -- frontend/public/_ds/ frontend/public/games.json 2>/dev/null || true
 git pull origin dev --ff-only
 source .venv/bin/activate
 
-echo "=== Icônes (extraction ROMs locales) ==="
+echo "=== Icônes + Boxarts + Screenshots ==="
 if [[ -n "$ROMS_DIR" && -d "$ROMS_DIR" ]]; then
   node tools/nds-to-cia/nds-assets.mjs \
     --apps source/apps \
     --roms "$ROMS_DIR" \
-    --out frontend/public \
-    --no-boxart --no-screenshots
+    --out frontend/public
 else
-  echo "(pas de --roms fourni, icônes inchangées)"
+  echo "(pas de --roms fourni, assets inchangés)"
 fi
 
 echo "=== Pages + QR ==="
