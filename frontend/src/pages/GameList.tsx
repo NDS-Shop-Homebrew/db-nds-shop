@@ -21,9 +21,9 @@ type ViewMode = "grid" | "list";
 function GameSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="aspect-square rounded-xl bg-muted mb-3" />
-      <div className="h-4 w-3/4 rounded bg-muted mb-2" />
-      <div className="h-3 w-1/2 rounded bg-muted" />
+      <div className="w-24 h-24 rounded-xl bg-muted mb-3 mx-auto" />
+      <div className="h-4 w-3/4 rounded bg-muted mb-2 mx-auto" />
+      <div className="h-3 w-1/2 rounded bg-muted mx-auto" />
     </div>
   );
 }
@@ -135,8 +135,8 @@ export default function GameList() {
           {filtered.map((game, i) => (
             <motion.div key={game.fileName} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.02 }}>
               <Link to={`/game/${game.fileName}`} className="block group">
-                <div className="aspect-square rounded-xl overflow-hidden bg-muted mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all">
-                  <img src={game.icon} alt={game.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="rounded-xl overflow-hidden bg-muted mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all">
+                  <img src={game.icon} alt={game.title} className="w-24 h-24 mx-auto object-contain" />
                 </div>
                 <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug">{game.title}</h3>
                 <p className="text-xs text-muted-foreground mt-1 truncate">{game.author}</p>

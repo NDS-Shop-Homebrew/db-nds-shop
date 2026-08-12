@@ -97,7 +97,7 @@ export default function GameDetail() {
           <img src={boxart} alt={game.title} className="w-full h-56 md:h-72 object-cover" />
         ) : (
           <div className="w-full h-40 md:h-48 flex items-center justify-center" style={{ backgroundColor: game.color_bg || "rgba(0,114,206,0.1)" }}>
-            <img src={game.icon} alt="" className="w-24 h-24 md:w-32 md:h-32 object-contain" style={{ imageRendering: "pixelated" }} />
+            <img src={game.icon} alt="" className="w-20 h-20 md:w-24 md:h-24 object-contain" />
           </div>
         )}
         {/* Overlay bas : titre */}
@@ -214,8 +214,8 @@ export default function GameDetail() {
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
             {related.map((g) => (
               <Link key={g.fileName} to={`/game/${g.fileName}`} className="block group">
-                <div className="aspect-square rounded-xl overflow-hidden bg-muted mb-2 ring-1 ring-border group-hover:ring-primary/50 transition-all">
-                  <img src={g.icon} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform" style={{ imageRendering: "pixelated" }} />
+                <div className="rounded-xl overflow-hidden bg-muted mb-2 ring-1 ring-border group-hover:ring-primary/50 transition-all">
+                  <img src={g.icon} alt="" className="w-20 h-20 mx-auto object-contain" />
                 </div>
                 <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug">{g.title}</p>
               </Link>
