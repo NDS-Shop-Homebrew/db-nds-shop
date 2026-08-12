@@ -151,7 +151,7 @@ const staticDir = path.join(
 app.use(express.static(staticDir, { dotfiles: "ignore" }));
 
 // Fallback SPA : toutes les routes non-API servent index.html
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(staticDir, "index.html"));
 });
 
