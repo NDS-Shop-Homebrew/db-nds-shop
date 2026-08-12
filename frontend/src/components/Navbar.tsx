@@ -8,6 +8,7 @@ const links = [
   { to: "/", labelKey: "nav.home" },
   { to: "/game-list", labelKey: "nav.gameList" },
   { to: "/about", labelKey: "nav.about" },
+  { to: "/docs", labelKey: "nav.api" },
 ];
 
 export function NavBar() {

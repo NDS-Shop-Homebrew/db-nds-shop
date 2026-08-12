@@ -3,7 +3,8 @@
     "home": "Accueil",
     "gameList": "Liste des jeux",
     "about": "À propos",
-    "favorites": "Favoris"
+    "favorites": "Favoris",
+    "api": "Docs API"
   },
   "favorites": {
     "empty": "Vous n'avez aucun jeu en favori pour le moment.",
@@ -55,7 +56,45 @@
     "roadmap": "Roadmap",
     "project": "Le projet",
     "join_discord": "Rejoindre notre Discord",
+    "discord_section_title": "Rejoignez notre serveur Discord",
+    "discord_section_desc": "Discutez avec l'équipe et la communauté, suivez les nouveautés et proposez vos idées.",
+    "discord_members": "membres",
+    "discord_online": "en ligne",
+    "discord_join": "Rejoindre le serveur",
+    "discord_no_activity": "Aucune activité en cours",
     "project_description": "NDS-Shop est un projet open-source développé par une communauté de passionnés de jeux vidéo. Notre objectif est de fournir une plateforme conviviale et accessible pour les amateurs de Nintendo DS, en leur offrant un large choix de jeux à télécharger facilement. Nous croyons en la puissance de la communauté et encourageons les contributions pour améliorer continuellement le site et enrichir notre catalogue de jeux."
+  },
+  "docs": {
+    "title": "Documentation API",
+    "description": "L'API publique NDS-Shop vous permet d'accéder au catalogue de jeux, aux statistiques et aux métadonnées. Toutes les routes retournent du JSON.",
+    "base_url": "URL de base",
+    "sections": {
+      "games": "Jeux",
+      "ndsdb": "NDSDB",
+      "discord": "Discord"
+    },
+    "try": "Tester",
+    "request": "Requête",
+    "response": "Réponse",
+    "load": "Chargement…",
+    "error": "Erreur",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "route_health": "Vérifie que l'API est en ligne.",
+    "route_games": "Liste tous les jeux du catalogue.",
+    "route_game": "Détails d'un jeu par son slug.",
+    "route_stats": "Statistiques globales (jeux, téléchargements…).",
+    "route_team": "Liste des membres de l'équipe Discord.",
+    "route_guild": "Informations du serveur Discord.",
+    "route_ndsdb_version": "Version de la base de données NDSDB.",
+    "route_ndsdb_stats": "Statistiques de la base NDSDB.",
+    "route_ndsdb_category": "Statistiques par catégorie.",
+    "route_ndsdb_metadata": "Métadonnées d'un jeu par son numéro de série.",
+    "param_slug": "Slug du jeu (ex : nsmb, mario-kart-ds)",
+    "param_serial": "Numéro de série du jeu (ex : NTR-APDE)",
+    "param_category": "Catégorie (ex : action, rpg)",
+    "param_meta": "Nom du fichier de métadonnées (ex : meta.json)",
+    "no_content": "Aucun contenu à afficher."
   },
   "gameDetail": {
     "download": "Téléchargements",

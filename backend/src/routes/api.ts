@@ -103,4 +103,21 @@ router.get("/stats", (_req, res) => {
   });
 });
 
+// --- GET /api/v1/team ---
+// Liste des IDs Discord de l'équipe (fichier écrit par le back-office upload)
+const TEAM_MEMBERS_FILE =
+  process.env.TEAM_MEMBERS_FILE || "/srv/nds-shop/team-members.json";
+
+router.get("/team", (_req, res) => {
+  try {
+    if (!fs.existsSync(TEAM_MEMBERS_FILE)) {
+      return res.json({ discordIds: [], updatedAt: null });
+    }
+    const data = JSON.parse(fs.readFileSync(TEAM_MEMBERS_FILE, "utf8"));
+    res.json(data);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;

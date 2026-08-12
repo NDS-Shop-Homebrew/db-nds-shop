@@ -26,6 +26,7 @@ export default function Footer() {
             <div className="space-y-2 text-sm">
               <a href="/game-list" className="block text-muted-foreground hover:text-primary transition-colors">{t("nav.gameList")}</a>
               <a href="/about" className="block text-muted-foreground hover:text-primary transition-colors">{t("nav.about")}</a>
+              <a href="/docs" className="block text-muted-foreground hover:text-primary transition-colors">{t("nav.api")}</a>
               <a href="/privacy" className="block text-muted-foreground hover:text-primary transition-colors">{t("footer.privacy")}</a>
               <a href="/dmca" className="block text-muted-foreground hover:text-primary transition-colors">DMCA</a>
             </div>

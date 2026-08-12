@@ -130,6 +130,39 @@ if (DISCORD_BOT_TOKEN) {
       res.status(500).json({ error: "Failed to fetch presence" });
     }
   });
+
+  // --- API Discord Guild ---
+  app.get("/api/discord-guild", async (_req, res) => {
+    const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
+    try {
+      const response = await fetch(
+        `https://discord.com/api/v10/guilds/${guildId}?with_counts=true`,
+        { headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` } }
+      );
+      if (!response.ok) {
+        return res
+          .status(response.status)
+          .json({ error: "Failed to fetch guild" });
+      }
+      const data = await safeJson<any>(response);
+      res.json({
+        id: data.id,
+        name: data.name,
+        icon: data.icon
+          ? `https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png?size=256`
+          : null,
+        memberCount: data.approximate_member_count,
+        presenceCount: data.approximate_presence_count,
+        description: data.description,
+        invite: data.vanity_url_code
+          ? `https://discord.gg/${data.vanity_url_code}`
+          : null,
+      });
+    } catch (err) {
+      console.error("❌ Failed to fetch Discord guild:", err);
+      res.status(500).json({ error: "Failed to fetch guild" });
+    }
+  });
 }
 
 // --- API Roadmap ---

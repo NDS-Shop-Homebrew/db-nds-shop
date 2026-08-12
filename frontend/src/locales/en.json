@@ -3,7 +3,8 @@
     "home": "Home",
     "gameList": "Game List",
     "about": "About",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "api": "API Docs"
   },
   "favorites": {
     "empty": "You don't have any favorite games yet.",
@@ -55,7 +56,45 @@
     "roadmap": "Roadmap",
     "project": "The Project",
     "join_discord": "Join our Discord",
+    "discord_section_title": "Join our Discord server",
+    "discord_section_desc": "Chat with the team and community, follow new releases, and share your ideas.",
+    "discord_members": "members",
+    "discord_online": "online",
+    "discord_join": "Join the server",
+    "discord_no_activity": "No current activity",
     "project_description": "NDS-Shop is an open-source project developed by a community of video game enthusiasts. Our goal is to provide a user-friendly and accessible platform for Nintendo DS fans, offering a wide selection of games for easy downloading. We believe in the power of community and encourage contributions to continuously improve the site and expand our game catalog."
+  },
+  "docs": {
+    "title": "API Documentation",
+    "description": "The public NDS-Shop API gives you access to the game catalog, statistics, and metadata. All routes return JSON.",
+    "base_url": "Base URL",
+    "sections": {
+      "games": "Games",
+      "ndsdb": "NDSDB",
+      "discord": "Discord"
+    },
+    "try": "Try it",
+    "request": "Request",
+    "response": "Response",
+    "load": "Loading…",
+    "error": "Error",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "route_health": "Checks whether the API is online.",
+    "route_games": "Lists all games in the catalog.",
+    "route_game": "Game details by slug.",
+    "route_stats": "Global statistics (games, downloads…).",
+    "route_team": "Lists Discord team members.",
+    "route_guild": "Discord server information.",
+    "route_ndsdb_version": "NDSDB database version.",
+    "route_ndsdb_stats": "NDSDB database statistics.",
+    "route_ndsdb_category": "Statistics by category.",
+    "route_ndsdb_metadata": "Game metadata by serial number.",
+    "param_slug": "Game slug (e.g. nsmb, mario-kart-ds)",
+    "param_serial": "Game serial number (e.g. NTR-APDE)",
+    "param_category": "Category (e.g. action, rpg)",
+    "param_meta": "Metadata file name (e.g. meta.json)",
+    "no_content": "Nothing to display."
   },
   "gameDetail": {
     "download": "Downloads",
