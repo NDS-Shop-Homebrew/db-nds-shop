@@ -26,5 +26,6 @@ export default defineConfig({
   build: {
     outDir: "dist",
     assetsDir: "frontend-assets",
+    copyPublicDir: false,
   },
 });
