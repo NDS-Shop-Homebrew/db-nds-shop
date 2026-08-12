@@ -45,6 +45,14 @@ export default function GameDetail() {
       });
   }, [slug]);
 
+  const boxart = game?.screenshots?.find((s) => s.description === "Boxart")?.url || null;
+
+  // Images affichables (hors boxart)
+  const gallery = useMemo(() => {
+    const shots = (game?.screenshots || []).filter((s) => s.description !== "Boxart");
+    return shots.length ? shots : [];
+  }, [game]);
+
   const related = useMemo(() => {
     if (!game) return [];
     return allGames
@@ -53,14 +61,12 @@ export default function GameDetail() {
       .slice(0, 6);
   }, [game, allGames]);
 
-  const screenshots = game?.screenshots || [];
-
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (lightboxIdx === null) return;
+    if (lightboxIdx === null || gallery.length === 0) return;
     if (e.key === "Escape") setLightboxIdx(null);
-    if (e.key === "ArrowLeft") setLightboxIdx((lightboxIdx - 1 + screenshots.length) % screenshots.length);
-    if (e.key === "ArrowRight") setLightboxIdx((lightboxIdx + 1) % screenshots.length);
-  }, [lightboxIdx, screenshots.length]);
+    if (e.key === "ArrowLeft") setLightboxIdx((lightboxIdx - 1 + gallery.length) % gallery.length);
+    if (e.key === "ArrowRight") setLightboxIdx((lightboxIdx + 1) % gallery.length);
+  }, [lightboxIdx, gallery.length]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -71,11 +77,13 @@ export default function GameDetail() {
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 animate-pulse space-y-4">
         <div className="h-8 w-1/3 rounded bg-muted" />
-        <div className="h-48 rounded-xl bg-muted" />
+        <div className="h-56 rounded-xl bg-muted" />
         <div className="h-4 w-1/2 rounded bg-muted" />
       </div>
     );
   }
+
+  const isFav = favs.includes(game.fileName);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -83,47 +91,61 @@ export default function GameDetail() {
         <ArrowLeft size={16} /> {t("gameDetail.back")}
       </Link>
 
-      <div className="flex items-start gap-6 mb-8">
-        <img src={game.icon} alt={game.title} className="w-24 h-24 md:w-32 md:h-32 rounded-2xl shadow-sm ring-1 ring-border" />
-        <div className="flex-1 min-w-0">
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">{game.title}</h1>
-          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-            <span><strong className="text-foreground">{t("gameDetail.author")}</strong> {game.author}</span>
-            <span><strong className="text-foreground">{t("gameDetail.version")}</strong> {game.version}</span>
-            <span><strong className="text-foreground">{t("gameDetail.updated")}</strong> {new Date(game.updated).toLocaleDateString(i18n.language)}</span>
+      {/* Hero */}
+      <div className="relative rounded-2xl overflow-hidden mb-8 bg-gradient-to-br from-primary/15 via-secondary/20 to-accent/10">
+        {boxart ? (
+          <img src={boxart} alt={game.title} className="w-full h-56 md:h-72 object-cover" />
+        ) : (
+          <div className="w-full h-40 md:h-48 flex items-center justify-center" style={{ backgroundColor: game.color_bg || "rgba(0,114,206,0.1)" }}>
+            <img src={game.icon} alt="" className="w-24 h-24 md:w-32 md:h-32 object-contain" style={{ imageRendering: "pixelated" }} />
           </div>
-          {game.systems && (
-            <div className="flex flex-wrap gap-2 mt-3">
-              {game.systems.map((s) => (
-                <span key={s} className="px-3 py-1 rounded-full bg-secondary text-primary text-xs font-medium">{s}</span>
-              ))}
-            </div>
-          )}
-          <div className="flex gap-2 mt-4">
-            <button
-              onClick={() => toggle(game.fileName)}
-              className={`p-2 rounded-lg border transition-colors ${favs.includes(game.fileName) ? "bg-red-50 border-red-200 text-red-500" : "border-border text-muted-foreground hover:text-red-400"}`}
-            >
-              <Heart size={18} fill={favs.includes(game.fileName) ? "currentColor" : "none"} />
-            </button>
-            <button onClick={() => navigator.clipboard?.writeText(window.location.href)} className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary transition-colors">
-              <Share2 size={18} />
-            </button>
-          </div>
+        )}
+        {/* Overlay bas : titre */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-16">
+          <h1 className="text-2xl md:text-3xl font-bold text-white">{game.title}</h1>
+          <p className="text-sm text-white/70 mt-1">{game.author}</p>
         </div>
       </div>
 
-      {game.image && (
-        <div className="h-48 md:h-64 rounded-xl overflow-hidden mb-8 bg-muted" style={{ backgroundColor: game.color_bg }}>
-          <img src={game.image} alt="" className="w-full h-full object-cover opacity-40" />
-        </div>
-      )}
+      {/* Infos rapides */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        {[
+          { label: t("gameDetail.author"), value: game.author },
+          { label: t("gameDetail.version"), value: game.version },
+          { label: t("gameDetail.updated"), value: new Date(game.updated).toLocaleDateString(i18n.language) },
+          { label: t("gameDetail.systems"), value: game.systems?.join(", ") || "—" },
+        ].map((info) => (
+          <div key={info.label} className="rounded-xl border border-border bg-card p-3">
+            <p className="text-xs text-muted-foreground mb-0.5">{info.label}</p>
+            <p className="text-sm font-medium text-foreground truncate">{info.value}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-8">
+          {/* Téléchargements */}
           {game.downloads && Object.keys(game.downloads).length > 0 && (
             <div>
-              <h2 className="text-lg font-bold mb-4">{t("gameDetail.download")}</h2>
+              <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
+                <span>{t("gameDetail.download")}</span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => toggle(game.fileName)}
+                    className={`p-2 rounded-lg border transition-colors ${isFav ? "bg-red-50 border-red-200 text-red-500" : "border-border text-muted-foreground hover:text-red-400"}`}
+                    title="Favori"
+                  >
+                    <Heart size={18} fill={isFav ? "currentColor" : "none"} />
+                  </button>
+                  <button
+                    onClick={() => navigator.clipboard?.writeText(window.location.href)}
+                    className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary transition-colors"
+                    title="Partager"
+                  >
+                    <Share2 size={18} />
+                  </button>
+                </div>
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {Object.entries(game.downloads).map(([name, details]) => (
                   <a key={name} href={details.url} target="_blank" rel="noreferrer"
@@ -140,11 +162,12 @@ export default function GameDetail() {
             </div>
           )}
 
-          {screenshots.length > 0 && (
+          {/* Galerie screenshots */}
+          {gallery.length > 0 && (
             <div>
               <h2 className="text-lg font-bold mb-4">{t("gameDetail.screenshots")}</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {screenshots.map((shot, i) => (
+                {gallery.map((shot, i) => (
                   <button key={i} onClick={() => setLightboxIdx(i)}
                     className="aspect-video rounded-xl overflow-hidden ring-1 ring-border hover:ring-primary/50 transition-all group">
                     <img src={shot.url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -154,6 +177,7 @@ export default function GameDetail() {
             </div>
           )}
 
+          {/* QR */}
           {game.qr && Object.keys(game.qr).length > 0 && (
             <div>
               <h2 className="text-lg font-bold mb-4">{t("gameDetail.qr_code")}</h2>
@@ -183,6 +207,7 @@ export default function GameDetail() {
         </div>
       </div>
 
+      {/* Jeux similaires */}
       {related.length > 0 && (
         <div className="mt-16">
           <h2 className="text-lg font-bold mb-6">{t("gameDetail.related")}</h2>
@@ -190,7 +215,7 @@ export default function GameDetail() {
             {related.map((g) => (
               <Link key={g.fileName} to={`/game/${g.fileName}`} className="block group">
                 <div className="aspect-square rounded-xl overflow-hidden bg-muted mb-2 ring-1 ring-border group-hover:ring-primary/50 transition-all">
-                  <img src={g.icon} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                  <img src={g.icon} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform" style={{ imageRendering: "pixelated" }} />
                 </div>
                 <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug">{g.title}</p>
               </Link>
@@ -199,19 +224,20 @@ export default function GameDetail() {
         </div>
       )}
 
-      {lightboxIdx !== null && screenshots[lightboxIdx] && (
+      {/* Lightbox */}
+      {lightboxIdx !== null && gallery[lightboxIdx] && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={() => setLightboxIdx(null)}>
-          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + screenshots.length) % screenshots.length); }}
+          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + gallery.length) % gallery.length); }}
             className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
             <ChevronLeft size={28} />
           </button>
-          <img src={screenshots[lightboxIdx].url} alt="" className="max-w-[90vw] max-h-[90vh] rounded-xl" onClick={(e) => e.stopPropagation()} />
-          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % screenshots.length); }}
+          <img src={gallery[lightboxIdx].url} alt="" className="max-w-[90vw] max-h-[90vh] rounded-xl" onClick={(e) => e.stopPropagation()} />
+          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % gallery.length); }}
             className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
             <ChevronRight size={28} />
           </button>
           <button onClick={() => setLightboxIdx(null)} className="absolute top-4 right-4 text-white/60 hover:text-white text-2xl">✕</button>
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/60">{lightboxIdx + 1} / {screenshots.length}</div>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/60">{lightboxIdx + 1} / {gallery.length}</div>
         </div>
       )}
     </div>

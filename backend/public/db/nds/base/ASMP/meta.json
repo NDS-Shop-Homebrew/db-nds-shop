@@ -1,0 +1,22 @@
+{
+  "name": "Super Mario 64 DS",
+  "formal_name": "Super Mario 64 DS",
+  "description": "Super Mario 64 DS is an enhanced remake of the 1996 platform game Super Mario 64, developed and published by Nintendo for the Nintendo DS handheld game console. As with the original title, the game's plot centers on rescuing Princess Peach from Bowser. Players start the game with Yoshi as the playable character and gain access to Mario, Luigi, and Wario as the story progresses.\nNintendo Entertainment Analysis and Development, who produced the original Nintendo 64 version of the game, first displayed the game as a multiplayer demonstration at the 2004 E3 titled Super Mario 64 ×4. In addition to updated graphics, the remake includes additional characters, a multiplayer mode, and minigames. Super Mario 64 DS was a launch title for the Nintendo DS, released in the United States and Japan in 2004; it was released in PAL regions the following year.\nThe game has won awards and received generally positive reviews from critics, who praised its single-player mode, graphics, and the changes from the original game. The multiplayer mode and lack of analog controls from the original were common areas of complaints among reviewers. The game is the tenth best-selling Nintendo DS game, with over 11.06 million copies sold by 2018. Super Mario 64 DS was re-released on the Wii U's Virtual Console service across 2015 and 2016.",
+  "release_date": null,
+  "product_code": "ASMP",
+  "platform_name": "Nintendo DS",
+  "region": "Europe",
+  "genres": [
+    "game"
+  ],
+  "features": [
+    "DS"
+  ],
+  "languages": [],
+  "rating_system": {
+    "name": null,
+    "age": null
+  },
+  "developer": "Nintendo",
+  "publisher": "Nintendo"
+}

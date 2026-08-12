@@ -76,7 +76,7 @@ async function safeJson<T>(response: any): Promise<T> {
 app.use("/api/v1", apiRouter);
 
 // --- API v2 (ndsdb - metadata enrichie par serial) ---
-app.use("/api/v2/ndsdb", ndsdbRouter);
+app.use("/api/v1/ndsdb", ndsdbRouter);
 
 if (DISCORD_BOT_TOKEN) {
   // --- API Discord User ---

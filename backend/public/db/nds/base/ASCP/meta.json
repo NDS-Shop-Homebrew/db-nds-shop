@@ -1,0 +1,22 @@
+{
+  "name": "Sonic Rush",
+  "formal_name": "Sonic Rush",
+  "description": "Sonic Rush is a 2005 platform game developed by Sonic Team and Dimps for the Nintendo DS as part of Sega's Sonic the Hedgehog series. It was released on November 15, 2005, in North America, November 18 in the PAL region, and November 23 in Japan, and was the final game in the mainline Sonic series to be produced by Yuji Naka before his departure from Sega. It was the first Sonic game with the English 4Kids cast, instead of the cast first seen in Sonic Adventure. It is a 2D platformer game with side-scrolling levels displayed on both the top and bottom screens of the DS. However, boss battles, the main characters, and a special stage are rendered in 3D, creating a 2.5D effect. The game's storyline follows the intertwining adventures of the series' main character, Sonic the Hedgehog and a new character, Blaze the Cat. They respectively battle Doctor Eggman and his doppelgänger Eggman Nega at certain points.\nThe game was announced under the working title Sonic DS at Electronic Entertainment Expo (E3) 2004, and under Sonic Rush at E3 2005. The game's 2.5D format was based on Sonic Team's idea to combine elements from 2D and 3D games in the series. Upon release, Sonic Rush was well received by critics, with praise stemming from the game's visuals, music, and similarity to older games in the series and criticism stemming from its overall quickness. A sequel, Sonic Rush Adventure, was released in 2007.",
+  "release_date": null,
+  "product_code": "ASCP",
+  "platform_name": "Nintendo DS",
+  "region": "Europe",
+  "genres": [
+    "game"
+  ],
+  "features": [
+    "DS"
+  ],
+  "languages": [],
+  "rating_system": {
+    "name": null,
+    "age": null
+  },
+  "developer": "Sega",
+  "publisher": "Sega"
+}

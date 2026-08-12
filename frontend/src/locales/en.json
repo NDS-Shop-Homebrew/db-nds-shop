@@ -2,7 +2,12 @@
   "nav": {
     "home": "Home",
     "gameList": "Game List",
-    "about": "About"
+    "about": "About",
+    "favorites": "Favorites"
+  },
+  "favorites": {
+    "empty": "You don't have any favorite games yet.",
+    "remove": "Remove from favorites"
   },
   "gameList": {
     "icon": "Icon",

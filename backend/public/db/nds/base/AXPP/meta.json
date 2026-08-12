@@ -1,0 +1,22 @@
+{
+  "name": "Picross DS",
+  "formal_name": "Picross DS",
+  "description": "Picross DS (ピクロスDS) is a puzzle video game developed by Jupiter and published by Nintendo for the Nintendo DS handheld video game console. It is the second game in the Picross series to be released by Nintendo in Europe and North America after Mario's Picross suffered a commercial failure in regions outside Japan, where many games in the series have been released for several Nintendo consoles. Like other games in the Picross series, it presents the player with a series of nonogram logic puzzles to solve. It was first released in Japan, and was later released in North America, Europe and Australia.",
+  "release_date": null,
+  "product_code": "AXPP",
+  "platform_name": "Nintendo DS",
+  "region": "Europe",
+  "genres": [
+    "game"
+  ],
+  "features": [
+    "DS"
+  ],
+  "languages": [],
+  "rating_system": {
+    "name": null,
+    "age": null
+  },
+  "developer": "Nintendo",
+  "publisher": "Nintendo"
+}

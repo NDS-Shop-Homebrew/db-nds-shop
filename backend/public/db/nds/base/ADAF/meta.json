@@ -1,0 +1,22 @@
+{
+  "name": "Pokemon Diamant",
+  "formal_name": "Pokemon Diamant",
+  "description": "Pokémon version Diamant et Pokémon version Perle, plus couramment appelés Pokémon Diamant et Pokémon Perle (ポケットモンスター ダイヤモンド・パール, Poketto Monsutā Daiyamondo Pāru), sont deux opus de la série de jeux vidéo de rôle Pokémon, développés par Game Freak. Ils sont édités par Nintendo sur la console portable Nintendo DS, au Japon en 2006, en Amérique du Nord, en Australie et en Europe en 2007.\nComme dans toutes les versions précédentes, le joueur contrôle le personnage principal d'une vue aérienne. Il a pour objectif de capturer, d'entraîner et de faire combattre des créatures fictives appelées « Pokémon » afin d'obtenir le titre de « Maître Pokémon ».\nLes jeux reçurent de bons avis des critiques de jeux vidéo, et se sont vendus aux alentours de 17 millions d'exemplaires.",
+  "release_date": null,
+  "product_code": "ADAF",
+  "platform_name": "Nintendo DS",
+  "region": "France",
+  "genres": [
+    "game"
+  ],
+  "features": [
+    "DS"
+  ],
+  "languages": [],
+  "rating_system": {
+    "name": null,
+    "age": null
+  },
+  "developer": "Nintendo / GameFreak",
+  "publisher": "Nintendo / GameFreak"
+}

@@ -52,6 +52,8 @@ export default function Home() {
       });
   };
 
+  const regions = ["France", "Europe", "USA", "Japan"];
+
   return (
     <div>
       {/* Hero */}
@@ -135,6 +137,21 @@ export default function Home() {
               </Link>
             </motion.div>
           )}
+        </div>
+      </div>
+
+      {/* Browsing by region */}
+      <div className="max-w-7xl mx-auto px-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-3">
+          {regions.map((region) => (
+            <Link
+              key={region}
+              to={`/game-list?region=${encodeURIComponent(region)}`}
+              className="px-5 py-2 rounded-full border border-border bg-card text-sm font-medium text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+            >
+              {region}
+            </Link>
+          ))}
         </div>
       </div>
 

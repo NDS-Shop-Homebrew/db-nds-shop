@@ -2,7 +2,12 @@
   "nav": {
     "home": "Accueil",
     "gameList": "Liste des jeux",
-    "about": "À propos"
+    "about": "À propos",
+    "favorites": "Favoris"
+  },
+  "favorites": {
+    "empty": "Vous n'avez aucun jeu en favori pour le moment.",
+    "remove": "Retirer des favoris"
   },
 "gameList": {
     "icon": "Icône",

@@ -1,0 +1,22 @@
+{
+  "name": "Tetris DS",
+  "formal_name": "Tetris DS",
+  "description": "Tetris DS is a puzzle video game developed and published by Nintendo. It was released for the Nintendo DS on March 20, 2006, in North America, April 13, 2006, in Australia, April 21, 2006, in Europe, and April 27, 2006, in Japan. An installment of the Tetris franchise, the game supports up to ten players locally, and supported online multiplayer of up to four players using Nintendo Wi-Fi Connection prior to its discontinuation.\nTetris DS features several new modes of play, each with a different theme styled after retro Nintendo games. They include Super Mario Bros., The Legend of Zelda, Metroid, Donkey Kong, Balloon Fight, and Yoshi's Cookie. Multiplayer gameplay also incorporates items to be used competitively. The game received positive reviews from critics, who cited its additional game modes and multiplayer capabilities. Long after its release, it continued to be upheld as the best portable Tetris title, and one of the best in the series.",
+  "release_date": null,
+  "product_code": "ATRP",
+  "platform_name": "Nintendo DS",
+  "region": "Europe",
+  "genres": [
+    "game"
+  ],
+  "features": [
+    "DS"
+  ],
+  "languages": [],
+  "rating_system": {
+    "name": null,
+    "age": null
+  },
+  "developer": "Nintendo",
+  "publisher": "Nintendo"
+}

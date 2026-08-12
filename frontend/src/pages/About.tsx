@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "../../node_modules/react-i18next";
 import { API_BASE_URL } from "../config";
@@ -104,7 +104,7 @@ const STATUS_COLORS: Record<string, string> = {
   online: "bg-green-500",
   idle: "bg-yellow-500",
   dnd: "bg-red-500",
-  offline: "bg-gray-500",
+  offline: "bg-muted",
 };
 
 export default function About() {
@@ -126,7 +126,7 @@ export default function About() {
         );
         setMembers(users.filter(Boolean) as DiscordUser[]);
       } catch (err) {
-        console.error("❌ Failed to fetch members:", err);
+        console.error("âŒ Failed to fetch members:", err);
       }
     };
     fetchMembers();
@@ -150,7 +150,7 @@ export default function About() {
         });
         setPresence(map);
       } catch (err) {
-        console.error("❌ Failed to fetch presence:", err);
+        console.error("âŒ Failed to fetch presence:", err);
       }
     };
     fetchPresence();
@@ -175,10 +175,10 @@ export default function About() {
         transition={{ duration: 0.6 }}
         className="text-center space-y-4"
       >
-        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
+        <h1 className="text-4xl font-extrabold text-foreground">
           {t("about.title")}
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {t("about.description")}
         </p>
       </motion.div>
@@ -189,7 +189,7 @@ export default function About() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.6 }}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-500">
+        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
           {t("about.team")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -203,13 +203,13 @@ export default function About() {
               <motion.div
                 key={member.id}
                 whileHover={{ scale: 1.03 }}
-                className="rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-900 relative"
+                className="rounded-xl overflow-hidden shadow-lg bg-card relative"
                 style={{
                   border: accentColor ? `3px solid ${accentColor}` : undefined,
                 }}
               >
                 {bannerUrl ? (
-                  <div className="h-24 bg-gray-700">
+                  <div className="h-24 bg-muted">
                     <img
                       src={bannerUrl}
                       alt={`${member.username} banner`}
@@ -217,7 +217,7 @@ export default function About() {
                     />
                   </div>
                 ) : (
-                  <div className="h-24 bg-gray-700" />
+                  <div className="h-24 bg-muted" />
                 )}
                 <div className="p-4 flex flex-col items-center -mt-12">
                   <div className="relative">
@@ -229,18 +229,18 @@ export default function About() {
                       <img
                         src={getAvatarUrl(member)}
                         alt={member.username}
-                        className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 shadow-lg"
+                        className="w-24 h-24 rounded-full border-4 border-background shadow-lg"
                       />
                     </a>
                     <span
-                      className={`absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-white dark:border-gray-900 ${STATUS_COLORS[status]}`}
+                      className={`absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-background ${STATUS_COLORS[status]}`}
                     />
                   </div>
-                  <span className="mt-3 font-semibold text-gray-900 dark:text-white">
+                  <span className="mt-3 font-semibold text-foreground">
                     {member.global_name || member.username}
                   </span>
                   {member.discriminator !== "0" && (
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                    <span className="text-sm text-muted-foreground">
                       {member.username}#{member.discriminator}
                     </span>
                   )}
@@ -251,7 +251,7 @@ export default function About() {
                       {userPresence.activities.map((activity, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 p-3 rounded-xl shadow-sm"
+                          className="flex items-center gap-3 bg-muted dark:bg-muted p-3 rounded-xl shadow-sm"
                         >
                           {getActivityImageUrl(activity) ? (
                             <img
@@ -260,22 +260,22 @@ export default function About() {
                               className="w-12 h-12 rounded-lg"
                             />
                           ) : (
-                            <div className="w-12 h-12 flex items-center justify-center bg-indigo-500 text-white rounded-lg">
-                              🎮
+                            <div className="w-12 h-12 flex items-center justify-center bg-primary text-foreground rounded-lg">
+                              ðŸŽ®
                             </div>
                           )}
                           <div className="flex-1">
-                            <p className="font-semibold text-gray-900 dark:text-white">
+                            <p className="font-semibold text-foreground">
                               {getActivityPrefix(activity, t)}
                               {activity.name}
                             </p>
                             {activity.details && (
-                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                              <p className="text-sm text-muted-foreground">
                                 {activity.details}
                               </p>
                             )}
                             {activity.state && (
-                              <p className="text-xs text-gray-500 dark:text-gray-400">
+                              <p className="text-xs text-muted-foreground">
                                 {activity.state}
                               </p>
                             )}
@@ -284,7 +284,7 @@ export default function About() {
                       ))}
                     </div>
                   ) : (
-                    <p className="mt-2 text-xs text-gray-500 italic">
+                    <p className="mt-2 text-xs text-muted-foreground italic">
                       No current activity
                     </p>
                   )}
@@ -297,7 +297,7 @@ export default function About() {
 
       {/* Roadmap */}
       <div>
-        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-500">
+        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
           {t("about.roadmap")}
         </h2>
         <div className="space-y-4">
@@ -309,12 +309,12 @@ export default function About() {
               transition={{ delay: i * 0.1 }}
               className={`p-4 rounded-lg border ${
                 item.done
-                  ? "border-green-500 bg-green-50 dark:bg-green-900/20"
-                  : "border-red-500 bg-red-50 dark:bg-red-900/20"
+                  ? "border-accent bg-accent/10"
+                  : "border-destructive bg-destructive/10"
               }`}
             >
               <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-muted-foreground">
                 {item.description}
               </p>
             </motion.div>
@@ -327,12 +327,12 @@ export default function About() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.6 }}
-        className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
+        className="bg-muted rounded-2xl p-8 shadow-lg"
       >
-        <h2 className="text-2xl font-bold mb-4 text-indigo-500">
+        <h2 className="text-2xl font-bold mb-4 text-primary">
           {t("about.project")}
         </h2>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        <p className="text-muted-foreground leading-relaxed">
           {t("about.project_description")}
         </p>
       </motion.div>

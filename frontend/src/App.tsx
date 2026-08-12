@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import GameList from "./pages/GameList";
 import About from "./pages/About";
 import GameDetail from "./pages/GameDetail";
+import Favorites from "./pages/Favorites";
 import DMCA from "./pages/DMCA";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/game-list" element={<GameList />} />
         <Route path="/game/:slug" element={<GameDetail />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/about" element={<About />} />
 
         {/* Routes légales */}

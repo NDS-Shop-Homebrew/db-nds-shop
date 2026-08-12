@@ -1,0 +1,22 @@
+{
+  "name": "Kirby - Mass Attack",
+  "formal_name": "Kirby - Mass Attack",
+  "description": "Kirby Mass Attack is a 2011 platform game developed by HAL Laboratory and published by Nintendo for the Nintendo DS. Part of the Kirby series, it is the fourth and last game in the series to be released for the DS. The game was later released for the Wii U's Virtual Console.",
+  "release_date": null,
+  "product_code": "TADP",
+  "platform_name": "Nintendo DS",
+  "region": "Europe",
+  "genres": [
+    "game"
+  ],
+  "features": [
+    "DS"
+  ],
+  "languages": [],
+  "rating_system": {
+    "name": null,
+    "age": null
+  },
+  "developer": "Nintendo",
+  "publisher": "Nintendo"
+}

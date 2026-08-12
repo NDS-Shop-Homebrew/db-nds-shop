@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Search, Grid3X3, List, ArrowUpDown, Sparkles } from "lucide-react";
 import { Input } from "../components/ui/input";
@@ -30,6 +30,7 @@ function GameSkeleton() {
 
 export default function GameList() {
   const { t, i18n } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<SortOption>("title");
@@ -37,6 +38,8 @@ export default function GameList() {
   const [search, setSearch] = useState("");
   const [view, setView] = useState<ViewMode>("grid");
   const [filterSystem, setFilterSystem] = useState<string>("all");
+
+  const regionFilter = searchParams.get("region") || "";
 
   useEffect(() => {
     fetch("/games.json")
@@ -60,6 +63,7 @@ export default function GameList() {
       result = result.filter((g) => g.title.toLowerCase().includes(q) || g.author.toLowerCase().includes(q));
     }
     if (filterSystem !== "all") result = result.filter((g) => g.systems?.includes(filterSystem));
+    if (regionFilter) result = result.filter((g) => g.version?.includes(regionFilter));
     result.sort((a, b) => {
       let cmp = 0;
       switch (sortBy) {
@@ -71,7 +75,7 @@ export default function GameList() {
       return sortDir === "desc" ? -cmp : cmp;
     });
     return result;
-  }, [games, search, sortBy, sortDir, filterSystem]);
+  }, [games, search, sortBy, sortDir, filterSystem, regionFilter]);
 
   const toggleSort = (field: SortOption) => {
     if (sortBy === field) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -80,10 +84,19 @@ export default function GameList() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Sparkles className="w-6 h-6 text-primary" /> {t("gameList.title")}
         </h1>
+        {regionFilter && (
+          <button
+            onClick={() => setSearchParams({})}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-primary text-sm font-medium hover:bg-secondary/70 transition-colors"
+          >
+            {regionFilter} <span aria-hidden>✕</span>
+          </button>
+        )}
+      </div>
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <div className="relative flex-1 md:flex-none">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -112,7 +125,6 @@ export default function GameList() {
             </button>
           </div>
         </div>
-      </div>
 
       {loading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">

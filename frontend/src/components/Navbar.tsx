@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Menu, X, Gamepad2 } from "lucide-react";
+import { Menu, X, Gamepad2, Heart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { DarkModeToggle } from "./DarkModeToggle";
 
@@ -57,6 +57,9 @@ export function NavBar() {
             </Link>
           ))}
           <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
+            <Link to="/favorites" className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-red-500" title={t("nav.favorites")}>
+              <Heart size={18} />
+            </Link>
             <button
               onClick={toggleLang}
               className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors"
@@ -94,6 +97,9 @@ export function NavBar() {
               </Link>
             ))}
             <div className="flex items-center gap-3 pt-4 mt-2 border-t border-border">
+              <Link to="/favorites" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors">
+                <Heart size={16} /> {t("nav.favorites")}
+              </Link>
               <button
                 onClick={toggleLang}
                 className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors"
