@@ -122,7 +122,8 @@ router.get("/team", (_req, res) => {
 });
 
 // --- Discord (routes uniquement si token présent) ---
-const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || "";
+// ponytail: lu à la requête car dotenv.config() tourne après l'import de ce module
+const getBotToken = () => process.env.DISCORD_BOT_TOKEN || "";
 
 async function safeJson<T>(response: any): Promise<T> {
   const text = await response.text();
@@ -138,7 +139,7 @@ router.get("/discord-user/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const response = await fetch(`https://discord.com/api/v10/users/${id}`, {
-      headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
+      headers: { Authorization: `Bot ${getBotToken()}` },
     });
     if (!response.ok) {
       const errorData = await safeJson<any>(response);
@@ -188,7 +189,7 @@ router.get("/discord-guild", async (_req, res) => {
   try {
     const response = await fetch(
       `https://discord.com/api/v10/guilds/${guildId}?with_counts=true`,
-      { headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` } }
+      { headers: { Authorization: `Bot ${getBotToken()}` } }
     );
     if (!response.ok) {
       return res.status(response.status).json({ error: "Failed to fetch guild" });
