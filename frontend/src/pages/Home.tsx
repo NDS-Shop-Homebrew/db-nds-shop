@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Download, QrCode, Shuffle, Gamepad2, Sparkles } from "lucide-react";
+import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../components/ui/dialog";
@@ -64,7 +64,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Gamepad2 className="w-12 h-12 mx-auto mb-4 opacity-80" />
+            <img src="/logo.png" alt="NDS-Shop" className="w-16 h-16 mx-auto mb-4 rounded-2xl" />
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">NDS-Shop</h1>
             <p className="text-lg md:text-xl text-white/80 max-w-lg mx-auto mb-8">
               {t("home.tagline")}
