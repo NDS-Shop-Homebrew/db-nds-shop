@@ -18,6 +18,7 @@ from io import BytesIO
 from markdownify import markdownify
 from os import listdir, makedirs, path, system
 from PIL import Image, ImageDraw
+from PIL.Image import UnidentifiedImageError
 from PIL.PngImagePlugin import PngImageFile
 from requests.utils import requote_uri
 from shutil import copyfile
@@ -673,27 +674,30 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 					else:
 						app["icon_index"] = iconIndex
 
-					with Image.open(file) as img:
-						img, color = saveIcon(img, tempDir, iconIndex, True)
-						if "color" not in app:
-							app["color"] = color
-						if "color_bg" not in app:
-							# Darken color to a maximum of 50% brightness
-							hsv = list(rgb_to_hsv(*[int(x, 16) / 255 for x in re.findall("#(..)(..)(..)", color)[0]]))
-							hsv[2] = min(0.5, hsv[2])
-							app["color_bg"] = "#%02x%02x%02x" % (*[round(x * 255) for x in hsv_to_rgb(*hsv)],)
+					try:
+						with Image.open(file) as img:
+							img, color = saveIcon(img, tempDir, iconIndex, True)
+							if "color" not in app:
+								app["color"] = color
+							if "color_bg" not in app:
+								# Darken color to a maximum of 50% brightness
+								hsv = list(rgb_to_hsv(*[int(x, 16) / 255 for x in re.findall("#(..)(..)(..)", color)[0]]))
+								hsv[2] = min(0.5, hsv[2])
+								app["color_bg"] = "#%02x%02x%02x" % (*[round(x * 255) for x in hsv_to_rgb(*hsv)],)
 
-					if "icon" in app and app["icon"].endswith(".bmp"):
-						copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
-						app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{webName(app['title'])}.png"
-					elif "icon_static" not in app and "icon" in app and app["icon"].endswith(".gif"):
-						copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
-						app["icon_static"] = f"https://db-nds-shop.fr/assets/images/icons/{webName(app['title'])}.png"
+							if "icon" in app and app["icon"].endswith(".bmp"):
+								copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
+								app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{webName(app['title'])}.png"
+							elif "icon_static" not in app and "icon" in app and app["icon"].endswith(".gif"):
+								copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
+								app["icon_static"] = f"https://db-nds-shop.fr/assets/images/icons/{webName(app['title'])}.png"
 
-					if "image" in app and app["image"].endswith(".bmp"):
-						app["image"] = app["icon"]
+							if "image" in app and app["image"].endswith(".bmp"):
+								app["image"] = app["icon"]
 
-					iconIndex += 1
+						iconIndex += 1
+					except (UnidentifiedImageError, IOError, OSError):
+						print(f"⚠️  Image invalide ignorée pour {app.get('title', '?')}")
 
 		if "title" in app:
 			app["slug"] = webName(app["title"])
