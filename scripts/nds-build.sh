@@ -6,19 +6,17 @@
 # 3. Frontmatter + games.json (update_md + generate_games)
 # 4. Forwarders .cia (optionnel, long)
 #
-# Usage: ./scripts/nds-build.sh [--roms <dir>] [--with-forwarders]
+# Usage: ./scripts/nds-build.sh [--roms <dir>]
 
 set -e
 export PATH=$PATH:/opt/devkitpro/tools/bin
 
 cd "$(dirname "$0")/.."
 ROMS_DIR=""
-WITH_FORWARDERS=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --roms) ROMS_DIR="$2"; shift 2 ;;
-    --with-forwarders) WITH_FORWARDERS=1; shift ;;
     *) shift ;;
   esac
 done
@@ -49,15 +47,16 @@ cd ../../source
 python3 generate_games.py
 cd ..
 
-if [[ "$WITH_FORWARDERS" -eq 1 && -n "$ROMS_DIR" && -d "$ROMS_DIR" ]]; then
-  echo "=== Forwarders .cia (long) ==="
+# 4. Forwarders .cia (skip si déjà générés)
+echo "=== Forwarders .cia ==="
+if [[ -n "$ROMS_DIR" && -d "$ROMS_DIR" ]]; then
   mkdir -p frontend/public/forwarder
   node tools/nds-to-cia/nds-to-cia.mjs \
     --roms "$ROMS_DIR" \
     --from-apps source/apps \
     --out frontend/public/forwarder
 else
-  echo "(forwarders skippés — ajouter --with-forwarders pour les générer)"
+  echo "(pas de --roms fourni, forwarders inchangés)"
 fi
 
 echo "✅ Build terminé"

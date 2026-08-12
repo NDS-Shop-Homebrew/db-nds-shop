@@ -194,6 +194,12 @@ function main() {
   console.log(`ROMs      : ${entries.length} à convertir → ${args.out}\n`);
 
   for (const entry of entries) {
+    const existingCia = path.join(args.out, entry.out);
+    if (existsSync(existingCia)) {
+      console.log(`=  ${entry.romName} → ${entry.out} (déjà généré, skip)`);
+      ok++;
+      continue;
+    }
     process.stdout.write(`🔄  ${entry.romName} → ${entry.out} ... `);
     try {
       const { tid } = convertOne(entry, card, template, args, tempDir, forcedTid);
