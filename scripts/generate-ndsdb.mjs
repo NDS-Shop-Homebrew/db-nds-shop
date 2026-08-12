@@ -26,6 +26,7 @@ function getArg(name) {
 const romsArg = getArg("--roms");
 const outArg = getArg("--out");
 const dry = args.includes("--dry");
+const force = args.includes("--force");
 const limit = parseInt(getArg("--limit") || "0", 10) || 0;
 
 const CANDIDATE_ROMS = [
@@ -222,6 +223,17 @@ async function main() {
 
     const searchTitle = cleanSearchTitle(app.title || "");
     const region = regionFromCode(titleId);
+
+    // Skip si le jeu a déjà ses métadonnées (sauf --force)
+    if (titleId && !force) {
+      const existing = path.join(OUT_DIR, titleId, "meta.json");
+      if (fs.existsSync(existing)) {
+        console.log(`= ${app.title} → ${titleId} (déjà généré, skip)`);
+        ok++;
+        continue;
+      }
+    }
+
     const lang = langFromRegion(region);
 
     let description = null;
