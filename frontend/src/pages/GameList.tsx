@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Search, Grid3X3, List, ArrowUpDown, Sparkles } from "lucide-react";
+import { Search, Grid3X3, List, ArrowUpDown, Sparkles, X } from "lucide-react";
 import { Input } from "../components/ui/input";
 
 interface Game {
@@ -82,49 +82,72 @@ export default function GameList() {
     else { setSortBy(field); setSortDir("asc"); }
   };
 
+  const SortHeader = ({ field, label }: { field: SortOption; label: string }) => (
+    <th
+      className="p-3 text-left cursor-pointer select-none whitespace-nowrap"
+      onClick={() => toggleSort(field)}
+    >
+      <span className={`inline-flex items-center gap-1 transition-colors ${sortBy === field ? "text-primary font-semibold" : "hover:text-foreground"}`}>
+        {label} <ArrowUpDown size={13} className="opacity-60" />
+      </span>
+    </th>
+  );
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
-        <h1 className="text-2xl font-bold flex items-center gap-2">
-          <Sparkles className="w-6 h-6 text-primary" /> {t("gameList.title")}
-        </h1>
-        {regionFilter && (
-          <button
-            onClick={() => setSearchParams({})}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-primary text-sm font-medium hover:bg-secondary/70 transition-colors"
-          >
-            {regionFilter} <span aria-hidden>✕</span>
-          </button>
-        )}
-      </div>
-        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-          <div className="relative flex-1 md:flex-none">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              placeholder={t("gameList.searchPlaceholder")}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 w-full md:w-56"
-            />
+      {/* Header : titre + recherche + filtres + toggle */}
+      <div className="flex flex-col gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <h1 className="text-2xl font-bold flex items-center gap-2">
+            <Sparkles className="w-6 h-6 text-primary" /> {t("gameList.title")}
+            {!loading && (
+              <span className="text-sm font-normal text-muted-foreground">
+                ({filtered.length})
+              </span>
+            )}
+          </h1>
+          <div className="flex items-center gap-2">
+            <div className="relative flex-1 sm:flex-none sm:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                placeholder={t("gameList.searchPlaceholder")}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-9 w-full"
+              />
+            </div>
+            <div className="flex border border-input rounded-lg overflow-hidden shrink-0">
+              <button onClick={() => setView("grid")} className={`p-2.5 ${view === "grid" ? "bg-primary text-white" : "text-muted-foreground hover:bg-muted"}`} title="Grille">
+                <Grid3X3 size={16} />
+              </button>
+              <button onClick={() => setView("list")} className={`p-2.5 ${view === "list" ? "bg-primary text-white" : "text-muted-foreground hover:bg-muted"}`} title="Liste">
+                <List size={16} />
+              </button>
+            </div>
           </div>
+        </div>
+
+        {/* Filtres actifs */}
+        <div className="flex flex-wrap items-center gap-2">
           <select
             value={filterSystem}
             onChange={(e) => setFilterSystem(e.target.value)}
-            className="h-10 rounded-lg border border-input bg-background px-3 text-sm"
+            className="h-9 rounded-lg border border-input bg-background px-3 text-sm"
           >
             {systems.map((s) => (
               <option key={s} value={s}>{s === "all" ? t("gameList.all") : s}</option>
             ))}
           </select>
-          <div className="flex border border-input rounded-lg overflow-hidden">
-            <button onClick={() => setView("grid")} className={`p-2.5 ${view === "grid" ? "bg-primary text-white" : "text-muted-foreground hover:bg-muted"}`}>
-              <Grid3X3 size={16} />
+          {regionFilter && (
+            <button
+              onClick={() => setSearchParams({})}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary text-primary text-sm font-medium hover:bg-secondary/70 transition-colors"
+            >
+              {regionFilter} <X size={14} />
             </button>
-            <button onClick={() => setView("list")} className={`p-2.5 ${view === "list" ? "bg-primary text-white" : "text-muted-foreground hover:bg-muted"}`}>
-              <List size={16} />
-            </button>
-          </div>
+          )}
         </div>
+      </div>
 
       {loading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -135,8 +158,8 @@ export default function GameList() {
           {filtered.map((game, i) => (
             <motion.div key={game.fileName} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.02 }}>
               <Link to={`/game/${game.fileName}`} className="block group">
-                <div className="rounded-xl overflow-hidden bg-muted mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all">
-                  <img src={game.icon} alt={game.title} className="w-24 h-24 mx-auto object-contain" />
+                <div className="rounded-xl bg-muted/60 mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all p-3">
+                  <img src={game.icon} alt={game.title} className="w-full aspect-square object-contain" />
                 </div>
                 <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug">{game.title}</h3>
                 <p className="text-xs text-muted-foreground mt-1 truncate">{game.author}</p>
@@ -145,46 +168,44 @@ export default function GameList() {
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border border-border overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-muted/50 text-sm">
-                <th className="p-3 text-left w-10"></th>
-                <th className="p-3 text-left cursor-pointer select-none" onClick={() => toggleSort("title")}>
-                  <span className="flex items-center gap-1">{t("gameList.name")} <ArrowUpDown size={14} /></span>
-                </th>
-                <th className="p-3 text-left hidden md:table-cell cursor-pointer select-none" onClick={() => toggleSort("author")}>
-                  <span className="flex items-center gap-1">{t("gameList.author")} <ArrowUpDown size={14} /></span>
-                </th>
-                <th className="p-3 text-left hidden sm:table-cell cursor-pointer select-none" onClick={() => toggleSort("version")}>
-                  <span className="flex items-center gap-1">{t("gameList.version")} <ArrowUpDown size={14} /></span>
-                </th>
-                <th className="p-3 text-left hidden lg:table-cell cursor-pointer select-none" onClick={() => toggleSort("updated")}>
-                  <span className="flex items-center gap-1">{t("gameList.updated")} <ArrowUpDown size={14} /></span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((game, i) => (
-                <motion.tr
-                  key={game.fileName}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: i * 0.01 }}
-                  onClick={() => (window.location.href = `/game/${game.fileName}`)}
-                  className="cursor-pointer border-t border-border/50 hover:bg-muted/50 transition-colors text-sm"
-                >
-                  <td className="p-3"><img src={game.icon} alt="" className="w-9 h-9 rounded-lg" /></td>
-                  <td className="p-3 font-medium text-foreground">{game.title}</td>
-                  <td className="p-3 text-muted-foreground hidden md:table-cell">{game.author}</td>
-                  <td className="p-3 text-muted-foreground hidden sm:table-cell">{game.version}</td>
-                  <td className="p-3 text-muted-foreground/60 text-xs hidden lg:table-cell">
-                    {new Date(game.updated).toLocaleDateString(i18n.language)}
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="rounded-xl border border-border overflow-hidden bg-card">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-muted/50 text-sm text-muted-foreground">
+                  <th className="p-3 text-left w-14"></th>
+                  <SortHeader field="title" label={t("gameList.name")} />
+                  <SortHeader field="author" label={t("gameList.author")} />
+                  <th className="p-3 text-left hidden sm:table-cell whitespace-nowrap">{t("gameList.version")}</th>
+                  <SortHeader field="updated" label={t("gameList.updated")} />
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((game, i) => (
+                  <motion.tr
+                    key={game.fileName}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.01 }}
+                    onClick={() => (window.location.href = `/game/${game.fileName}`)}
+                    className="cursor-pointer border-t border-border/50 hover:bg-muted/40 transition-colors text-sm"
+                  >
+                    <td className="p-3">
+                      <div className="w-10 h-10 rounded-lg overflow-hidden bg-muted/60 shrink-0">
+                        <img src={game.icon} alt="" className="w-full h-full object-contain" />
+                      </div>
+                    </td>
+                    <td className="p-3 font-medium text-foreground">{game.title}</td>
+                    <td className="p-3 text-muted-foreground">{game.author}</td>
+                    <td className="p-3 text-muted-foreground hidden sm:table-cell whitespace-nowrap">{game.version}</td>
+                    <td className="p-3 text-muted-foreground/60 text-xs whitespace-nowrap">
+                      {new Date(game.updated).toLocaleDateString(i18n.language)}
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
       {!loading && filtered.length === 0 && (

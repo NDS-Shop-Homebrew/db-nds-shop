@@ -175,8 +175,8 @@ export default function Home() {
                     to={`/game/${game.fileName}`}
                     className="block group"
                   >
-                    <div className="rounded-xl overflow-hidden bg-muted mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all">
-                      <img src={game.icon} alt={game.title} className="w-24 h-24 md:w-28 md:h-28 mx-auto object-contain" />
+                    <div className="rounded-xl bg-muted/60 mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all p-3">
+                      <img src={game.icon} alt={game.title} className="w-full aspect-square object-contain" />
                     </div>
                     <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug">
                       {game.title}
