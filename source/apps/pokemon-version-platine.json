@@ -1,8 +1,12 @@
 {
   "title": "Pokemon Platine",
   "author": "Nintendo / GameFreak",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Pokemon Version Platine (France) [b].nds": {
       "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Platine%20%28France%29%20%5Bb%5D.nds"
@@ -43,5 +47,6 @@
         "file": "/Pokemon Version Platine (France) [b].cia"
       }
     ]
-  }
+  },
+  "titleId": "CPUF"
 }

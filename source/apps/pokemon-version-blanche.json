@@ -1,8 +1,12 @@
 {
   "title": "Pokemon Version Blanche",
   "author": "Nintendo / GameFreak",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Pokemon Version Blanche (France) (NDSi Enhanced).nds": {
       "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Blanche%20%28France%29%20%28NDSi%20Enhanced%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Pokemon Version Blanche (France) (NDSi Enhanced).cia"
       }
     ]
-  }
+  },
+  "titleId": "IRAF"
 }

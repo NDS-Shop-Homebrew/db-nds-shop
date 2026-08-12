@@ -1,8 +1,12 @@
 {
   "title": "Michael Jackson - The Experience",
   "author": "Ubisoft",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Michael%20Jackson%20The%20Experience%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -47,5 +51,6 @@
         "file": "/Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "BVNP"
 }

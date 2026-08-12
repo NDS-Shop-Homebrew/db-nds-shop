@@ -1,8 +1,12 @@
 {
   "title": "Cooking Mama",
   "author": "Office Create",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Cooking Mama (Europe) (En,Fr,It).nds": {
       "url": "https://db-nds-shop.fr/games/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Cooking Mama (Europe) (En,Fr,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "ACCX"
 }

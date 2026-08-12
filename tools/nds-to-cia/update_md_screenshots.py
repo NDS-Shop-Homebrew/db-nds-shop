@@ -54,15 +54,13 @@ for md_file in sorted(MDS_DIR.glob("*.md")):
         continue
 
     folder_enc = urllib.parse.quote(shot_files[0].parent.name, safe="")
-    shot_urls = [
-        f"https://db-nds-shop.fr/assets/images/screenshots/{folder_enc}/{urllib.parse.quote(f.name, safe='')}"
-        for f in shot_files
-    ]
+    # Une seule URL par jeu (le premier fichier), même si le dossier en contient plusieurs
+    new_url = f"https://db-nds-shop.fr/assets/images/screenshots/{folder_enc}/{urllib.parse.quote(shot_files[0].name, safe='')}"
 
     old_shots = post.get("screenshots", []) or []
-    # Remplace TOUS les screenshots non-Boxart par les nouveaux (pas de doublons)
+    # Garde uniquement les Boxart + le nouveau screenshot (pas de doublon)
     kept_boxart = [s for s in old_shots if s.get("description") == "Boxart"]
-    post["screenshots"] = [{"description": "Screenshot", "url": u} for u in shot_urls] + kept_boxart
+    post["screenshots"] = [{"description": "Screenshot", "url": new_url}] + kept_boxart
     icon_name = urllib.parse.unquote((post.get("icon") or "").split("/")[-1])
     icon_path = ICONS_DIR / icon_name
     if icon_name and icon_path.exists() and "image_length" in post:

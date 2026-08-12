@@ -1,8 +1,12 @@
 {
   "title": "Inazuma Eleven 2 Tempete de Feu",
   "author": "Nintendo / Level-5",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Inazuma Eleven 2 - Tempete de Feu (France) (France).nds": {
       "url": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Feu%20%28France%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Inazuma Eleven Tempete de Feu (France).cia"
       }
     ]
-  }
+  },
+  "titleId": "BEEF"
 }

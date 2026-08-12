@@ -1,8 +1,12 @@
 {
   "title": "Bomberman Land 1",
   "author": "Rising Star Games",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds"
@@ -43,5 +47,6 @@
         "file": "/Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "ABXP"
 }

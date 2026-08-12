@@ -1,8 +1,12 @@
 {
   "title": "The Legend of Zelda: Spirit Tracks",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Legend%20of%20Zelda%2C%20The%20Spirit%20Tracks%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "BKIP"
 }

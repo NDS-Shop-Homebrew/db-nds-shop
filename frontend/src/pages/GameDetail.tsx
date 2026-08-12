@@ -2,16 +2,29 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Download, Heart, Share2, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, Download, Heart, Share2, ChevronLeft, ChevronRight, ExternalLink, Book } from "lucide-react";
 
 interface Download { size: number; size_str: string; url: string; }
 interface Screenshot { description: string; url: string; }
 interface Game {
   fileName: string; title: string; author: string; version: string;
+  titleId?: string;
   systems: string[]; categories?: string[]; icon: string; image: string;
   color: string; color_bg: string; updated: string;
   downloads?: Record<string, Download>; qr?: Record<string, string>;
   screenshots?: Screenshot[];
+}
+
+interface NdsdbMeta {
+  name: string;
+  description?: string;
+  developer?: string;
+  publisher?: string;
+  genres?: string[];
+  release_date?: string;
+  product_code?: string;
+  region?: string;
+  rating_system?: { name?: string; age?: string };
 }
 
 function useFavorites() {
@@ -44,6 +57,15 @@ export default function GameDetail() {
         setGame(games.find((g) => g.fileName === slug) || null);
       });
   }, [slug]);
+
+  const [ndsdb, setNdsdb] = useState<NdsdbMeta | null>(null);
+
+  useEffect(() => {
+    if (!game?.titleId) { setNdsdb(null); return; }
+    fetch(`/api/v1/ndsdb/metadata/${game.titleId}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setNdsdb);
+  }, [game?.titleId]);
 
   const boxart = game?.screenshots?.find((s) => s.description === "Boxart")?.url || null;
 
@@ -163,6 +185,44 @@ export default function GameDetail() {
                     <ExternalLink size={14} className="text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
                   </a>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* À propos (métadonnées ndsdb) */}
+          {ndsdb && ndsdb.description && (
+            <div>
+              <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <Book size={18} className="text-primary" /> À propos
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                {ndsdb.description.slice(0, 800)}
+                {ndsdb.description.length > 800 && (
+                  <span className="text-primary cursor-pointer hover:underline"
+                    onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(game?.title + " Nintendo DS")}`, "_blank")}>
+                    ... Lire plus
+                  </span>
+                )}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {ndsdb.genres?.filter(Boolean).map((g: string) => (
+                  <span key={g} className="px-3 py-1 rounded-full bg-secondary text-primary text-xs font-medium">{g}</span>
+                ))}
+                {ndsdb.developer && (
+                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                    {ndsdb.developer}
+                  </span>
+                )}
+                {ndsdb.rating_system?.name && (
+                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                    {ndsdb.rating_system.name} : {ndsdb.rating_system.age}+
+                  </span>
+                )}
+                {ndsdb.release_date && (
+                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                    Sortie : {ndsdb.release_date}
+                  </span>
+                )}
               </div>
             </div>
           )}

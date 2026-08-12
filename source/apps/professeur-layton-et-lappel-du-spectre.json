@@ -1,8 +1,12 @@
 {
   "title": "Professeur Layton et l'Appel du Spectre",
   "author": "Level-5",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Professeur Layton et l'Appel du Spectre (France).nds": {
       "url": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20l%27Appel%20du%20Spectre%20%28France%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Professeur Layton et l'Appel du Spectre (France).cia"
       }
     ]
-  }
+  },
+  "titleId": "BLFF"
 }
