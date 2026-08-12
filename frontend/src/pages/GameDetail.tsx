@@ -92,18 +92,23 @@ export default function GameDetail() {
       </Link>
 
       {/* Hero */}
-      <div className="relative rounded-2xl overflow-hidden mb-8 bg-gradient-to-br from-primary/15 via-secondary/20 to-accent/10">
-        {boxart ? (
-          <img src={boxart} alt={game.title} className="w-full h-56 md:h-72 object-cover" />
-        ) : (
-          <div className="w-full h-40 md:h-48 flex items-center justify-center" style={{ backgroundColor: game.color_bg || "rgba(0,114,206,0.1)" }}>
-            <img src={game.icon} alt="" className="w-20 h-20 md:w-24 md:h-24 object-contain" />
+      <div className="relative rounded-2xl overflow-hidden mb-8 dsi-gradient">
+        <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
+        <div className="relative flex items-center gap-6 p-6 md:p-8 min-h-40">
+          {boxart && (
+            <div className="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-xl overflow-hidden shadow-lg ring-4 ring-white/20 bg-white/10">
+              <img src={boxart} alt={game.title} className="w-full h-full object-contain" />
+            </div>
+          )}
+          <div className="min-w-0">
+            <h1 className="text-2xl md:text-3xl font-bold text-white drop-shadow">{game.title}</h1>
+            <p className="text-white/80 mt-1">{game.author}</p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              {game.systems?.map((s) => (
+                <span key={s} className="px-2.5 py-1 rounded-full bg-white/20 text-white text-xs font-medium">{s}</span>
+              ))}
+            </div>
           </div>
-        )}
-        {/* Overlay bas : titre */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-16">
-          <h1 className="text-2xl md:text-3xl font-bold text-white">{game.title}</h1>
-          <p className="text-sm text-white/70 mt-1">{game.author}</p>
         </div>
       </div>
 
