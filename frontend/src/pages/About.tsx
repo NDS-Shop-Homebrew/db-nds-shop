@@ -127,7 +127,7 @@ export default function About() {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const teamRes = await fetch(`${API_BASE_URL}/api/v1/team`);
+        const teamRes = await fetch(`${API_BASE_URL}/v1/team`);
         const team = await teamRes.json();
         const ids: string[] = team.discordIds || [];
         const users = await Promise.all(
@@ -149,7 +149,7 @@ export default function About() {
   useEffect(() => {
     const fetchPresence = async () => {
       try {
-        const teamRes = await fetch(`${API_BASE_URL}/api/v1/team`);
+        const teamRes = await fetch(`${API_BASE_URL}/v1/team`);
         const team = await teamRes.json();
         const ids: string[] = team.discordIds || [];
         const pres = await Promise.all(
