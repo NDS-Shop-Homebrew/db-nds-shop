@@ -18,5 +18,7 @@
     "age": null
   },
   "developer": "Nintendo",
-  "publisher": "Nintendo"
+  "publisher": "Nintendo",
+  "description_fr": "Kirby: Mass Attack (あつめて！カービィ (Atsumete! Kābī, lit. \"Rassembler! Kirby\")) est un jeu vidéo de plates-formes-action édité par Nintendo et développé par HAL Laboratory. Il est sorti sur Nintendo DS le 4 août 2011 au Japon, le 19 septembre 2011 en Amérique du Nord et le 28 octobre 2011 en Europe.",
+  "description_en": "Kirby Mass Attack is a 2011 platform game developed by HAL Laboratory and published by Nintendo for the Nintendo DS. Part of the Kirby series, it is the fourth and last game in the series to be released for the DS. The game was later released for the Wii U's Virtual Console."
 }

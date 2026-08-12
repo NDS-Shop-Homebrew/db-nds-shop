@@ -190,14 +190,17 @@ export default function GameDetail() {
           )}
 
           {/* À propos (métadonnées ndsdb) */}
-          {ndsdb && ndsdb.description && (
+          {ndsdb && (() => {
+            const desc = ndsdb[i18n.language === "fr" ? "description_fr" : "description_en"] || ndsdb.description;
+            if (!desc) return null;
+            return (
             <div>
               <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
                 <Book size={18} className="text-primary" /> À propos
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                {ndsdb.description.slice(0, 800)}
-                {ndsdb.description.length > 800 && (
+                {desc.slice(0, 800)}
+                {desc.length > 800 && (
                   <span className="text-primary cursor-pointer hover:underline"
                     onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(game?.title + " Nintendo DS")}`, "_blank")}>
                     ... Lire plus
@@ -225,7 +228,8 @@ export default function GameDetail() {
                 )}
               </div>
             </div>
-          )}
+            );
+          })()}
 
           {/* Galerie screenshots */}
           {gallery.length > 0 && (

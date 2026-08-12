@@ -18,5 +18,7 @@
     "age": null
   },
   "developer": "Nintendo",
-  "publisher": "Nintendo"
+  "publisher": "Nintendo",
+  "description_fr": "Picross DS (ピクロスDS, Pikurosu DS en japonais) est un jeu vidéo de puzzle développé par Jupiter et édité par Nintendo, sorti à partir de 2007 dans la gamme Touch! Generations sur Nintendo DS. Il reprend le principe du picross, jeu de chiffres sur grille. Il inclut plusieurs modes de jeu proposant des variations autour du picross. Il est le précurseur de nombreux jeux de picross sur le même support et a contribué à la popularisation de celui-ci en Europe.",
+  "description_en": "Picross DS (ピクロスDS) is a puzzle video game developed by Jupiter and published by Nintendo for the Nintendo DS handheld video game console. It is the second game in the Picross series to be released by Nintendo in Europe and North America after Mario's Picross suffered a commercial failure in regions outside Japan, where many games in the series have been released for several Nintendo consoles. Like other games in the Picross series, it presents the player with a series of nonogram logic puzzles to solve. It was first released in Japan, and was later released in North America, Europe and Australia."
 }
