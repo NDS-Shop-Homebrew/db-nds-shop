@@ -143,16 +143,18 @@ app.get("/api/roadmap", (req, res) => {
   ]);
 });
 
-// --- Fichiers statiques (frontend/public/) ---
-const staticDir = path.join(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "../../frontend/public"
-);
-app.use(express.static(staticDir, { dotfiles: "ignore" }));
+// --- Fichiers statiques ---
+const __dist = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.join(__dist, "../..");
+const distDir = path.join(repoRoot, "frontend/dist");
+const publicDir = path.join(repoRoot, "frontend/public");
+
+app.use(express.static(distDir));
+app.use(express.static(publicDir, { dotfiles: "ignore" }));
 
 // Fallback SPA : toutes les routes non-API servent index.html
 app.use((req, res) => {
-  res.sendFile(path.join(staticDir, "index.html"));
+  res.sendFile(path.join(distDir, "index.html"));
 });
 
 app.listen(Number(PORT), "0.0.0.0", () => {
