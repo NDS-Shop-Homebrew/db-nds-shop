@@ -6,12 +6,16 @@
 # 3. Frontmatter + games.json (update_md + generate_games)
 # 4. Forwarders .cia (optionnel, long)
 #
-# Usage: ./scripts/nds-build.sh [--roms <dir>]
+# Usage (depuis la racine du repo): ./scripts/nds-build.sh [--roms <dir>]
 
 set -e
 export PATH=$PATH:/opt/devkitpro/tools/bin
 
-cd "$(dirname "$0")/.."
+# Vérifie qu'on est bien dans le repo db-nds-shop
+if [[ ! -d .git && ! -f source/generate.py ]]; then
+  echo "Erreur : lancez ce script depuis la racine du repo db-nds-shop"
+  exit 1
+fi
 ROMS_DIR=""
 
 while [[ $# -gt 0 ]]; do
