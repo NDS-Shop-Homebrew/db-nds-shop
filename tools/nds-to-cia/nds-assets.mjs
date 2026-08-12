@@ -272,13 +272,18 @@ if (doIcons) {
     const iconsDir = path.join(outDir, "assets", "images", "icons");
     mkdirSync(iconsDir, { recursive: true });
     for (const g of games) {
+      const iconPath = path.join(iconsDir, g.iconName);
+      if (existsSync(iconPath)) {
+        summary.icons++;
+        continue; // déjà extraite, on saute (gain de temps)
+      }
       const romPath = path.join(romsDir, g.romName);
       if (!existsSync(romPath)) {
         summary.iconsMiss.push(`${g.file}: ROM absente (${g.romName})`);
         continue;
       }
       try {
-        writeFileSync(path.join(iconsDir, g.iconName), extractIconPng(readFileSync(romPath)));
+        writeFileSync(iconPath, extractIconPng(readFileSync(romPath)));
         summary.icons++;
       } catch (e) {
         summary.iconsMiss.push(`${g.file}: ${e.message}`);
@@ -322,23 +327,34 @@ if (doScreenshots) {
   mkdirSync(shotsDir, { recursive: true });
   console.log(`Screenshots à récupérer : ${games.length}`);
   const results = await pool(games, 1, async (g) => {
-    // Nom du snap libretro (dossier = fichier), p.ex. "Game (Europe).png"
+    // Dossier = nom webfied du jeu, fichiers numérotés (1.png, 2.png, ...)
+    const folderName = g.iconName.replace(/\.(png|jpg|jpeg)$/i, "");
+    const folder = path.join(shotsDir, folderName);
+    mkdirSync(folder, { recursive: true });
+
+    // Récupère les snaps déjà présents pour numéroter à la suite
+    const existing = readdirSync(folder)
+      .filter((f) => /^\d+\.(png|jpg|jpeg)$/i.test(f))
+      .map((f) => parseInt(f, 10))
+      .sort((a, b) => a - b);
+    let next = existing.length ? existing[existing.length - 1] + 1 : 1;
+
     const name = cache
       ? matchFromList(cache.snaps, g.romName)
       : candidates(g.romName)[0];
     const names = name ? [name] : candidates(g.romName);
+
+    let downloaded = 0;
     for (const n of names) {
-      const target = path.join(shotsDir, n, n);
-      if (existsSync(target)) return "existing";
       const data = await tryFetch("Named_Snaps", n);
       if (data) {
-        mkdirSync(path.dirname(target), { recursive: true });
-        writeFileSync(target, data);
-        return `ok (${n})`;
+        writeFileSync(path.join(folder, `${next}.png`), data);
+        downloaded++;
+        next++;
       }
       await sleep(1500);
     }
-    return "miss";
+    return downloaded > 0 ? "ok" : "miss";
   });
   games.forEach((g, i) => {
     if (results[i] === "miss") summary.screenshotsMiss.push(`${g.file}`);
