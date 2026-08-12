@@ -317,47 +317,33 @@ if (doBoxart) {
 // ---- screenshots from libretro-thumbnails Named_Snaps ----
 if (doScreenshots) {
   const cache = loadLibretroCache();
-  const fullJsonPath = path.join(outDir, "data", "full.json");
-  if (existsSync(fullJsonPath)) {
-    const full = JSON.parse(readFileSync(fullJsonPath, "utf8"));
-    const previewApps = full.filter((a) =>
-      (a.screenshots || []).some((s) => s?.description !== "Boxart")
-    );
-    console.log(`Screenshots à récupérer : ${previewApps.length}`);
-    for (const app of previewApps) {
-      const shots = app.screenshots.filter((s) => s?.description !== "Boxart");
-      for (const shot of shots) {
-        const rel = shot.url.replace(/^https:\/\/db-nds-shop\.fr\//, "");
-        const target = path.join(outDir, ...rel.split("/"));
-        if (existsSync(target)) {
-          summary.screenshots++;
-          continue;
-        }
-        const game = games.find((g) => g.app.title === app.title);
-        const names = game
-          ? [matchFromList(cache?.snaps || [], game.romName)].filter(Boolean)
-          : [];
-        let got = null;
-        for (const n of names) {
-          const data = await tryFetch("Named_Snaps", n);
-          if (data) {
-            got = data;
-            break;
-          }
-          await sleep(1500);
-        }
-        if (got) {
-          mkdirSync(path.dirname(target), { recursive: true });
-          writeFileSync(target, got);
-          summary.screenshots++;
-        } else {
-          summary.screenshotsMiss.push(rel);
-        }
+  const shotsDir = path.join(outDir, "assets", "images", "screenshots");
+  mkdirSync(shotsDir, { recursive: true });
+  console.log(`Screenshots à récupérer : ${games.length}`);
+  const results = await pool(games, 1, async (g) => {
+    // Nom du snap libretro (dossier = fichier), p.ex. "Game (Europe).png"
+    const name = cache
+      ? matchFromList(cache.snaps, g.romName)
+      : candidates(g.romName)[0];
+    const names = name ? [name] : candidates(g.romName);
+    for (const n of names) {
+      const target = path.join(shotsDir, n, n);
+      if (existsSync(target)) return "existing";
+      const data = await tryFetch("Named_Snaps", n);
+      if (data) {
+        mkdirSync(path.dirname(target), { recursive: true });
+        writeFileSync(target, data);
+        return `ok (${n})`;
       }
+      await sleep(1500);
     }
-  } else {
-    console.error("⚠ full.json introuvable (" + fullJsonPath + ") — screenshots ignorés");
-  }
+    return "miss";
+  });
+  games.forEach((g, i) => {
+    if (results[i] === "miss") summary.screenshotsMiss.push(`${g.file}`);
+    else summary.screenshots++;
+  });
+  console.log(`Screenshots téléchargés : ${summary.screenshots}/${games.length}`);
 }
 
 // ---- report ----
