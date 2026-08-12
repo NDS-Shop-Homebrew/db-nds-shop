@@ -105,6 +105,7 @@ const ALIASES = [
   ["Dragon Quest IX Sentinels of the Starry Skies", "Dragon Quest IX - Sentinels of the Starry Skies"],
   ["Legend of Zelda, The Phantom Hourglass", "Legend of Zelda, The - Phantom Hourglass"],
   ["Legend of Zelda, The Spirit Tracks", "Legend of Zelda, The - Spirit Tracks"],
+  ["Fire Emblem Shadow Dragon", "Fire Emblem - Shadow Dragon"],
   ["Fire EmblemShadow Dragon", "Fire Emblem - Shadow Dragon"],
   ["Code Lyoko Fall of X.A.N.A.", "Code Lyoko - Fall of X.A.N.A."],
   ["Jackass The Game DS", "Jackass - The Game DS"],
