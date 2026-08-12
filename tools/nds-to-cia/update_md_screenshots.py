@@ -60,12 +60,9 @@ for md_file in sorted(MDS_DIR.glob("*.md")):
     ]
 
     old_shots = post.get("screenshots", []) or []
-    # Garde les anciens screenshots non-Boxart qui ne sont pas déjà remplacés
-    kept = [
-        s for s in old_shots
-        if s.get("description") != "Boxart" and s.get("url") not in shot_urls
-    ]
-    post["screenshots"] = [{"description": "Screenshot", "url": u} for u in shot_urls] + kept
+    # Remplace TOUS les screenshots non-Boxart par les nouveaux (pas de doublons)
+    kept_boxart = [s for s in old_shots if s.get("description") == "Boxart"]
+    post["screenshots"] = [{"description": "Screenshot", "url": u} for u in shot_urls] + kept_boxart
     icon_name = urllib.parse.unquote((post.get("icon") or "").split("/")[-1])
     icon_path = ICONS_DIR / icon_name
     if icon_name and icon_path.exists() and "image_length" in post:
