@@ -7,6 +7,7 @@
 // Versioning: /api/v1 is the current stable version; bump to /api/v2 when a
 // backwards-incompatible change is introduced.
 import express from "express";
+import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -117,6 +118,98 @@ router.get("/team", (_req, res) => {
     res.json(data);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// --- Discord (routes uniquement si token présent) ---
+const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || "";
+
+async function safeJson<T>(response: any): Promise<T> {
+  const text = await response.text();
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    throw new Error(`Invalid JSON response: ${text}`);
+  }
+}
+
+// GET /api/v1/discord-user/:id — profil public d'un utilisateur
+router.get("/discord-user/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await fetch(`https://discord.com/api/v10/users/${id}`, {
+      headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
+    });
+    if (!response.ok) {
+      const errorData = await safeJson<any>(response);
+      return res.status(response.status).json({ error: errorData });
+    }
+    const data = await safeJson<any>(response);
+    res.json({
+      id: data.id,
+      username: data.username,
+      global_name: data.global_name,
+      discriminator: data.discriminator,
+      avatar: data.avatar,
+      banner: data.banner,
+      accent_color: data.accent_color,
+      bio: data.bio,
+      public_flags: data.public_flags,
+    });
+  } catch (err) {
+    console.error("❌ Failed to fetch Discord user:", err);
+    res.status(500).json({ error: "Failed to fetch from Discord" });
+  }
+});
+
+// GET /api/v1/discord-presence/:id — statut/activité via Lanyard
+router.get("/discord-presence/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await fetch(`https://api.lanyard.rest/v1/users/${id}`);
+    if (response.status === 404) {
+      // Utilisateur non suivi par Lanyard → statut inconnu
+      return res.json({ discord_status: "offline", activities: [] });
+    }
+    if (!response.ok) {
+      return res.status(response.status).json({ error: "Failed to fetch Lanyard" });
+    }
+    const data = await safeJson<any>(response);
+    res.json(data.data);
+  } catch (err) {
+    console.error("❌ Failed to fetch Lanyard presence:", err);
+    res.status(500).json({ error: "Failed to fetch presence" });
+  }
+});
+
+// GET /api/v1/discord-guild — infos du serveur Discord
+router.get("/discord-guild", async (_req, res) => {
+  const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
+  try {
+    const response = await fetch(
+      `https://discord.com/api/v10/guilds/${guildId}?with_counts=true`,
+      { headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` } }
+    );
+    if (!response.ok) {
+      return res.status(response.status).json({ error: "Failed to fetch guild" });
+    }
+    const data = await safeJson<any>(response);
+    res.json({
+      id: data.id,
+      name: data.name,
+      icon: data.icon
+        ? `https://cdn.discordapp.com/icons/${data.id}/${data.icon}.png?size=256`
+        : null,
+      memberCount: data.approximate_member_count,
+      presenceCount: data.approximate_presence_count,
+      description: data.description,
+      invite: data.vanity_url_code
+        ? `https://discord.gg/${data.vanity_url_code}`
+        : null,
+    });
+  } catch (err) {
+    console.error("❌ Failed to fetch Discord guild:", err);
+    res.status(500).json({ error: "Failed to fetch guild" });
   }
 });
 

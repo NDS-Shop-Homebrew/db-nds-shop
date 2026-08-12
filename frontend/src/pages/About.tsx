@@ -127,7 +127,7 @@ export default function About() {
         const ids: string[] = team.discordIds || [];
         const users = await Promise.all(
           ids.map(async (id) => {
-            const res = await fetch(`${API_BASE_URL}/discord-user/${id}`);
+            const res = await fetch(`${API_BASE_URL}/v1/discord-user/${id}`);
             if (!res.ok) return null;
             return (await res.json()) as DiscordUser;
           })
@@ -149,7 +149,7 @@ export default function About() {
         const ids: string[] = team.discordIds || [];
         const pres = await Promise.all(
           ids.map(async (id) => {
-            const res = await fetch(`${API_BASE_URL}/discord-presence/${id}`);
+            const res = await fetch(`${API_BASE_URL}/v1/discord-presence/${id}`);
             if (!res.ok) return null;
             const data = await res.json();
             return { id, ...data } as { id: string } & Presence;
@@ -171,7 +171,7 @@ export default function About() {
 
   // Fetch guild
   useEffect(() => {
-    fetch(`${API_BASE_URL}/discord-guild`)
+    fetch(`${API_BASE_URL}/v1/discord-guild`)
       .then((r) => r.json())
       .then((g) => {
         if (g && g.name) setGuild(g);

@@ -9,32 +9,32 @@ interface Endpoint {
   example: string;
 }
 
-const BASE = "https://db-nds-shop.fr";
+const BASE = "https://db-nds-shop.fr/api/v1";
 
 const endpoints: { section: "games" | "ndsdb" | "discord"; items: Endpoint[] }[] = [
   {
     section: "games",
     items: [
-      { method: "GET", path: "/api/v1/health", descKey: "docs.route_health", example: "/api/v1/health" },
-      { method: "GET", path: "/api/v1/games", descKey: "docs.route_games", example: "/api/v1/games" },
-      { method: "GET", path: "/api/v1/games/:slug", descKey: "docs.route_game", example: "/api/v1/games/animal-crossing---wild-world" },
-      { method: "GET", path: "/api/v1/stats", descKey: "docs.route_stats", example: "/api/v1/stats" },
+      { method: "GET", path: "/health", descKey: "docs.route_health", example: "/health" },
+      { method: "GET", path: "/games", descKey: "docs.route_games", example: "/games" },
+      { method: "GET", path: "/games/:slug", descKey: "docs.route_game", example: "/games/animal-crossing---wild-world" },
+      { method: "GET", path: "/stats", descKey: "docs.route_stats", example: "/stats" },
     ],
   },
   {
     section: "ndsdb",
     items: [
-      { method: "GET", path: "/api/v1/ndsdb/version", descKey: "docs.route_ndsdb_version", example: "/api/v1/ndsdb/version" },
-      { method: "GET", path: "/api/v1/ndsdb/stats/stats", descKey: "docs.route_ndsdb_stats", example: "/api/v1/ndsdb/stats/stats" },
-      { method: "GET", path: "/api/v1/ndsdb/stats/category/:category", descKey: "docs.route_ndsdb_category", example: "/api/v1/ndsdb/stats/category/base" },
-      { method: "GET", path: "/api/v1/ndsdb/metadata/:serial", descKey: "docs.route_ndsdb_metadata", example: "/api/v1/ndsdb/metadata/A2DP" },
+      { method: "GET", path: "/ndsdb/version", descKey: "docs.route_ndsdb_version", example: "/ndsdb/version" },
+      { method: "GET", path: "/ndsdb/stats/stats", descKey: "docs.route_ndsdb_stats", example: "/ndsdb/stats/stats" },
+      { method: "GET", path: "/ndsdb/stats/category/:category", descKey: "docs.route_ndsdb_category", example: "/ndsdb/stats/category/base" },
+      { method: "GET", path: "/ndsdb/metadata/:serial", descKey: "docs.route_ndsdb_metadata", example: "/ndsdb/metadata/A2DP" },
     ],
   },
   {
     section: "discord",
     items: [
-      { method: "GET", path: "/api/v1/team", descKey: "docs.route_team", example: "/api/v1/team" },
-      { method: "GET", path: "/api/discord-guild", descKey: "docs.route_guild", example: "/api/discord-guild" },
+      { method: "GET", path: "/team", descKey: "docs.route_team", example: "/team" },
+      { method: "GET", path: "/discord-guild", descKey: "docs.route_guild", example: "/discord-guild" },
     ],
   },
 ];
