@@ -11,8 +11,8 @@ layout: app
 qr:
   Sonic Colours (Europe) (En,Ja,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/sonic-colours-europe-enjafrdeesit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Sonic%20Colours%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Sonic%20Colours%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.png/Sonic%20Colours%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS

@@ -11,8 +11,8 @@ layout: app
 qr:
   Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/kirby-mass-attack-europe-enfrdeesit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Kirby%20Mass%20Attack%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Kirby%20Mass%20Attack%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Kirby%20Mass%20Attack%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS

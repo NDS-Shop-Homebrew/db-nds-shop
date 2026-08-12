@@ -11,8 +11,8 @@ layout: app
 qr:
   Inazuma Eleven (France).nds: https://db-nds-shop.fr/qr/inazuma-eleven-france-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%20(France).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Inazuma%20Eleven%20%28France%29.png/Inazuma%20Eleven%20%28France%29.png
 stars: 0
 systems:
 - DS

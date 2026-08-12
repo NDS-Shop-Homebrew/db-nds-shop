@@ -11,10 +11,10 @@ layout: app
 qr:
   WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/wariowaretouched-europe-enfrdeesit-nds.png
 screenshots:
-- description: Game preview
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/WarioWare%20-%20Touched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/WarioWare%20-%20Touched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
+- description: Screenshot
   url: https://db-nds-shop.fr/assets/images/screenshots/wariowaretouched/wariowaretouched.png
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
 stars: 0
 systems:
 - DS

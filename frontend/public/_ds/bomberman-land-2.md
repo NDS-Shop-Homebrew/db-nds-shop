@@ -11,8 +11,8 @@ layout: app
 qr:
   Bomberman Land Touch! 2 (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/bomberman-land-touch-2-europe-enfrdeesit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Bomberman%20Land%20Touch!%202%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Bomberman%20Land%20Touch%21%202%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Bomberman%20Land%20Touch%21%202%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS

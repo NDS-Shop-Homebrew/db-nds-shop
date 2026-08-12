@@ -11,8 +11,8 @@ layout: app
 qr:
   Cooking Mama (Europe) (En,Fr,It).nds: https://db-nds-shop.fr/qr/cooking-mama-europe-enfrit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.png/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.png
 stars: 0
 systems:
 - DS

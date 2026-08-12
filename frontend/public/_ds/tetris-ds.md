@@ -11,8 +11,8 @@ layout: app
 qr:
   Tetris DS (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/tetris-ds-europe-enfrdeesit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Tetris%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Tetris%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Tetris%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS

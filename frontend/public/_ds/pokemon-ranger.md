@@ -11,8 +11,8 @@ layout: app
 qr:
   Pokemon Ranger (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/pokemon-ranger-europe-enfrdeesit-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Ranger%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Pokemon%20Ranger%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Pokemon%20Ranger%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS

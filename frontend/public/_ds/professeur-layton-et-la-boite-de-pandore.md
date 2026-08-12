@@ -11,8 +11,8 @@ layout: app
 qr:
   Professeur Layton et la Boite de Pandore (France) [b].nds: https://db-nds-shop.fr/qr/professeur-layton-et-la-boite-de-pandore-france-b-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20(France)%20%5Bb%5D.nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20%28France%29.png/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20%28France%29.png
 stars: 0
 systems:
 - DS

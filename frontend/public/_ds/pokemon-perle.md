@@ -11,8 +11,8 @@ layout: app
 qr:
   Pokemon Version Perle (France) (Rev ).nds: https://db-nds-shop.fr/qr/pokemon-version-perle-france-rev--nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Perle%20(France)%20(Rev%20).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Pokemon%20-%20Version%20Perle%20%28France%29%20%28Rev%205%29.png/Pokemon%20-%20Version%20Perle%20%28France%29%20%28Rev%205%29.png
 stars: 0
 systems:
 - DS

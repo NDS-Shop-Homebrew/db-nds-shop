@@ -11,8 +11,8 @@ layout: app
 qr:
   Inazuma Eleven 2 - Tempete de Glace (France) (France).nds: https://db-nds-shop.fr/qr/inazuma-eleven-2---tempete-de-glace-france-france-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Glace%20(France).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Inazuma%20Eleven%202%20-%20Tempete%20de%20Glace%20%28France%29.png/Inazuma%20Eleven%202%20-%20Tempete%20de%20Glace%20%28France%29.png
 stars: 0
 systems:
 - DS
