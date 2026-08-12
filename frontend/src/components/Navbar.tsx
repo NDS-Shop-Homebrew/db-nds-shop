@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Menu, X, Gamepad2, Heart } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { DarkModeToggle } from "./DarkModeToggle";
 
@@ -36,9 +36,7 @@ export function NavBar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 h-16">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <Gamepad2 className="w-5 h-5 text-white" />
-          </div>
+          <img src="/logo.png" alt="NDS-Shop" className="w-8 h-8 rounded-lg" />
           <span className="font-bold text-lg text-foreground hidden sm:inline">NDS-Shop</span>
         </Link>
 

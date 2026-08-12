@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Github, Shield, FileText, Gamepad2 } from "lucide-react";
+import { Github, Shield, FileText } from "lucide-react";
 
 export default function Footer() {
   const version = import.meta.env.VITE_APP_VERSION || "dev";
@@ -11,9 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-                <Gamepad2 className="w-4 h-4 text-white" />
-              </div>
+              <img src="/logo.png" alt="NDS-Shop" className="w-7 h-7 rounded-lg" />
               <span className="font-bold text-foreground">NDS-Shop</span>
             </div>
             <p className="text-sm text-muted-foreground">{t("footer.copyright", { year: new Date().getFullYear() })}</p>
