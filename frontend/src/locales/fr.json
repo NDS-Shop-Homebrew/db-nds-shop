@@ -107,7 +107,8 @@
       "Configuration sécurisée de l’infrastructure"
     ],
     "contact": "5. Contact",
-    "contactText": "Pour toute question relative à la vie privée, contactez-nous à : privacy@nds-shop.com. Nous répondons aux questions, mais n’avons pas l’obligation de supprimer des données que nous ne collectons pas.",
+    "contactText": "Pour toute question relative à la vie privée, contactez-nous à : ndsshopunistore@gmail.com. Nous répondons aux questions, mais n’avons pas l’obligation de supprimer des données que nous ne collectons pas.",
+    "contactMail": "ndsshopunistore@gmail.com",
     "updates": "6. Mises à jour de la politique",
     "updatesText": "Cette politique peut être mise à jour à tout moment sans préavis. Les modifications seront affichées sur cette page avec la date de mise à jour. Dernière mise à jour : septembre 2025"
   },
@@ -144,7 +145,8 @@
     },
     "filing": {
       "title": "4. Dépôt d'une notification DMCA",
-      "content1": "Envoyez vos notifications DMCA à : dmca@nds-shop.com",
+      "content1": "Envoyez vos notifications DMCA à :",
+      "mail": "ndsshopunistore@gmail.com",
       "content2": "Remarque : l'envoi d'une notification ne garantit pas une action immédiate.",
       "content3": "Important : toute fausse déclaration peut entraîner des sanctions, y compris des frais juridiques."
     },
@@ -154,6 +156,9 @@
     }
   },
   "footer": {
+    "links": "Liens",
+    "privacy": "Politique de confidentialité",
+    "legal": "Légal",
     "privacyPolicy": "Politique de Confidentialité",
     "dmca": "Avis DMCA",
     "copyright": "©  {{year}} NDS-Shop. Tous droits réservés.",

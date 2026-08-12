@@ -107,53 +107,57 @@
       "Secure infrastructure configuration"
     ],
     "contact": "5. Contact",
-    "contactText": "For privacy-related inquiries, contact us at: privacy@nds-shop.com. We respond to inquiries but are not obliged to delete data we do not collect.",
+    "contactText": "For privacy-related inquiries, contact us at: ndsshopunistore@gmail.com. We respond to inquiries but are not obliged to delete data we do not collect.",
+    "contactMail": "ndsshopunistore@gmail.com",
     "updates": "6. Policy Updates",
     "updatesText": "This policy may be updated at any time without prior notice. Changes will be posted on this page with an updated effective date. Last updated: September 2025"
   },
-  "dmca": {
+    "dmca": {
     "title": "DMCA Policy",
-    "subtitle": "Procedure de notification pour NDS-Shop",
-    "tableOfContents": "Table des matières",
+    "subtitle": "Notification procedure for NDS-Shop",
+    "tableOfContents": "Table of Contents",
     "compliance": {
-      "title": "1. Conformité",
-      "content": "NDS-Shop respecte les droits de propriété intellectuelle...",
-      "important": "Important : Nous examinons chaque demande individuellement."
+      "title": "1. Compliance",
+      "content": "NDS-Shop respects intellectual property rights and handles notifications in accordance with applicable laws. Each request is reviewed individually.",
+      "important": "Important: We review each notification on a case-by-case basis before taking any action."
     },
     "notification": {
-      "title": "2. Conditions de notification",
-      "description": "Pour notifier une violation, merci de fournir :",
+      "title": "2. Notification Requirements",
+      "description": "To report a violation, please provide the following information:",
       "items": [
-        "Signature du titulaire des droits",
-        "Identification de l'œuvre protégée",
-        "Localisation du contenu incriminé",
-        "Vos coordonnées",
-        "Déclaration de bonne foi",
-        "Confirmation de l'exactitude des informations"
+        "Physical or electronic signature of the person authorized to act on behalf of the rights holder",
+        "Identification of the copyrighted work that has been infringed",
+        "Location of the allegedly infringing content",
+        "Your contact information (address, phone, email)",
+        "A statement of good faith that the use is not authorized by the rights holder",
+        "Confirmation of the accuracy of the information and your authority to act on behalf of the rights holder"
       ]
     },
     "counter": {
-      "title": "3. Contre-notification",
-      "description": "Si votre contenu a été retiré par erreur :",
+      "title": "3. Counter-Notification",
+      "description": "If you believe your content was removed by mistake or misidentification:",
       "items": [
-        "Signature",
-        "Identification du contenu retiré",
-        "Déclaration de bonne foi",
-        "Coordonnées et consentement au tribunal"
+        "Your physical or electronic signature",
+        "Identification of the removed content and its location before removal",
+        "A statement of good faith that the removal was an error or misidentification",
+        "Your contact information and consent to the jurisdiction of the competent court"
       ]
     },
     "filing": {
-      "title": "4. Dépôt d'une notification DMCA",
-      "content1": "Envoyez vos notifications à : dmca@nds-shop.com",
-      "content2": "Note : l'envoi ne garantit pas la suppression immédiate.",
-      "content3": "Fausse déclaration peut entraîner des pénalités légales."
+      "title": "4. Filing a DMCA Notification",
+      "content1": "Send your DMCA notifications to:",
+      "mail": "ndsshopunistore@gmail.com",
+      "content2": "Note: Sending a notification does not guarantee immediate action.",
+      "content3": "Important: Any false statement may result in penalties, including legal fees."
     },
     "repeat": {
-      "title": "5. Contrevenants répétés",
-      "content": "Nous nous réservons le droit de bloquer ou supprimer l'accès aux utilisateurs répétitifs."
+      "title": "5. Repeat Infringers",
+      "content": "We reserve the right to block or remove access for users who repeatedly infringe intellectual property rights."
     }
-  },
-  "footer": {
+  },"footer": {
+    "links": "Links",
+    "privacy": "Privacy Policy",
+    "legal": "Legal",
     "privacyPolicy": "Privacy Policy",
     "dmca": "DMCA Notice",
     "copyright": "©  {{year}} NDS-Shop. All rights reserved.",
