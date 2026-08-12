@@ -2,12 +2,14 @@
   "name": "Inazuma Eleven",
   "formal_name": "Inazuma Eleven",
   "description": "Inazuma Eleven (イナズマイレブン, Inazuma Irebun) est une série de jeux vidéo RPG d'une franchise cross-média comportant les séries de mangas et d'animes homonymes. En 2026, les jeux Inazuma Eleven se sont vendus à près de 10 millions d’exemplaire à travers le monde principalement au Japon.\nContrairement à son arrivée en France, la licence a officiellement débuté au Japon en tant que manga supervisé par Level-5 et illustré par Tenya Yabuno, publié de mai 2008 à septembre 2011 dans le magazine Monthly CoroCoro Comic. Là où le marketing de l'éditeur français Kurokawa a fait passer cette BD comme un dérivé de la série TV.\nLes ébauches du projet ont été présentées au Tokyo Game Show de 2007 avec une beta du jeu offerte en cartouche Nintendo DS.\nLe manga, les jeux et l'anime ont été développés au même moment et tous supervisés par le studio Level-5, respectant la volonté d'Akihiro Hino d'assurer une cohérence envers les médias afin de ne pas dérouter le jeune spectateur.",
-  "release_date": null,
+  "release_date": "2010-07-01",
   "product_code": "YEEF",
   "platform_name": "Nintendo DS",
   "region": "France",
   "genres": [
-    "game"
+    "Role-playing (RPG)",
+    "Sport",
+    "Adventure"
   ],
   "features": [
     "DS"
@@ -20,5 +22,6 @@
   "developer": "Nintendo / Level-5",
   "publisher": "Nintendo / Level-5",
   "description_fr": "Inazuma Eleven (イナズマイレブン, Inazuma Irebun) est une série de jeux vidéo RPG d'une franchise cross-média comportant les séries de mangas et d'animes homonymes. En 2026, les jeux Inazuma Eleven se sont vendus à près de 10 millions d’exemplaire à travers le monde principalement au Japon.\nContrairement à son arrivée en France, la licence a officiellement débuté au Japon en tant que manga supervisé par Level-5 et illustré par Tenya Yabuno, publié de mai 2008 à septembre 2011 dans le magazine Monthly CoroCoro Comic. Là où le marketing de l'éditeur français Kurokawa a fait passer cette BD comme un dérivé de la série TV.\nLes ébauches du projet ont été présentées au Tokyo Game Show de 2007 avec une beta du jeu offerte en cartouche Nintendo DS.\nLe manga, les jeux et l'anime ont été développés au même moment et tous supervisés par le studio Level-5, respectant la volonté d'Akihiro Hino d'assurer une cohérence envers les médias afin de ne pas dérouter le jeune spectateur.",
-  "description_en": "Inazuma Eleven (イナズマイレブン, Inazuma Irebun; \"Lightning Eleven\") is a football themed media franchise created by Level-5. The franchise began with the release of Inazuma Eleven in 2008, with the game series selling over 8 million copies worldwide by 2016. In addition to video games, the franchise also includes a manga series and several anime television series and films.\nThe manga has been published by Shogakukan in CoroCoro Comic since the June 2008 issue. The manga series won the 2010 Kodansha Manga Award and 2011 Shogakukan Manga Award in the Children's Manga category."
+  "description_en": "Inazuma Eleven (イナズマイレブン, Inazuma Irebun; \"Lightning Eleven\") is a football themed media franchise created by Level-5. The franchise began with the release of Inazuma Eleven in 2008, with the game series selling over 8 million copies worldwide by 2016. In addition to video games, the franchise also includes a manga series and several anime television series and films.\nThe manga has been published by Shogakukan in CoroCoro Comic since the June 2008 issue. The manga series won the 2010 Kodansha Manga Award and 2011 Shogakukan Manga Award in the Children's Manga category.",
+  "description_igdb": "Several months have passed after saving Earth from Alius Academy’s attack (in Inazuma Eleven 2), Mark Evans and his teammates are summoned by Seymour Hillman to assemble at Raimon Jr. High.\nWhen the team get to the school, they see familiar faces from Japan’s national football players who have once fought along with them, such as Xavier Foster and Jordan Greenway originally from Alius Academy, as well as new faces. Hillman has assembled all these Japan’s best football players for one purpose; to enter the “Football Frontier International (FFI)”.\nWelcoming Mark Evans as Japan’s national team captain, they now strive forward to challenge best football teams from all around the world!"
 }

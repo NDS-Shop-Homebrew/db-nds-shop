@@ -2,12 +2,14 @@
   "name": "Pokemon Diamant",
   "formal_name": "Pokemon Diamant",
   "description": "Pokémon version Diamant et Pokémon version Perle, plus couramment appelés Pokémon Diamant et Pokémon Perle (ポケットモンスター ダイヤモンド・パール, Poketto Monsutā Daiyamondo Pāru), sont deux opus de la série de jeux vidéo de rôle Pokémon, développés par Game Freak. Ils sont édités par Nintendo sur la console portable Nintendo DS, au Japon en 2006, en Amérique du Nord, en Australie et en Europe en 2007.\nComme dans toutes les versions précédentes, le joueur contrôle le personnage principal d'une vue aérienne. Il a pour objectif de capturer, d'entraîner et de faire combattre des créatures fictives appelées « Pokémon » afin d'obtenir le titre de « Maître Pokémon ».\nLes jeux reçurent de bons avis des critiques de jeux vidéo, et se sont vendus aux alentours de 17 millions d'exemplaires.",
-  "release_date": null,
+  "release_date": "2006-09-28",
   "product_code": "ADAF",
   "platform_name": "Nintendo DS",
   "region": "France",
   "genres": [
-    "game"
+    "Role-playing (RPG)",
+    "Turn-based strategy (TBS)",
+    "Adventure"
   ],
   "features": [
     "DS"
@@ -20,5 +22,6 @@
   "developer": "Nintendo / GameFreak",
   "publisher": "Nintendo / GameFreak",
   "description_fr": "Pokémon version Diamant et Pokémon version Perle, plus couramment appelés Pokémon Diamant et Pokémon Perle (ポケットモンスター ダイヤモンド・パール, Poketto Monsutā Daiyamondo Pāru), sont deux opus de la série de jeux vidéo de rôle Pokémon, développés par Game Freak. Ils sont édités par Nintendo sur la console portable Nintendo DS, au Japon en 2006, en Amérique du Nord, en Australie et en Europe en 2007.\nComme dans toutes les versions précédentes, le joueur contrôle le personnage principal d'une vue aérienne. Il a pour objectif de capturer, d'entraîner et de faire combattre des créatures fictives appelées « Pokémon » afin d'obtenir le titre de « Maître Pokémon ».\nLes jeux reçurent de bons avis des critiques de jeux vidéo, et se sont vendus aux alentours de 17 millions d'exemplaires.",
-  "description_en": "Pokémon Brilliant Diamond and Pokémon Shining Pearl are 2021 remakes of the 2006 Nintendo DS role-playing video games Pokémon Diamond and Pearl. The games were developed by ILCA and published by Nintendo and The Pokémon Company for the Nintendo Switch. The promotional material described these games as being faithful remakes of Pokémon Diamond and Pearl.  The games were released on 19 November 2021. They were announced as part of the 25th anniversary event, alongside Pokémon Legends: Arceus.\nBrilliant Diamond and Shining Pearl received mixed reviews from critics, who praised aspects of the gameplay but were divided over certain changes made to the original, the games' visual design, and lack of features (e.g. the Sinnoh Battle Frontier) from Pokémon Platinum."
+  "description_en": "Pokémon Brilliant Diamond and Pokémon Shining Pearl are 2021 remakes of the 2006 Nintendo DS role-playing video games Pokémon Diamond and Pearl. The games were developed by ILCA and published by Nintendo and The Pokémon Company for the Nintendo Switch. The promotional material described these games as being faithful remakes of Pokémon Diamond and Pearl.  The games were released on 19 November 2021. They were announced as part of the 25th anniversary event, alongside Pokémon Legends: Arceus.\nBrilliant Diamond and Shining Pearl received mixed reviews from critics, who praised aspects of the gameplay but were divided over certain changes made to the original, the games' visual design, and lack of features (e.g. the Sinnoh Battle Frontier) from Pokémon Platinum.",
+  "description_igdb": "Pokémon Diamond Version and Pearl Version are role-playing games (RPGs) developed by Game Freak and published by Nintendo for the Nintendo DS. With the enhanced remake Pokémon Platinum, the games comprise the fifth installment and fourth generation of the Pokémon series of RPGs. First released in Japan on September 28, 2006, the games were later released to North America, Australia, and Europe over the course of 2007.\n\nLike previous Pokémon games, Diamond and Pearl chronicle the adventures of a young Pokémon trainer as he/she trains and battles Pokémon while also thwarting the schemes of a criminal organization. The games add many new features, such as Internet play over the Nintendo Wi-Fi Connection and changes to battle mechanics and Pokémon Contests, along with addition of 107 new Pokémon. The games are independent of each other but feature largely the same plot and while both can be played separately, it is necessary to trade between them in order to complete the games' Pokédexes."
 }

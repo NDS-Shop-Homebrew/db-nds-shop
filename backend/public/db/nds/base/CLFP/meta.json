@@ -2,12 +2,13 @@
   "name": "Code Lyoko: Fall of X.A.N.A.",
   "formal_name": "Code Lyoko: Fall of X.A.N.A.",
   "description": "Code Lyoko: Fall of X.A.N.A. (French: Code Lyoko: X.A.N.A. Destruction Finale) is the third video game based on the animated television series Code Lyoko, published by The Game Factory and released in June 2008.",
-  "release_date": null,
+  "release_date": "2008-06-06",
   "product_code": "CLFP",
   "platform_name": "Nintendo DS",
   "region": "Europe",
   "genres": [
-    "game"
+    "Role-playing (RPG)",
+    "Adventure"
   ],
   "features": [
     "DS"
@@ -20,5 +21,6 @@
   "developer": "The Game Factory",
   "publisher": "The Game Factory",
   "description_fr": "Code Lyoko : X.A.N.A. Destruction finale (Code Lyoko: Fall of X.A.N.A.) est le troisième jeu vidéo, sorti en 2008, issu de la série télévisée d'animation Code Lyoko.",
-  "description_en": "Code Lyoko: Fall of X.A.N.A. (French: Code Lyoko: X.A.N.A. Destruction Finale) is the third video game based on the animated television series Code Lyoko, published by The Game Factory and released in June 2008."
+  "description_en": "Code Lyoko: Fall of X.A.N.A. (French: Code Lyoko: X.A.N.A. Destruction Finale) is the third video game based on the animated television series Code Lyoko, published by The Game Factory and released in June 2008.",
+  "description_igdb": "Code Lyoko: Fall of X.A.N.A. is the third videogame based on the French animated cartoon Code Lyoko, where a group of friends can virtualize in a digital world and fight a super computer trying to take over the world. The game is the sequel to the first game, the DS title Code Lyoko. It follows the storyline of the season 4, where Aelita is living in our world. X.A.N.A. managed to control William, the new warrior, to make him destroy Lyoko. By chance, Jeremy could make a replica of it. Our friends are now fighting William and are trying to stop X.A.N.A. from taking over the world."
 }

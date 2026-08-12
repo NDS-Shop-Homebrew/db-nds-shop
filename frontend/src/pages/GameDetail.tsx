@@ -191,7 +191,9 @@ export default function GameDetail() {
 
           {/* À propos (métadonnées ndsdb) */}
           {ndsdb && (() => {
-            const desc = ndsdb[i18n.language === "fr" ? "description_fr" : "description_en"] || ndsdb.description;
+            // Priorité: 1) IGDB 2) description_fr/en (Wikipedia bilingue) 3) description (Wikipedia legacy)
+            const langDesc = ndsdb[i18n.language === "fr" ? "description_fr" : "description_en"];
+            const desc = ndsdb.description_igdb || langDesc || ndsdb.description;
             if (!desc) return null;
             return (
             <div>
