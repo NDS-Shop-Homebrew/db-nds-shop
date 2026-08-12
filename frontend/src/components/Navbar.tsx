@@ -1,155 +1,115 @@
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from "./ui/navigation-menu";
-import { Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
-import {
-  Menu as MenuIcon,
-  Close as CloseIcon,
-  Language as LanguageIcon,
-} from "@mui/icons-material";
-import { useTranslation } from "../../node_modules/react-i18next";
-import { Select, SelectTrigger, SelectContent, SelectItem } from "./ui/select";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Menu, X, Gamepad2, Download } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { DarkModeToggle } from "./DarkModeToggle";
+
+const links = [
+  { to: "/", labelKey: "nav.home" },
+  { to: "/game-list", labelKey: "nav.gameList" },
+  { to: "/about", labelKey: "nav.about" },
+];
 
 export function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
   const { t, i18n } = useTranslation();
-  const [lang, setLang] = useState<string>(i18n.language || "en");
+  const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
 
-  const handleChangeLang = (value: string) => {
-    i18n.changeLanguage(value);
-    setLang(value);
-    localStorage.setItem("appLang", value);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const toggleLang = () => {
+    const next = i18n.language === "en" ? "fr" : "en";
+    i18n.changeLanguage(next);
+    localStorage.setItem("appLang", next);
   };
 
-  useEffect(() => {
-    const savedLang = localStorage.getItem("appLang");
-    if (savedLang && savedLang !== lang) {
-      i18n.changeLanguage(savedLang);
-      setLang(savedLang);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
-    <header className="w-full px-4 py-2 border-b border-gray-700 relative z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur border-b border-primary/20"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 h-16">
         <Link
           to="/"
-          className="flex items-center gap-2 text-2xl font-bold tracking-tight"
+          className="flex items-center gap-2 group"
         >
-          <img src="/favicon.ico" alt="NDS-Shop Logo" className="w-8 h-8" />
-          <span>NDS-Shop</span>
+          <Gamepad2 className="w-7 h-7 text-primary group-hover:animate-[pixelSpin_0.5s_ease-in-out]" />
+          <span className="font-pixel text-sm text-primary neon-text hidden sm:inline">
+            NDS-Shop
+          </span>
         </Link>
 
-        <NavigationMenu>
-          <NavigationMenuList className="hidden md:flex gap-7 text-xl font-semibold items-center">
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/">{t("nav.home")}</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/game-list">{t("nav.gameList")}</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/about">{t("nav.about")}</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            {/* Sélecteur de langue */}
-            <NavigationMenuItem>
-              <Select value={lang} onValueChange={handleChangeLang}>
-                <SelectTrigger className="w-[140px] flex items-center justify-between px-3 py-1 border rounded-lg bg-gray-100 hover:bg-gray-200">
-                  <div className="flex items-center gap-2">
-                    <LanguageIcon fontSize="small" />
-                    <span>{lang === "en" ? "English" : "Français"}</span>
-                  </div>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="en" className="flex items-center gap-2">
-                    <LanguageIcon fontSize="small" /> English
-                  </SelectItem>
-                  <SelectItem value="fr" className="flex items-center gap-2">
-                    <LanguageIcon fontSize="small" /> Français
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <DarkModeToggle />
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <nav className="hidden md:flex items-center gap-6">
+          {links.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`font-body text-xl transition-all duration-200 hover:text-primary ${
+                location.pathname === link.to
+                  ? "text-primary neon-text"
+                  : "text-foreground/80"
+              }`}
+            >
+              {t(link.labelKey)}
+            </Link>
+          ))}
+          <div className="flex items-center gap-3 ml-4 pl-4 border-l border-border">
+            <button
+              onClick={toggleLang}
+              className="font-pixel text-[10px] px-3 py-1.5 rounded pixel-border hover:bg-primary/10 transition-colors"
+            >
+              {i18n.language === "en" ? "FR" : "EN"}
+            </button>
+            <DarkModeToggle />
+          </div>
+        </nav>
 
         <button
-          className="md:hidden z-50"
+          className="md:hidden p-2 text-foreground"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
-          {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      <div
-        ref={menuRef}
-        className={`md:hidden absolute top-full left-0 w-full flex flex-col items-start gap-3 px-6 py-4 ease-in-out transform origin-top ${
-          menuOpen ? "scale-y-100" : "scale-y-0"
-        } bg-white dark:bg-[oklch(0.14_0_0)]`}
-        style={{
-          transformOrigin: "top",
-        }}
-      >
-        <Link to="/" onClick={() => setMenuOpen(false)}>
-          {t("nav.home")}
-        </Link>
-        <Link to="/game-list" onClick={() => setMenuOpen(false)}>
-          {t("nav.gameList")}
-        </Link>
-        <Link to="/about" onClick={() => setMenuOpen(false)}>
-          {t("nav.about")}
-        </Link>
-
-        <Select value={lang} onValueChange={handleChangeLang}>
-          <SelectTrigger className="mt-2 w-full flex items-center justify-between px-3 py-1 border rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700">
-            <div className="flex items-center gap-2">
-              <LanguageIcon fontSize="small" />
-              <span>{lang === "en" ? "English" : "Français"}</span>
+      {menuOpen && (
+        <div className="md:hidden bg-background/98 backdrop-blur border-t border-primary/20">
+          <div className="flex flex-col items-center gap-4 py-6 px-4">
+            {links.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setMenuOpen(false)}
+                className={`font-body text-2xl transition-colors ${
+                  location.pathname === link.to
+                    ? "text-primary neon-text"
+                    : "text-foreground/80"
+                }`}
+              >
+                {t(link.labelKey)}
+              </Link>
+            ))}
+            <div className="flex items-center gap-4 pt-4 border-t border-border w-full justify-center">
+              <button
+                onClick={toggleLang}
+                className="font-pixel text-[10px] px-3 py-1.5 rounded pixel-border"
+              >
+                {i18n.language === "en" ? "FR" : "EN"}
+              </button>
+              <DarkModeToggle />
             </div>
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="en" className="flex items-center gap-2">
-              <LanguageIcon fontSize="small" /> English
-            </SelectItem>
-            <SelectItem value="fr" className="flex items-center gap-2">
-              <LanguageIcon fontSize="small" /> Français
-            </SelectItem>
-          </SelectContent>
-        </Select>
-        
-        <div className="mt-4">
-          <DarkModeToggle />
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

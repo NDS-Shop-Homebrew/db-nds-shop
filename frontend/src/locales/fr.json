@@ -4,7 +4,7 @@
     "gameList": "Liste des jeux",
     "about": "À propos"
   },
-  "gameList": {
+"gameList": {
     "icon": "Icône",
     "title": "Liste des jeux",
     "sortBy": "Trier par",
@@ -12,9 +12,18 @@
     "name": "Nom",
     "author": "Auteur",
     "version": "Version",
-    "updated": "Mise à jour le"
+    "updated": "Mis à jour",
+    "all": "Tous les systèmes",
+    "noResults": "Aucun jeu trouvé"
   },
   "home": {
+    "tagline": "Votre base de données Nintendo DS ultime",
+    "random": "Jeu aléatoire",
+    "stats": {
+      "games": "Jeux",
+      "systems": "Systèmes",
+      "updated": "Dernière mise à jour"
+    },
     "download": "Télécharger",
     "scan": "Scanner",
     "scan_instructions": "Scannez ce code QR avec votre appareil pour télécharger l'application.",
@@ -44,16 +53,17 @@
     "project_description": "NDS-Shop est un projet open-source développé par une communauté de passionnés de jeux vidéo. Notre objectif est de fournir une plateforme conviviale et accessible pour les amateurs de Nintendo DS, en leur offrant un large choix de jeux à télécharger facilement. Nous croyons en la puissance de la communauté et encourageons les contributions pour améliorer continuellement le site et enrichir notre catalogue de jeux."
   },
   "gameDetail": {
-    "download": "Télécharger :",
+    "download": "Téléchargements",
+    "back": "Retour à la liste",
     "author": "Auteur :",
     "version": "Version :",
-    "categories": "Catégorie :",
+    "categories": "Catégories :",
     "systems": "Systèmes :",
-    "qr_code": "QR Code :",
-    "updated": "Dernière mise à jour le :",
-    "screenshots": "Captures d'écran :",
-    "notFound": "Jeu indisponible",
-    "backToList": "Retour à la liste"
+    "qr_code": "QR Code",
+    "updated": "Mis à jour :",
+    "screenshots": "Captures d'écran",
+    "not_found": "Jeu introuvable",
+    "related": "Jeux similaires"
   },
   "privacy": {
     "title": "Politique de confidentialité",

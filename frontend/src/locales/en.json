@@ -12,9 +12,18 @@
     "name": "Name",
     "author": "Author",
     "version": "Version",
-    "updated": "Updated at"
+    "updated": "Updated at",
+    "all": "All Systems",
+    "noResults": "No games found"
   },
   "home": {
+    "tagline": "Your ultimate Nintendo DS game database",
+    "random": "Random Game",
+    "stats": {
+      "games": "Games",
+      "systems": "Systems",
+      "updated": "Last updated"
+    },
     "download": "Download",
     "scan": "Scan",
     "scan_instructions": "Scan this QR code with your device to download the app.",
@@ -44,16 +53,17 @@
     "project_description": "NDS-Shop is an open-source project developed by a community of video game enthusiasts. Our goal is to provide a user-friendly and accessible platform for Nintendo DS fans, offering a wide selection of games for easy downloading. We believe in the power of community and encourage contributions to continuously improve the site and expand our game catalog."
   },
   "gameDetail": {
-    "download": "Download:",
+    "download": "Downloads",
+    "back": "Back to game list",
     "author": "Author:",
     "version": "Version:",
     "categories": "Categories:",
     "systems": "Systems:",
-    "qr_code": "QR Code:",
-    "updated": "Last updated at:",
-    "screenshots": "Screenshots:",
-    "notFound": "Game not found",
-    "backToList": "Back to list"
+    "qr_code": "QR Code",
+    "updated": "Updated:",
+    "screenshots": "Screenshots",
+    "not_found": "Game not found",
+    "related": "Related Games"
   },
   "privacy": {
     "title": "Privacy Policy",
