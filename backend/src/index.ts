@@ -1,6 +1,4 @@
 import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
 import fetch from "node-fetch";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -141,20 +139,6 @@ app.get("/api/roadmap", (req, res) => {
       done: false,
     },
   ]);
-});
-
-// --- Fichiers statiques ---
-const __dist = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.join(__dist, "../..");
-const distDir = path.join(repoRoot, "frontend/dist");
-const publicDir = path.join(repoRoot, "frontend/public");
-
-app.use(express.static(distDir));
-app.use(express.static(publicDir, { dotfiles: "ignore" }));
-
-// Fallback SPA : toutes les routes non-API servent index.html
-app.use((req, res) => {
-  res.sendFile(path.join(distDir, "index.html"));
 });
 
 app.listen(Number(PORT), "0.0.0.0", () => {
