@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { QRCodeSVG } from "qrcode.react";
 import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
@@ -71,7 +72,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button
-                onClick={() => (window.location.href = "/homebrew/NDS-Shop.cia")}
+                onClick={() => (window.location.href = "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia")}
                 className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg"
               >
                 <Download className="w-5 h-5 mr-2" />
@@ -87,7 +88,11 @@ export default function Home() {
                 <DialogContent className="sm:max-w-lg">
                   <div className="flex flex-col items-center p-4">
                     <p className="mb-4 text-center text-muted-foreground">{t("home.scan_instructions")}</p>
-                    <img src="/qrcode-nds-shop.unistore.png" alt="QR Code" className="w-64 h-64" />
+                    <QRCodeSVG
+                      value="https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia"
+                      size={256}
+                      className="w-64 h-64"
+                    />
                   </div>
                 </DialogContent>
               </Dialog>

@@ -31,7 +31,7 @@
     },
     "download": "Download",
     "scan": "Scan",
-    "scan_instructions": "Scan this QR code with your device to download the app.",
+    "scan_instructions": "Scan this QR code with your device to download the NDS-Shop app.",
     "faq": {
       "title": "Frequently Asked Questions",
       "q1": "How do I download a game?",
@@ -75,86 +75,86 @@
     "subtitle": "Simple, clear, and transparent for NDS-Shop",
     "tableOfContents": "Table of Contents",
     "dataCollection": "1. Data Collection",
-    "dataCollectionText": "NDS-Shop does not collect any personal data from its users. We respect your privacy and do not use tracking cookies.",
+    "dataCollectionText": "NDS-Shop is a Nintendo DS game, homebrew, and forwarder download site. We do not create accounts, require no registration, and collect no personal data from our visitors.",
     "dataCollectionItems": [
-      "No personal information is collected",
-      "No tracking cookies are used",
-      "No user data is stored",
-      "No information is shared with third parties",
-      "Important: We are not subject to GDPR or CCPA, but choose not to collect data as a principle"
+      "No sign-up or account needed to download",
+      "No personal data is collected",
+      "No tracking or advertising cookies",
+      "No data is sold or shared with third parties",
+      "The site works anonymously: we do not know who downloads what"
     ],
     "technical": "2. Technical Information",
-    "technicalText": "When accessing our services, your browser may temporarily process some technical information:",
+    "technicalText": "Like any website, your browser exchanges limited technical information to display pages and download files:",
     "technicalItems": [
-      "Basic access logs (automatically cleared)",
-      "Temporary cache files (managed by the browser)",
-      "Routing information via the CDN"
+      "IP address and browser (only for network routing and security)",
+      "Basic server logs, automatically cleaned after a few days",
+      "Temporary cache files managed by your browser",
+      "Downloaded files are never tracked or linked to a user"
     ],
     "thirdParty": "3. Third-Party Services",
-    "thirdPartyText": "NDS-Shop uses third-party services to ensure site performance and security:",
+    "thirdPartyText": "NDS-Shop relies on third-party services only to host and distribute the site and its files:",
     "thirdPartyItems": [
-      "Content Delivery Networks (CDN)",
-      "DDoS protection services",
-      "DNS providers",
-      "Hosting services"
+      "Web hosting and game file storage",
+      "GitHub hosting for source code and app releases",
+      "Content Delivery Network (CDN) for speed",
+      "These services may see standard request logs, but no user personal data"
     ],
-    "security": "4. Data Security",
-    "securityText": "We do not collect personal data, but maintain robust security measures to protect our infrastructure:",
+    "security": "4. Security",
+    "securityText": "Although we do not collect data, we maintain a secure infrastructure:",
     "securityItems": [
-      "End-to-end encryption for all communications",
-      "Regular security audits",
-      "DDoS protection",
-      "Secure infrastructure configuration"
+      "Encrypted connections (HTTPS) across the site",
+      "Protection against abuse and spam",
+      "Regular infrastructure updates",
+      "No sensitive data stored — nothing to steal"
     ],
     "contact": "5. Contact",
-    "contactText": "For privacy-related inquiries, contact us at: ndsshopunistore@gmail.com. We respond to inquiries but are not obliged to delete data we do not collect.",
+    "contactText": "For any question about privacy or how the site works, contact us:",
     "contactMail": "ndsshopunistore@gmail.com",
     "updates": "6. Policy Updates",
-    "updatesText": "This policy may be updated at any time without prior notice. Changes will be posted on this page with an updated effective date. Last updated: September 2025"
+    "updatesText": "This policy may be updated if the site evolves. Changes will be posted on this page. Last updated: August 2026"
   },
-    "dmca": {
+  "dmca": {
     "title": "DMCA Policy",
     "subtitle": "Notification procedure for NDS-Shop",
     "tableOfContents": "Table of Contents",
     "compliance": {
       "title": "1. Compliance",
-      "content": "NDS-Shop respects intellectual property rights and handles notifications in accordance with applicable laws. Each request is reviewed individually.",
-      "important": "Important: We review each notification on a case-by-case basis before taking any action."
+      "content": "NDS-Shop lists Nintendo DS games, homebrew, and forwarders from public sources and community contributions. We respect intellectual property rights and handle each removal request individually.",
+      "important": "Important: if you are a rights holder and want content removed, contact us — we will process your request quickly."
     },
     "notification": {
       "title": "2. Notification Requirements",
-      "description": "To report a violation, please provide the following information:",
+      "description": "To request content removal, please provide:",
       "items": [
-        "Physical or electronic signature of the person authorized to act on behalf of the rights holder",
-        "Identification of the copyrighted work that has been infringed",
-        "Location of the allegedly infringing content",
-        "Your contact information (address, phone, email)",
-        "A statement of good faith that the use is not authorized by the rights holder",
-        "Confirmation of the accuracy of the information and your authority to act on behalf of the rights holder"
+        "Your name and contact details (email)",
+        "Identification of the content (game title, exact link)",
+        "A statement that you are the rights holder or authorized to act on their behalf",
+        "The reason for the removal request"
       ]
     },
     "counter": {
       "title": "3. Counter-Notification",
-      "description": "If you believe your content was removed by mistake or misidentification:",
+      "description": "If you believe content was removed by mistake:",
       "items": [
-        "Your physical or electronic signature",
-        "Identification of the removed content and its location before removal",
-        "A statement of good faith that the removal was an error or misidentification",
-        "Your contact information and consent to the jurisdiction of the competent court"
+        "Your name and contact details (email)",
+        "Identification of the removed content",
+        "An explanation of why the removal is an error",
+        "Any proof of your rights to the content"
       ]
     },
     "filing": {
-      "title": "4. Filing a DMCA Notification",
-      "content1": "Send your DMCA notifications to:",
+      "title": "4. Filing a Request",
+      "content1": "Send your removal requests to:",
       "mail": "ndsshopunistore@gmail.com",
-      "content2": "Note: Sending a notification does not guarantee immediate action.",
-      "content3": "Important: Any false statement may result in penalties, including legal fees."
+      "content2": "We usually respond within 48 to 72 hours.",
+      "content3": "Abusive or unfounded requests may be ignored."
     },
     "repeat": {
       "title": "5. Repeat Infringers",
-      "content": "We reserve the right to block or remove access for users who repeatedly infringe intellectual property rights."
+      "content": "We may restrict access to content repeatedly flagged as infringing copyright."
     }
-  },"footer": {
+  },
+  "footer": {
     "links": "Links",
     "privacy": "Privacy Policy",
     "legal": "Legal",
