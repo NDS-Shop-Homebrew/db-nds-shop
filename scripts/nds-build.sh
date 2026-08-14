@@ -27,7 +27,9 @@ done
 
 # Reset les fichiers générés localement (le build les régénère) pour un pull propre
 git checkout -- frontend/public/_ds/ frontend/public/games.json 2>/dev/null || true
-git pull origin dev --ff-only
+# Tire la branche courante (main en prod) au lieu de dev codé en dur
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+git pull origin "$CURRENT_BRANCH" --ff-only
 source .venv/bin/activate
 
 echo "=== Icônes + Boxarts + Screenshots ==="

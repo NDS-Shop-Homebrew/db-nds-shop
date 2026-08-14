@@ -337,7 +337,9 @@ if (doScreenshots) {
       .filter((f) => /^\d+\.(png|jpg|jpeg)$/i.test(f))
       .map((f) => parseInt(f, 10))
       .sort((a, b) => a - b);
-    let next = existing.length ? existing[existing.length - 1] + 1 : 1;
+    // ponytail: cache skip — ne re-télécharge pas si le jeu a déjà un screenshot (évite 1.png, 2.png, 3.png...)
+    if (existing.length > 0) return "existing";
+    let next = 1;
 
     const name = cache
       ? matchFromList(cache.snaps, g.romName)
