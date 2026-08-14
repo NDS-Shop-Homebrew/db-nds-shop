@@ -1,8 +1,12 @@
 {
   "title": "Chrono Trigger",
   "author": "Square Enix",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Chrono Trigger (Europe) (En,Fr).nds": {
       "url": "https://db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds"
@@ -43,5 +47,6 @@
         "file": "/Chrono Trigger (Europe) (En,Fr).cia"
       }
     ]
-  }
+  },
+  "titleId": "YQUP"
 }

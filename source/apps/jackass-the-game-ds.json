@@ -1,8 +1,12 @@
 {
   "title": "JackassThe Game DS",
   "author": "Sensory Sweep Studios",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Jackass The Game DS (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Jackass%20The%20Game%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Jackass The Game DS (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "YJKP"
 }

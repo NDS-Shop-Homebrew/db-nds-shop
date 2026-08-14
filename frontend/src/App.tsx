@@ -4,7 +4,9 @@ import Layout from "./components/Layout";
 import NotFound from "./pages/NotFound";
 import GameList from "./pages/GameList";
 import About from "./pages/About";
+import Docs from "./pages/Docs";
 import GameDetail from "./pages/GameDetail";
+import Favorites from "./pages/Favorites";
 import DMCA from "./pages/DMCA";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
@@ -15,10 +17,11 @@ export default function App() {
       <Route element={<Layout />}>
         {/* Routes publiques */}
         <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
         <Route path="/game-list" element={<GameList />} />
         <Route path="/game/:slug" element={<GameDetail />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/about" element={<About />} />
+        <Route path="/docs" element={<Docs />} />
 
         {/* Routes légales */}
         <Route path="/privacy" element={<PrivacyPolicy />} />

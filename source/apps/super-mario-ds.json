@@ -1,8 +1,12 @@
 {
   "title": "Super Mario 64 DS",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Super Mario DS (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Super%20Mario%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Super Mario DS (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "ASMP"
 }

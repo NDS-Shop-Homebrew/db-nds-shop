@@ -2,7 +2,13 @@
   "nav": {
     "home": "Accueil",
     "gameList": "Liste des jeux",
-    "about": "À propos"
+    "about": "À propos",
+    "favorites": "Favoris",
+    "api": "Docs API"
+  },
+  "favorites": {
+    "empty": "Vous n'avez aucun jeu en favori pour le moment.",
+    "remove": "Retirer des favoris"
   },
   "gameList": {
     "icon": "Icône",
@@ -12,12 +18,21 @@
     "name": "Nom",
     "author": "Auteur",
     "version": "Version",
-    "updated": "Mise à jour le"
+    "updated": "Mis à jour",
+    "all": "Tous les systèmes",
+    "noResults": "Aucun jeu trouvé"
   },
   "home": {
+    "tagline": "Votre base de données Nintendo DS ultime",
+    "random": "Jeu aléatoire",
+    "stats": {
+      "games": "Jeux",
+      "systems": "Systèmes",
+      "updated": "Dernière mise à jour"
+    },
     "download": "Télécharger",
     "scan": "Scanner",
-    "scan_instructions": "Scannez ce code QR avec votre appareil pour télécharger l'application.",
+    "scan_instructions": "Scannez ce code QR avec votre appareil pour télécharger l'application NDS-Shop.",
     "faq": {
       "title": "Questions fréquentes",
       "q1": "Comment télécharger un jeu ?",
@@ -41,60 +56,101 @@
     "roadmap": "Roadmap",
     "project": "Le projet",
     "join_discord": "Rejoindre notre Discord",
+    "discord_section_title": "Rejoignez notre serveur Discord",
+    "discord_section_desc": "Discutez avec l'équipe et la communauté, suivez les nouveautés et proposez vos idées.",
+    "discord_members": "membres",
+    "discord_online": "en ligne",
+    "discord_join": "Rejoindre le serveur",
+    "discord_no_activity": "Aucune activité en cours",
     "project_description": "NDS-Shop est un projet open-source développé par une communauté de passionnés de jeux vidéo. Notre objectif est de fournir une plateforme conviviale et accessible pour les amateurs de Nintendo DS, en leur offrant un large choix de jeux à télécharger facilement. Nous croyons en la puissance de la communauté et encourageons les contributions pour améliorer continuellement le site et enrichir notre catalogue de jeux."
   },
+  "docs": {
+    "title": "Documentation API",
+    "description": "L'API publique NDS-Shop vous permet d'accéder au catalogue de jeux, aux statistiques et aux métadonnées. Toutes les routes retournent du JSON.",
+    "base_url": "URL de base",
+    "sections": {
+      "games": "Jeux",
+      "ndsdb": "NDSDB",
+      "discord": "Discord"
+    },
+    "try": "Tester",
+    "request": "Requête",
+    "response": "Réponse",
+    "load": "Chargement…",
+    "error": "Erreur",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "route_health": "Vérifie que l'API est en ligne.",
+    "route_games": "Liste tous les jeux du catalogue.",
+    "route_game": "Détails d'un jeu par son slug.",
+    "route_stats": "Statistiques globales (jeux, téléchargements…).",
+    "route_team": "Liste des membres de l'équipe Discord.",
+    "route_guild": "Informations du serveur Discord.",
+    "route_ndsdb_version": "Version de la base de données NDSDB.",
+    "route_ndsdb_stats": "Statistiques de la base NDSDB.",
+    "route_ndsdb_category": "Statistiques par catégorie.",
+    "route_ndsdb_metadata": "Métadonnées d'un jeu par son numéro de série.",
+    "param_slug": "Slug du jeu (ex : animal-crossing---wild-world)",
+    "param_serial": "Numéro de série du jeu (ex : A2DP)",
+    "param_category": "Catégorie (seule : base)",
+    "param_meta": "Nom du fichier de métadonnées (ex : meta.json)",
+    "no_content": "Aucun contenu à afficher."
+  },
   "gameDetail": {
-    "download": "Télécharger :",
+    "download": "Téléchargements",
+    "back": "Retour à la liste",
     "author": "Auteur :",
     "version": "Version :",
-    "categories": "Catégorie :",
+    "categories": "Catégories :",
     "systems": "Systèmes :",
-    "qr_code": "QR Code :",
-    "updated": "Dernière mise à jour le :",
-    "screenshots": "Captures d'écran :",
-    "notFound": "Jeu indisponible",
-    "backToList": "Retour à la liste"
+    "qr_code": "QR Code",
+    "updated": "Mis à jour :",
+    "screenshots": "Captures d'écran",
+    "not_found": "Jeu introuvable",
+    "related": "Jeux similaires"
   },
   "privacy": {
     "title": "Politique de confidentialité",
     "subtitle": "Simple, clair et transparent pour NDS-Shop",
     "tableOfContents": "Table des matières",
     "dataCollection": "1. Collecte de données",
-    "dataCollectionText": "NDS-Shop ne collecte aucune donnée personnelle de ses utilisateurs. Nous respectons votre vie privée et n’utilisons aucun cookie de suivi.",
+    "dataCollectionText": "NDS-Shop est un site de téléchargement de jeux Nintendo DS, de homebrew et de forwarders. Nous ne créons aucun compte, ne demandons aucune inscription et ne collectons aucune donnée personnelle de nos visiteurs.",
     "dataCollectionItems": [
-      "Aucune information personnelle n’est collectée",
-      "Aucun cookie de suivi n’est utilisé",
-      "Aucune donnée utilisateur n’est stockée",
-      "Aucune information n’est partagée avec des tiers",
-      "Important : Nous ne sommes pas soumis au RGPD ou CCPA, mais choisissons de ne pas collecter de données par principe"
+      "Aucune inscription ou compte n'est nécessaire pour télécharger",
+      "Aucune donnée personnelle n'est collectée",
+      "Aucun cookie de suivi ou de publicité n'est utilisé",
+      "Aucune donnée n'est revendue ou partagée avec des tiers",
+      "Le site fonctionne de manière anonyme : nous ne savons pas qui télécharge quoi"
     ],
     "technical": "2. Informations techniques",
-    "technicalText": "Lors de l’accès à nos services, votre navigateur peut traiter temporairement certaines informations techniques :",
+    "technicalText": "Comme tout site web, votre navigateur échange des informations techniques limitées pour afficher la page et télécharger les fichiers :",
     "technicalItems": [
-      "Logs d’accès basiques (supprimés automatiquement)",
-      "Fichiers cache temporaires (gérés par le navigateur)",
-      "Informations de routage via le CDN"
+      "Adresse IP et navigateur (uniquement pour le routage réseau et la sécurité)",
+      "Logs serveur basiques, nettoyés automatiquement après quelques jours",
+      "Fichiers de cache temporaires gérés par votre navigateur",
+      "Aucun fichier de téléchargement n'est tracé ni associé à un utilisateur"
     ],
     "thirdParty": "3. Services tiers",
-    "thirdPartyText": "NDS-Shop utilise des services tiers pour assurer la performance et la sécurité du site :",
+    "thirdPartyText": "NDS-Shop s'appuie sur des services tiers uniquement pour héberger et distribuer le site et ses fichiers :",
     "thirdPartyItems": [
-      "Réseaux de diffusion de contenu (CDN)",
-      "Services de protection DDoS",
-      "Fournisseurs DNS",
-      "Services d’hébergement"
+      "Hébergement web et stockage des fichiers de jeu",
+      "Hébergement GitHub pour le code source et les releases de l'application",
+      "Réseau de diffusion de contenu (CDN) pour la rapidité",
+      "Ces services peuvent voir les logs de requêtes standards, mais aucune donnée personnelle utilisateur"
     ],
-    "security": "4. Sécurité des données",
-    "securityText": "Nous ne collectons pas de données personnelles, mais maintenons des mesures de sécurité robustes pour protéger notre infrastructure :",
+    "security": "4. Sécurité",
+    "securityText": "Bien que nous ne collections pas de données, nous maintenons une infrastructure sécurisée :",
     "securityItems": [
-      "Chiffrement de bout en bout des communications",
-      "Audits de sécurité réguliers",
-      "Protection DDoS",
-      "Configuration sécurisée de l’infrastructure"
+      "Connexions chiffrées (HTTPS) sur tout le site",
+      "Protection contre les abus et le spam",
+      "Mises à jour régulières de l'infrastructure",
+      "Aucune donnée sensible stockée — rien à voler"
     ],
     "contact": "5. Contact",
-    "contactText": "Pour toute question relative à la vie privée, contactez-nous à : privacy@nds-shop.com. Nous répondons aux questions, mais n’avons pas l’obligation de supprimer des données que nous ne collectons pas.",
+    "contactText": "Pour toute question relative à la vie privée ou au fonctionnement du site, contactez-nous :",
+    "contactMail": "ndsshopunistore@gmail.com",
     "updates": "6. Mises à jour de la politique",
-    "updatesText": "Cette politique peut être mise à jour à tout moment sans préavis. Les modifications seront affichées sur cette page avec la date de mise à jour. Dernière mise à jour : septembre 2025"
+    "updatesText": "Cette politique peut être mise à jour si le site évolue. Les modifications seront affichées sur cette page. Dernière mise à jour : août 2026"
   },
   "dmca": {
     "title": "Politique DMCA",
@@ -102,47 +158,55 @@
     "tableOfContents": "Table des matières",
     "compliance": {
       "title": "1. Conformité",
-      "content": "NDS-Shop respecte les droits de propriété intellectuelle et traite les notifications conformément aux lois applicables. Chaque demande est examinée individuellement.",
-      "important": "Important : Nous analysons chaque notification de manière spécifique avant toute action."
+      "content": "NDS-Shop est un site de référencement de jeux Nintendo DS, de homebrew et de forwarders. Les jeux listés proviennent de sources publiques et de contributions de la communauté. Nous respectons les droits de propriété intellectuelle et traitons chaque notification de retrait individuellement.",
+      "important": "Important : si vous êtes titulaire de droits et souhaitez qu'un contenu soit retiré, contactez-nous — nous traiterons la demande rapidement."
     },
     "notification": {
       "title": "2. Conditions de notification",
-      "description": "Pour notifier une violation, merci de fournir les informations suivantes :",
+      "description": "Pour demander le retrait d'un contenu, merci de fournir :",
       "items": [
-        "Signature physique ou électronique de la personne autorisée à agir au nom du titulaire du droit",
-        "Identification de l'œuvre protégée qui aurait été violée",
-        "Localisation du contenu prétendument incriminé",
-        "Vos coordonnées (adresse, téléphone, e-mail)",
-        "Déclaration de bonne foi que l'utilisation n'est pas autorisée par le titulaire des droits",
-        "Confirmation de l'exactitude des informations et de votre autorisation à agir au nom du titulaire"
+        "Votre nom et vos coordonnées (e-mail)",
+        "Identification du contenu concerné (titre du jeu, lien exact)",
+        "Une déclaration que vous êtes titulaire des droits ou autorisé à agir pour le titulaire",
+        "La raison du retrait demandé"
       ]
     },
     "counter": {
       "title": "3. Contre-notification",
-      "description": "Si vous pensez que votre contenu a été retiré par erreur ou mauvaise identification :",
+      "description": "Si vous estimez qu'un contenu a été retiré à tort :",
       "items": [
-        "Votre signature physique ou électronique",
-        "Identification du contenu retiré et son emplacement avant suppression",
-        "Déclaration de bonne foi que le retrait est une erreur ou une mauvaise identification",
-        "Vos coordonnées et consentement à la juridiction du tribunal compétent"
+        "Votre nom et vos coordonnées (e-mail)",
+        "Identification du contenu retiré",
+        "Une explication de pourquoi le retrait est une erreur",
+        "Toute preuve de vos droits sur le contenu"
       ]
     },
     "filing": {
-      "title": "4. Dépôt d'une notification DMCA",
-      "content1": "Envoyez vos notifications DMCA à : dmca@nds-shop.com",
-      "content2": "Remarque : l'envoi d'une notification ne garantit pas une action immédiate.",
-      "content3": "Important : toute fausse déclaration peut entraîner des sanctions, y compris des frais juridiques."
+      "title": "4. Dépôt d'une demande",
+      "content1": "Envoyez vos demandes de retrait à :",
+      "mail": "ndsshopunistore@gmail.com",
+      "content2": "Nous répondons généralement sous 48 à 72 heures.",
+      "content3": "Les demandes abusives ou infondées peuvent être ignorées."
     },
     "repeat": {
       "title": "5. Contrevenants répétés",
-      "content": "Nous nous réservons le droit de bloquer ou de supprimer l'accès aux utilisateurs qui enfreignent de manière répétée les droits de propriété intellectuelle."
+      "content": "Nous pouvons restreindre l'accès aux contenus signalés à plusieurs reprises comme portant atteinte aux droits d'auteur."
     }
   },
   "footer": {
+    "links": "Liens",
+    "privacy": "Politique de confidentialité",
+    "legal": "Légal",
     "privacyPolicy": "Politique de Confidentialité",
     "dmca": "Avis DMCA",
     "copyright": "©  {{year}} NDS-Shop. Tous droits réservés.",
     "developedBy": "Développé avec ❤️ par {{author}}",
     "version": "Version :"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oups ! Page non trouvée.",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
   }
 }

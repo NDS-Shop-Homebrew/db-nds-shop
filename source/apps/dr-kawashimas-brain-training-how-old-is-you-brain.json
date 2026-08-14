@@ -1,8 +1,12 @@
 {
   "title": "Dr Kawashima's Brain Training: How Old Is Your Brain",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Dr Kawashima's Brain Training How Old Is Your Brain.nds": {
       "url": "https://db-nds-shop.fr/games/Dr%20Kawashima%27s%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds"
@@ -43,5 +47,6 @@
         "file": "/Dr Kawashima's Brain Training How Old Is Your Brain.cia"
       }
     ]
-  }
+  },
+  "titleId": "ANDP"
 }

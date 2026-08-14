@@ -2,22 +2,17 @@
 author: Nintendo
 categories:
 - game
-color: '#beab49'
-color_bg: '#807331'
 downloads:
   Legend of Zelda, The Phantom Hourglass.nds:
-    size: 134217728
-    size_str: 128 MiB
     url: https://db-nds-shop.fr/games/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.nds
 icon: https://db-nds-shop.fr/assets/images/icons/zeldaphantom.png
 image: https://db-nds-shop.fr/assets/images/icons/zeldaphantom.png
-image_length: 709
 layout: app
 qr:
   Legend of Zelda, The Phantom Hourglass.nds: https://db-nds-shop.fr/qr/legend-of-zelda-the-phantom-hourglass-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Legend%20of%20Zelda%2C%20The%20-%20Phantom%20Hourglass%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Legend%20of%20Zelda%2C%20The%20-%20Phantom%20Hourglass%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
 stars: 0
 systems:
 - DS

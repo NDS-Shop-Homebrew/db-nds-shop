@@ -4,3 +4,16 @@ config.ini
 *.env
 *temp/
 sent_games.txt
+
+# Generated binaries (forwarders), deployed to the server like the images
+frontend/public/forwarder/
+
+# Images: never committed, deployed straight to the server (see compile.bat)
+frontend/public/assets/images/icons/
+frontend/public/assets/images/boxart/
+frontend/public/assets/images/screenshots/
+frontend/public/assets/images/qr/
+frontend/public/games/
+
+# Tooling caches
+tools/nds-to-cia/cache/

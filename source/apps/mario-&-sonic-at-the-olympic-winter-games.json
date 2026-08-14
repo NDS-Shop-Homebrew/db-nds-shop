@@ -1,8 +1,12 @@
 {
   "title": "Mario & Sonic at the Olympic Winter Games",
   "author": "Sega",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Mario & Sonic at the Olympic Winter Games.nds": {
       "url": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds"
@@ -43,5 +47,6 @@
         "file": "/Mario & Sonic at the Olympic Winter Games.cia"
       }
     ]
-  }
+  },
+  "titleId": "COLP"
 }

@@ -1,8 +1,12 @@
 {
   "title": "Professeur Layton et le Destin Perdu",
   "author": "Level-5",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Professeur Layton et le Destin Perdu (France).nds": {
       "url": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20le%20Destin%20Perdu%20%28France%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Professeur Layton et le Destin Perdu (France).cia"
       }
     ]
-  }
+  },
+  "titleId": "C3JF"
 }

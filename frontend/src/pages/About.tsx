@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "../../node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 import { API_BASE_URL } from "../config";
 
 
@@ -32,15 +32,22 @@ interface RoadmapItem {
   done: boolean;
 }
 
-const TEAM_IDS = ["590070698140237826", "446019155779387393"];
+interface DiscordGuild {
+  id: string;
+  name: string;
+  icon: string | null;
+  memberCount: number;
+  presenceCount: number;
+  description: string | null;
+}
+
+const DISCORD_INVITE = "https://discord.gg/udw7Z4mdKJ";
 
 // --- Helpers ---
+// ponytail: Discord renvoie 415 sur les GIF (a_*.gif) hors de ses clients, on force le PNG
 const getAvatarUrl = (user: DiscordUser) => {
   if (user.avatar) {
-    const isGif = user.avatar.startsWith("a_");
-    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${
-      isGif ? "gif" : "png"
-    }?size=128`;
+    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
   }
   return `https://cdn.discordapp.com/embed/avatars/${
     parseInt(user.discriminator) % 5
@@ -49,10 +56,7 @@ const getAvatarUrl = (user: DiscordUser) => {
 
 const getBannerUrl = (user: DiscordUser) => {
   if (!user.banner) return null;
-  const isGif = user.banner.startsWith("a_");
-  return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${
-    isGif ? "gif" : "png"
-  }?size=600`;
+  return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.png?size=512`;
 };
 
 const getActivityImageUrl = (activity: any) => {
@@ -104,7 +108,7 @@ const STATUS_COLORS: Record<string, string> = {
   online: "bg-green-500",
   idle: "bg-yellow-500",
   dnd: "bg-red-500",
-  offline: "bg-gray-500",
+  offline: "bg-muted",
 };
 
 export default function About() {
@@ -112,21 +116,25 @@ export default function About() {
   const [members, setMembers] = useState<DiscordUser[]>([]);
   const [presence, setPresence] = useState<Record<string, Presence>>({});
   const [roadmap, setRoadmap] = useState<RoadmapItem[]>([]);
+  const [guild, setGuild] = useState<DiscordGuild | null>(null);
 
-  // Fetch team
+  // Fetch team (IDs depuis /api/v1/team)
   useEffect(() => {
     const fetchMembers = async () => {
       try {
+        const teamRes = await fetch(`${API_BASE_URL}/v1/team`);
+        const team = await teamRes.json();
+        const ids: string[] = team.discordIds || [];
         const users = await Promise.all(
-          TEAM_IDS.map(async (id) => {
-            const res = await fetch(`${API_BASE_URL}/discord-user/${id}`);
+          ids.map(async (id) => {
+            const res = await fetch(`${API_BASE_URL}/v1/discord-user/${id}`);
             if (!res.ok) return null;
             return (await res.json()) as DiscordUser;
           })
         );
         setMembers(users.filter(Boolean) as DiscordUser[]);
       } catch (err) {
-        console.error("❌ Failed to fetch members:", err);
+        console.error("â�Œ Failed to fetch members:", err);
       }
     };
     fetchMembers();
@@ -136,9 +144,12 @@ export default function About() {
   useEffect(() => {
     const fetchPresence = async () => {
       try {
+        const teamRes = await fetch(`${API_BASE_URL}/v1/team`);
+        const team = await teamRes.json();
+        const ids: string[] = team.discordIds || [];
         const pres = await Promise.all(
-          TEAM_IDS.map(async (id) => {
-            const res = await fetch(`${API_BASE_URL}/discord-presence/${id}`);
+          ids.map(async (id) => {
+            const res = await fetch(`${API_BASE_URL}/v1/discord-presence/${id}`);
             if (!res.ok) return null;
             const data = await res.json();
             return { id, ...data } as { id: string } & Presence;
@@ -150,12 +161,22 @@ export default function About() {
         });
         setPresence(map);
       } catch (err) {
-        console.error("❌ Failed to fetch presence:", err);
+        console.error("â�Œ Failed to fetch presence:", err);
       }
     };
     fetchPresence();
     const interval = setInterval(fetchPresence, 15000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Fetch guild
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/v1/discord-guild`)
+      .then((r) => r.json())
+      .then((g) => {
+        if (g && g.name) setGuild(g);
+      })
+      .catch(console.error);
   }, []);
 
   // Fetch roadmap
@@ -175,13 +196,68 @@ export default function About() {
         transition={{ duration: 0.6 }}
         className="text-center space-y-4"
       >
-        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
+        <h1 className="text-4xl font-extrabold text-foreground">
           {t("about.title")}
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {t("about.description")}
         </p>
       </motion.div>
+
+      {/* Discord server */}
+      {guild && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.6 }}
+          className="rounded-2xl bg-card border border-border shadow-lg overflow-hidden"
+        >
+          <div className="h-24 bg-gradient-to-r from-[#5865F2] via-[#4752C4] to-[#7289da] relative">
+            <div className="absolute inset-0 opacity-20"
+              style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+          </div>
+          <div className="p-6 flex flex-col sm:flex-row items-center gap-4">
+            {guild.icon && (
+              <img
+                src={guild.icon}
+                alt={guild.name}
+                className="w-20 h-20 rounded-full border-4 border-background shadow-lg bg-background shrink-0"
+              />
+            )}
+            <div className="flex-1 min-w-0 text-center sm:text-left">
+              <h2 className="text-2xl font-bold text-foreground">{guild.name}</h2>
+              <p className="text-sm text-muted-foreground mt-1 max-w-xl mx-auto sm:mx-0">
+                {guild.description || t("about.discord_section_desc")}
+              </p>
+              <div className="flex items-center justify-center sm:justify-start gap-4 mt-3 text-sm text-muted-foreground">
+                {typeof guild.memberCount === "number" && (
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
+                    {guild.memberCount.toLocaleString()} {t("about.discord_members")}
+                  </span>
+                )}
+                {typeof guild.presenceCount === "number" && (
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#5865F2]" />
+                    {guild.presenceCount.toLocaleString()} {t("about.discord_online")}
+                  </span>
+                )}
+              </div>
+            </div>
+            <a
+              href={DISCORD_INVITE}
+              target="_blank"
+              rel="noreferrer"
+              className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold transition-colors"
+            >
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
+                <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+              </svg>
+              {t("about.discord_join")}
+            </a>
+          </div>
+        </motion.div>
+      )}
 
       {/* Team */}
       <motion.div
@@ -189,7 +265,7 @@ export default function About() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.6 }}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-500">
+        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
           {t("about.team")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -203,13 +279,13 @@ export default function About() {
               <motion.div
                 key={member.id}
                 whileHover={{ scale: 1.03 }}
-                className="rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-900 relative"
+                className="rounded-xl overflow-hidden shadow-lg bg-card relative"
                 style={{
                   border: accentColor ? `3px solid ${accentColor}` : undefined,
                 }}
               >
                 {bannerUrl ? (
-                  <div className="h-24 bg-gray-700">
+                  <div className="h-24 bg-muted">
                     <img
                       src={bannerUrl}
                       alt={`${member.username} banner`}
@@ -217,7 +293,7 @@ export default function About() {
                     />
                   </div>
                 ) : (
-                  <div className="h-24 bg-gray-700" />
+                  <div className="h-24 bg-muted" />
                 )}
                 <div className="p-4 flex flex-col items-center -mt-12">
                   <div className="relative">
@@ -229,18 +305,18 @@ export default function About() {
                       <img
                         src={getAvatarUrl(member)}
                         alt={member.username}
-                        className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 shadow-lg"
+                        className="w-24 h-24 rounded-full border-4 border-background shadow-lg"
                       />
                     </a>
                     <span
-                      className={`absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-white dark:border-gray-900 ${STATUS_COLORS[status]}`}
+                      className={`absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-background ${STATUS_COLORS[status]}`}
                     />
                   </div>
-                  <span className="mt-3 font-semibold text-gray-900 dark:text-white">
+                  <span className="mt-3 font-semibold text-foreground">
                     {member.global_name || member.username}
                   </span>
                   {member.discriminator !== "0" && (
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                    <span className="text-sm text-muted-foreground">
                       {member.username}#{member.discriminator}
                     </span>
                   )}
@@ -251,7 +327,7 @@ export default function About() {
                       {userPresence.activities.map((activity, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 p-3 rounded-xl shadow-sm"
+                          className="flex items-center gap-3 bg-muted dark:bg-muted p-3 rounded-xl shadow-sm"
                         >
                           {getActivityImageUrl(activity) ? (
                             <img
@@ -260,22 +336,22 @@ export default function About() {
                               className="w-12 h-12 rounded-lg"
                             />
                           ) : (
-                            <div className="w-12 h-12 flex items-center justify-center bg-indigo-500 text-white rounded-lg">
-                              🎮
+                            <div className="w-12 h-12 flex items-center justify-center bg-primary text-foreground rounded-lg">
+                              ðŸŽ®
                             </div>
                           )}
                           <div className="flex-1">
-                            <p className="font-semibold text-gray-900 dark:text-white">
+                            <p className="font-semibold text-foreground">
                               {getActivityPrefix(activity, t)}
                               {activity.name}
                             </p>
                             {activity.details && (
-                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                              <p className="text-sm text-muted-foreground">
                                 {activity.details}
                               </p>
                             )}
                             {activity.state && (
-                              <p className="text-xs text-gray-500 dark:text-gray-400">
+                              <p className="text-xs text-muted-foreground">
                                 {activity.state}
                               </p>
                             )}
@@ -284,8 +360,8 @@ export default function About() {
                       ))}
                     </div>
                   ) : (
-                    <p className="mt-2 text-xs text-gray-500 italic">
-                      No current activity
+                    <p className="mt-2 text-xs text-muted-foreground italic">
+                      {t("about.discord_no_activity")}
                     </p>
                   )}
                 </div>
@@ -297,7 +373,7 @@ export default function About() {
 
       {/* Roadmap */}
       <div>
-        <h2 className="text-2xl font-bold mb-6 text-center text-indigo-500">
+        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
           {t("about.roadmap")}
         </h2>
         <div className="space-y-4">
@@ -309,12 +385,12 @@ export default function About() {
               transition={{ delay: i * 0.1 }}
               className={`p-4 rounded-lg border ${
                 item.done
-                  ? "border-green-500 bg-green-50 dark:bg-green-900/20"
-                  : "border-red-500 bg-red-50 dark:bg-red-900/20"
+                  ? "border-accent bg-accent/10"
+                  : "border-destructive bg-destructive/10"
               }`}
             >
               <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-muted-foreground">
                 {item.description}
               </p>
             </motion.div>
@@ -327,12 +403,12 @@ export default function About() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.6 }}
-        className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
+        className="bg-muted rounded-2xl p-8 shadow-lg"
       >
-        <h2 className="text-2xl font-bold mb-4 text-indigo-500">
+        <h2 className="text-2xl font-bold mb-4 text-primary">
           {t("about.project")}
         </h2>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        <p className="text-muted-foreground leading-relaxed">
           {t("about.project_description")}
         </p>
       </motion.div>

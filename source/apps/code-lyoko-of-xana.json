@@ -1,8 +1,12 @@
 {
   "title": "Code Lyoko: Fall of X.A.N.A.",
   "author": "The Game Factory",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds": {
       "url": "https://db-nds-shop.fr/games/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20%28Europe%29%20%28En%2CFr%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).cia"
       }
     ]
-  }
+  },
+  "titleId": "CLFP"
 }

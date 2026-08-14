@@ -1,8 +1,12 @@
 {
   "title": "Inazuma Eleven",
   "author": "Nintendo / Level-5",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Inazuma Eleven (France).nds": {
       "url": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20%28France%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Inazuma Eleven (France).cia"
       }
     ]
-  }
+  },
+  "titleId": "YEEF"
 }

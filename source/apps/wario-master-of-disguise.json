@@ -1,8 +1,12 @@
 {
   "title": "WarioMaster of Disguise",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Wario Master of Disguise (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Wario%20Master%20of%20Disguise%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Wario Master of Disguise (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "AWAP"
 }

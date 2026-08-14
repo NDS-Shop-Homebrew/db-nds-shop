@@ -2,22 +2,17 @@
 author: Nintendo / Level-5
 categories:
 - game
-color: '#b06f41'
-color_bg: '#80502f'
 downloads:
   Inazuma Eleven 2 - Tempete de Feu (France) (France).nds:
-    size: 268435456
-    size_str: 256 MiB
     url: https://db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Feu%20%28France%29.nds
 icon: https://db-nds-shop.fr/assets/images/icons/inazumaeleventempetedefeu.png
 image: https://db-nds-shop.fr/assets/images/icons/inazumaeleventempetedefeu.png
-image_length: 791
 layout: app
 qr:
   Inazuma Eleven 2 - Tempete de Feu (France) (France).nds: https://db-nds-shop.fr/qr/inazuma-eleven-2---tempete-de-feu-france-france-nds.png
 screenshots:
-- description: Boxart
-  url: https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20(France).nds.png
+- description: Screenshot
+  url: https://db-nds-shop.fr/assets/images/screenshots/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20%28France%29.png/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20%28France%29.png
 stars: 0
 systems:
 - DS

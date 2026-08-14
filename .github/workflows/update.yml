@@ -1,49 +1,49 @@
 name: Update UniStore
 
-# Temporarily disabled until GitHub secrets are re-added
 on:
-  schedule:
-    - cron: 0 0,6,12,18 * * *
   workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    if: false # Temporarily disabled - needs secrets.MY_GITHUB_TOKEN
     container: rinzler65/nds-shop
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
 
     - name: Configure Git to trust the directory
       run: git config --global --add safe.directory /__w/db-nds-shop/db-nds-shop
 
-    - name: Delete old pages and QRs
-      run: rm -rf docs/_3ds/* docs/_ds/* docs/assets/images/qr/*.png
+    - name: Python dependencies
+      run: python3 -m pip install -q -r source/requirements.txt
 
-    - name: Run generate.py
+    - name: Delete old pages and QRs
+      run: |
+        rm -rf frontend/public/_3ds/* frontend/public/_ds/* frontend/public/assets/images/qr/*.png
+        mkdir -p frontend/public/assets/images/qr/prerelease frontend/public/assets/images/qr/nightly frontend/public/assets/images/icons frontend/public/assets/images/screenshots frontend/public/unistore frontend/public/data
+
+    - name: Run generate.py (pages + QR + unistore)
       run: |
         export PATH=$PATH:/opt/devkitpro/tools/bin
-        python3 source/generate.py source/apps docs --token ${{ secrets.MY_GITHUB_TOKEN }}
+        python3 source/generate.py source/apps frontend/public --token ${{ secrets.MY_GITHUB_TOKEN }}
 
-    - name: Pull origin
-      run: git pull origin main --ff-only
+    - name: Update frontmatter + games.json
+      run: |
+        python3 tools/nds-to-cia/update_md_screenshots.py
+        cd source && python3 generate_games.py
 
     - name: Push changes
       run: |
         git config user.email "ndsshopunistore@gmail.com"
         git config user.name "NDS_Shop_Bot"
 
-        echo "machine github.com" > "$HOME/.netrc"
-        echo "  login NDS_Shop_Bot" >> "$HOME/.netrc"
-        echo "  password ${{ secrets.MY_GITHUB_TOKEN }}" >> "$HOME/.netrc"
-
-        echo "machine api.github.com" >> "$HOME/.netrc"
-        echo "  login NDS_Shop_Bot" >> "$HOME/.netrc"
-        echo "  password ${{ secrets.MY_GITHUB_TOKEN }}" >> "$HOME/.netrc"
-        
-        git checkout main
-        git stage .
-        if git commit -m "Update UniStore"; then
-          git push origin main
+        git checkout dev
+        git add .
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update UniStore"
+          git push "https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/NDS-Shop-Homebrew/db-nds-shop.git" dev
         fi

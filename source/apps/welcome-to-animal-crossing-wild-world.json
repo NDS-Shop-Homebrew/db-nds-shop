@@ -1,8 +1,12 @@
 {
   "title": "Animal Crossing - Wild World",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Welcome%20to%20Animal%20Crossing%20Wild%20World%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "ADMP"
 }

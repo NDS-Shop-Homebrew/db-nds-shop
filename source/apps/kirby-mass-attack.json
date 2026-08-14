@@ -1,8 +1,12 @@
 {
   "title": "Kirby - Mass Attack",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Kirby%20Mass%20Attack%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "TADP"
 }

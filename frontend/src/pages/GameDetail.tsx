@@ -1,232 +1,314 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useTranslation } from "../../node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
+import { ArrowLeft, Download, Heart, Share2, ChevronLeft, ChevronRight, ExternalLink, Book } from "lucide-react";
 
-interface Download {
-  size: number;
-  size_str: string;
-  url: string;
-}
-
-interface Screenshot {
-  description: string;
-  url: string;
-}
-
+interface Download { size: number; size_str: string; url: string; }
+interface Screenshot { description: string; url: string; }
 interface Game {
-  fileName: string;
-  title: string;
-  author: string;
-  version: string;
-  systems: string[];
-  categories?: string[];
-  icon: string;
-  image: string;
-  color: string;
-  color_bg: string;
-  updated: string;
-  downloads?: Record<string, Download>;
-  qr?: Record<string, string>;
+  fileName: string; title: string; author: string; version: string;
+  titleId?: string;
+  systems: string[]; categories?: string[]; icon: string; image: string;
+  color: string; color_bg: string; updated: string;
+  downloads?: Record<string, Download>; qr?: Record<string, string>;
   screenshots?: Screenshot[];
+}
+
+interface NdsdbMeta {
+  name: string;
+  description?: string;
+  developer?: string;
+  publisher?: string;
+  genres?: string[];
+  release_date?: string;
+  product_code?: string;
+  region?: string;
+  rating_system?: { name?: string; age?: string };
+}
+
+function useFavorites() {
+  const [favs, setFavs] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem("nds-favs") || "[]"); } catch { return []; }
+  });
+  const toggle = (slug: string) => {
+    setFavs((prev) => {
+      const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug];
+      localStorage.setItem("nds-favs", JSON.stringify(next));
+      return next;
+    });
+  };
+  return { favs, toggle };
 }
 
 export default function GameDetail() {
   const { slug } = useParams<{ slug: string }>();
   const [game, setGame] = useState<Game | null>(null);
-  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [allGames, setAllGames] = useState<Game[]>([]);
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const { t, i18n } = useTranslation();
+  const { favs, toggle } = useFavorites();
 
   useEffect(() => {
     fetch("/games.json")
       .then((res) => res.json())
       .then((games: Game[]) => {
-        const found = games.find((g) => g.fileName === slug);
-        setGame(found || null);
+        setAllGames(games);
+        setGame(games.find((g) => g.fileName === slug) || null);
       });
   }, [slug]);
 
-  if (!game)
+  const [ndsdb, setNdsdb] = useState<NdsdbMeta | null>(null);
+
+  useEffect(() => {
+    if (!game?.titleId) { setNdsdb(null); return; }
+    fetch(`/api/v1/ndsdb/metadata/${game.titleId}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setNdsdb);
+  }, [game?.titleId]);
+
+  const boxart = game?.screenshots?.find((s) => s.description === "Boxart")?.url || null;
+
+  // Images affichables (hors boxart)
+  const gallery = useMemo(() => {
+    const shots = (game?.screenshots || []).filter((s) => s.description !== "Boxart");
+    return shots.length ? shots : [];
+  }, [game]);
+
+  const related = useMemo(() => {
+    if (!game) return [];
+    return allGames
+      .filter((g) => g.fileName !== game.fileName)
+      .filter((g) => g.author === game.author || g.systems?.some((s) => game.systems?.includes(s)))
+      .slice(0, 6);
+  }, [game, allGames]);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (lightboxIdx === null || gallery.length === 0) return;
+    if (e.key === "Escape") setLightboxIdx(null);
+    if (e.key === "ArrowLeft") setLightboxIdx((lightboxIdx - 1 + gallery.length) % gallery.length);
+    if (e.key === "ArrowRight") setLightboxIdx((lightboxIdx + 1) % gallery.length);
+  }, [lightboxIdx, gallery.length]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  if (!game) {
     return (
-      <p className="p-6 text-red-500 font-bold">{t("gameDetail.not_found")}</p>
+      <div className="max-w-4xl mx-auto px-4 py-12 animate-pulse space-y-4">
+        <div className="h-8 w-1/3 rounded bg-muted" />
+        <div className="h-56 rounded-xl bg-muted" />
+        <div className="h-4 w-1/2 rounded bg-muted" />
+      </div>
     );
+  }
+
+  const isFav = favs.includes(game.fileName);
 
   return (
-    <div className="p-6 space-y-8">
-      {/* --- Banner --- */}
-      <motion.div
-        className="w-full h-48 sm:h-64 rounded-lg relative overflow-hidden flex items-center justify-center"
-        style={{ backgroundColor: game.color_bg }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <img
-          src={game.image}
-          alt={`${game.title} Banner`}
-          className="w-full h-full object-cover opacity-40"
-        />
-        <h1 className="absolute text-3xl sm:text-5xl font-bold text-white text-center px-4">
-          {game.title}
-        </h1>
-      </motion.div>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <Link to="/game-list" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-6">
+        <ArrowLeft size={16} /> {t("gameDetail.back")}
+      </Link>
 
-      {/* --- Main Info --- */}
-      <motion.div
-        className="flex flex-col md:flex-row gap-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        {/* Left Column: Icon + basic info */}
-        <div className="flex flex-col items-center md:items-start gap-3 w-full md:w-1/3">
-          <img
-            src={game.icon}
-            alt={`${game.title} Icon`}
-            className="w-32 h-32 rounded-lg shadow-lg"
-          />
-          <p>
-            <strong style={{ color: game.color }}>
-              {t("gameDetail.author")}
-            </strong>{" "}
-            {game.author}
-          </p>
-          <p>
-            <strong style={{ color: game.color }}>
-              {t("gameDetail.version")}
-            </strong>{" "}
-            {game.version}
-          </p>
-          <p>
-            <strong style={{ color: game.color }}>
-              {t("gameDetail.updated")}
-            </strong>{" "}
-            {new Date(game.updated).toLocaleDateString(i18n.language, {
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-            })}
-          </p>
-          {game.categories && (
-            <p>
-              <strong style={{ color: game.color }}>
-                {t("gameDetail.categories")}
-              </strong>{" "}
-              {game.categories.join(", ")}
-            </p>
+      {/* Hero */}
+      <div className="relative rounded-2xl overflow-hidden mb-8 dsi-gradient">
+        <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
+        <div className="relative flex items-center gap-6 p-6 md:p-8 min-h-40">
+          {boxart && (
+            <div className="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-xl overflow-hidden shadow-lg ring-4 ring-white/20 bg-white/10">
+              <img src={boxart} alt={game.title} className="w-full h-full object-contain" />
+            </div>
           )}
-          {game.systems && (
-            <p>
-              <strong style={{ color: game.color }}>
-                {t("gameDetail.systems")}
-              </strong>{" "}
-              {game.systems.join(", ")}
-            </p>
-          )}
+          <div className="min-w-0">
+            <h1 className="text-2xl md:text-3xl font-bold text-white drop-shadow">{game.title}</h1>
+            <p className="text-white/80 mt-1">{game.author}</p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              {game.systems?.map((s) => (
+                <span key={s} className="px-2.5 py-1 rounded-full bg-white/20 text-white text-xs font-medium">{s}</span>
+              ))}
+            </div>
+          </div>
         </div>
+      </div>
 
-        {/* Right Column: Downloads, QR, Screenshots */}
-        <div className="flex-1 flex flex-col gap-6">
-          {/* Downloads */}
+      {/* Infos rapides */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        {[
+          { label: t("gameDetail.author"), value: game.author },
+          { label: t("gameDetail.version"), value: game.version },
+          { label: t("gameDetail.updated"), value: new Date(game.updated).toLocaleDateString(i18n.language) },
+          { label: t("gameDetail.systems"), value: game.systems?.join(", ") || "—" },
+        ].map((info) => (
+          <div key={info.label} className="rounded-xl border border-border bg-card p-3">
+            <p className="text-xs text-muted-foreground mb-0.5">{info.label}</p>
+            <p className="text-sm font-medium text-foreground truncate">{info.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="md:col-span-2 space-y-8">
+          {/* Téléchargements */}
           {game.downloads && Object.keys(game.downloads).length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2
-                className="text-lg font-semibold mb-2"
-                style={{ color: game.color }}
-              >
-                {t("gameDetail.download")}
+            <div>
+              <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
+                <span>{t("gameDetail.download")}</span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => toggle(game.fileName)}
+                    className={`p-2 rounded-lg border transition-colors ${isFav ? "bg-red-50 border-red-200 text-red-500" : "border-border text-muted-foreground hover:text-red-400"}`}
+                    title="Favori"
+                  >
+                    <Heart size={18} fill={isFav ? "currentColor" : "none"} />
+                  </button>
+                  <button
+                    onClick={() => navigator.clipboard?.writeText(window.location.href)}
+                    className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary transition-colors"
+                    title="Partager"
+                  >
+                    <Share2 size={18} />
+                  </button>
+                </div>
               </h2>
-              <ul className="list-disc ml-5 space-y-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {Object.entries(game.downloads).map(([name, details]) => (
-                  <li key={name}>
-                    <a
-                      href={details.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-indigo-500 hover:underline"
-                    >
-                      {name}
-                    </a>{" "}
-                    ({details.size_str})
-                  </li>
+                  <a key={name} href={details.url} target="_blank" rel="noreferrer"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-sm transition-all group">
+                    <Download className="w-5 h-5 text-primary shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-foreground truncate">{name}</p>
+                      {details.size_str && <p className="text-xs text-muted-foreground">{details.size_str}</p>}
+                    </div>
+                    <ExternalLink size={14} className="text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+                  </a>
                 ))}
-              </ul>
-            </motion.div>
+              </div>
+            </div>
           )}
 
-          {/* QR Codes */}
-          {game.qr && Object.keys(game.qr).length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <h2
-                className="text-lg font-semibold mb-2"
-                style={{ color: game.color }}
-              >
-                {t("gameDetail.qr_code")}
+          {/* À propos (métadonnées ndsdb) */}
+          {ndsdb && (() => {
+            // Priorité: 1) IGDB 2) description_fr/en (Wikipedia bilingue) 3) description (Wikipedia legacy)
+            const langDesc = ndsdb[i18n.language === "fr" ? "description_fr" : "description_en"];
+            const desc = ndsdb.description_igdb || langDesc || ndsdb.description;
+            if (!desc) return null;
+            return (
+            <div>
+              <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <Book size={18} className="text-primary" /> À propos
               </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                {desc.slice(0, 800)}
+                {desc.length > 800 && (
+                  <span className="text-primary cursor-pointer hover:underline"
+                    onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(game?.title + " Nintendo DS")}`, "_blank")}>
+                    ... Lire plus
+                  </span>
+                )}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {ndsdb.genres?.filter(Boolean).map((g: string) => (
+                  <span key={g} className="px-3 py-1 rounded-full bg-secondary text-primary text-xs font-medium">{g}</span>
+                ))}
+                {ndsdb.developer && (
+                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                    {ndsdb.developer}
+                  </span>
+                )}
+                {ndsdb.rating_system?.name && (
+                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                    {ndsdb.rating_system.name} : {ndsdb.rating_system.age}+
+                  </span>
+                )}
+                {ndsdb.release_date && (
+                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                    Sortie : {ndsdb.release_date}
+                  </span>
+                )}
+              </div>
+            </div>
+            );
+          })()}
+
+          {/* Galerie screenshots */}
+          {gallery.length > 0 && (
+            <div>
+              <h2 className="text-lg font-bold mb-4">{t("gameDetail.screenshots")}</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {gallery.map((shot, i) => (
+                  <button key={i} onClick={() => setLightboxIdx(i)}
+                    className="aspect-video rounded-xl overflow-hidden ring-1 ring-border hover:ring-primary/50 transition-all group">
+                    <img src={shot.url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* QR */}
+          {game.qr && Object.keys(game.qr).length > 0 && (
+            <div>
+              <h2 className="text-lg font-bold mb-4">{t("gameDetail.qr_code")}</h2>
               <div className="flex flex-wrap gap-4">
                 {Object.entries(game.qr).map(([name, url]) => (
                   <div key={name} className="flex flex-col items-center">
-                    <img
-                      src={url}
-                      alt={`QR Code for ${name}`}
-                      className="w-32 h-32 cursor-pointer hover:scale-105 transition-transform rounded-lg"
-                      onClick={() => setLightboxImg(url)}
-                    />
-                    <span className="text-xs mt-1 text-gray-500">{name}</span>
+                    <img src={url} alt={name} className="w-24 h-24 rounded-xl ring-1 ring-border" />
+                    <span className="text-xs text-muted-foreground mt-1">{name}</span>
                   </div>
                 ))}
               </div>
-            </motion.div>
-          )}
-
-          {/* Screenshots */}
-          {game.screenshots && game.screenshots.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h2
-                className="text-lg font-semibold mb-2"
-                style={{ color: game.color }}
-              >
-                {t("gameDetail.screenshots")}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {game.screenshots.map((shot, i) => (
-                  <img
-                    key={i}
-                    src={shot.url}
-                    alt={shot.description || "Screenshot"}
-                    className="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform"
-                    onClick={() => setLightboxImg(shot.url)}
-                  />
-                ))}
-              </div>
-            </motion.div>
+            </div>
           )}
         </div>
-      </motion.div>
 
-      {/* Lightbox Overlay */}
-      {lightboxImg && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={() => setLightboxImg(null)}
-        >
-          <img
-            src={lightboxImg}
-            alt="Enlarged view"
-            className="max-w-full max-h-full rounded-lg shadow-lg"
-          />
+        <div className="space-y-4">
+          {game.categories && game.categories.length > 0 && (
+            <div className="rounded-xl border border-border bg-card p-4">
+              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{t("gameDetail.categories")}</h3>
+              <div className="flex flex-wrap gap-2">
+                {game.categories.map((cat) => (
+                  <span key={cat} className="px-3 py-1 rounded-full bg-secondary text-primary text-xs font-medium">{cat}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Jeux similaires */}
+      {related.length > 0 && (
+        <div className="mt-16">
+          <h2 className="text-lg font-bold mb-6">{t("gameDetail.related")}</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+            {related.map((g) => (
+              <Link key={g.fileName} to={`/game/${g.fileName}`} className="block group">
+                <div className="rounded-xl overflow-hidden bg-muted mb-2 ring-1 ring-border group-hover:ring-primary/50 transition-all">
+                  <img src={g.icon} alt="" className="w-20 h-20 mx-auto object-contain" />
+                </div>
+                <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug">{g.title}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox */}
+      {lightboxIdx !== null && gallery[lightboxIdx] && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={() => setLightboxIdx(null)}>
+          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + gallery.length) % gallery.length); }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+            <ChevronLeft size={28} />
+          </button>
+          <img src={gallery[lightboxIdx].url} alt="" className="max-w-[90vw] max-h-[90vh] rounded-xl" onClick={(e) => e.stopPropagation()} />
+          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % gallery.length); }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+            <ChevronRight size={28} />
+          </button>
+          <button onClick={() => setLightboxIdx(null)} className="absolute top-4 right-4 text-white/60 hover:text-white text-2xl">✕</button>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/60">{lightboxIdx + 1} / {gallery.length}</div>
         </div>
       )}
     </div>

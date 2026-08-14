@@ -1,8 +1,12 @@
 {
   "title": "Dragon Quest IX - Sentinels of the Starry Skies",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Dragon Quest IX Sentinels of the Starry Skies.nds": {
       "url": "https://db-nds-shop.fr/games/Dragon%20Quest%20IX%20Sentinels%20of%20the%20Starry%20Skies.nds"
@@ -43,5 +47,6 @@
         "file": "/Dragon Quest IX Sentinels of the Starry Skies.cia"
       }
     ]
-  }
+  },
+  "titleId": "YDQP"
 }

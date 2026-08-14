@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Download, QrCode } from "lucide-react";
-import { useTranslation } from "../../node_modules/react-i18next";
+import { QRCodeSVG } from "qrcode.react";
+import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../components/ui/dialog";
 
@@ -16,172 +17,206 @@ interface Game {
   updated: string;
 }
 
-interface FAQItem {
-  question: string;
-  answer: string;
+function GameSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="w-24 h-24 rounded-xl bg-muted mb-3 mx-auto" />
+      <div className="h-4 w-3/4 rounded bg-muted mb-2 mx-auto" />
+      <div className="h-3 w-1/2 rounded bg-muted mx-auto" />
+    </div>
+  );
 }
 
 export default function Home() {
-    const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [games, setGames] = useState<Game[]>([]);
-  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
-
-  const FAQ: FAQItem[] = [
-    { question: t("home.faq.q1"), answer: t("home.faq.a1") },
-    { question: t("home.faq.q2"), answer: t("home.faq.a2") },
-    { question: t("home.faq.q3"), answer: t("home.faq.a3") },
-  ];
+  const [loading, setLoading] = useState(true);
+  const [randomGame, setRandomGame] = useState<Game | null>(null);
 
   useEffect(() => {
     fetch("/games.json")
       .then((res) => res.json())
       .then((allGames: Game[]) => {
-        const latest = [...allGames]
-          .sort(
-            (a, b) =>
-              new Date(b.updated).getTime() - new Date(a.updated).getTime()
-          )
-          .slice(0, 4);
-        setGames(latest);
+        const sorted = [...allGames].sort(
+          (a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime()
+        );
+        setGames(sorted.slice(0, 6));
+        setLoading(false);
       });
   }, []);
 
-  if (games.length === 0)
-    return <p className="p-6">{t("home.loading_games")}</p>;
+  const pickRandom = () => {
+    fetch("/games.json")
+      .then((res) => res.json())
+      .then((all: Game[]) => {
+        setRandomGame(all[Math.floor(Math.random() * all.length)]);
+      });
+  };
+
+  const regions = ["France", "Europe", "USA", "Japan"];
 
   return (
-    <div className="p-6 space-y-16 max-w-7xl mx-auto">
-      {/* --- Header with Download and QR Code Buttons --- */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col md:flex-row justify-center items-center gap-6 p-4"
-      >
-        <Button
-          onClick={() => (window.location.href = "/homebrew/NDS-Shop.cia")}
-          className="bg-indigo-500 hover:bg-indigo-600 text-white flex items-center gap-2"
-        >
-          <Download className="w-5 h-5" />
-          {t("home.download")}
-        </Button>
-
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="bg-green-500 hover:bg-green-600 text-white flex items-center gap-2">
-              <QrCode className="w-5 h-5" />
-              {t("home.scan")}
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-lg md:max-w-xl lg:max-w-2xl">
-            <div className="flex flex-col items-center">
-              <p className="mb-4 text-center">{t("home.scan_instructions")}</p>
-              <img
-                src="/qrcode-nds-shop.unistore.png"
-                alt="QR Code"
-                className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
-              />
+    <div>
+      {/* Hero */}
+      <section className="dsi-gradient text-white">
+        <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <img src="/logo.png" alt="NDS-Shop" className="w-16 h-16 mx-auto mb-4 rounded-2xl" />
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">NDS-Shop</h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-lg mx-auto mb-8">
+              {t("home.tagline")}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button
+                onClick={() => (window.location.href = "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia")}
+                className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg"
+              >
+                <Download className="w-5 h-5 mr-2" />
+                {t("home.download")}
+              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-white/20 text-white hover:bg-white/30 border border-white/30 font-semibold px-8 py-6 text-lg">
+                    <QrCode className="w-5 h-5 mr-2" />
+                    {t("home.scan")}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-lg">
+                  <div className="flex flex-col items-center p-4">
+                    <p className="mb-4 text-center text-muted-foreground">{t("home.scan_instructions")}</p>
+                    <QRCodeSVG
+                      value="https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia"
+                      size={256}
+                      className="w-64 h-64"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
-          </DialogContent>
-        </Dialog>
-      </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
-      {/* --- FAQ Section --- */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="space-y-10 p-4"
-      >
-        <h2 className="text-3xl font-bold text-center text-indigo-500 mb-8">
+      {/* Stats bar */}
+      <div className="max-w-4xl mx-auto px-4 -mt-6 mb-12">
+        <div className="bg-card border border-border rounded-xl shadow-sm p-6 flex flex-wrap justify-center gap-8">
+          {[
+            { label: t("home.stats.games"), value: 55 },
+            { label: t("home.stats.systems"), value: 2 },
+            { label: t("home.stats.updated"), value: new Date().toLocaleDateString(i18n.language) },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="text-2xl font-bold text-primary">{stat.value}</p>
+              <p className="text-sm text-muted-foreground">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Random Game */}
+      <div className="max-w-7xl mx-auto px-4 mb-12">
+        <div className="flex flex-col items-center gap-4">
+          <Button
+            onClick={pickRandom}
+            variant="outline"
+            className="gap-2"
+          >
+            <Shuffle className="w-4 h-4" />
+            {t("home.random")}
+          </Button>
+          {randomGame && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <Link
+                to={`/game/${randomGame.fileName}`}
+                className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors"
+              >
+                <img src={randomGame.icon} alt="" className="w-14 h-14 rounded-lg" />
+                <div>
+                  <p className="font-semibold text-foreground">{randomGame.title}</p>
+                  <p className="text-sm text-muted-foreground">{randomGame.author}</p>
+                </div>
+              </Link>
+            </motion.div>
+          )}
+        </div>
+      </div>
+
+      {/* Browsing by region */}
+      <div className="max-w-7xl mx-auto px-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-3">
+          {regions.map((region) => (
+            <Link
+              key={region}
+              to={`/game-list?region=${encodeURIComponent(region)}`}
+              className="px-5 py-2 rounded-full border border-border bg-card text-sm font-medium text-foreground hover:border-primary/50 hover:text-primary transition-colors"
+            >
+              {region}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Latest Games */}
+      <div className="max-w-7xl mx-auto px-4 mb-20">
+        <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <Sparkles className="w-5 h-5 text-primary" />
+          {t("home.latest_games")}
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {loading
+            ? Array.from({ length: 6 }).map((_, i) => <GameSkeleton key={i} />)
+            : games.map((game, i) => (
+                <motion.div
+                  key={game.fileName}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                >
+                  <Link
+                    to={`/game/${game.fileName}`}
+                    className="block group"
+                  >
+                    <div className="rounded-xl bg-muted/60 mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all p-3">
+                      <img src={game.icon} alt={game.title} className="w-full aspect-square object-contain" />
+                    </div>
+                    <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug">
+                      {game.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-1 truncate">{game.author}</p>
+                  </Link>
+                </motion.div>
+              ))}
+        </div>
+      </div>
+
+      {/* FAQ */}
+      <div className="max-w-3xl mx-auto px-4 mb-20">
+        <h2 className="text-xl font-bold text-foreground mb-6 text-center">
           {t("home.faq.title")}
         </h2>
-
-        <div className="flex flex-col gap-6 max-w-3xl mx-auto">
-          {FAQ.map((item, index) => (
+        <div className="space-y-4">
+          {[
+            { q: "home.faq.q1", a: "home.faq.a1" },
+            { q: "home.faq.q2", a: "home.faq.a2" },
+            { q: "home.faq.q3", a: "home.faq.a3" },
+          ].map((item, i) => (
             <motion.div
-              key={index}
-              layout
-              initial={{ borderRadius: 16 }}
-              whileHover={{ scale: 1.02 }}
-              className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-lg rounded-2xl p-6 transition-transform duration-200"
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="rounded-xl border border-border bg-card p-5"
             >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                {item.question}
-              </h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                {item.answer}
-              </p>
+              <h3 className="font-semibold text-foreground mb-1">{t(item.q)}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{t(item.a)}</p>
             </motion.div>
           ))}
         </div>
-      </motion.div>
-
-      {/* --- Latest Games --- */}
-      <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white flex flex-wrap justify-center gap-4 p-4">
-        {t("home.latest_games")}
-      </h1>
-
-      <motion.div
-        className="flex flex-wrap justify-center gap-4 p-4"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.1 } },
-        }}
-      >
-        {games.map((game) => (
-          <motion.div
-            key={game.fileName}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Link
-              to={`/game/${game.fileName}`}
-              className="w-64 h-80 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-300 overflow-hidden cursor-pointer flex flex-col items-center p-4"
-            >
-              <div className="w-32 h-32 rounded-lg overflow-hidden mb-2">
-                <img
-                  src={game.icon}
-                  alt={game.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white text-center line-clamp-2 break-words">
-                {game.title}
-              </h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400 text-center line-clamp-1 break-words mt-auto">
-                {game.author}
-              </p>
-              <p className="text-[10px] text-gray-400 dark:text-gray-500 text-center mt-1">
-                {t("gameDetail.updated")}{" "}
-                {new Date(game.updated).toLocaleDateString(i18n.language, {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                })}
-              </p>
-            </Link>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Lightbox Overlay */}
-      {lightboxImg && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={() => setLightboxImg(null)}
-        >
-          <img
-            src={lightboxImg}
-            alt="Enlarged view"
-            className="max-w-full max-h-full rounded-lg shadow-lg"
-          />
-        </div>
-      )}
+      </div>
     </div>
   );
 }

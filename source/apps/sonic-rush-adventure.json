@@ -1,8 +1,12 @@
 {
   "title": "Sonic Rush Adventure",
   "author": "Sega",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).nds": {
       "url": "https://db-nds-shop.fr/games/Sonic%20Rush%20Adventure%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%20%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).cia"
       }
     ]
-  }
+  },
+  "titleId": "A3YP"
 }

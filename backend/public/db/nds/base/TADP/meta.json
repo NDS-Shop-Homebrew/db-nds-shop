@@ -1,0 +1,28 @@
+{
+  "name": "Kirby - Mass Attack",
+  "formal_name": "Kirby - Mass Attack",
+  "description": "Kirby Mass Attack is a 2011 platform game developed by HAL Laboratory and published by Nintendo for the Nintendo DS. Part of the Kirby series, it is the fourth and last game in the series to be released for the DS. The game was later released for the Wii U's Virtual Console.",
+  "release_date": "2011-08-04",
+  "product_code": "TADP",
+  "platform_name": "Nintendo DS",
+  "region": "Europe",
+  "genres": [
+    "Platform",
+    "Puzzle",
+    "Hack and slash/Beat 'em up",
+    "Adventure"
+  ],
+  "features": [
+    "DS"
+  ],
+  "languages": [],
+  "rating_system": {
+    "name": null,
+    "age": null
+  },
+  "developer": "Nintendo",
+  "publisher": "Nintendo",
+  "description_fr": "Kirby: Mass Attack (あつめて！カービィ (Atsumete! Kābī, lit. \"Rassembler! Kirby\")) est un jeu vidéo de plates-formes-action édité par Nintendo et développé par HAL Laboratory. Il est sorti sur Nintendo DS le 4 août 2011 au Japon, le 19 septembre 2011 en Amérique du Nord et le 28 octobre 2011 en Europe.",
+  "description_en": "Kirby Mass Attack is a 2011 platform game developed by HAL Laboratory and published by Nintendo for the Nintendo DS. Part of the Kirby series, it is the fourth and last game in the series to be released for the DS. The game was later released for the Wii U's Virtual Console.",
+  "description_igdb": "One day, an evildoer with a magic cane appears and splits Kirby into 10 pieces. Kirby sets off on a journey to return to his original form. Players use the touch screen to control a mass of Kirby characters in a new and novel way. Swipe the touch screen to launch them in a mass attack against enemies, then tap the enemies into submission."
+}

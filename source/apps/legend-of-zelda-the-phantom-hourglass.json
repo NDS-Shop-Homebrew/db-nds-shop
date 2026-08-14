@@ -1,8 +1,12 @@
 {
   "title": "The Legend of Zelda: Phantom Hourglass",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Legend of Zelda, The Phantom Hourglass.nds": {
       "url": "https://db-nds-shop.fr/games/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.nds"
@@ -43,5 +47,6 @@
         "file": "/Legend of Zelda, The Phantom Hourglass.cia"
       }
     ]
-  }
+  },
+  "titleId": "AZEP"
 }

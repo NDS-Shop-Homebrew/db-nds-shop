@@ -1,8 +1,12 @@
 {
   "title": "Kirby Super Star Ultra",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Kirby%20Super%20Star%20Ultra%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -47,5 +51,6 @@
         "file": "/Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "YKWP"
 }

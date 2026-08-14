@@ -1,8 +1,12 @@
 {
   "title": "New Super Mario Bros.",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/New%20Super%20Mario%20Bros.%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -47,5 +51,6 @@
         "file": "/New Super Mario Bros. (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "A2DP"
 }

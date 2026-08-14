@@ -1,8 +1,12 @@
 {
   "title": "Mario & Luigi : Bowser's Inside Story",
   "author": "Nintendo",
-  "categories": ["game"],
-  "systems": ["DS"],
+  "categories": [
+    "game"
+  ],
+  "systems": [
+    "DS"
+  ],
   "downloads": {
     "Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).nds": {
       "url": "https://db-nds-shop.fr/games/Mario%20%26%20Luigi%20Bowser%27s%20Inside%20Story%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds"
@@ -43,5 +47,6 @@
         "file": "/Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).cia"
       }
     ]
-  }
+  },
+  "titleId": "CLJP"
 }
