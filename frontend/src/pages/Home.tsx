@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
-import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
+import { Download, QrCode, Shuffle, Sparkles, Layers } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../components/ui/dialog";
@@ -13,6 +13,7 @@ interface Game {
   author: string;
   version: string;
   systems: string[];
+  categories?: string[];
   icon: string;
   updated: string;
 }
@@ -30,19 +31,29 @@ function GameSkeleton() {
 export default function Home() {
   const { t, i18n } = useTranslation();
   const [games, setGames] = useState<Game[]>([]);
+  const [allGames, setAllGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [randomGame, setRandomGame] = useState<Game | null>(null);
+  const [stats, setStats] = useState<{ games: number; systems: Record<string, number> } | null>(null);
 
   useEffect(() => {
     fetch("/games.json")
       .then((res) => res.json())
       .then((allGames: Game[]) => {
+        setAllGames(allGames);
         const sorted = [...allGames].sort(
           (a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime()
         );
         setGames(sorted.slice(0, 6));
         setLoading(false);
       });
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/v1/stats")
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setStats)
+      .catch(() => {});
   }, []);
 
   const pickRandom = () => {
@@ -111,8 +122,8 @@ export default function Home() {
       <div className="max-w-4xl mx-auto px-4 -mt-6 mb-12">
         <div className="bg-card border border-border rounded-xl shadow-sm p-6 flex flex-wrap justify-center gap-8">
           {[
-            { label: t("home.stats.games"), value: 55 },
-            { label: t("home.stats.systems"), value: 2 },
+            { label: t("home.stats.games"), value: stats?.games ?? allGames.length },
+            { label: t("home.stats.systems"), value: Object.keys(stats?.systems || {}).length },
             { label: t("home.stats.updated"), value: new Date().toLocaleDateString(i18n.language) },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
@@ -120,6 +131,33 @@ export default function Home() {
               <p className="text-sm text-muted-foreground">{stat.label}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Browse by category */}
+      <div className="max-w-7xl mx-auto px-4 mb-12">
+        <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <Layers className="w-5 h-5 text-primary" />
+          {t("home.categories")}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { key: "game", label: t("home.category_games") },
+            { key: "homebrew", label: t("home.category_homebrew") },
+            { key: "emulator", label: t("home.category_emulators") },
+          ].map((cat) => {
+            const count = allGames.filter((g) => g.categories?.includes(cat.key)).length;
+            return (
+              <Link
+                key={cat.key}
+                to={`/game-list?category=${cat.key}`}
+                className="rounded-xl border border-border bg-card p-6 text-center hover:border-primary/50 hover:shadow-sm transition-all"
+              >
+                <p className="text-3xl font-extrabold text-primary">{count}</p>
+                <p className="font-semibold text-foreground mt-1">{cat.label}</p>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
