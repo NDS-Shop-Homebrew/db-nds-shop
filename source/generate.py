@@ -210,6 +210,9 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 	names = {}  # GitHub name cache
 	tempDir = path.join(path.dirname(sourceFolder), "temp")
 	header = {"Authorization": f"token {ghToken}"} if ghToken else None
+	# Les dossiers QR sont générés (gitignore) et peuvent être absents après un clean
+	for qrSub in ["", "prerelease", "nightly"]:
+		makedirs(path.join(docsDir, "assets", "images", "qr", qrSub), exist_ok=True)
 	unistore = UniStore(
 		"db-nds-shop",
 		"Rinzler",
