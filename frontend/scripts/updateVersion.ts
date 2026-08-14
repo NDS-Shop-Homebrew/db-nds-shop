@@ -5,7 +5,7 @@ import path from "path";
 let gitTag: string;
 
 try {
-  gitTag = execSync("git describe --tags --abbrev=0").toString().trim();
+  gitTag = execSync("git describe --tags --abbrev=0").toString().trim().replace(/^v/, "");
 } catch (err) {
   gitTag = "dev";
 }
