@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
-import { Download, QrCode, Shuffle, Sparkles, Layers } from "lucide-react";
+import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../components/ui/dialog";
@@ -64,7 +64,7 @@ export default function Home() {
       });
   };
 
-  const regions = ["France", "Europe", "USA", "Japan"];
+  const regions = ["France", "Europe"];
 
   return (
     <div>
@@ -131,33 +131,6 @@ export default function Home() {
               <p className="text-sm text-muted-foreground">{stat.label}</p>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Browse by category */}
-      <div className="max-w-7xl mx-auto px-4 mb-12">
-        <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-          <Layers className="w-5 h-5 text-primary" />
-          {t("home.categories")}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[
-            { key: "game", label: t("home.category_games") },
-            { key: "homebrew", label: t("home.category_homebrew") },
-            { key: "emulator", label: t("home.category_emulators") },
-          ].map((cat) => {
-            const count = allGames.filter((g) => g.categories?.includes(cat.key)).length;
-            return (
-              <Link
-                key={cat.key}
-                to={`/game-list?category=${cat.key}`}
-                className="rounded-xl border border-border bg-card p-6 text-center hover:border-primary/50 hover:shadow-sm transition-all"
-              >
-                <p className="text-3xl font-extrabold text-primary">{count}</p>
-                <p className="font-semibold text-foreground mt-1">{cat.label}</p>
-              </Link>
-            );
-          })}
         </div>
       </div>
 

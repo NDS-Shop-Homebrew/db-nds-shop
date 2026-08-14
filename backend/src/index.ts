@@ -55,18 +55,6 @@ app.use("/api/v1", apiRouter);
 // --- API v2 (ndsdb - metadata enrichie par serial) ---
 app.use("/api/v1/ndsdb", ndsdbRouter);
 
-// --- API Roadmap ---
-app.get("/api/roadmap", (req, res) => {
-  res.json([
-    { title: "Réouverture du serveur", description: "Le serveur et le catalogue sont en ligne.", done: true },
-    { title: "API v1 (jeux / stats / ndsdb)", description: "API publique documentée pour interroger le catalogue.", done: true },
-    { title: "Forwarders .cia", description: "Génération automatique des forwarders pour 3DS.", done: true },
-    { title: "QR code d'installation", description: "Lien court scannable par la console (3DS/DSi).", done: true },
-    { title: "Auto-update dans l'app", description: "Mise à jour automatique de l'application NDS-Shop.", done: false },
-    { title: "Nouveaux jeux", description: "Enrichissement continu du catalogue NDS.", done: false },
-  ]);
-});
-
 // --- Lien court pour le QR code home (URL compacte = QR scannable par une console) ---
 app.get("/d", (_req, res) => {
   res.redirect(

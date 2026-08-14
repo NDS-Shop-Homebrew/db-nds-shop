@@ -11,7 +11,6 @@ interface Game {
   author: string;
   version: string;
   systems: string[];
-  categories?: string[];
   icon: string;
   updated: string;
 }
@@ -41,7 +40,6 @@ export default function GameList() {
   const [filterSystem, setFilterSystem] = useState<string>("all");
 
   const regionFilter = searchParams.get("region") || "";
-  const categoryFilter = searchParams.get("category") || "";
 
   useEffect(() => {
     fetch("/games.json")
@@ -66,7 +64,6 @@ export default function GameList() {
     }
     if (filterSystem !== "all") result = result.filter((g) => g.systems?.includes(filterSystem));
     if (regionFilter) result = result.filter((g) => g.version?.includes(regionFilter));
-    if (categoryFilter) result = result.filter((g) => g.categories?.includes(categoryFilter));
     result.sort((a, b) => {
       let cmp = 0;
       switch (sortBy) {
@@ -147,14 +144,6 @@ export default function GameList() {
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary text-primary text-sm font-medium hover:bg-secondary/70 transition-colors"
             >
               {regionFilter} <X size={14} />
-            </button>
-          )}
-          {categoryFilter && (
-            <button
-              onClick={() => setSearchParams({})}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
-            >
-              {categoryFilter} <X size={14} />
             </button>
           )}
         </div>

@@ -43,11 +43,7 @@
       "a3": "Oui ! Tous les jeux listés ici sont entièrement gratuits à télécharger."
     },
     "latest_games": "Derniers jeux",
-    "loading_games": "Chargement des jeux...",
-    "categories": "Explorer par catégorie",
-    "category_games": "Jeux",
-    "category_homebrew": "Homebrew",
-    "category_emulators": "Émulateurs"
+    "loading_games": "Chargement des jeux..."
   },
   "about": {
     "title": "À propos de NDS-Shop",

@@ -27,12 +27,6 @@ interface Presence {
   }[];
 }
 
-interface RoadmapItem {
-  title: string;
-  description: string;
-  done: boolean;
-}
-
 interface DiscordGuild {
   id: string;
   name: string;
@@ -122,7 +116,6 @@ export default function About() {
   const { t } = useTranslation();
   const [members, setMembers] = useState<DiscordUser[]>([]);
   const [presence, setPresence] = useState<Record<string, Presence>>({});
-  const [roadmap, setRoadmap] = useState<RoadmapItem[]>([]);
   const [guild, setGuild] = useState<DiscordGuild | null>(null);
   const [projectStats, setProjectStats] = useState<ProjectStats | null>(null);
 
@@ -184,14 +177,6 @@ export default function About() {
       .then((g) => {
         if (g && g.name) setGuild(g);
       })
-      .catch(console.error);
-  }, []);
-
-  // Fetch roadmap
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/roadmap`)
-      .then((r) => r.json())
-      .then(setRoadmap)
       .catch(console.error);
   }, []);
 
@@ -386,33 +371,6 @@ export default function About() {
           })}
         </div>
       </motion.div>
-
-      {/* Roadmap */}
-      <div>
-        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
-          {t("about.roadmap")}
-        </h2>
-        <div className="space-y-4">
-          {roadmap.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: i * 0.1 }}
-              className={`p-4 rounded-lg border ${
-                item.done
-                  ? "border-accent bg-accent/10"
-                  : "border-destructive bg-destructive/10"
-              }`}
-            >
-              <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-sm text-muted-foreground">
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
 
       {/* Project */}
       <motion.div

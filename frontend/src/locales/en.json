@@ -43,11 +43,7 @@
       "a3": "Yes! All the games listed here are completely free to download."
     },
     "latest_games": "Latest Games",
-    "loading_games": "Loading games...",
-    "categories": "Browse by category",
-    "category_games": "Games",
-    "category_homebrew": "Homebrew",
-    "category_emulators": "Emulators"
+    "loading_games": "Loading games..."
   },
   "about": {
     "title": "About NDS-Shop",

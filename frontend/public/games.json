@@ -28,7 +28,8 @@
     "title": "Animal Crossing - Wild World",
     "updated": "2024-08-09T21:49:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "animal-crossing---wild-world"
+    "fileName": "animal-crossing---wild-world",
+    "titleId": "ADMP"
   },
   {
     "author": "Nintendo / HUDSON",
@@ -59,7 +60,8 @@
     "title": "Beyblade Metal Fusion Cyber Pegasus",
     "updated": "2024-08-22T18:01:00+02:00",
     "version": "(Europe)",
-    "fileName": "beyblade-metal-fusion-cyber-pegasus"
+    "fileName": "beyblade-metal-fusion-cyber-pegasus",
+    "titleId": "BBUP"
   },
   {
     "author": "Rising Star Games",
@@ -90,7 +92,8 @@
     "title": "Bomberman Land 1",
     "updated": "2024-08-18T22:25:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "bomberman-land-1"
+    "fileName": "bomberman-land-1",
+    "titleId": "ABXP"
   },
   {
     "author": "Rising Star Games",
@@ -121,7 +124,8 @@
     "title": "Bomberman Land 2",
     "updated": "2024-08-18T22:25:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "bomberman-land-2"
+    "fileName": "bomberman-land-2",
+    "titleId": "YB2P"
   },
   {
     "author": "Square Enix",
@@ -152,7 +156,8 @@
     "title": "Chrono Trigger",
     "updated": "2024-08-10T19:42:58+02:00",
     "version": "(Europe) (En,Fr)",
-    "fileName": "chrono-trigger"
+    "fileName": "chrono-trigger",
+    "titleId": "YQUP"
   },
   {
     "author": "The Game Factory",
@@ -183,7 +188,8 @@
     "title": "Code Lyoko: Fall of X.A.N.A.",
     "updated": "2024-08-10T22:37:58+02:00",
     "version": "(Europe) (En,Fr)",
-    "fileName": "code-lyoko-fall-of-x-a-n-a-"
+    "fileName": "code-lyoko-fall-of-x-a-n-a-",
+    "titleId": "CLFP"
   },
   {
     "author": "The Game Factory",
@@ -214,7 +220,8 @@
     "title": "Code Lyoko",
     "updated": "2024-08-10T22:24:58+02:00",
     "version": "(Europe) (En,Fr,Es,It)",
-    "fileName": "code-lyoko"
+    "fileName": "code-lyoko",
+    "titleId": "AL5P"
   },
   {
     "author": "Office Create",
@@ -245,7 +252,8 @@
     "title": "Cooking Mama",
     "updated": "2024-08-10T20:38:58+02:00",
     "version": "(Europe) (En,Fr,It)",
-    "fileName": "cooking-mama"
+    "fileName": "cooking-mama",
+    "titleId": "ACCX"
   },
   {
     "author": "Nintendo",
@@ -276,7 +284,8 @@
     "title": "Diddy Kong Racing DS",
     "updated": "2024-08-18T18:06:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "diddy-kong-racing-ds"
+    "fileName": "diddy-kong-racing-ds",
+    "titleId": "AWDP"
   },
   {
     "author": "Nintendo",
@@ -307,7 +316,8 @@
     "title": "Dr Kawashima's Brain Training: How Old Is Your Brain",
     "updated": "2024-08-10T17:26:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It,Nl)",
-    "fileName": "dr-kawashimas-brain-training-how-old-is-your-brain"
+    "fileName": "dr-kawashimas-brain-training-how-old-is-your-brain",
+    "titleId": "ANDP"
   },
   {
     "author": "Nintendo",
@@ -338,7 +348,8 @@
     "title": "Dragon Quest IX - Sentinels of the Starry Skies",
     "updated": "2024-08-10T20:07:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "dragon-quest-ix---sentinels-of-the-starry-skies"
+    "fileName": "dragon-quest-ix---sentinels-of-the-starry-skies",
+    "titleId": "YDQP"
   },
   {
     "author": "Nintendo",
@@ -369,7 +380,8 @@
     "title": "Fire Emblem - Shadow Dragon",
     "updated": "2024-08-11T00:16:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "fire-emblem---shadow-dragon"
+    "fileName": "fire-emblem---shadow-dragon",
+    "titleId": "YFEP"
   },
   {
     "author": "Nintendo / Level-5",
@@ -400,7 +412,8 @@
     "title": "Inazuma Eleven 2 Tempete de Feu",
     "updated": "2024-08-12T21:56:00+02:00",
     "version": "(France)",
-    "fileName": "inazuma-eleven-2-tempete-de-feu"
+    "fileName": "inazuma-eleven-2-tempete-de-feu",
+    "titleId": "BEEF"
   },
   {
     "author": "Nintendo / Level-5",
@@ -431,7 +444,8 @@
     "title": "Inazuma Eleven 2 Tempete de Glace",
     "updated": "2024-08-12T21:56:00+02:00",
     "version": "(France)",
-    "fileName": "inazuma-eleven-2-tempete-de-glace"
+    "fileName": "inazuma-eleven-2-tempete-de-glace",
+    "titleId": "BEBF"
   },
   {
     "author": "Nintendo / Level-5",
@@ -462,7 +476,8 @@
     "title": "Inazuma Eleven",
     "updated": "2024-08-10T19:55:58+02:00",
     "version": "(France)",
-    "fileName": "inazuma-eleven"
+    "fileName": "inazuma-eleven",
+    "titleId": "YEEF"
   },
   {
     "author": "Sensory Sweep Studios",
@@ -493,7 +508,8 @@
     "title": "JackassThe Game DS",
     "updated": "2024-08-09T21:49:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "jackassthe-game-ds"
+    "fileName": "jackassthe-game-ds",
+    "titleId": "YJKP"
   },
   {
     "author": "Nintendo",
@@ -524,7 +540,8 @@
     "title": "Kirby - Mass Attack",
     "updated": "2024-08-13T15:39:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "kirby---mass-attack"
+    "fileName": "kirby---mass-attack",
+    "titleId": "TADP"
   },
   {
     "author": "Nintendo",
@@ -559,7 +576,8 @@
     "title": "Kirby Super Star Ultra",
     "updated": "2024-08-10T15:38:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "kirby-super-star-ultra"
+    "fileName": "kirby-super-star-ultra",
+    "titleId": "YKWP"
   },
   {
     "author": "Nintendo",
@@ -590,7 +608,8 @@
     "title": "Mario & Luigi : Bowser's Inside Story",
     "updated": "2024-08-10T00:15:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "mario--luigi--bowsers-inside-story"
+    "fileName": "mario--luigi--bowsers-inside-story",
+    "titleId": "CLJP"
   },
   {
     "author": "Nintendo",
@@ -621,7 +640,8 @@
     "title": "Mario & Luigi : Partners In Time",
     "updated": "2024-08-10T02:31:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "mario--luigi--partners-in-time"
+    "fileName": "mario--luigi--partners-in-time",
+    "titleId": "ARMP"
   },
   {
     "author": "Nintendo/Sega",
@@ -652,7 +672,8 @@
     "title": "Mario & Sonic at the Olympic Games",
     "updated": "2024-08-10T18:10:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "mario--sonic-at-the-olympic-games"
+    "fileName": "mario--sonic-at-the-olympic-games",
+    "titleId": "AY9P"
   },
   {
     "author": "Sega",
@@ -683,7 +704,8 @@
     "title": "Mario & Sonic at the Olympic Winter Games",
     "updated": "2024-08-15T21:59:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "mario--sonic-at-the-olympic-winter-games"
+    "fileName": "mario--sonic-at-the-olympic-winter-games",
+    "titleId": "COLP"
   },
   {
     "author": "Nintendo",
@@ -714,7 +736,8 @@
     "title": "Mario Kart DS",
     "updated": "2024-08-07T22:14:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "mario-kart-ds"
+    "fileName": "mario-kart-ds",
+    "titleId": "AMCP"
   },
   {
     "author": "Nintendo",
@@ -745,7 +768,8 @@
     "title": "Mario Party DS",
     "updated": "2024-08-09T21:49:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "mario-party-ds"
+    "fileName": "mario-party-ds",
+    "titleId": "A8TP"
   },
   {
     "author": "Nintendo",
@@ -780,7 +804,8 @@
     "title": "Mario Slam Basketball",
     "updated": "2024-08-10T15:52:00+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It)",
-    "fileName": "mario-slam-basketball"
+    "fileName": "mario-slam-basketball",
+    "titleId": "AB3P"
   },
   {
     "author": "Ubisoft",
@@ -815,7 +840,8 @@
     "title": "Michael Jackson - The Experience",
     "updated": "2024-08-14T17:30:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "michael-jackson---the-experience"
+    "fileName": "michael-jackson---the-experience",
+    "titleId": "BVNP"
   },
   {
     "author": "Nintendo",
@@ -850,7 +876,8 @@
     "title": "New Super Mario Bros.",
     "updated": "2024-08-08T23:02:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "new-super-mario-bros-"
+    "fileName": "new-super-mario-bros-",
+    "titleId": "A2DP"
   },
   {
     "author": "Nintendo",
@@ -881,7 +908,8 @@
     "title": "Nintendogs Chihuahua & Friends",
     "updated": "2024-08-12T15:30:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "nintendogs-chihuahua--friends"
+    "fileName": "nintendogs-chihuahua--friends",
+    "titleId": "AD2P"
   },
   {
     "author": "Nintendo",
@@ -912,7 +940,8 @@
     "title": "Nintendogs Dachshund & Friends",
     "updated": "2024-08-12T15:42:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "nintendogs-dachshund--friends"
+    "fileName": "nintendogs-dachshund--friends",
+    "titleId": "ADGP"
   },
   {
     "author": "Nintendo",
@@ -943,7 +972,8 @@
     "title": "Nintendogs Dalmatian & Friends",
     "updated": "2024-08-12T15:55:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "nintendogs-dalmatian--friends"
+    "fileName": "nintendogs-dalmatian--friends",
+    "titleId": "AD7E"
   },
   {
     "author": "Nintendo",
@@ -974,7 +1004,8 @@
     "title": "Nintendogs Labrador & Friends",
     "updated": "2024-08-12T00:13:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "nintendogs-labrador--friends"
+    "fileName": "nintendogs-labrador--friends",
+    "titleId": "AD3P"
   },
   {
     "author": "Nintendo",
@@ -1005,7 +1036,8 @@
     "title": "Picross DS",
     "updated": "2024-08-14T17:22:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "picross-ds"
+    "fileName": "picross-ds",
+    "titleId": "AXPP"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1036,7 +1068,8 @@
     "title": "Pokemon Diamant",
     "updated": "2024-08-07T17:25:20+02:00",
     "version": "(France)",
-    "fileName": "pokemon-diamant"
+    "fileName": "pokemon-diamant",
+    "titleId": "ADAF"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1067,7 +1100,8 @@
     "title": "Pokemon Perle",
     "updated": "2024-08-07T17:25:20+02:00",
     "version": "(France)",
-    "fileName": "pokemon-perle"
+    "fileName": "pokemon-perle",
+    "titleId": "APAF"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1098,7 +1132,8 @@
     "title": "Pokemon Platine",
     "updated": "2024-08-10T16:26:00+02:00",
     "version": "(France)",
-    "fileName": "pokemon-platine"
+    "fileName": "pokemon-platine",
+    "titleId": "CPUF"
   },
   {
     "author": "Nintendo",
@@ -1129,7 +1164,8 @@
     "title": "Pokemon Ranger",
     "updated": "2024-08-23T15:47:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "pokemon-ranger"
+    "fileName": "pokemon-ranger",
+    "titleId": "ARGP"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1160,7 +1196,8 @@
     "title": "Pokemon Version Argent SoulSilver",
     "updated": "2024-08-10T17:13:00+02:00",
     "version": "(France)",
-    "fileName": "pokemon-version-argent-soulsilver"
+    "fileName": "pokemon-version-argent-soulsilver",
+    "titleId": "IPGF"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1191,7 +1228,8 @@
     "title": "Pokemon Version Blanche 2",
     "updated": "2024-08-12T21:32:00+02:00",
     "version": "(France)",
-    "fileName": "pokemon-version-blanche-2"
+    "fileName": "pokemon-version-blanche-2",
+    "titleId": "IRDF"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1222,7 +1260,8 @@
     "title": "Pokemon Version Blanche",
     "updated": "2024-08-10T16:40:00+02:00",
     "version": "(France)",
-    "fileName": "pokemon-version-blanche"
+    "fileName": "pokemon-version-blanche",
+    "titleId": "IRAF"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1253,7 +1292,8 @@
     "title": "Pokemon Version Noire 2",
     "updated": "2024-08-12T21:32:00+02:00",
     "version": "(France)",
-    "fileName": "pokemon-version-noire-2"
+    "fileName": "pokemon-version-noire-2",
+    "titleId": "IREF"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1284,7 +1324,8 @@
     "title": "Pokemon Version Noire",
     "updated": "2024-08-10T16:54:00+02:00",
     "version": "(France)",
-    "fileName": "pokemon-version-noire"
+    "fileName": "pokemon-version-noire",
+    "titleId": "IRBF"
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1315,7 +1356,8 @@
     "title": "Pokemon Version Or HeartGold",
     "updated": "2024-08-10T17:28:00+02:00",
     "version": "(France)",
-    "fileName": "pokemon-version-or-heartgold"
+    "fileName": "pokemon-version-or-heartgold",
+    "titleId": "IPKF"
   },
   {
     "author": "Level-5",
@@ -1346,7 +1388,8 @@
     "title": "Professeur Layton et la Boite de Pandore",
     "updated": "2024-08-10T01:26:00+02:00",
     "version": "(France)",
-    "fileName": "professeur-layton-et-la-boite-de-pandore"
+    "fileName": "professeur-layton-et-la-boite-de-pandore",
+    "titleId": "YLTF"
   },
   {
     "author": "Level-5",
@@ -1377,7 +1420,8 @@
     "title": "Professeur Layton et l'Appel du Spectre",
     "updated": "2024-08-10T01:12:00+02:00",
     "version": "(France)",
-    "fileName": "professeur-layton-et-lappel-du-spectre"
+    "fileName": "professeur-layton-et-lappel-du-spectre",
+    "titleId": "BLFF"
   },
   {
     "author": "Level-5",
@@ -1408,7 +1452,8 @@
     "title": "Professeur Layton et le Destin Perdu",
     "updated": "2024-08-12T23:32:00+02:00",
     "version": "(France)",
-    "fileName": "professeur-layton-et-le-destin-perdu"
+    "fileName": "professeur-layton-et-le-destin-perdu",
+    "titleId": "C3JF"
   },
   {
     "author": "Sega",
@@ -1439,7 +1484,8 @@
     "title": "Sonic Colours",
     "updated": "2024-08-10T14:53:00+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It)",
-    "fileName": "sonic-colours"
+    "fileName": "sonic-colours",
+    "titleId": "BXSP"
   },
   {
     "author": "Sega",
@@ -1470,7 +1516,8 @@
     "title": "Sonic Rush Adventure",
     "updated": "2024-08-12T18:01:58+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It) (Rev )",
-    "fileName": "sonic-rush-adventure"
+    "fileName": "sonic-rush-adventure",
+    "titleId": "A3YP"
   },
   {
     "author": "Sega",
@@ -1501,7 +1548,8 @@
     "title": "Sonic Rush",
     "updated": "2024-08-10T00:35:58+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It)",
-    "fileName": "sonic-rush"
+    "fileName": "sonic-rush",
+    "titleId": "ASCP"
   },
   {
     "author": "Nintendo",
@@ -1532,7 +1580,8 @@
     "title": "Super Mario 64 DS",
     "updated": "2024-08-12T00:31:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "super-mario-64-ds"
+    "fileName": "super-mario-64-ds",
+    "titleId": "ASMP"
   },
   {
     "author": "Nintendo",
@@ -1563,7 +1612,8 @@
     "title": "Tetris DS",
     "updated": "2024-08-14T17:06:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "tetris-ds"
+    "fileName": "tetris-ds",
+    "titleId": "ATRP"
   },
   {
     "author": "Nintendo",
@@ -1594,7 +1644,8 @@
     "title": "The Legend of Zelda: Phantom Hourglass",
     "updated": "2024-08-12T18:53:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "the-legend-of-zelda-phantom-hourglass"
+    "fileName": "the-legend-of-zelda-phantom-hourglass",
+    "titleId": "AZEP"
   },
   {
     "author": "Nintendo",
@@ -1625,7 +1676,8 @@
     "title": "The Legend of Zelda: Spirit Tracks",
     "updated": "2024-08-12T18:38:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "the-legend-of-zelda-spirit-tracks"
+    "fileName": "the-legend-of-zelda-spirit-tracks",
+    "titleId": "BKIP"
   },
   {
     "author": "Nintendo",
@@ -1656,7 +1708,8 @@
     "title": "WarioMaster of Disguise",
     "updated": "2024-08-18T21:36:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "wariomaster-of-disguise"
+    "fileName": "wariomaster-of-disguise",
+    "titleId": "AWAP"
   },
   {
     "author": "Nintendo",
@@ -1691,7 +1744,8 @@
     "title": "WarioWare - Touched!",
     "updated": "2024-08-10T16:30:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "warioware---touched"
+    "fileName": "warioware---touched",
+    "titleId": "AZWP"
   },
   {
     "author": "Nintendo",
@@ -1722,6 +1776,7 @@
     "title": "Yoshi's Island DS",
     "updated": "2024-08-12T23:27:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
-    "fileName": "yoshis-island-ds"
+    "fileName": "yoshis-island-ds",
+    "titleId": "AYWP"
   }
 ]
