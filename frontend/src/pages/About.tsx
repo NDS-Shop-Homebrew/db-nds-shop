@@ -1,5 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Github } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { API_BASE_URL } from "../config";
 
@@ -39,6 +40,12 @@ interface DiscordGuild {
   memberCount: number;
   presenceCount: number;
   description: string | null;
+}
+
+interface ProjectStats {
+  games: number;
+  systems: Record<string, number>;
+  lastUpdated: string | null;
 }
 
 const DISCORD_INVITE = "https://discord.gg/udw7Z4mdKJ";
@@ -117,6 +124,7 @@ export default function About() {
   const [presence, setPresence] = useState<Record<string, Presence>>({});
   const [roadmap, setRoadmap] = useState<RoadmapItem[]>([]);
   const [guild, setGuild] = useState<DiscordGuild | null>(null);
+  const [projectStats, setProjectStats] = useState<ProjectStats | null>(null);
 
   // Fetch team (IDs depuis /api/v1/team)
   useEffect(() => {
@@ -184,6 +192,14 @@ export default function About() {
     fetch(`${API_BASE_URL}/roadmap`)
       .then((r) => r.json())
       .then(setRoadmap)
+      .catch(console.error);
+  }, []);
+
+  // Fetch project stats
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/v1/stats`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setProjectStats)
       .catch(console.error);
   }, []);
 
@@ -408,9 +424,55 @@ export default function About() {
         <h2 className="text-2xl font-bold mb-4 text-primary">
           {t("about.project")}
         </h2>
-        <p className="text-muted-foreground leading-relaxed">
+        <p className="text-muted-foreground leading-relaxed mb-6">
           {t("about.project_description")}
         </p>
+
+        {projectStats && (
+          <div className="flex flex-wrap gap-6 mb-6">
+            <div className="text-center">
+              <p className="text-3xl font-extrabold text-primary">
+                {projectStats.games}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {t("about.project_stats_games")}
+              </p>
+            </div>
+            {Object.entries(projectStats.systems || {}).map(([sys, n]) => (
+              <div key={sys} className="text-center">
+                <p className="text-3xl font-extrabold text-primary">{n}</p>
+                <p className="text-sm text-muted-foreground">{sys}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="rounded-xl bg-card border border-border p-6">
+          <p className="font-semibold mb-1">{t("about.project_github")}</p>
+          <p className="text-sm text-muted-foreground mb-4">
+            {t("about.project_github_desc")}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="https://github.com/NDS-Shop-Homebrew"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              <Github size={16} />
+              {t("about.project_contribute")}
+            </a>
+            <a
+              href="https://github.com/NDS-Shop-Homebrew/NDS-Shop"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-background text-sm font-medium hover:border-primary/50 transition-colors"
+            >
+              <Github size={16} />
+              NDS-Shop
+            </a>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

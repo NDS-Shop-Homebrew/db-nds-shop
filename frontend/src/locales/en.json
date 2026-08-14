@@ -62,7 +62,12 @@
     "discord_online": "online",
     "discord_join": "Join the server",
     "discord_no_activity": "No current activity",
-    "project_description": "NDS-Shop is an open-source project developed by a community of video game enthusiasts. Our goal is to provide a user-friendly and accessible platform for Nintendo DS fans, offering a wide selection of games for easy downloading. We believe in the power of community and encourage contributions to continuously improve the site and expand our game catalog."
+    "project_description": "NDS-Shop is an open-source project developed by a community of video game enthusiasts. Our goal is to provide a user-friendly and accessible platform for Nintendo DS fans, offering a wide selection of games for easy downloading. We believe in the power of community and encourage contributions to continuously improve the site and expand our game catalog.",
+    "project_stats_games": "games",
+    "project_stats_forwarders": "forwarders",
+    "project_github": "Source code",
+    "project_github_desc": "This project is open-source. Feel free to report bugs or suggest improvements.",
+    "project_contribute": "Contribute"
   },
   "docs": {
     "title": "API Documentation",

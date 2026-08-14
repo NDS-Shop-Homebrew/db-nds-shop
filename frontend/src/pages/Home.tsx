@@ -88,11 +88,17 @@ export default function Home() {
                 <DialogContent className="sm:max-w-lg">
                   <div className="flex flex-col items-center p-4">
                     <p className="mb-4 text-center text-muted-foreground">{t("home.scan_instructions")}</p>
-                    <QRCodeSVG
-                      value="https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia"
-                      size={256}
-                      className="w-64 h-64"
-                    />
+                    <div className="bg-white p-4 rounded-xl">
+                      <QRCodeSVG
+                        value="https://db-nds-shop.fr/d"
+                        size={256}
+                        level="H"
+                        marginSize={4}
+                        fgColor="#000000"
+                        bgColor="#FFFFFF"
+                        className="w-64 h-64"
+                      />
+                    </div>
                   </div>
                 </DialogContent>
               </Dialog>
