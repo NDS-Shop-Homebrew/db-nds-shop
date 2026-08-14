@@ -202,5 +202,11 @@
     "copyright": "©  {{year}} NDS-Shop. Tous droits réservés.",
     "developedBy": "Développé avec ❤️ par {{author}}",
     "version": "Version :"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oups ! Page non trouvée.",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
   }
 }

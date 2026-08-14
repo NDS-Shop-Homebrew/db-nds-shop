@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function NotFound() {
+  const { t } = useTranslation();
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-900 via-black to-indigo-900  px-4">
-      <h1 className="text-9xl font-extrabold mb-6 select-none">404</h1>
-      <p className="text-2xl mb-4">Oups ! Page non trouvée.</p>
-      <p className="mb-8 max-w-md text-center text-gray-300">
-        La page que vous recherchez n'existe pas ou a été déplacée.
+    <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
+      <h1 className="text-9xl font-extrabold mb-6 select-none">{t("notFound.title")}</h1>
+      <p className="text-2xl mb-4">{t("notFound.message")}</p>
+      <p className="mb-8 max-w-md text-center text-muted-foreground">
+        {t("notFound.description")}
       </p>
       <Link
         to="/"
-        className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-md  font-semibold transition"
+        className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md font-semibold transition"
       >
-        Retour à l'accueil
+        {t("notFound.backHome")}
       </Link>
     </div>
   );

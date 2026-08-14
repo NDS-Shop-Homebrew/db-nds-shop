@@ -17,7 +17,6 @@ export default function App() {
       <Route element={<Layout />}>
         {/* Routes publiques */}
         <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
         <Route path="/game-list" element={<GameList />} />
         <Route path="/game/:slug" element={<GameDetail />} />
         <Route path="/favorites" element={<Favorites />} />

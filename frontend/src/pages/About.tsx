@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "../../node_modules/react-i18next";
+import { useTranslation } from "react-i18next";
 import { API_BASE_URL } from "../config";
 
 
@@ -361,7 +361,7 @@ export default function About() {
                     </div>
                   ) : (
                     <p className="mt-2 text-xs text-muted-foreground italic">
-                      No current activity
+                      {t("about.discord_no_activity")}
                     </p>
                   )}
                 </div>

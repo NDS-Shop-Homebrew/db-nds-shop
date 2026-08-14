@@ -202,5 +202,11 @@
     "copyright": "©  {{year}} NDS-Shop. All rights reserved.",
     "developedBy": "Developed with ❤️ by {{author}}",
     "version": "Version:"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found.",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to home"
   }
 }
