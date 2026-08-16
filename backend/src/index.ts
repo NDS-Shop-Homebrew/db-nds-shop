@@ -59,7 +59,7 @@ app.use("/api/v1/ndsdb", ndsdbRouter);
 // FBI n'aime pas les redirects → on proxy le .cia directement (binaire).
 const CIA_URL =
   process.env.CIA_URL ||
-  "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/download/v1.0.0/NDS-Shop.cia";
+  "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia";
 
 app.get("/d", async (_req, res) => {
   try {
