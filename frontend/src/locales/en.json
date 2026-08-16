@@ -5,7 +5,21 @@
     "about": "About",
     "favorites": "Favorites",
     "api": "API Docs",
-    "tutorial": "Tutorial"
+    "tutorial": "Tutorial",
+    "request": "Request a game"
+  },
+  "request": {
+    "title": "Request a game",
+    "subtitle": "Missing a game in the catalog? Request it, and the team and community may add it!",
+    "gameLabel": "Game title",
+    "gamePlaceholder": "e.g. Mario Kart DS",
+    "systemsLabel": "Systems (optional)",
+    "systemsPlaceholder": "e.g. NDS, DSi, 3DS",
+    "noteLabel": "Note (optional)",
+    "notePlaceholder": "A detail, a link, a description…",
+    "submit": "Send request",
+    "done": "Request sent! Thanks for your suggestion.",
+    "error": "Something went wrong, please try again later."
   },
   "favorites": {
     "empty": "You don't have any favorite games yet.",

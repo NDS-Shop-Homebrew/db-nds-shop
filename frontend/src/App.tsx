@@ -10,6 +10,7 @@ import Favorites from "./pages/Favorites";
 import Tutorial from "./pages/Tutorial";
 import DMCA from "./pages/DMCA";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RequestGame from "./pages/RequestGame";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/docs" element={<Docs />} />
+        <Route path="/request" element={<RequestGame />} />
 
         {/* Routes légales */}
         <Route path="/privacy" element={<PrivacyPolicy />} />

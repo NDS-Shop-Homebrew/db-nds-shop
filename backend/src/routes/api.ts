@@ -14,6 +14,8 @@ import { fileURLToPath } from "url";
 
 const router = express.Router();
 
+router.use(express.json());
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const GAMES_JSON =
   process.env.GAMES_JSON_PATH ||
@@ -102,6 +104,68 @@ router.get("/stats", (_req, res) => {
       .sort()
       .pop() || null,
   });
+});
+
+// --- POST /api/v1/request — demande de jeu (formulaire du site → webhook Discord) ---
+// Champs : { title, systems?, note?, lang } (lang = "fr" | "en")
+router.post("/request", async (req, res) => {
+  const { title, systems, note, lang } = req.body || {};
+  const titleClean = String(title || "").trim();
+  const noteClean = String(note || "").trim();
+  const systemsClean = String(systems || "").trim();
+
+  if (titleClean.length < 2 || titleClean.length > 120) {
+    return res.status(400).json({ error: "Titre invalide (2 à 120 caractères)." });
+  }
+  if (noteClean.length > 2000) {
+    return res.status(400).json({ error: "Note trop longue (max 2000 caractères)." });
+  }
+  if (lang !== "fr" && lang !== "en") {
+    return res.status(400).json({ error: "lang invalide (fr | en)." });
+  }
+
+  const webhook = lang === "fr" ? process.env.REQUEST_WEBHOOK_FR : process.env.REQUEST_WEBHOOK_EN;
+  if (!webhook) {
+    return res.status(503).json({ error: "Webhook de demande non configuré." });
+  }
+
+  try {
+    const payload = {
+      username: "Game Request",
+      embeds: [
+        {
+          title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
+          color: 0x00b0f4,
+          fields: [
+            { name: lang === "fr" ? "Jeu" : "Game", value: titleClean, inline: true },
+            ...(systemsClean
+              ? [{ name: lang === "fr" ? "Systèmes" : "Systems", value: systemsClean, inline: true }]
+              : []),
+            ...(noteClean
+              ? [{ name: lang === "fr" ? "Note" : "Note", value: noteClean }]
+              : []),
+          ],
+          footer: {
+            text: lang === "fr" ? "via db-nds-shop.fr" : "via db-nds-shop.fr",
+          },
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    };
+    const response = await fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      console.error("❌ Webhook request failed:", response.status, await response.text());
+      return res.status(502).json({ error: "Échec de l'envoi de la demande." });
+    }
+    res.json({ ok: true });
+  } catch (err) {
+    console.error("❌ Webhook request error:", err);
+    res.status(500).json({ error: "Erreur serveur." });
+  }
 });
 
 // --- GET /api/v1/team ---
