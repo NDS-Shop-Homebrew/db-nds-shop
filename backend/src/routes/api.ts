@@ -106,7 +106,7 @@ router.get("/stats", (_req, res) => {
   });
 });
 
-// --- POST /api/v1/request — demande de jeu (formulaire du site → webhook Discord) ---
+// --- POST /api/v1/request — demande de jeu (formulaire du site → Discord via le bot) ---
 // Champs : { title, systems?, note?, lang } (lang = "fr" | "en")
 router.post("/request", async (req, res) => {
   const { title, systems, note, lang } = req.body || {};
@@ -124,14 +124,26 @@ router.post("/request", async (req, res) => {
     return res.status(400).json({ error: "lang invalide (fr | en)." });
   }
 
-  const webhook = lang === "fr" ? process.env.REQUEST_WEBHOOK_FR : process.env.REQUEST_WEBHOOK_EN;
-  if (!webhook) {
-    return res.status(503).json({ error: "Webhook de demande non configuré." });
+  const token = getBotToken();
+  if (!token) {
+    return res.status(503).json({ error: "Token du bot non configuré." });
   }
 
+  const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
+  const channelName = lang === "fr" ? "partage-et-suggestions" : "sharing-suggestions";
+
   try {
+    const channels = await fetch(`https://discord.com/api/v10/guilds/${guildId}/channels`, {
+      headers: { Authorization: `Bot ${token}` },
+    });
+    if (!channels.ok) throw new Error(`Discord channels ${channels.status}`);
+    const channelList = await safeJson<any[]>(channels);
+    const target = channelList.find((c) => c.type === 0 && c.name === channelName);
+    if (!target) {
+      return res.status(404).json({ error: `Salon #${channelName} introuvable.` });
+    }
+
     const payload = {
-      username: "Game Request",
       embeds: [
         {
           title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
@@ -145,25 +157,23 @@ router.post("/request", async (req, res) => {
               ? [{ name: lang === "fr" ? "Note" : "Note", value: noteClean }]
               : []),
           ],
-          footer: {
-            text: lang === "fr" ? "via db-nds-shop.fr" : "via db-nds-shop.fr",
-          },
+          footer: { text: "via db-nds-shop.fr" },
           timestamp: new Date().toISOString(),
         },
       ],
     };
-    const response = await fetch(webhook, {
+    const response = await fetch(`https://discord.com/api/v10/channels/${target.id}/messages`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: `Bot ${token}` },
       body: JSON.stringify(payload),
     });
     if (!response.ok) {
-      console.error("❌ Webhook request failed:", response.status, await response.text());
+      console.error("❌ Discord message failed:", response.status, await response.text());
       return res.status(502).json({ error: "Échec de l'envoi de la demande." });
     }
     res.json({ ok: true });
   } catch (err) {
-    console.error("❌ Webhook request error:", err);
+    console.error("❌ Discord request error:", err);
     res.status(500).json({ error: "Erreur serveur." });
   }
 });
