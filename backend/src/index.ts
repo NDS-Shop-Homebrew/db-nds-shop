@@ -56,11 +56,22 @@ app.use("/api/v1", apiRouter);
 app.use("/api/v1/ndsdb", ndsdbRouter);
 
 // --- Lien court pour le QR code home (URL compacte = QR scannable par une console) ---
-app.get("/d", (_req, res) => {
-  res.redirect(
-    302,
-    "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/download/v1.0.0/NDS-Shop.cia"
-  );
+// FBI n'aime pas les redirects → on proxy le .cia directement (binaire).
+const CIA_URL =
+  process.env.CIA_URL ||
+  "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/download/v1.0.0/NDS-Shop.cia";
+
+app.get("/d", async (_req, res) => {
+  try {
+    const resp = await fetch(CIA_URL);
+    if (!resp.ok) throw new Error(`GitHub ${resp.status}`);
+    const buf = await resp.buffer();
+    res.setHeader("Content-Type", "application/octet-stream");
+    res.setHeader("Content-Length", buf.length);
+    res.send(buf);
+  } catch (err) {
+    res.status(502).send(`Erreur téléchargement : ${(err as Error).message}`);
+  }
 });
 
 app.listen(Number(PORT), "0.0.0.0", () => {
