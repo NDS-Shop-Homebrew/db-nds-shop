@@ -306,7 +306,7 @@ if (doBoxart) {
     for (const n of names) {
       const data = await tryFetch("Named_Boxarts", n);
       if (data) {
-        const boxartName = g.boxartName || `${webName(g.app.title)}.png`;
+        const boxartName = g.boxartName || `${g.romName}.png`;
         writeFileSync(path.join(boxartDir, boxartName), data);
         if (!g.boxartName) {
           // Nouveau jeu sans entrée Boxart → on l'ajoute dans son JSON source
