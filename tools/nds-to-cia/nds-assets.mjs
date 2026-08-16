@@ -143,7 +143,7 @@ function cleanTitle(romName) {
 
 function regionSets(romName) {
   if (/France/i.test(romName))
-    return ["(France)", "(France) (Rev 1)", "(France) (Rev 5)", "(Europe) (Fr)", "(Europe) (En,Fr)"];
+    return ["(France)", "(France) (Rev 1)", "(France) (Rev 5)", "(Europe) (En,Fr,De,Es,It)", "(Europe) (En,Fr)", "(Europe) (Fr)", "(Europe)"];
   return ["(Europe) (En,Fr,De,Es,It)", "(Europe)", "(USA)"];
 }
 
@@ -298,26 +298,33 @@ if (doBoxart) {
   const cache = loadLibretroCache();
   const boxartDir = path.join(outDir, "assets", "images", "boxart");
   mkdirSync(boxartDir, { recursive: true });
-  const targets = games.filter((g) => g.boxartName);
-  const results = await pool(targets, 1, async (g) => {
-    if (existsSync(path.join(boxartDir, g.boxartName))) return "existing";
+  const results = await pool(games, 1, async (g) => {
+    if (g.boxartName && existsSync(path.join(boxartDir, g.boxartName))) return "existing";
     const file = cache ? matchFromList(cache.boxarts, g.romName) : candidates(g.romName)[0];
     const names = file ? [file] : candidates(g.romName);
     for (const n of names) {
       const data = await tryFetch("Named_Boxarts", n);
       if (data) {
-        writeFileSync(path.join(boxartDir, g.boxartName), data);
+        const boxartName = g.boxartName || `${webName(g.app.title)}.png`;
+        writeFileSync(path.join(boxartDir, boxartName), data);
+        if (!g.boxartName) {
+          // Nouveau jeu sans entrée Boxart → on l'ajoute dans son JSON source
+          const url = `https://db-nds-shop.fr/assets/images/boxart/${encodeURIComponent(boxartName)}`;
+          g.app.screenshots = g.app.screenshots || [];
+          g.app.screenshots.push({ url, description: "Boxart" });
+          writeFileSync(path.join(appsDir, g.file), JSON.stringify(g.app, null, 2));
+        }
         return `ok (${n})`;
       }
       await sleep(1500);
     }
     return "miss";
   });
-  targets.forEach((g, i) => {
-    if (results[i] === "miss") summary.boxartMiss.push(`${g.file} (${g.boxartName})`);
+  games.forEach((g, i) => {
+    if (results[i] === "miss") summary.boxartMiss.push(`${g.file} (${g.boxartName || g.app.title})`);
     else summary.boxart++;
   });
-  console.log(`Boxart téléchargés : ${summary.boxart}/${targets.length}`);
+  console.log(`Boxart téléchargés : ${summary.boxart}/${games.length}`);
 }
 
 // ---- screenshots from libretro-thumbnails Named_Snaps ----
