@@ -9,11 +9,13 @@
   },
   "favorites": {
     "empty": "You don't have any favorite games yet.",
-    "remove": "Remove from favorites"
+    "remove": "Remove from favorites",
+    "subtitle": "Find all the games you added to your favorites here."
   },
   "gameList": {
     "icon": "Icon",
     "title": "Game List",
+    "subtitle": "Browse and search all games available on NDS-Shop.",
     "sortBy": "Sort by",
     "searchPlaceholder": "Search by name or author...",
     "name": "Name",

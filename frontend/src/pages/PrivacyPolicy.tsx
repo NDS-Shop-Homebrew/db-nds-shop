@@ -1,4 +1,5 @@
 import { Card, CardContent } from "../components/ui/card";
+import { motion } from "framer-motion";
 import { Shield, Mail, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -43,15 +44,21 @@ export default function PrivacyPolicy() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
-      <div className="text-center space-y-3">
-        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
-          <Shield className="w-7 h-7 text-primary" />
+    <div>
+      {/* Hero */}
+      <section className="dsi-gradient text-white">
+        <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-7 h-7 text-white" />
+            </div>
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("privacy.title")}</h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto">{t("privacy.subtitle")}</p>
+          </motion.div>
         </div>
-        <h1 className="text-3xl font-bold text-foreground">{t("privacy.title")}</h1>
-        <p className="text-muted-foreground">{t("privacy.subtitle")}</p>
-      </div>
+      </section>
 
+      <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
       <Card className="bg-muted/40 border-border">
         <CardContent className="p-5">
           <h2 className="font-semibold mb-3">{t("privacy.tableOfContents")}</h2>
@@ -103,6 +110,7 @@ export default function PrivacyPolicy() {
           </CardContent>
         </Card>
       </div>
+    </div>
     </div>
   );
 }

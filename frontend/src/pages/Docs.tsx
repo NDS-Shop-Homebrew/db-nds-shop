@@ -74,21 +74,22 @@ export default function Docs() {
   };
 
   return (
-    <div className="p-8 max-w-6xl mx-auto space-y-12">
-      {/* Intro */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center space-y-4"
-      >
-        <h1 className="text-4xl font-extrabold text-foreground">{t("docs.title")}</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("docs.description")}</p>
-        <div className="inline-flex items-center gap-2 rounded-xl bg-muted px-4 py-2 text-sm font-mono text-muted-foreground">
-          <span className="text-muted-foreground/70">{t("docs.base_url")} :</span>
-          <span className="font-semibold text-primary">{BASE}</span>
+    <div>
+      {/* Hero */}
+      <section className="dsi-gradient text-white">
+        <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("docs.title")}</h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-6">{t("docs.description")}</p>
+            <div className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-2 text-sm font-mono text-white/90">
+              <span className="text-white/60">{t("docs.base_url")} :</span>
+              <span className="font-semibold">{BASE}</span>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </section>
+
+      <div className="p-8 max-w-6xl mx-auto space-y-12">
 
       {endpoints.map((group) => (
         <motion.div key={group.section} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
@@ -145,6 +146,7 @@ export default function Docs() {
           </div>
         </motion.div>
       ))}
+      </div>
     </div>
   );
 }

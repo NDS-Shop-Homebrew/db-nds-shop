@@ -37,11 +37,21 @@ export default function Favorites() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold flex items-center gap-2 mb-6">
-        <Heart className="w-6 h-6 text-red-500 fill-red-500" /> {t("nav.favorites")}
-      </h1>
+    <div>
+      {/* Hero */}
+      <section className="dsi-gradient text-white">
+        <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-4">
+              <Heart className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("nav.favorites")}</h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto">{t("favorites.subtitle")}</p>
+          </motion.div>
+        </div>
+      </section>
 
+      <div className="max-w-7xl mx-auto px-4 py-8">
       {loading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 animate-pulse">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -76,6 +86,7 @@ export default function Favorites() {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

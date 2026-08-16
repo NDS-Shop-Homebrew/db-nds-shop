@@ -189,7 +189,27 @@ export default function About() {
   }, []);
 
   return (
-    <div className="p-8 max-w-6xl mx-auto space-y-16">
+    <div className="space-y-16">
+      {/* Hero */}
+      <section className="dsi-gradient text-white">
+        <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <img src="/logo.png" alt="NDS-Shop" className="w-16 h-16 mx-auto mb-4 rounded-2xl" />
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
+              {t("about.title")}
+            </h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto">
+              {t("about.description")}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="p-8 max-w-6xl mx-auto space-y-16">
       {/* Intro */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -432,6 +452,7 @@ export default function About() {
           </div>
         </div>
       </motion.div>
+      </div>
     </div>
   );
 }

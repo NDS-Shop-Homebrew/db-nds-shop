@@ -94,18 +94,32 @@ export default function GameList() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* Header : titre + recherche + filtres + toggle */}
+    <div>
+      {/* Hero */}
+      <section className="dsi-gradient text-white">
+        <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-4">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("gameList.title")}</h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto">{t("gameList.subtitle")}</p>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Header : recherche + filtres + toggle */}
       <div className="flex flex-col gap-4 mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-primary" /> {t("gameList.title")}
+          <p className="text-sm font-normal text-muted-foreground">
+            {t("gameList.title")}
             {!loading && (
               <span className="text-sm font-normal text-muted-foreground">
                 ({filtered.length})
               </span>
             )}
-          </h1>
+          </p>
           <div className="flex items-center gap-2">
             <div className="relative flex-1 sm:flex-none sm:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -211,6 +225,7 @@ export default function GameList() {
       {!loading && filtered.length === 0 && (
         <p className="text-center text-muted-foreground py-12">{t("gameList.noResults")}</p>
       )}
+    </div>
     </div>
   );
 }
