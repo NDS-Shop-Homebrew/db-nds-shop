@@ -266,7 +266,7 @@ for (const file of apps) {
     dlKey,
     entry,
     romName: entry.rom,
-    iconName: app.icon ? decodeName(app.icon) : `${iconName(app.title)}.png`,
+    iconName: app.icon && !app.icon.startsWith("data:") ? decodeName(app.icon) : `${iconName(app.title)}.png`,
     boxartName: boxartStep ? decodeName(boxartStep.url) : null,
   });
 }

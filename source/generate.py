@@ -631,7 +631,7 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 
 			# Check for local icon / image
 			for ext in (".png", ".gif"):
-				if not app.get("icon") and path.exists(path.join(docsDir, "assets", "images", "icons", iconName(app['title']) + ext)):
+				if (not app.get("icon") or app.get("icon", "").startswith("data:")) and path.exists(path.join(docsDir, "assets", "images", "icons", iconName(app['title']) + ext)):
 					app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{iconName(app['title'])}{ext}"
 
 			if "image" not in app and path.exists(path.join(docsDir, "assets", "images", "images", f"{webName(app['title'])}.png")):
