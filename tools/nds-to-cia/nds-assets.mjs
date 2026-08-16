@@ -96,6 +96,15 @@ function webName(name) {
     .join("");
 }
 
+// iconName : convention des icônes = tout attaché (animalcrossingwildworld.png, pas de tirets)
+function iconName(name) {
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+}
+
 // ---- boxart / screenshot name matching ----
 const ALIASES = [
   ["Super Mario DS", "Super Mario 64 DS"],
@@ -257,7 +266,7 @@ for (const file of apps) {
     dlKey,
     entry,
     romName: entry.rom,
-    iconName: app.icon ? decodeName(app.icon) : `${webName(app.title)}.png`,
+    iconName: app.icon ? decodeName(app.icon) : `${iconName(app.title)}.png`,
     boxartName: boxartStep ? decodeName(boxartStep.url) : null,
   });
 }

@@ -43,6 +43,12 @@ def webName(name: str) -> str:
 	return out
 
 
+def iconName(name: str) -> str:
+	"""Icons convention: all attached, no separators (animalcrossingwildworld.png)."""
+	name = unidecode(name).lower()
+	return "".join(c for c in name if c in "abcdefghijklmnopqrstuvwxyz0123456789")
+
+
 def byteCount(bytes: int) -> str:
 	"""Converts an int number of bytes to a str with the largest appropriate unit"""
 	power = 1024
@@ -625,8 +631,8 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 
 			# Check for local icon / image
 			for ext in (".png", ".gif"):
-				if not app.get("icon") and path.exists(path.join(docsDir, "assets", "images", "icons", webName(app['title']) + ext)):
-					app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{webName(app['title'])}{ext}"
+				if not app.get("icon") and path.exists(path.join(docsDir, "assets", "images", "icons", iconName(app['title']) + ext)):
+					app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{iconName(app['title'])}{ext}"
 
 			if "image" not in app and path.exists(path.join(docsDir, "assets", "images", "images", f"{webName(app['title'])}.png")):
 				app["image"] = f"https://db-nds-shop.fr/assets/images/images/{webName(app['title'])}.png"
