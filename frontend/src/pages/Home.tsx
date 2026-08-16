@@ -5,7 +5,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "../components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "../components/ui/dialog";
 
 interface Game {
   fileName: string;
@@ -97,6 +97,8 @@ export default function Home() {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-lg">
+                  <DialogTitle className="sr-only">{t("home.scan")}</DialogTitle>
+                  <DialogDescription className="sr-only">{t("home.scan_instructions")}</DialogDescription>
                   <div className="flex flex-col items-center p-4">
                     <p className="mb-4 text-center text-muted-foreground">{t("home.scan_instructions")}</p>
                     <div className="bg-white p-4 rounded-xl">
