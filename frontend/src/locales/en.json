@@ -4,7 +4,8 @@
     "gameList": "Game List",
     "about": "About",
     "favorites": "Favorites",
-    "api": "API Docs"
+    "api": "API Docs",
+    "tutorial": "Tutorial"
   },
   "favorites": {
     "empty": "You don't have any favorite games yet.",
@@ -68,6 +69,11 @@
     "project_github": "Source code",
     "project_github_desc": "This project is open-source. Feel free to report bugs or suggest improvements.",
     "project_contribute": "Contribute"
+  },
+  "tutorial": {
+    "title": "Tutorial",
+    "subtitle": "How to install and use NDS-Shop on your Nintendo DS / 3DS console.",
+    "coming_soon": "Tutorial content is coming soon. Stay tuned!"
   },
   "docs": {
     "title": "API Documentation",

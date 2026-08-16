@@ -11,10 +11,10 @@ const BANNER_LOC = 0x29e00; // sdcard.fwd banner_location
 const GP_LOC = 0x1dd74; // sdcard.fwd gamepath_location
 const GP_LEN = 252;
 
-// CRC16-ARC check value for "123456789" is 0xBB3D
+// CRC16-Modbus check value for "123456789" is 0x4B37
 const check = crc16(Array.from(Buffer.from("123456789", "ascii")));
-assert.equal(check, 0xbb3d, "CRC16-ARC check vector");
-console.log("✓ crc16('123456789') = 0xBB3D");
+assert.equal(check, 0x4b37, "CRC16-Modbus check vector");
+console.log("✓ crc16('123456789') = 0x4B37");
 
 function makeSyntheticRom() {
   const bannerLoc = 0x4000;

@@ -59,7 +59,7 @@ app.use("/api/v1/ndsdb", ndsdbRouter);
 app.get("/d", (_req, res) => {
   res.redirect(
     302,
-    "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia"
+    "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/download/v1.0.0/NDS-Shop.cia"
   );
 });
 

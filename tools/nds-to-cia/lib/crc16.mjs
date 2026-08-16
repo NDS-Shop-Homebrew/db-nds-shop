@@ -1,10 +1,10 @@
-// CRC16-ARC implementation (also known as CRC16-IBM or CRC16-LHA)
+// CRC16-Modbus implementation (the variant the NDS/DSi banner + header use)
 // Polynomial: 0x8005 (reversed: 0xA001)
-// Initial value: 0x0000
-// Ported from multitools/front/src/lib/crc16.ts
+// Initial value: 0xFFFF
+// cf. GBATEK pseudocode + ndsForwarder (volkanturkut) crc16Modbus.
 
 export function crc16(bytes) {
-  let crc = 0x0000;
+  let crc = 0xffff;
   for (let i = 0; i < bytes.length; i++) {
     crc ^= bytes[i];
     for (let j = 0; j < 8; j++) {

@@ -8,6 +8,7 @@ const links = [
   { to: "/", labelKey: "nav.home" },
   { to: "/game-list", labelKey: "nav.gameList" },
   { to: "/about", labelKey: "nav.about" },
+  { to: "/tutorial", labelKey: "nav.tutorial" },
   { to: "/docs", labelKey: "nav.api" },
 ];
 
