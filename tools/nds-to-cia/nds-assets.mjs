@@ -133,6 +133,7 @@ const ALIASES = [
 
 function cleanTitle(romName) {
   let t = romName.replace(/\.(nds|dsi)$/i, "");
+  t = t.replace(/_/g, " ");
   t = t.replace(/\s*\(NDSi Enhanced\)/gi, "");
   t = t.replace(/\s*\(Rev(\s?\d*)?\)/gi, "");
   t = t.replace(/\s*\[[^\]]*\]/g, "");
