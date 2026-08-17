@@ -1,10 +1,11 @@
-// Simule le handler /request pour vérifier qu'aucun bug de logique ne cause un 500.
+// Simule le handler /request (version forum) pour vérifier qu'aucun bug de logique ne cause un 500.
 const games = [
   { title: "Mario Kart DS", systems: "NDS" },
   { title: "Zelda Phantom Hourglass", systems: "NDS" },
 ];
 const note = "test";
 const lang = "fr";
+const forum = { id: "forum123", name: "game-requests", available_tags: [{ id: "tag1", name: "📥 Demandé" }] };
 
 const noteClean = String(note || "").trim();
 const rawGames = Array.isArray(games) ? games : [];
@@ -21,26 +22,25 @@ for (const g of gamesClean) {
 if (noteClean.length > 2000) throw new Error("400: note");
 if (lang !== "fr" && lang !== "en") throw new Error("400: lang");
 
-const payload = {
-  embeds: [
-    {
-      title: lang === "fr"
-        ? `🎮 ${gamesClean.length > 1 ? `${gamesClean.length} demandes de jeu` : "Demande de jeu"}`
-        : `🎮 ${gamesClean.length > 1 ? `${gamesClean.length} game requests` : "Game request"}`,
-      color: 0x00b0f4,
-      fields: [
-        ...gamesClean.map((g, i) => ({
-          name: lang === "fr" ? `${gamesClean.length > 1 ? `${i + 1}. ` : ""}Jeu` : `${gamesClean.length > 1 ? `${i + 1}. ` : ""}Game`,
-          value: g.systems ? `**${g.title}**\n*${g.systems}*` : `**${g.title}**`,
-          inline: gamesClean.length > 3 ? false : true,
-        })),
-        ...(noteClean ? [{ name: lang === "fr" ? "Note" : "Note", value: noteClean }] : []),
-      ],
-      footer: { text: "via db-nds-shop.fr" },
-      timestamp: new Date().toISOString(),
-    },
-  ],
-};
+const pendingTag = (forum.available_tags || []).find((t) => t.name.includes("Demandé"));
 
-console.log("payload OK, fields:", payload.embeds[0].fields.length);
-console.log(JSON.stringify(payload, null, 1));
+for (const g of gamesClean) {
+  const payload = {
+    name: g.title.slice(0, 100),
+    applied_tags: pendingTag ? [pendingTag.id] : [],
+    message: {
+      embeds: [
+        {
+          title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
+          color: 0x00b0f4,
+          description: `**${g.title}**${g.systems ? `\n*${g.systems}*` : ""}${noteClean ? `\n\n${noteClean}` : ""}`,
+          footer: { text: "via db-nds-shop.fr" },
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    },
+  };
+  console.log("POST /channels/" + forum.id + "/threads", JSON.stringify(payload));
+}
+
+console.log("OK: " + gamesClean.length + " posts forum créés (1 par jeu)");

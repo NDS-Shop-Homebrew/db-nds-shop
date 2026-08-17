@@ -146,7 +146,7 @@ router.post("/request", async (req, res) => {
   }
 
   const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
-  const channelName = lang === "fr" ? "partage-et-suggestions" : "sharing-suggestions";
+  const forumName = process.env.DISCORD_FORUM_CHANNEL || "game-requests";
 
   try {
     const channels = await fetch(`https://discord.com/api/v10/guilds/${guildId}/channels`, {
@@ -154,47 +154,40 @@ router.post("/request", async (req, res) => {
     });
     if (!channels.ok) throw new Error(`Discord channels ${channels.status}`);
     const channelList = await safeJson<any[]>(channels);
-    const target = channelList.find((c) => c.type === 0 && c.name === channelName);
-    if (!target) {
-      return res.status(404).json({ error: `Salon #${channelName} introuvable.` });
+    const forum = channelList.find((c) => c.type === 15 && c.name === forumName);
+    if (!forum) {
+      return res.status(404).json({ error: `Forum #${forumName} introuvable.` });
     }
+    const pendingTag = (forum.available_tags || []).find((t: any) => t.name.includes("Demandé"));
 
-    const payload = {
-      embeds: [
-        {
-          title:
-            lang === "fr"
-              ? `🎮 ${gamesClean.length > 1 ? `${gamesClean.length} demandes de jeu` : "Demande de jeu"}`
-              : `🎮 ${gamesClean.length > 1 ? `${gamesClean.length} game requests` : "Game request"}`,
-          color: 0x00b0f4,
-          fields: [
-            ...gamesClean.map((g: any, i: number) => ({
-              name:
-                lang === "fr"
-                  ? `${gamesClean.length > 1 ? `${i + 1}. ` : ""}Jeu`
-                  : `${gamesClean.length > 1 ? `${i + 1}. ` : ""}Game`,
-              value: g.systems ? `**${g.title}**\n*${g.systems}*` : `**${g.title}**`,
-              inline: gamesClean.length > 3 ? false : true,
-            })),
-            ...(noteClean
-              ? [{ name: lang === "fr" ? "Note" : "Note", value: noteClean }]
-              : []),
+    // Un post (thread) par jeu dans le forum
+    for (const g of gamesClean) {
+      const payload = {
+        name: g.title.slice(0, 100),
+        applied_tags: pendingTag ? [pendingTag.id] : [],
+        message: {
+          embeds: [
+            {
+              title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
+              color: 0x00b0f4,
+              description: `**${g.title}**${g.systems ? `\n*${g.systems}*` : ""}${noteClean ? `\n\n${noteClean}` : ""}`,
+              footer: { text: "via db-nds-shop.fr" },
+              timestamp: new Date().toISOString(),
+            },
           ],
-          footer: { text: "via db-nds-shop.fr" },
-          timestamp: new Date().toISOString(),
         },
-      ],
-    };
-    const response = await fetch(`https://discord.com/api/v10/channels/${target.id}/messages`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bot ${token}` },
-      body: JSON.stringify(payload),
-    });
-    if (!response.ok) {
-      console.error("❌ Discord message failed:", response.status, await response.text());
-      return res.status(502).json({ error: "Échec de l'envoi de la demande." });
+      };
+      const response = await fetch(`https://discord.com/api/v10/channels/${forum.id}/threads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bot ${token}` },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        console.error("❌ Discord forum post failed:", response.status, await response.text());
+        return res.status(502).json({ error: "Échec de la création du post." });
+      }
     }
-    res.json({ ok: true });
+    res.json({ ok: true, count: gamesClean.length });
   } catch (err) {
     console.error("❌ Discord request error:", err);
     res.status(500).json({ error: "Erreur serveur." });
