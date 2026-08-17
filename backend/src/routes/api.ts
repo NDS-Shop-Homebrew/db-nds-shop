@@ -1,11 +1,3 @@
-// API v1 of db-nds-shop — read-only metadata endpoints.
-//
-// Serves data from the generated frontend/public/games.json (the single
-// source of truth produced by compile.bat). Images are served directly by
-// the static file server, the API only exposes their URLs.
-//
-// Versioning: /api/v1 is the current stable version; bump to /api/v2 when a
-// backwards-incompatible change is introduced.
 import express from "express";
 import fetch from "node-fetch";
 import fs from "fs";
@@ -107,13 +99,11 @@ router.get("/stats", (_req, res) => {
   });
 });
 
-// --- POST /api/v1/request — demande de jeu (formulaire du site → Discord via le bot) ---
-// Champs : { games: [{ title, systems? }], note?, lang } (lang = "fr" | "en")
+// --- POST /api/v1/request ---
 router.post("/request", async (req, res) => {
   const { games, title, systems, note, lang } = req.body || {};
   const noteClean = String(note || "").trim();
 
-  // Legacy : un seul jeu { title } → converti en tableau
   const rawGames = Array.isArray(games) ? games : title ? [{ title, systems }] : [];
 
   const gamesClean = rawGames
@@ -161,10 +151,8 @@ router.post("/request", async (req, res) => {
     }
     const pendingTag = (forum.available_tags || []).find((t: any) => t.name.includes("Demandé"));
 
-    // Demandeur identifié via la session (jamais via le body) → sert aux notifications MP du bot
     const requester = getSessionUser(req);
 
-    // Un post (thread) par jeu dans le forum
     for (const g of gamesClean) {
       const payload = {
         name: g.title.slice(0, 100),
@@ -218,8 +206,7 @@ router.get("/team", (_req, res) => {
   }
 });
 
-// --- Discord (routes uniquement si token présent) ---
-// ponytail: lu à la requête car dotenv.config() tourne après l'import de ce module
+// --- Discord ---
 const getBotToken = () => process.env.DISCORD_BOT_TOKEN || "";
 
 async function safeJson<T>(response: any): Promise<T> {

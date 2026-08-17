@@ -9,8 +9,6 @@ interface Me {
   user: { id: string; username: string } | null;
 }
 
-// Connexion "Se connecter avec Discord" (OAuth2). Le profil sert à recevoir les
-// notifications MP du bot quand le statut de la demande change.
 export default function DiscordLogin() {
   const { t } = useTranslation();
   const [me, setMe] = useState<Me>({ loggedIn: false, user: null });

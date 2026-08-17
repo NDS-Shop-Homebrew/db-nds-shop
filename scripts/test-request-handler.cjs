@@ -1,4 +1,3 @@
-// Simule le handler /request (version forum) pour vérifier qu'aucun bug de logique ne cause un 500.
 const games = [
   { title: "Mario Kart DS", systems: "NDS" },
   { title: "Zelda Phantom Hourglass", systems: "NDS" },

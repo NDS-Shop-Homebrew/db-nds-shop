@@ -354,7 +354,6 @@ if (doScreenshots) {
       .filter((f) => /^\d+\.(png|jpg|jpeg)$/i.test(f))
       .map((f) => parseInt(f, 10))
       .sort((a, b) => a - b);
-    // ponytail: cache skip — ne re-télécharge pas si le jeu a déjà un screenshot (évite 1.png, 2.png, 3.png...)
     if (existing.length > 0) return "existing";
     let next = 1;
 

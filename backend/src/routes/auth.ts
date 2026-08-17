@@ -1,7 +1,3 @@
-// Auth OAuth2 Discord — connexion "Se connecter avec Discord".
-// Session : cookie httpOnly signé (JWT HMAC-SHA256). Le site ne voit jamais le mot de passe,
-// le code d'autorisation est à usage unique, et l'identité est lue depuis la session signée
-// (jamais depuis le body du client).
 import express from "express";
 import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
@@ -23,7 +19,6 @@ function sessionSecret() {
   return process.env.SESSION_SECRET || "";
 }
 
-// --- Cookies (parse/pose minimal, pas besoin de cookie-parser) ---
 function parseCookies(header?: string): Record<string, string> {
   const out: Record<string, string> = {};
   for (const part of String(header || "").split(";")) {
@@ -49,7 +44,6 @@ const clearCookie = (res: express.Response) => {
   );
 };
 
-// --- Session helpers ---
 export function getSessionUser(req: express.Request): { id: string; username: string } | null {
   try {
     const cookies = parseCookies(req.headers.cookie);
@@ -70,7 +64,7 @@ const frontendUrl = (req: express.Request) =>
     ? "http://localhost:5173"
     : "https://db-nds-shop.fr";
 
-// --- GET /api/v1/auth/discord — redirige vers Discord ---
+// --- GET /api/v1/auth/discord ---
 router.get("/discord", (req, res) => {
   const client = clientId();
   if (!client || !clientSecret() || !sessionSecret()) {
@@ -79,7 +73,6 @@ router.get("/discord", (req, res) => {
   const state = jwt.sign({ csrf: Math.random().toString(36).slice(2) }, sessionSecret(), {
     expiresIn: "5m",
   });
-  // state CSRF : cookie httpOnly court, vérifié au callback
   res.setHeader(
     "Set-Cookie",
     `oauth_state=${encodeURIComponent(state)}; Path=/api/v1/auth/discord/callback; HttpOnly; SameSite=Lax; Max-Age=300`
@@ -91,12 +84,11 @@ router.get("/discord", (req, res) => {
   res.redirect(url);
 });
 
-// --- GET /api/v1/auth/discord/callback — échange le code, pose la session ---
+// --- GET /api/v1/auth/discord/callback ---
 router.get("/discord/callback", async (req, res) => {
   const { code, state } = req.query;
   const cookies = parseCookies(req.headers.cookie);
   try {
-    // CSRF : le state doit correspondre à celui posé en cookie
     const expected = cookies["oauth_state"];
     if (!state || state !== expected) {
       return res.status(403).json({ error: "État invalide (CSRF)." });
@@ -141,7 +133,7 @@ router.get("/discord/callback", async (req, res) => {
   }
 });
 
-// --- GET /api/v1/auth/me — état de la session ---
+// --- GET /api/v1/auth/me ---
 router.get("/me", (req, res) => {
   const user = getSessionUser(req);
   if (!user) return res.json({ loggedIn: false, user: null });

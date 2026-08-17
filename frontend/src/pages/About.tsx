@@ -45,7 +45,6 @@ interface ProjectStats {
 const DISCORD_INVITE = "https://discord.gg/udw7Z4mdKJ";
 
 // --- Helpers ---
-// ponytail: Discord renvoie 415 sur les GIF (a_*.gif) hors de ses clients, on force le PNG
 const getAvatarUrl = (user: DiscordUser) => {
   if (user.avatar) {
     return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
