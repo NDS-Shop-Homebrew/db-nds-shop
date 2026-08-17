@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Heart } from "lucide-react";
+import GameCard from "../components/GameCard";
 
 interface Game {
   fileName: string;
@@ -10,6 +10,7 @@ interface Game {
   author: string;
   systems: string[];
   icon: string;
+  screenshots?: { description: string; url: string }[];
 }
 
 export default function Favorites() {
@@ -55,7 +56,10 @@ export default function Favorites() {
       {loading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 animate-pulse">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="w-20 h-20 mx-auto rounded-xl bg-muted" />
+            <div key={i}>
+              <div className="aspect-square rounded-xl bg-muted/60 mb-3" />
+              <div className="h-3 w-3/4 rounded bg-muted" />
+            </div>
           ))}
         </div>
       ) : games.length === 0 ? (
@@ -68,20 +72,12 @@ export default function Favorites() {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {games.map((game, i) => (
-            <motion.div key={game.fileName} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }} className="relative group">
-              <Link to={`/game/${game.fileName}`} className="block group">
-                <div className="rounded-xl overflow-hidden bg-muted mb-2 ring-1 ring-border group-hover:ring-primary/50 transition-all">
-                  <img src={game.icon} alt={game.title} className="w-20 h-20 mx-auto object-contain" />
-                </div>
-                <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug">{game.title}</p>
-              </Link>
-              <button
-                onClick={() => removeFav(game.fileName)}
-                className="absolute top-2 right-2 p-1.5 rounded-full bg-background/80 backdrop-blur text-red-500 hover:bg-red-50 transition-colors"
-                title={t("favorites.remove")}
-              >
-                <Heart size={16} fill="currentColor" />
-              </button>
+            <motion.div key={game.fileName} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}>
+              <GameCard
+                game={game}
+                isFav
+                onToggleFav={() => removeFav(game.fileName)}
+              />
             </motion.div>
           ))}
         </div>

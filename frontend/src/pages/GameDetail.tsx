@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, Download, Heart, Share2, ChevronLeft, ChevronRight, ExternalLink, Book } from "lucide-react";
+import GameCard from "../components/GameCard";
+import SafeImg from "../components/SafeImg";
 
 interface Download { size: number; size_str: string; url: string; }
 interface Screenshot { description: string; url: string; }
@@ -118,8 +120,13 @@ export default function GameDetail() {
         <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
         <div className="relative flex items-center gap-6 p-6 md:p-8 min-h-40">
           {boxart && (
-            <div className="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-xl overflow-hidden shadow-lg ring-4 ring-white/20 bg-white/10">
-              <img src={boxart} alt={game.title} className="w-full h-full object-contain" />
+            <div className="w-36 h-44 md:w-44 md:h-52 shrink-0 rounded-xl overflow-hidden shadow-lg ring-4 ring-white/20 bg-white/10">
+              <SafeImg
+                src={boxart}
+                alt={game.title}
+                className="w-full h-full object-cover"
+                wrapperClassName="w-full h-full"
+              />
             </div>
           )}
           <div className="min-w-0">
@@ -240,8 +247,13 @@ export default function GameDetail() {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {gallery.map((shot, i) => (
                   <button key={i} onClick={() => setLightboxIdx(i)}
-                    className="aspect-video rounded-xl overflow-hidden ring-1 ring-border hover:ring-primary/50 transition-all group">
-                    <img src={shot.url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    className="aspect-[2/3] rounded-xl overflow-hidden ring-1 ring-border hover:ring-primary/50 transition-all group bg-muted/60">
+                    <SafeImg
+                      src={shot.url}
+                      alt=""
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      wrapperClassName="w-full h-full"
+                    />
                   </button>
                 ))}
               </div>
@@ -254,10 +266,18 @@ export default function GameDetail() {
               <h2 className="text-lg font-bold mb-4">{t("gameDetail.qr_code")}</h2>
               <div className="flex flex-wrap gap-4">
                 {Object.entries(game.qr).map(([name, url]) => (
-                  <div key={name} className="flex flex-col items-center">
-                    <img src={url} alt={name} className="w-24 h-24 rounded-xl ring-1 ring-border" />
-                    <span className="text-xs text-muted-foreground mt-1">{name}</span>
-                  </div>
+                  <a key={name} href={url} target="_blank" rel="noreferrer"
+                    className="flex flex-col items-center gap-1.5 group">
+                    <div className="w-40 h-40 rounded-xl bg-white p-2 ring-1 ring-border overflow-hidden group-hover:ring-primary/50 transition-all">
+                      <SafeImg
+                        src={url}
+                        alt={name}
+                        className="w-full h-full object-contain"
+                        wrapperClassName="w-full h-full"
+                      />
+                    </div>
+                    <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors">{name}</span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -284,12 +304,7 @@ export default function GameDetail() {
           <h2 className="text-lg font-bold mb-6">{t("gameDetail.related")}</h2>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
             {related.map((g) => (
-              <Link key={g.fileName} to={`/game/${g.fileName}`} className="block group">
-                <div className="rounded-xl overflow-hidden bg-muted mb-2 ring-1 ring-border group-hover:ring-primary/50 transition-all">
-                  <img src={g.icon} alt="" className="w-20 h-20 mx-auto object-contain" />
-                </div>
-                <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug">{g.title}</p>
-              </Link>
+              <GameCard key={g.fileName} game={g} showAuthor={false} />
             ))}
           </div>
         </div>

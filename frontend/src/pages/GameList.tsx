@@ -4,6 +4,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Search, Grid3X3, List, ArrowUpDown, Sparkles, X } from "lucide-react";
 import { Input } from "../components/ui/input";
+import GameCard from "../components/GameCard";
+import SafeImg from "../components/SafeImg";
 
 interface Game {
   fileName: string;
@@ -13,6 +15,7 @@ interface Game {
   systems: string[];
   icon: string;
   updated: string;
+  screenshots?: { description: string; url: string }[];
 }
 
 type SortOption = "title" | "author" | "version" | "updated";
@@ -21,9 +24,9 @@ type ViewMode = "grid" | "list";
 function GameSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="w-24 h-24 rounded-xl bg-muted mb-3 mx-auto" />
-      <div className="h-4 w-3/4 rounded bg-muted mb-2 mx-auto" />
-      <div className="h-3 w-1/2 rounded bg-muted mx-auto" />
+      <div className="aspect-square rounded-xl bg-muted/60 mb-3" />
+      <div className="h-3 w-3/4 rounded bg-muted mb-2" />
+      <div className="h-3 w-1/2 rounded bg-muted" />
     </div>
   );
 }
@@ -171,13 +174,7 @@ export default function GameList() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {filtered.map((game, i) => (
             <motion.div key={game.fileName} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.02 }}>
-              <Link to={`/game/${game.fileName}`} className="block group">
-                <div className="rounded-xl bg-muted/60 mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all p-3">
-                  <img src={game.icon} alt={game.title} className="w-full aspect-square object-contain" />
-                </div>
-                <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug">{game.title}</h3>
-                <p className="text-xs text-muted-foreground mt-1 truncate">{game.author}</p>
-              </Link>
+              <GameCard game={game} />
             </motion.div>
           ))}
         </div>
@@ -206,7 +203,7 @@ export default function GameList() {
                   >
                     <td className="p-3">
                       <div className="w-10 h-10 rounded-lg overflow-hidden bg-muted/60 shrink-0">
-                        <img src={game.icon} alt="" className="w-full h-full object-contain" />
+                        <SafeImg src={game.icon} alt="" className="w-full h-full object-contain" />
                       </div>
                     </td>
                     <td className="p-3 font-medium text-foreground">{game.title}</td>

@@ -6,6 +6,8 @@ import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "../components/ui/dialog";
+import GameCard from "../components/GameCard";
+import SafeImg from "../components/SafeImg";
 
 interface Game {
   fileName: string;
@@ -16,14 +18,15 @@ interface Game {
   categories?: string[];
   icon: string;
   updated: string;
+  screenshots?: { description: string; url: string }[];
 }
 
 function GameSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="w-24 h-24 rounded-xl bg-muted mb-3 mx-auto" />
-      <div className="h-4 w-3/4 rounded bg-muted mb-2 mx-auto" />
-      <div className="h-3 w-1/2 rounded bg-muted mx-auto" />
+      <div className="aspect-square rounded-xl bg-muted/60 mb-3" />
+      <div className="h-3 w-3/4 rounded bg-muted mb-2" />
+      <div className="h-3 w-1/2 rounded bg-muted" />
     </div>
   );
 }
@@ -153,7 +156,12 @@ export default function Home() {
                 to={`/game/${randomGame.fileName}`}
                 className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors"
               >
-                <img src={randomGame.icon} alt="" className="w-14 h-14 rounded-lg" />
+                <SafeImg
+                  src={randomGame.screenshots?.find((s) => s.description === "Boxart")?.url || randomGame.icon}
+                  alt=""
+                  className="w-14 h-14 rounded-lg object-cover"
+                  wrapperClassName="w-14 h-14 rounded-lg bg-muted shrink-0"
+                />
                 <div>
                   <p className="font-semibold text-foreground">{randomGame.title}</p>
                   <p className="text-sm text-muted-foreground">{randomGame.author}</p>
@@ -195,18 +203,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <Link
-                    to={`/game/${game.fileName}`}
-                    className="block group"
-                  >
-                    <div className="rounded-xl bg-muted/60 mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all p-3">
-                      <img src={game.icon} alt={game.title} className="w-full aspect-square object-contain" />
-                    </div>
-                    <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug">
-                      {game.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-1 truncate">{game.author}</p>
-                  </Link>
+                  <GameCard game={game} />
                 </motion.div>
               ))}
         </div>
