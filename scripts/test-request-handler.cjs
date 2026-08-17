@@ -23,6 +23,7 @@ if (noteClean.length > 2000) throw new Error("400: note");
 if (lang !== "fr" && lang !== "en") throw new Error("400: lang");
 
 const pendingTag = (forum.available_tags || []).find((t) => t.name.includes("Demandé"));
+const requester = { id: "123456789012345678", username: "test" };
 
 for (const g of gamesClean) {
   const payload = {
@@ -34,6 +35,9 @@ for (const g of gamesClean) {
           title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
           color: 0x00b0f4,
           description: `**${g.title}**${g.systems ? `\n*${g.systems}*` : ""}${noteClean ? `\n\n${noteClean}` : ""}`,
+          fields: requester
+            ? [{ name: lang === "fr" ? "Demandeur" : "Requester", value: requester.id, inline: true }]
+            : [],
           footer: { text: "via db-nds-shop.fr" },
           timestamp: new Date().toISOString(),
         },
@@ -43,4 +47,4 @@ for (const g of gamesClean) {
   console.log("POST /channels/" + forum.id + "/threads", JSON.stringify(payload));
 }
 
-console.log("OK: " + gamesClean.length + " posts forum créés (1 par jeu)");
+console.log("OK: " + gamesClean.length + " posts forum créés (1 par jeu), champ Demandeur inclus");

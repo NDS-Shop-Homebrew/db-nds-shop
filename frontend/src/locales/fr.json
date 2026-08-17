@@ -24,7 +24,11 @@
     "remove": "Retirer ce jeu",
     "maxGames": "Vous pouvez demander jusqu'à {{count}} jeux.",
     "alreadyInCatalog": "Ce jeu est déjà dans le catalogue :",
-    "similarFound": "Des jeux similaires existent peut-être déjà :"
+    "similarFound": "Des jeux similaires existent peut-être déjà :",
+    "loginDiscord": "Se connecter avec Discord",
+    "loginHint": "Connectez-vous avec Discord pour recevoir une notification privée quand le statut de votre demande change.",
+    "loggedAs": "Connecté en tant que",
+    "logout": "Se déconnecter"
   },
   "favorites": {
     "empty": "Vous n'avez aucun jeu en favori pour le moment.",

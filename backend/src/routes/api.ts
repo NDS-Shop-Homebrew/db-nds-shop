@@ -11,6 +11,7 @@ import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { getSessionUser } from "./auth.js";
 
 const router = express.Router();
 
@@ -160,6 +161,9 @@ router.post("/request", async (req, res) => {
     }
     const pendingTag = (forum.available_tags || []).find((t: any) => t.name.includes("Demandé"));
 
+    // Demandeur identifié via la session (jamais via le body) → sert aux notifications MP du bot
+    const requester = getSessionUser(req);
+
     // Un post (thread) par jeu dans le forum
     for (const g of gamesClean) {
       const payload = {
@@ -171,6 +175,9 @@ router.post("/request", async (req, res) => {
               title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
               color: 0x00b0f4,
               description: `**${g.title}**${g.systems ? `\n*${g.systems}*` : ""}${noteClean ? `\n\n${noteClean}` : ""}`,
+              fields: requester
+                ? [{ name: lang === "fr" ? "Demandeur" : "Requester", value: requester.id, inline: true }]
+                : [],
               footer: { text: "via db-nds-shop.fr" },
               timestamp: new Date().toISOString(),
             },

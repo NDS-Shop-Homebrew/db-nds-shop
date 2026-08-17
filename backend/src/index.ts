@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 import apiRouter from "./routes/api.js";
 import ndsdbRouter from "./routes/ndsdb.js";
+import authRouter from "./routes/auth.js";
 
 dotenv.config();
 
@@ -52,6 +53,9 @@ if (!DISCORD_BOT_TOKEN) {
 
 // --- API v1 (jeux) ---
 app.use("/api/v1", apiRouter);
+
+// --- Auth Discord (OAuth2) ---
+app.use("/api/v1/auth", authRouter);
 
 // --- API v2 (ndsdb - metadata enrichie par serial) ---
 app.use("/api/v1/ndsdb", ndsdbRouter);

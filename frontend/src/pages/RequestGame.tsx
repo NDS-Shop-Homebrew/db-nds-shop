@@ -5,6 +5,7 @@ import { Send, Plus, X, CheckCircle2, Info } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import DiscordLogin from "../components/DiscordLogin";
 import { API_BASE_URL } from "../config";
 
 interface CatalogGame {
@@ -127,6 +128,8 @@ export default function RequestGame() {
             <CardDescription>{t("request.subtitle")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            <DiscordLogin />
+
             {entries.map((entry, i) => (
               <div key={i} className="space-y-2 rounded-lg border border-border p-3">
                 <div className="flex items-center justify-between">
