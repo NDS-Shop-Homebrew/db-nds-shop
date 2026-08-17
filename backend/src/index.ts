@@ -13,9 +13,10 @@ const PORT = process.env.PORT || 3001;
 
 const isProduction = process.env.NODE_ENV === "production";
 
-const allowedOrigins = isProduction
-  ? ["https://db-nds-shop.fr"]
-  : ["http://localhost:5173"];
+// Derrière nginx (X-Forwarded-For) : requis par express-rate-limit
+app.set("trust proxy", true);
+
+const allowedOrigins = ["https://db-nds-shop.fr", "http://localhost:5173"];
 
 app.use(
   cors({
