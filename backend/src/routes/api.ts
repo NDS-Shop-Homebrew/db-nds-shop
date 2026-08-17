@@ -107,15 +107,31 @@ router.get("/stats", (_req, res) => {
 });
 
 // --- POST /api/v1/request — demande de jeu (formulaire du site → Discord via le bot) ---
-// Champs : { title, systems?, note?, lang } (lang = "fr" | "en")
+// Champs : { games: [{ title, systems? }], note?, lang } (lang = "fr" | "en")
 router.post("/request", async (req, res) => {
-  const { title, systems, note, lang } = req.body || {};
-  const titleClean = String(title || "").trim();
+  const { games, title, systems, note, lang } = req.body || {};
   const noteClean = String(note || "").trim();
-  const systemsClean = String(systems || "").trim();
 
-  if (titleClean.length < 2 || titleClean.length > 120) {
-    return res.status(400).json({ error: "Titre invalide (2 à 120 caractères)." });
+  // Legacy : un seul jeu { title } → converti en tableau
+  const rawGames = Array.isArray(games) ? games : title ? [{ title, systems }] : [];
+
+  const gamesClean = rawGames
+    .map((g: any) => ({
+      title: String(g?.title || "").trim(),
+      systems: String(g?.systems || "").trim(),
+    }))
+    .filter((g: any) => g.title);
+
+  if (gamesClean.length < 1 || gamesClean.length > 10) {
+    return res.status(400).json({ error: "Entre 1 et 10 jeux requis." });
+  }
+  for (const g of gamesClean) {
+    if (g.title.length < 2 || g.title.length > 120) {
+      return res.status(400).json({ error: "Titre invalide (2 à 120 caractères)." });
+    }
+    if (g.systems.length > 80) {
+      return res.status(400).json({ error: "Systèmes trop longs (max 80 caractères)." });
+    }
   }
   if (noteClean.length > 2000) {
     return res.status(400).json({ error: "Note trop longue (max 2000 caractères)." });
@@ -146,13 +162,20 @@ router.post("/request", async (req, res) => {
     const payload = {
       embeds: [
         {
-          title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
+          title:
+            lang === "fr"
+              ? `🎮 ${gamesClean.length > 1 ? `${gamesClean.length} demandes de jeu` : "Demande de jeu"}`
+              : `🎮 ${gamesClean.length > 1 ? `${gamesClean.length} game requests` : "Game request"}`,
           color: 0x00b0f4,
           fields: [
-            { name: lang === "fr" ? "Jeu" : "Game", value: titleClean, inline: true },
-            ...(systemsClean
-              ? [{ name: lang === "fr" ? "Systèmes" : "Systems", value: systemsClean, inline: true }]
-              : []),
+            ...gamesClean.map((g: any, i: number) => ({
+              name:
+                lang === "fr"
+                  ? `${gamesClean.length > 1 ? `${i + 1}. ` : ""}Jeu`
+                  : `${gamesClean.length > 1 ? `${i + 1}. ` : ""}Game`,
+              value: g.systems ? `**${g.title}**\n*${g.systems}*` : `**${g.title}**`,
+              inline: gamesClean.length > 3 ? false : true,
+            })),
             ...(noteClean
               ? [{ name: lang === "fr" ? "Note" : "Note", value: noteClean }]
               : []),

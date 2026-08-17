@@ -19,7 +19,12 @@
     "notePlaceholder": "Une précision, un lien, une description…",
     "submit": "Envoyer la demande",
     "done": "Demande envoyée ! Merci pour votre suggestion.",
-    "error": "Une erreur est survenue, réessayez plus tard."
+    "error": "Une erreur est survenue, réessayez plus tard.",
+    "addAnother": "Ajouter un autre jeu",
+    "remove": "Retirer ce jeu",
+    "maxGames": "Vous pouvez demander jusqu'à {{count}} jeux.",
+    "alreadyInCatalog": "Ce jeu est déjà dans le catalogue :",
+    "similarFound": "Des jeux similaires existent peut-être déjà :"
   },
   "favorites": {
     "empty": "Vous n'avez aucun jeu en favori pour le moment.",

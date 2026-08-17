@@ -1,32 +1,113 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { Send, Plus, X, CheckCircle2, Info } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { API_BASE_URL } from "../config";
 
+interface CatalogGame {
+  fileName: string;
+  title: string;
+  author: string;
+  version: string;
+  systems: string[];
+}
+
+interface Entry {
+  title: string;
+  systems: string;
+  match: { level: "none" | "same" | "region"; found: CatalogGame[] };
+}
+
+const MAX_GAMES = 10;
+
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[()[\],.'"]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const baseTitle = (s: string) =>
+  norm(s).replace(/\s*(france|europe|usa|japan|asia|australia|en|fr|de|es|it|jp)\s*$/i, "").trim();
+
+function detectMatch(query: string, catalog: CatalogGame[]): Entry["match"] {
+  const q = norm(query);
+  if (q.length < 3) return { level: "none", found: [] };
+
+  const exact = catalog.filter((g) => norm(g.title) === q);
+  if (exact.length > 0) return { level: "same", found: exact };
+
+  const base = baseTitle(query);
+  const byBase = catalog.filter((g) => baseTitle(g.title) === base);
+  if (byBase.length > 0) return { level: "region", found: byBase };
+
+  const words = q.split(" ").filter((w) => w.length > 3);
+  const fuzzy = catalog
+    .map((g) => ({ g, score: words.filter((w) => norm(g.title).includes(w)).length }))
+    .filter((x) => x.score >= Math.min(2, words.length))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((x) => x.g);
+  return fuzzy.length > 0 ? { level: "region", found: fuzzy } : { level: "none", found: [] };
+}
+
 export default function RequestGame() {
   const { t, i18n } = useTranslation();
-  const [title, setTitle] = useState("");
-  const [systems, setSystems] = useState("");
+  const [catalog, setCatalog] = useState<CatalogGame[]>([]);
+  const [entries, setEntries] = useState<Entry[]>([{ title: "", systems: "", match: { level: "none", found: [] } }]);
   const [note, setNote] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
+  useEffect(() => {
+    fetch("/games.json")
+      .then((r) => r.json())
+      .then(setCatalog)
+      .catch(() => {});
+  }, []);
+
+  const updateEntry = (i: number, patch: Partial<Entry>) => {
+    setEntries((prev) => {
+      const next = prev.map((e, idx) => (idx === i ? { ...e, ...patch } : e));
+      if (patch.title !== undefined) {
+        next[i] = { ...next[i], match: detectMatch(patch.title || "", catalog) };
+      }
+      return next;
+    });
+  };
+
+  const addEntry = () => {
+    if (entries.length >= MAX_GAMES) return;
+    setEntries((prev) => [...prev, { title: "", systems: "", match: { level: "none", found: [] } }]);
+  };
+
+  const removeEntry = (i: number) => {
+    setEntries((prev) => prev.filter((_, idx) => idx !== i));
+  };
+
+  const gamesValid = entries.filter((e) => e.title.trim().length >= 2);
+  const canSubmit = gamesValid.length >= 1 && status !== "loading";
+
   const submit = async () => {
-    if (title.trim().length < 2) return;
+    if (!canSubmit) return;
     setStatus("loading");
     try {
       const res = await fetch(`${API_BASE_URL}/v1/request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, systems, note, lang: i18n.language }),
+        body: JSON.stringify({
+          games: gamesValid.map((e) => ({ title: e.title.trim(), systems: e.systems.trim() })),
+          note,
+          lang: i18n.language,
+        }),
       });
       if (!res.ok) throw new Error();
       setStatus("done");
-      setTitle("");
-      setSystems("");
+      setEntries([{ title: "", systems: "", match: { level: "none", found: [] } }]);
       setNote("");
     } catch {
       setStatus("error");
@@ -46,36 +127,83 @@ export default function RequestGame() {
             <CardDescription>{t("request.subtitle")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">{t("request.gameLabel")}</label>
-              <Input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder={t("request.gamePlaceholder")}
-                maxLength={120}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">{t("request.systemsLabel")}</label>
-              <Input
-                value={systems}
-                onChange={(e) => setSystems(e.target.value)}
-                placeholder={t("request.systemsPlaceholder")}
-                maxLength={80}
-              />
-            </div>
+            {entries.map((entry, i) => (
+              <div key={i} className="space-y-2 rounded-lg border border-border p-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium">
+                    {entries.length > 1 ? `${t("request.gameLabel")} ${i + 1}` : t("request.gameLabel")}
+                  </label>
+                  {entries.length > 1 && (
+                    <button
+                      onClick={() => removeEntry(i)}
+                      className="text-muted-foreground hover:text-destructive transition-colors"
+                      title={t("request.remove")}
+                    >
+                      <X size={16} />
+                    </button>
+                  )}
+                </div>
+                <Input
+                  value={entry.title}
+                  onChange={(e) => updateEntry(i, { title: e.target.value })}
+                  placeholder={t("request.gamePlaceholder")}
+                  maxLength={120}
+                />
+                <Input
+                  value={entry.systems}
+                  onChange={(e) => updateEntry(i, { systems: e.target.value })}
+                  placeholder={t("request.systemsPlaceholder")}
+                  maxLength={80}
+                />
+
+                {entry.match.level !== "none" && (
+                  <div
+                    className={`flex items-start gap-2 rounded-md p-2 text-sm ${
+                      entry.match.level === "same"
+                        ? "bg-red-500/10 text-red-600 dark:text-red-400"
+                        : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                    }`}
+                  >
+                    {entry.match.level === "same" ? <CheckCircle2 size={16} className="mt-0.5 shrink-0" /> : <Info size={16} className="mt-0.5 shrink-0" />}
+                    <div>
+                      <p>
+                        {entry.match.level === "same"
+                          ? t("request.alreadyInCatalog")
+                          : t("request.similarFound")}
+                      </p>
+                      {entry.match.found.map((g) => (
+                        <p key={g.fileName} className="text-xs opacity-90 mt-0.5">
+                          {g.title} — {g.version}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {entries.length < MAX_GAMES && (
+              <Button variant="outline" onClick={addEntry} className="w-full">
+                <Plus size={16} /> {t("request.addAnother")}
+              </Button>
+            )}
+            <p className="text-xs text-muted-foreground">
+              {t("request.maxGames", { count: MAX_GAMES })}
+            </p>
+
             <div className="space-y-2">
               <label className="text-sm font-medium">{t("request.noteLabel")}</label>
               <textarea
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                rows={4}
+                rows={3}
                 maxLength={2000}
                 placeholder={t("request.notePlaceholder")}
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
-            <Button onClick={submit} disabled={status === "loading" || title.trim().length < 2}>
+
+            <Button onClick={submit} disabled={!canSubmit}>
               <Send size={16} /> {t("request.submit")}
             </Button>
             {status === "done" && (

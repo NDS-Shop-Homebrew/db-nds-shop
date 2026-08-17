@@ -19,7 +19,12 @@
     "notePlaceholder": "A detail, a link, a description…",
     "submit": "Send request",
     "done": "Request sent! Thanks for your suggestion.",
-    "error": "Something went wrong, please try again later."
+    "error": "Something went wrong, please try again later.",
+    "addAnother": "Add another game",
+    "remove": "Remove this game",
+    "maxGames": "You can request up to {{count}} games.",
+    "alreadyInCatalog": "This game is already in the catalog:",
+    "similarFound": "Similar games may already exist:"
   },
   "favorites": {
     "empty": "You don't have any favorite games yet.",
