@@ -197,9 +197,16 @@ const TEAM_MEMBERS_FILE =
 router.get("/team", (_req, res) => {
   try {
     if (!fs.existsSync(TEAM_MEMBERS_FILE)) {
-      return res.json({ discordIds: [], updatedAt: null });
+      return res.json({ members: [], updatedAt: null });
     }
     const data = JSON.parse(fs.readFileSync(TEAM_MEMBERS_FILE, "utf8"));
+    // Rétrocompat : ancien format { discordIds: [] }
+    if (Array.isArray(data.discordIds)) {
+      return res.json({
+        members: data.discordIds.map((id: string) => ({ id, role: "" })),
+        updatedAt: data.updatedAt ?? null,
+      });
+    }
     res.json(data);
   } catch (err: any) {
     res.status(500).json({ error: err.message });

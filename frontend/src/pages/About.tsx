@@ -114,6 +114,7 @@ const STATUS_COLORS: Record<string, string> = {
 export default function About() {
   const { t } = useTranslation();
   const [members, setMembers] = useState<DiscordUser[]>([]);
+  const [teamRoles, setTeamRoles] = useState<Record<string, string>>({});
   const [presence, setPresence] = useState<Record<string, Presence>>({});
   const [guild, setGuild] = useState<DiscordGuild | null>(null);
   const [projectStats, setProjectStats] = useState<ProjectStats | null>(null);
@@ -124,10 +125,13 @@ export default function About() {
       try {
         const teamRes = await fetch(`${API_BASE_URL}/v1/team`);
         const team = await teamRes.json();
-        const ids: string[] = team.discordIds || [];
+        const teamMembers: { id: string; role?: string }[] = team.members || [];
+        setTeamRoles(
+          Object.fromEntries(teamMembers.map((m) => [m.id, m.role || ""]))
+        );
         const users = await Promise.all(
-          ids.map(async (id) => {
-            const res = await fetch(`${API_BASE_URL}/v1/discord-user/${id}`);
+          teamMembers.map(async (m) => {
+            const res = await fetch(`${API_BASE_URL}/v1/discord-user/${m.id}`);
             if (!res.ok) return null;
             return (await res.json()) as DiscordUser;
           })
@@ -146,7 +150,7 @@ export default function About() {
       try {
         const teamRes = await fetch(`${API_BASE_URL}/v1/team`);
         const team = await teamRes.json();
-        const ids: string[] = team.discordIds || [];
+        const ids: string[] = (team.members || []).map((m: any) => m.id);
         const pres = await Promise.all(
           ids.map(async (id) => {
             const res = await fetch(`${API_BASE_URL}/v1/discord-presence/${id}`);
@@ -335,6 +339,11 @@ export default function About() {
                   <span className="mt-3 font-semibold text-foreground">
                     {member.global_name || member.username}
                   </span>
+                  {teamRoles[member.id] && (
+                    <span className="mt-1 inline-block px-2 py-0.5 rounded-full bg-primary/15 text-primary text-xs font-medium">
+                      {teamRoles[member.id]}
+                    </span>
+                  )}
                   {member.discriminator !== "0" && (
                     <span className="text-sm text-muted-foreground">
                       {member.username}#{member.discriminator}
