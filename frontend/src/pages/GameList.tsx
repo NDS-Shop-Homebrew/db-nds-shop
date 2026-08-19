@@ -1,9 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Search, Grid3X3, List, ArrowUpDown, Sparkles, X } from "lucide-react";
-import { Input } from "../components/ui/input";
+import { Search, Grid3X3, List, ArrowUpDown, Sparkles, X, SearchX } from "lucide-react";
+import { Skeleton } from "../components/ui/skeleton";
+import { Badge } from "../components/ui/badge";
+import { ToggleGroup, ToggleGroupItem } from "../components/ui/toggle-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "../components/ui/empty";
+import { InputGroup, InputGroupInput, InputGroupText } from "../components/ui/input-group";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
 
@@ -23,10 +29,10 @@ type ViewMode = "grid" | "list";
 
 function GameSkeleton() {
   return (
-    <div className="animate-pulse">
-      <div className="aspect-square rounded-xl bg-muted/60 mb-3" />
-      <div className="h-3 w-3/4 rounded bg-muted mb-2" />
-      <div className="h-3 w-1/2 rounded bg-muted" />
+    <div className="space-y-3">
+      <Skeleton className="aspect-square rounded-xl" />
+      <Skeleton className="h-3 w-3/4" />
+      <Skeleton className="h-3 w-1/2" />
     </div>
   );
 }
@@ -86,14 +92,11 @@ export default function GameList() {
   };
 
   const SortHeader = ({ field, label }: { field: SortOption; label: string }) => (
-    <th
-      className="p-3 text-left cursor-pointer select-none whitespace-nowrap"
-      onClick={() => toggleSort(field)}
-    >
+    <TableHead className="cursor-pointer select-none whitespace-nowrap" onClick={() => toggleSort(field)}>
       <span className={`inline-flex items-center gap-1 transition-colors ${sortBy === field ? "text-primary font-semibold" : "hover:text-foreground"}`}>
         {label} <ArrowUpDown size={13} className="opacity-60" />
       </span>
-    </th>
+    </TableHead>
   );
 
   return (
@@ -124,44 +127,45 @@ export default function GameList() {
             )}
           </p>
           <div className="flex items-center gap-2">
-            <div className="relative flex-1 sm:flex-none sm:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder={t("gameList.searchPlaceholder")}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="pl-9 w-full"
-              />
+            <div className="flex-1 sm:flex-none sm:w-64">
+              <InputGroup>
+                <InputGroupText>
+                  <Search className="size-4 text-muted-foreground" />
+                </InputGroupText>
+                <InputGroupInput
+                  placeholder={t("gameList.searchPlaceholder")}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </InputGroup>
             </div>
-            <div className="flex border border-input rounded-lg overflow-hidden shrink-0">
-              <button onClick={() => setView("grid")} className={`p-2.5 ${view === "grid" ? "bg-primary text-white" : "text-muted-foreground hover:bg-muted"}`} title="Grille">
+            <ToggleGroup type="single" value={view} onValueChange={(v) => v && setView(v as ViewMode)} variant="outline">
+              <ToggleGroupItem value="grid" title="Grille" aria-label="Grille">
                 <Grid3X3 size={16} />
-              </button>
-              <button onClick={() => setView("list")} className={`p-2.5 ${view === "list" ? "bg-primary text-white" : "text-muted-foreground hover:bg-muted"}`} title="Liste">
+              </ToggleGroupItem>
+              <ToggleGroupItem value="list" title="Liste" aria-label="Liste">
                 <List size={16} />
-              </button>
-            </div>
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
         </div>
 
         {/* Filtres actifs */}
         <div className="flex flex-wrap items-center gap-2">
-          <select
-            value={filterSystem}
-            onChange={(e) => setFilterSystem(e.target.value)}
-            className="h-9 rounded-lg border border-input bg-background px-3 text-sm"
-          >
-            {systems.map((s) => (
-              <option key={s} value={s}>{s === "all" ? t("gameList.all") : s}</option>
-            ))}
-          </select>
+          <Select value={filterSystem} onValueChange={setFilterSystem}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={t("gameList.all")} />
+            </SelectTrigger>
+            <SelectContent>
+              {systems.map((s) => (
+                <SelectItem key={s} value={s}>{s === "all" ? t("gameList.all") : s}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           {regionFilter && (
-            <button
-              onClick={() => setSearchParams({})}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary text-primary text-sm font-medium hover:bg-secondary/70 transition-colors"
-            >
+            <Badge variant="secondary" className="cursor-pointer hover:bg-secondary/70" onClick={() => setSearchParams({})}>
               {regionFilter} <X size={14} />
-            </button>
+            </Badge>
           )}
         </div>
       </div>
@@ -181,46 +185,51 @@ export default function GameList() {
       ) : (
         <div className="rounded-xl border border-border overflow-hidden bg-card">
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-muted/50 text-sm text-muted-foreground">
-                  <th className="p-3 text-left w-14"></th>
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-muted/50 hover:bg-muted/50">
+                  <TableHead className="w-14"></TableHead>
                   <SortHeader field="title" label={t("gameList.name")} />
                   <SortHeader field="author" label={t("gameList.author")} />
-                  <th className="p-3 text-left hidden sm:table-cell whitespace-nowrap">{t("gameList.version")}</th>
+                  <TableHead className="hidden sm:table-cell whitespace-nowrap">{t("gameList.version")}</TableHead>
                   <SortHeader field="updated" label={t("gameList.updated")} />
-                </tr>
-              </thead>
-              <tbody>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {filtered.map((game, i) => (
-                  <motion.tr
+                  <TableRow
                     key={game.fileName}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: i * 0.01 }}
                     onClick={() => (window.location.href = `/game/${game.fileName}`)}
-                    className="cursor-pointer border-t border-border/50 hover:bg-muted/40 transition-colors text-sm"
+                    className="cursor-pointer hover:bg-muted/40 transition-colors text-sm"
                   >
-                    <td className="p-3">
+                    <TableCell>
                       <div className="w-10 h-10 rounded-lg overflow-hidden bg-muted/60 shrink-0">
                         <SafeImg src={game.icon} alt="" className="w-full h-full object-contain" />
                       </div>
-                    </td>
-                    <td className="p-3 font-medium text-foreground">{game.title}</td>
-                    <td className="p-3 text-muted-foreground">{game.author}</td>
-                    <td className="p-3 text-muted-foreground hidden sm:table-cell whitespace-nowrap">{game.version}</td>
-                    <td className="p-3 text-muted-foreground/60 text-xs whitespace-nowrap">
+                    </TableCell>
+                    <TableCell className="font-medium text-foreground">{game.title}</TableCell>
+                    <TableCell className="text-muted-foreground">{game.author}</TableCell>
+                    <TableCell className="text-muted-foreground hidden sm:table-cell whitespace-nowrap">{game.version}</TableCell>
+                    <TableCell className="text-muted-foreground/60 text-xs whitespace-nowrap">
                       {new Date(game.updated).toLocaleDateString(i18n.language)}
-                    </td>
-                  </motion.tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
         </div>
       )}
       {!loading && filtered.length === 0 && (
-        <p className="text-center text-muted-foreground py-12">{t("gameList.noResults")}</p>
+        <Empty className="border-border mt-8">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <SearchX />
+            </EmptyMedia>
+            <EmptyTitle>{t("gameList.noResults")}</EmptyTitle>
+            <EmptyDescription>{t("gameList.noResultsHint")}</EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       )}
     </div>
     </div>

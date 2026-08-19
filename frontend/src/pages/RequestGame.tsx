@@ -5,6 +5,7 @@ import { Send, Plus, X, CheckCircle2, Info, Gamepad2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
 import DiscordLogin from "../components/DiscordLogin";
 import { API_BASE_URL } from "../config";
 
@@ -144,9 +145,9 @@ export default function RequestGame() {
             {entries.map((entry, i) => (
               <div key={i} className="space-y-2 rounded-lg border border-border p-3">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium">
+                  <Label className="text-sm font-medium">
                     {entries.length > 1 ? `${t("request.gameLabel")} ${i + 1}` : t("request.gameLabel")}
-                  </label>
+                  </Label>
                   {entries.length > 1 && (
                     <button
                       onClick={() => removeEntry(i)}
@@ -206,7 +207,7 @@ export default function RequestGame() {
             </p>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">{t("request.noteLabel")}</label>
+              <Label className="text-sm font-medium">{t("request.noteLabel")}</Label>
               <textarea
                 value={note}
                 onChange={(e) => setNote(e.target.value)}

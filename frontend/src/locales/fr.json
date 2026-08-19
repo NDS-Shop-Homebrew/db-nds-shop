@@ -32,6 +32,7 @@
   },
   "favorites": {
     "empty": "Vous n'avez aucun jeu en favori pour le moment.",
+    "emptyHint": "Parcourez le catalogue et ajoutez vos jeux préférés.",
     "remove": "Retirer des favoris",
     "subtitle": "Retrouvez ici tous les jeux que vous avez ajoutés à vos favoris."
   },
@@ -46,7 +47,8 @@
     "version": "Version",
     "updated": "Mis à jour",
     "all": "Tous les systèmes",
-    "noResults": "Aucun jeu trouvé"
+    "noResults": "Aucun jeu trouvé",
+    "noResultsHint": "Essayez de modifier votre recherche ou vos filtres."
   },
   "home": {
     "tagline": "Votre base de données Nintendo DS ultime",
@@ -143,7 +145,10 @@
     "updated": "Mis à jour :",
     "screenshots": "Captures d'écran",
     "not_found": "Jeu introuvable",
-    "related": "Jeux similaires"
+    "related": "Jeux similaires",
+    "addFav": "Ajouter aux favoris",
+    "removeFav": "Retirer des favoris",
+    "share": "Copier le lien"
   },
   "privacy": {
     "title": "Politique de confidentialité",

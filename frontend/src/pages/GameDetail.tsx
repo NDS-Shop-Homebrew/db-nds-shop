@@ -3,6 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, Download, Heart, Share2, ChevronLeft, ChevronRight, ExternalLink, Book } from "lucide-react";
+import { Skeleton } from "../components/ui/skeleton";
+import { Badge } from "../components/ui/badge";
+import { Dialog, DialogContent, DialogTitle } from "../components/ui/dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../components/ui/tooltip";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
 
@@ -99,10 +103,10 @@ export default function GameDetail() {
 
   if (!game) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-12 animate-pulse space-y-4">
-        <div className="h-8 w-1/3 rounded bg-muted" />
-        <div className="h-56 rounded-xl bg-muted" />
-        <div className="h-4 w-1/2 rounded bg-muted" />
+      <div className="max-w-4xl mx-auto px-4 py-12 space-y-4">
+        <Skeleton className="h-8 w-1/3" />
+        <Skeleton className="h-56 rounded-xl" />
+        <Skeleton className="h-4 w-1/2" />
       </div>
     );
   }
@@ -164,20 +168,32 @@ export default function GameDetail() {
               <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
                 <span>{t("gameDetail.download")}</span>
                 <div className="flex gap-2">
-                  <button
-                    onClick={() => toggle(game.fileName)}
-                    className={`p-2 rounded-lg border transition-colors ${isFav ? "bg-red-50 border-red-200 text-red-500" : "border-border text-muted-foreground hover:text-red-400"}`}
-                    title="Favori"
-                  >
-                    <Heart size={18} fill={isFav ? "currentColor" : "none"} />
-                  </button>
-                  <button
-                    onClick={() => navigator.clipboard?.writeText(window.location.href)}
-                    className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary transition-colors"
-                    title="Partager"
-                  >
-                    <Share2 size={18} />
-                  </button>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => toggle(game.fileName)}
+                          className={`p-2 rounded-lg border transition-colors ${isFav ? "bg-red-50 border-red-200 text-red-500 dark:bg-red-500/10 dark:border-red-500/30" : "border-border text-muted-foreground hover:text-red-400"}`}
+                          aria-label="Favori"
+                        >
+                          <Heart size={18} fill={isFav ? "currentColor" : "none"} />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>{isFav ? t("gameDetail.removeFav") : t("gameDetail.addFav")}</TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => navigator.clipboard?.writeText(window.location.href)}
+                          className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary transition-colors"
+                          aria-label="Partager"
+                        >
+                          <Share2 size={18} />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>{t("gameDetail.share")}</TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -218,22 +234,16 @@ export default function GameDetail() {
               </p>
               <div className="flex flex-wrap gap-3">
                 {ndsdb.genres?.filter(Boolean).map((g: string) => (
-                  <span key={g} className="px-3 py-1 rounded-full bg-secondary text-primary text-xs font-medium">{g}</span>
+                  <Badge key={g} variant="secondary">{g}</Badge>
                 ))}
                 {ndsdb.developer && (
-                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
-                    {ndsdb.developer}
-                  </span>
+                  <Badge variant="outline">{ndsdb.developer}</Badge>
                 )}
                 {ndsdb.rating_system?.name && (
-                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
-                    {ndsdb.rating_system.name} : {ndsdb.rating_system.age}+
-                  </span>
+                  <Badge variant="outline">{ndsdb.rating_system.name} : {ndsdb.rating_system.age}+</Badge>
                 )}
                 {ndsdb.release_date && (
-                  <span className="text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
-                    Sortie : {ndsdb.release_date}
-                  </span>
+                  <Badge variant="outline">Sortie : {ndsdb.release_date}</Badge>
                 )}
               </div>
             </div>
@@ -290,7 +300,7 @@ export default function GameDetail() {
               <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{t("gameDetail.categories")}</h3>
               <div className="flex flex-wrap gap-2">
                 {game.categories.map((cat) => (
-                  <span key={cat} className="px-3 py-1 rounded-full bg-secondary text-primary text-xs font-medium">{cat}</span>
+                  <Badge key={cat} variant="secondary">{cat}</Badge>
                 ))}
               </div>
             </div>
@@ -312,19 +322,22 @@ export default function GameDetail() {
 
       {/* Lightbox */}
       {lightboxIdx !== null && gallery[lightboxIdx] && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={() => setLightboxIdx(null)}>
-          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + gallery.length) % gallery.length); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
-            <ChevronLeft size={28} />
-          </button>
-          <img src={gallery[lightboxIdx].url} alt="" className="max-w-[90vw] max-h-[90vh] rounded-xl" onClick={(e) => e.stopPropagation()} />
-          <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % gallery.length); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
-            <ChevronRight size={28} />
-          </button>
-          <button onClick={() => setLightboxIdx(null)} className="absolute top-4 right-4 text-white/60 hover:text-white text-2xl">✕</button>
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/60">{lightboxIdx + 1} / {gallery.length}</div>
-        </div>
+        <Dialog open onOpenChange={(open) => !open && setLightboxIdx(null)}>
+          <DialogTitle className="sr-only">{game.title}</DialogTitle>
+          <DialogContent showCloseButton={false} className="sm:max-w-none border-0 bg-transparent p-0 shadow-none">
+            <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + gallery.length) % gallery.length); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+              <ChevronLeft size={28} />
+            </button>
+            <img src={gallery[lightboxIdx].url} alt="" className="max-w-[90vw] max-h-[90vh] rounded-xl mx-auto" onClick={(e) => e.stopPropagation()} />
+            <button onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % gallery.length); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+              <ChevronRight size={28} />
+            </button>
+            <button onClick={() => setLightboxIdx(null)} className="absolute top-4 right-4 text-white/60 hover:text-white text-2xl">✕</button>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/60">{lightboxIdx + 1} / {gallery.length}</div>
+          </DialogContent>
+        </Dialog>
       )}
     </div>
   );

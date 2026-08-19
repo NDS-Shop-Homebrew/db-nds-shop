@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Badge } from "../components/ui/badge";
+import { Spinner } from "../components/ui/spinner";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../components/ui/tooltip";
 
 interface Endpoint {
   method: string;
@@ -100,9 +103,7 @@ export default function Docs() {
             {group.items.map((endpoint) => (
               <div key={endpoint.path} className="rounded-xl border border-border bg-card overflow-hidden">
                 <div className="flex flex-wrap items-center gap-3 p-4">
-                  <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${METHOD_COLORS[endpoint.method]}`}>
-                    {endpoint.method}
-                  </span>
+                  <Badge className={METHOD_COLORS[endpoint.method]}>{endpoint.method}</Badge>
                   <code className="font-mono text-sm text-foreground flex-1 min-w-0">{endpoint.path}</code>
                   <p className="text-sm text-muted-foreground w-full sm:w-auto sm:flex-1 sm:text-right">
                     {t(endpoint.descKey)}
@@ -120,12 +121,19 @@ export default function Docs() {
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-xs font-semibold uppercase text-muted-foreground">{t("docs.request")}</p>
-                        <button
-                          onClick={() => copyCode(`curl "${BASE}${endpoint.example}"`)}
-                          className="text-xs font-medium text-primary hover:underline"
-                        >
-                          {copied ? t("docs.copied") : t("docs.copy")}
-                        </button>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <button
+                                onClick={() => copyCode(`curl "${BASE}${endpoint.example}"`)}
+                                className="text-xs font-medium text-primary hover:underline"
+                              >
+                                {copied ? t("docs.copied") : t("docs.copy")}
+                              </button>
+                            </TooltipTrigger>
+                            <TooltipContent>{copied ? t("docs.copied") : t("docs.copy")}</TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       </div>
                       <pre className="rounded-lg bg-muted p-3 text-sm font-mono overflow-x-auto">
                         <code>{`curl "${BASE}${endpoint.example}"`}</code>
@@ -136,7 +144,13 @@ export default function Docs() {
                         {t("docs.response")}
                       </p>
                       <pre className="rounded-lg bg-muted p-3 text-sm font-mono overflow-x-auto max-h-80">
-                        {loading ? t("docs.load") : <code>{response || t("docs.no_content")}</code>}
+                        {loading ? (
+                          <span className="flex items-center gap-2">
+                            <Spinner className="size-4" /> {t("docs.load")}
+                          </span>
+                        ) : (
+                          <code>{response || t("docs.no_content")}</code>
+                        )}
                       </pre>
                     </div>
                   </div>

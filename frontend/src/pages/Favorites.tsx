@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Heart } from "lucide-react";
+import { Skeleton } from "../components/ui/skeleton";
+import { Button } from "../components/ui/button";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "../components/ui/empty";
 import GameCard from "../components/GameCard";
 
 interface Game {
@@ -54,21 +58,29 @@ export default function Favorites() {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
       {loading ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 animate-pulse">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i}>
-              <div className="aspect-square rounded-xl bg-muted/60 mb-3" />
-              <div className="h-3 w-3/4 rounded bg-muted" />
+            <div key={i} className="space-y-3">
+              <Skeleton className="aspect-square rounded-xl" />
+              <Skeleton className="h-3 w-3/4" />
             </div>
           ))}
         </div>
       ) : games.length === 0 ? (
-        <div className="text-center py-16">
-          <p className="text-muted-foreground mb-4">{t("favorites.empty")}</p>
-          <Link to="/game-list" className="text-primary hover:underline font-medium">
-            {t("nav.gameList")}
-          </Link>
-        </div>
+        <Empty className="border-border">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Heart />
+            </EmptyMedia>
+            <EmptyTitle>{t("favorites.empty")}</EmptyTitle>
+            <EmptyDescription>{t("favorites.emptyHint")}</EmptyDescription>
+          </EmptyHeader>
+          <EmptyContent>
+            <Link to="/game-list" className="inline-flex">
+              <Button>{t("nav.gameList")}</Button>
+            </Link>
+          </EmptyContent>
+        </Empty>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {games.map((game, i) => (

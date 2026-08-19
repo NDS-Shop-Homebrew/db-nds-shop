@@ -6,6 +6,9 @@ import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "../components/ui/dialog";
+import { Skeleton } from "../components/ui/skeleton";
+import { Badge } from "../components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
 
@@ -23,10 +26,10 @@ interface Game {
 
 function GameSkeleton() {
   return (
-    <div className="animate-pulse">
-      <div className="aspect-square rounded-xl bg-muted/60 mb-3" />
-      <div className="h-3 w-3/4 rounded bg-muted mb-2" />
-      <div className="h-3 w-1/2 rounded bg-muted" />
+    <div className="space-y-3">
+      <Skeleton className="aspect-square rounded-xl" />
+      <Skeleton className="h-3 w-3/4" />
+      <Skeleton className="h-3 w-1/2" />
     </div>
   );
 }
@@ -176,12 +179,10 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <div className="flex flex-wrap justify-center gap-3">
           {regions.map((region) => (
-            <Link
-              key={region}
-              to={`/game-list?region=${encodeURIComponent(region)}`}
-              className="px-5 py-2 rounded-full border border-border bg-card text-sm font-medium text-foreground hover:border-primary/50 hover:text-primary transition-colors"
-            >
-              {region}
+            <Link key={region} to={`/game-list?region=${encodeURIComponent(region)}`} className="inline-flex">
+              <Badge variant="outline" className="px-5 py-2 text-sm font-medium cursor-pointer hover:border-primary/50 hover:text-primary">
+                {region}
+              </Badge>
             </Link>
           ))}
         </div>
@@ -214,7 +215,7 @@ export default function Home() {
         <h2 className="text-xl font-bold text-foreground mb-6 text-center">
           {t("home.faq.title")}
         </h2>
-        <div className="space-y-4">
+        <Accordion type="multiple" className="space-y-4">
           {[
             { q: "home.faq.q1", a: "home.faq.a1" },
             { q: "home.faq.q2", a: "home.faq.a2" },
@@ -225,13 +226,16 @@ export default function Home() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-xl border border-border bg-card p-5"
             >
-              <h3 className="font-semibold text-foreground mb-1">{t(item.q)}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{t(item.a)}</p>
+              <AccordionItem value={`faq-${i}`} className="rounded-xl border border-border bg-card px-5 shadow-sm">
+                <AccordionTrigger className="font-semibold text-foreground">{t(item.q)}</AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                  {t(item.a)}
+                </AccordionContent>
+              </AccordionItem>
             </motion.div>
           ))}
-        </div>
+        </Accordion>
       </div>
     </div>
   );

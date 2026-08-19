@@ -32,6 +32,7 @@
   },
   "favorites": {
     "empty": "You don't have any favorite games yet.",
+    "emptyHint": "Browse the catalog and add your favorite games.",
     "remove": "Remove from favorites",
     "subtitle": "Find all the games you added to your favorites here."
   },
@@ -46,7 +47,8 @@
     "version": "Version",
     "updated": "Updated at",
     "all": "All Systems",
-    "noResults": "No games found"
+    "noResults": "No games found",
+    "noResultsHint": "Try adjusting your search or filters."
   },
   "home": {
     "tagline": "Your ultimate Nintendo DS game database",
@@ -143,7 +145,10 @@
     "updated": "Updated:",
     "screenshots": "Screenshots",
     "not_found": "Game not found",
-    "related": "Related Games"
+    "related": "Related Games",
+    "addFav": "Add to favorites",
+    "removeFav": "Remove from favorites",
+    "share": "Copy link"
   },
   "privacy": {
     "title": "Privacy Policy",

@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
+import { Badge } from "../components/ui/badge";
 import { API_BASE_URL } from "../config";
 
 
@@ -326,11 +328,10 @@ export default function About() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img
-                        src={getAvatarUrl(member)}
-                        alt={member.username}
-                        className="w-24 h-24 rounded-full border-4 border-background shadow-lg"
-                      />
+                      <Avatar className="w-24 h-24 border-4 border-background shadow-lg">
+                        <AvatarImage src={getAvatarUrl(member)} alt={member.username} />
+                        <AvatarFallback>{member.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+                      </Avatar>
                     </a>
                     <span
                       className={`absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-background ${STATUS_COLORS[status]}`}
@@ -340,9 +341,7 @@ export default function About() {
                     {member.global_name || member.username}
                   </span>
                   {teamRoles[member.id] && (
-                    <span className="mt-1 inline-block px-2 py-0.5 rounded-full bg-primary/15 text-primary text-xs font-medium">
-                      {teamRoles[member.id]}
-                    </span>
+                    <Badge className="mt-1 bg-primary/15 text-primary hover:bg-primary/15">{teamRoles[member.id]}</Badge>
                   )}
                   {member.discriminator !== "0" && (
                     <span className="text-sm text-muted-foreground">

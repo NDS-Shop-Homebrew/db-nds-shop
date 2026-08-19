@@ -1,4 +1,5 @@
 import { Card, CardContent } from "../components/ui/card";
+import { Alert, AlertDescription } from "../components/ui/alert";
 import { motion } from "framer-motion";
 import { FileText, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -58,9 +59,9 @@ export default function Dmca() {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {t("dmca.compliance.content")}
                   </p>
-                  <p className="font-medium text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
-                    {t("dmca.compliance.important")}
-                  </p>
+                  <Alert variant="destructive">
+                    <AlertDescription>{t("dmca.compliance.important")}</AlertDescription>
+                  </Alert>
                 </>
               )}
 
@@ -101,9 +102,9 @@ export default function Dmca() {
                   >
                     <Mail size={14} /> {t("dmca.filing.mail")}
                   </a>
-                  <p className="font-medium text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
-                    {t("dmca.filing.content2")}
-                  </p>
+                  <Alert variant="destructive">
+                    <AlertDescription>{t("dmca.filing.content2")}</AlertDescription>
+                  </Alert>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {t("dmca.filing.content3")}
                   </p>
