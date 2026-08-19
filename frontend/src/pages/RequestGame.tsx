@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Send, Plus, X, CheckCircle2, Info } from "lucide-react";
+import { Send, Plus, X, CheckCircle2, Info, Gamepad2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -116,7 +116,18 @@ export default function RequestGame() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
+    <div>
+      <section className="dsi-gradient text-white">
+        <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <Gamepad2 className="w-12 h-12 mx-auto mb-4" />
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("request.title")}</h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto">{t("request.subtitle")}</p>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="max-w-3xl mx-auto px-4 py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -218,6 +229,7 @@ export default function RequestGame() {
           </CardContent>
         </Card>
       </motion.div>
+      </div>
     </div>
   );
 }
