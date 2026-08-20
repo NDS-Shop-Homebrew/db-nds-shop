@@ -3,30 +3,19 @@ import { useTranslation } from "react-i18next";
 import { BookOpen, ListOrdered } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta";
 
-// ⚠ Le contenu des étapes est écrit ici (en français) : remplissez chaque chaîne
-// de la liste `steps`. Tant qu'une étape est vide, elle s'affiche « À écrire ».
-const SECTIONS = [
-  {
-    title: "Prérequis",
-    steps: [""],
-  },
-  {
-    title: "Installation",
-    steps: [""],
-  },
-  {
-    title: "Ajouter un jeu à la console",
-    steps: [""],
-  },
-  {
-    title: "Résolution de problèmes",
-    steps: [""],
-  },
-] as const;
+interface Section {
+  title: string;
+  steps: string[];
+}
 
+// ⚠ Le contenu du tutoriel se modifie dans les fichiers de langue :
+//   src/locales/fr.json et src/locales/en.json (clé "tutorial.sections").
 export default function Tutorial() {
   const { t } = useTranslation();
   usePageMeta(t("tutorial.title") + " — NDS-Shop");
+
+  const sections = t("tutorial.sections", { returnObjects: true }) as Section[];
+  const emptyLabel = t("tutorial.empty_step");
 
   return (
     <div>
@@ -41,7 +30,7 @@ export default function Tutorial() {
       </section>
 
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-8">
-        {SECTIONS.map((section, i) => (
+        {Array.isArray(sections) && sections.map((section, i) => (
           <div key={section.title} className="rounded-xl bg-card border border-border p-8 shadow-sm">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
               <ListOrdered size={20} className="text-primary" />
@@ -56,7 +45,7 @@ export default function Tutorial() {
                   {step ? (
                     <p className="text-muted-foreground leading-relaxed">{step}</p>
                   ) : (
-                    <p className="text-muted-foreground/50 italic">À écrire…</p>
+                    <p className="text-muted-foreground/50 italic">{emptyLabel}</p>
                   )}
                 </li>
               ))}

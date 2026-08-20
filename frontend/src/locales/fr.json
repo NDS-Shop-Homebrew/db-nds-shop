@@ -118,7 +118,49 @@
   "tutorial": {
     "title": "Tutoriel",
     "subtitle": "Installer et utiliser NDS-Shop sur votre console Nintendo 3DS.",
-    "coming_soon": "Le contenu du tutoriel arrive bientôt. Revenez prochainement !"
+    "empty_step": "À écrire…",
+    "sections": [
+      {
+        "title": "Prérequis",
+        "steps": [
+          "Une Nintendo 3DS / 2DS (XL) avec le firmware modifié (Luma3DS via boot9strap).",
+          "Une carte SD avec au moins 500 Mo d'espace libre.",
+          "L'application FBI installée (elle permet de scanner le QR code pour installer le CIA).",
+          "L'application Universal-Updater installée (utile pour l'étape suivante).",
+          "Le QR code ou le lien de téléchargement du fichier NDS-Shop.cia."
+        ]
+      },
+      {
+        "title": "Installation",
+        "steps": [
+          "Ouvre l'application FBI sur ta console.",
+          "Va dans « Remote Install », puis « Scan QR Code ».",
+          "Scanne le QR code du NDS-Shop.cia.",
+          "FBI télécharge puis installe automatiquement le fichier. Confirme l'installation.",
+          "Retourne au menu HOME : l'icône NDS-Shop apparaît."
+        ]
+      },
+      {
+        "title": "Installer le SD card fowarder pack",
+        "steps": [
+          "Ouvre l'application Universal-Updater.",
+          "Recherche le « SD card fowarder pack » dans la liste des logiciels.",
+          "Sélectionne-le et installe-le.",
+          "Ce pack permet d'afficher correctement les jeux NDS (icônes, titres) dans le menu HOME de la console."
+        ]
+      },
+      {
+        "title": "Ajouter un jeu à la console",
+        "steps": [
+          "Ouvre l'application NDS-Shop.",
+          "Parcours le catalogue ou utilise la barre de recherche pour trouver un jeu.",
+          "Sélectionne le jeu, puis appuie sur « Télécharger ».",
+          "Attends la fin du téléchargement.",
+          "Installe le jeu (le shop gère l'installation, sinon passe par FBI).",
+          "Le jeu est maintenant disponible dans le menu HOME."
+        ]
+      }
+    ]
   },
   "docs": {
     "title": "Documentation API",

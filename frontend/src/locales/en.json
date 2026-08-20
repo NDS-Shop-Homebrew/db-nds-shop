@@ -118,7 +118,49 @@
   "tutorial": {
     "title": "Tutorial",
     "subtitle": "How to install and use NDS-Shop on your Nintendo 3DS console.",
-    "coming_soon": "Tutorial content is coming soon. Stay tuned!"
+    "empty_step": "To be written…",
+    "sections": [
+      {
+        "title": "Prerequisites",
+        "steps": [
+          "A Nintendo 3DS / 2DS (XL) with a modified firmware (Luma3DS via boot9strap).",
+          "An SD card with at least 500 MB of free space.",
+          "The FBI app installed (it lets you scan the QR code to install the CIA).",
+          "The Universal-Updater app installed (needed for the next step).",
+          "The QR code or download link for the NDS-Shop.cia file."
+        ]
+      },
+      {
+        "title": "Installation",
+        "steps": [
+          "Open the FBI app on your console.",
+          "Go to \"Remote Install\", then \"Scan QR Code\".",
+          "Scan the QR code of the NDS-Shop.cia.",
+          "FBI downloads and installs the file automatically. Confirm the installation.",
+          "Go back to the HOME menu: the NDS-Shop icon appears."
+        ]
+      },
+      {
+        "title": "Install the SD card fowarder pack",
+        "steps": [
+          "Open the Universal-Updater app.",
+          "Search for the \"SD card fowarder pack\" in the software list.",
+          "Select it and install it.",
+          "This pack makes NDS games display correctly (icons, titles) in the console's HOME menu."
+        ]
+      },
+      {
+        "title": "Add a game to the console",
+        "steps": [
+          "Open the NDS-Shop app.",
+          "Browse the catalog or use the search bar to find a game.",
+          "Select the game, then press \"Download\".",
+          "Wait for the download to finish.",
+          "Install the game (the shop handles the installation, otherwise use FBI).",
+          "The game is now available in the HOME menu."
+        ]
+      }
+    ]
   },
   "docs": {
     "title": "API Documentation",
