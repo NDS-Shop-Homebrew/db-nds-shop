@@ -92,8 +92,8 @@ app.get("/rss.xml", (_req, res) => {
     .type("application/rss+xml")
     .send(
       `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>NDS-Shop</title>\n` +
-        `  <link>${SITE_URL}</link>\n  <description>Nouveaux jeux Nintendo DS disponibles sur NDS-Shop</description>\n` +
-        `  <language>fr</language>\n  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>` +
+        `  <link>${SITE_URL}</link>\n  <description>New Nintendo DS games available on NDS-Shop</description>\n` +
+        `  <language>en</language>\n  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>` +
         `${items}\n</channel>\n</rss>`
     );
 });
