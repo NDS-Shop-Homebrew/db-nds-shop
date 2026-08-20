@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Github, Shield, FileText } from "lucide-react";
+import { Github, Shield, FileText, Rss } from "lucide-react";
 
 export default function Footer() {
   const version = import.meta.env.VITE_APP_VERSION || "dev";
@@ -17,6 +17,7 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground">{t("footer.copyright", { year: new Date().getFullYear() })}</p>
             <div className="flex gap-3 mt-4">
               <a href="https://github.com/TheRinzler65" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Github size={18} /></a>
+              <a href="/rss.xml" title={t("footer.rss")} className="text-muted-foreground hover:text-primary transition-colors"><Rss size={18} /></a>
               <a href="/privacy" className="text-muted-foreground hover:text-primary transition-colors"><Shield size={18} /></a>
               <a href="/dmca" className="text-muted-foreground hover:text-primary transition-colors"><FileText size={18} /></a>
             </div>

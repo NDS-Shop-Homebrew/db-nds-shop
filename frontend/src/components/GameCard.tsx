@@ -30,7 +30,7 @@ export default function GameCard({ game, isFav, onToggleFav, showAuthor = true, 
   return (
     <div className="relative group">
       <Link to={`/game/${game.fileName}`} className="block group">
-        <div className="rounded-xl overflow-hidden bg-muted/60 mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all aspect-square">
+        <div className="relative rounded-xl overflow-hidden bg-muted/60 mb-3 ring-1 ring-border group-hover:ring-primary/50 transition-all aspect-square">
           <SafeImg
             src={gameBoxart(game)}
             alt={game.title}

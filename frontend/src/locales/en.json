@@ -261,7 +261,8 @@
     "dmca": "DMCA Notice",
     "copyright": "©  {{year}} NDS-Shop. All rights reserved.",
     "developedBy": "Developed with ❤️ by {{author}}",
-    "version": "Version:"
+    "version": "Version:",
+    "rss": "RSS feed of new games"
   },
   "notFound": {
     "title": "404",
