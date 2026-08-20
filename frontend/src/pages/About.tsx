@@ -47,7 +47,7 @@ interface ProjectStats {
 
 const DISCORD_INVITE = "https://discord.gg/udw7Z4mdKJ";
 
-// --- Helpers ---
+
 const getAvatarUrl = (user: DiscordUser) => {
   if (user.avatar) {
     return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
@@ -65,14 +65,14 @@ const getBannerUrl = (user: DiscordUser) => {
 const getActivityImageUrl = (activity: any) => {
   if (!activity.assets?.large_image) return null;
 
-  // Spotify
+  
   if (activity.assets.large_image.startsWith("spotify:")) {
     return `https://i.scdn.co/image/${
       activity.assets.large_image.split(":")[1]
     }`;
   }
 
-  // External MP image
+  
   if (activity.assets.large_image.startsWith("mp:external")) {
     return activity.assets.large_image.replace(
       /^mp:external\/[^\/]+\/(http[s]?:\/\/.*)/,
@@ -80,7 +80,7 @@ const getActivityImageUrl = (activity: any) => {
     );
   }
 
-  // Discord app image
+  
   if (activity.application_id) {
     return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
   }
@@ -123,7 +123,7 @@ export default function About() {
   const [guild, setGuild] = useState<DiscordGuild | null>(null);
   const [projectStats, setProjectStats] = useState<ProjectStats | null>(null);
 
-  // Fetch team (IDs depuis /api/v1/team)
+  
   useEffect(() => {
     const fetchMembers = async () => {
       try {
@@ -148,7 +148,7 @@ export default function About() {
     fetchMembers();
   }, []);
 
-  // Fetch presence
+  
   useEffect(() => {
     const fetchPresence = async () => {
       try {
@@ -177,7 +177,7 @@ export default function About() {
     return () => clearInterval(interval);
   }, []);
 
-  // Fetch guild
+  
   useEffect(() => {
     fetch(`${API_BASE_URL}/v1/discord-guild`)
       .then((r) => r.json())
@@ -187,7 +187,7 @@ export default function About() {
       .catch(console.error);
   }, []);
 
-  // Fetch project stats
+  
   useEffect(() => {
     fetch(`${API_BASE_URL}/v1/stats`)
       .then((r) => (r.ok ? r.json() : null))
@@ -197,7 +197,7 @@ export default function About() {
 
   return (
     <div className="space-y-16">
-      {/* Hero */}
+      {}
       <section className="dsi-gradient text-white">
         <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div
@@ -217,7 +217,7 @@ export default function About() {
       </section>
 
       <div className="p-8 max-w-6xl mx-auto space-y-16">
-      {/* Intro */}
+      {}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -232,7 +232,7 @@ export default function About() {
         </p>
       </motion.div>
 
-      {/* Discord server */}
+      {}
       {guild && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -287,7 +287,7 @@ export default function About() {
         </motion.div>
       )}
 
-      {/* Team */}
+      {}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -351,7 +351,7 @@ export default function About() {
                     </span>
                   )}
 
-                  {/* Activities */}
+                  {}
                   {userPresence?.activities?.length ? (
                     <div className="mt-4 space-y-2 w-full">
                       {userPresence.activities.map((activity, i) => (
@@ -401,7 +401,7 @@ export default function About() {
         </div>
       </motion.div>
 
-      {/* Project */}
+      {}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
