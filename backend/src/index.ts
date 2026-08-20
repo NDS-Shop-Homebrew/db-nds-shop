@@ -76,7 +76,7 @@ app.get("/rss.xml", (_req, res) => {
   const games = loadGames()
     .filter((g) => g.updated)
     .sort((a, b) => String(b.updated).localeCompare(String(a.updated)))
-    .slice(0, 30);
+    .slice(0, 10);
   const items = games
     .map((g) => {
       const link = `${SITE_URL}/game/${escapeXml(g.fileName)}`;
