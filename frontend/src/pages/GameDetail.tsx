@@ -9,6 +9,8 @@ import { Dialog, DialogContent, DialogTitle } from "../components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../components/ui/tooltip";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
+import { usePageMeta } from "../hooks/usePageMeta";
+import { useFavorites } from "../hooks/useFavorites";
 
 interface Download { size: number; size_str: string; url: string; }
 interface Screenshot { description: string; url: string; }
@@ -33,26 +35,13 @@ interface NdsdbMeta {
   rating_system?: { name?: string; age?: string };
 }
 
-function useFavorites() {
-  const [favs, setFavs] = useState<string[]>(() => {
-    try { return JSON.parse(localStorage.getItem("nds-favs") || "[]"); } catch { return []; }
-  });
-  const toggle = (slug: string) => {
-    setFavs((prev) => {
-      const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug];
-      localStorage.setItem("nds-favs", JSON.stringify(next));
-      return next;
-    });
-  };
-  return { favs, toggle };
-}
-
 export default function GameDetail() {
   const { slug } = useParams<{ slug: string }>();
   const [game, setGame] = useState<Game | null>(null);
   const [allGames, setAllGames] = useState<Game[]>([]);
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const { t, i18n } = useTranslation();
+  usePageMeta(game ? `${game.title} — NDS-Shop` : "NDS-Shop");
   const { favs, toggle } = useFavorites();
 
   useEffect(() => {
@@ -65,6 +54,7 @@ export default function GameDetail() {
   }, [slug]);
 
   const [ndsdb, setNdsdb] = useState<NdsdbMeta | null>(null);
+  const [dlCount, setDlCount] = useState<number | null>(null);
 
   useEffect(() => {
     if (!game?.titleId) { setNdsdb(null); return; }
@@ -72,6 +62,14 @@ export default function GameDetail() {
       .then((r) => (r.ok ? r.json() : null))
       .then(setNdsdb);
   }, [game?.titleId]);
+
+  useEffect(() => {
+    if (!game) return;
+    fetch("/api/v1/stats")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((s) => setDlCount(s?.downloads?.byGame?.[game.fileName] ?? null))
+      .catch(() => {});
+  }, [game?.fileName]);
 
   const boxart = game?.screenshots?.find((s) => s.description === "Boxart")?.url || null;
 
@@ -166,7 +164,14 @@ export default function GameDetail() {
           {game.downloads && Object.keys(game.downloads).length > 0 && (
             <div>
               <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
-                <span>{t("gameDetail.download")}</span>
+                <span className="flex items-center gap-3">
+                  {t("gameDetail.download")}
+                  {dlCount != null && dlCount > 0 && (
+                    <span className="text-xs font-normal text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                      {t("gameDetail.downloadsCount", { count: dlCount.toLocaleString(i18n.language) })}
+                    </span>
+                  )}
+                </span>
                 <div className="flex gap-2">
                   <TooltipProvider>
                     <Tooltip>

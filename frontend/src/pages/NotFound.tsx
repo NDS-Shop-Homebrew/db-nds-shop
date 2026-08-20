@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function NotFound() {
   const { t } = useTranslation();
+  usePageMeta("404 — NDS-Shop");
   return (
     <div>
       <section className="dsi-gradient text-white">

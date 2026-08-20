@@ -3,9 +3,11 @@ import { Alert, AlertDescription } from "../components/ui/alert";
 import { motion } from "framer-motion";
 import { FileText, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Dmca() {
   const { t } = useTranslation();
+  usePageMeta(t("dmca.title") + " — NDS-Shop");
 
   const sections = [
     { id: "compliance", title: t("dmca.compliance.title") },

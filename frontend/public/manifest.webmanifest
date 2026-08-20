@@ -1,0 +1,22 @@
+{
+  "name": "NDS-Shop",
+  "short_name": "NDS-Shop",
+  "description": "Téléchargez des jeux Nintendo DS / DSi et 3DS, homebrew et émulateurs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

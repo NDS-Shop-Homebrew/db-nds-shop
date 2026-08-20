@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Send, Plus, X, CheckCircle2, Info, Gamepad2 } from "lucide-react";
+import { Send, Plus, X, CheckCircle2, Info, Gamepad2, ThumbsUp, MessageSquare } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import DiscordLogin from "../components/DiscordLogin";
 import { API_BASE_URL } from "../config";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 interface CatalogGame {
   fileName: string;
@@ -15,6 +16,16 @@ interface CatalogGame {
   author: string;
   version: string;
   systems: string[];
+}
+
+interface RequestEntry {
+  id: string;
+  games: { title: string; systems: string }[];
+  note: string;
+  requester: string | null;
+  createdAt: string;
+  votes: number;
+  hasVoted: boolean;
 }
 
 interface Entry {
@@ -60,17 +71,40 @@ function detectMatch(query: string, catalog: CatalogGame[]): Entry["match"] {
 
 export default function RequestGame() {
   const { t, i18n } = useTranslation();
+  usePageMeta(t("request.title") + " — NDS-Shop");
   const [catalog, setCatalog] = useState<CatalogGame[]>([]);
   const [entries, setEntries] = useState<Entry[]>([{ title: "", systems: "", match: { level: "none", found: [] } }]);
   const [note, setNote] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [requests, setRequests] = useState<RequestEntry[]>([]);
+  const [voteError, setVoteError] = useState(false);
+
+  const loadRequests = () => {
+    fetch(`${API_BASE_URL}/v1/requests`)
+      .then((r) => r.json())
+      .then(setRequests)
+      .catch(() => {});
+  };
 
   useEffect(() => {
+    loadRequests();
     fetch("/games.json")
       .then((r) => r.json())
       .then(setCatalog)
       .catch(() => {});
   }, []);
+
+  const vote = async (id: string) => {
+    const res = await fetch(`${API_BASE_URL}/v1/requests/${id}/vote`, { method: "POST" });
+    if (res.status === 401) {
+      setVoteError(true);
+      return;
+    }
+    if (res.ok) {
+      setVoteError(false);
+      loadRequests();
+    }
+  };
 
   const updateEntry = (i: number, patch: Partial<Entry>) => {
     setEntries((prev) => {
@@ -111,6 +145,7 @@ export default function RequestGame() {
       setStatus("done");
       setEntries([{ title: "", systems: "", match: { level: "none", found: [] } }]);
       setNote("");
+      loadRequests();
     } catch {
       setStatus("error");
     }
@@ -226,6 +261,54 @@ export default function RequestGame() {
             )}
             {status === "error" && (
               <p className="text-sm text-red-600 dark:text-red-400">{t("request.error")}</p>
+            )}
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="mt-8"
+      >
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl flex items-center gap-2">
+              <MessageSquare size={20} /> {t("request.listTitle")}
+            </CardTitle>
+            <CardDescription>{t("request.listSubtitle")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {requests.length === 0 && (
+              <p className="text-sm text-muted-foreground">{t("request.empty")}</p>
+            )}
+            <ul className="space-y-3">
+              {requests.map((r) => (
+                <li key={r.id} className="rounded-lg border border-border p-3 space-y-1.5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="font-medium text-sm break-words">{r.games.map((g) => g.title).join(", ")}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {r.requester ? `${t("request.by")} ${r.requester}` : t("request.anonymous")} ·{" "}
+                        {new Date(r.createdAt).toLocaleDateString(i18n.language)}
+                      </p>
+                      {r.note && <p className="text-xs text-muted-foreground mt-1">{r.note}</p>}
+                    </div>
+                    <Button
+                      variant={r.hasVoted ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => vote(r.id)}
+                      className="shrink-0"
+                    >
+                      <ThumbsUp size={14} /> {r.votes}
+                    </Button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            {voteError && (
+              <p className="text-xs text-red-600 dark:text-red-400 mt-3">{t("request.loginToVote")}</p>
             )}
           </CardContent>
         </Card>

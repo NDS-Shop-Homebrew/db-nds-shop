@@ -2,9 +2,11 @@ import { Card, CardContent } from "../components/ui/card";
 import { motion } from "framer-motion";
 import { Shield, Mail, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function PrivacyPolicy() {
   const { t } = useTranslation();
+  usePageMeta(t("privacy.title") + " — NDS-Shop");
 
   const sections = [
     {

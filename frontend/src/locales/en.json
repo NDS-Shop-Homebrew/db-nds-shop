@@ -22,6 +22,12 @@
     "error": "Something went wrong, please try again later.",
     "addAnother": "Add another game",
     "remove": "Remove this game",
+    "listTitle": "Pending requests",
+    "listSubtitle": "Vote for the games you'd like to see added first.",
+    "empty": "No requests yet. Be the first to suggest a game!",
+    "by": "by",
+    "anonymous": "Anonymous",
+    "loginToVote": "Log in with Discord to vote.",
     "maxGames": "You can request up to {{count}} games.",
     "alreadyInCatalog": "This game is already in the catalog:",
     "similarFound": "Similar games may already exist:",
@@ -46,7 +52,18 @@
     "author": "Author",
     "version": "Version",
     "updated": "Updated at",
+    "sort": "Sort",
+    "popular": "Popular",
+    "downloads": "Downloads",
     "all": "All Systems",
+    "allGenres": "All genres",
+    "allCategories": "All categories",
+    "allLetters": "All",
+    "cat": {
+      "game": "Games",
+      "homebrew": "Homebrew",
+      "emulator": "Emulators"
+    },
     "noResults": "No games found",
     "noResultsHint": "Try adjusting your search or filters."
   },
@@ -56,7 +73,8 @@
     "stats": {
       "games": "Games",
       "systems": "Systems",
-      "updated": "Last updated"
+      "updated": "Last updated",
+      "downloads": "Downloads"
     },
     "download": "Download",
     "scan": "Scan",
@@ -148,7 +166,8 @@
     "related": "Related Games",
     "addFav": "Add to favorites",
     "removeFav": "Remove from favorites",
-    "share": "Copy link"
+    "share": "Copy link",
+    "downloadsCount": "{{count}} downloads"
   },
   "privacy": {
     "title": "Privacy Policy",

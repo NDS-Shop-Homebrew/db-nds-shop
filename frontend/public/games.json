@@ -29,7 +29,10 @@
     "updated": "2024-08-09T21:49:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "animal-crossing---wild-world",
-    "titleId": "ADMP"
+    "titleId": "ADMP",
+    "genres": [
+      "Simulator"
+    ]
   },
   {
     "author": "Nintendo / HUDSON",
@@ -61,7 +64,10 @@
     "updated": "2024-08-22T18:01:00+02:00",
     "version": "(Europe)",
     "fileName": "beyblade-metal-fusion-cyber-pegasus",
-    "titleId": "BBUP"
+    "titleId": "BBUP",
+    "genres": [
+      "Role-playing (RPG)"
+    ]
   },
   {
     "author": "Rising Star Games",
@@ -93,7 +99,10 @@
     "updated": "2024-08-18T22:25:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "bomberman-land-1",
-    "titleId": "ABXP"
+    "titleId": "ABXP",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Rising Star Games",
@@ -125,7 +134,11 @@
     "updated": "2024-08-18T22:25:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "bomberman-land-2",
-    "titleId": "YB2P"
+    "titleId": "YB2P",
+    "genres": [
+      "Puzzle",
+      "Arcade"
+    ]
   },
   {
     "author": "Square Enix",
@@ -157,7 +170,10 @@
     "updated": "2024-08-10T19:42:58+02:00",
     "version": "(Europe) (En,Fr)",
     "fileName": "chrono-trigger",
-    "titleId": "YQUP"
+    "titleId": "YQUP",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "The Game Factory",
@@ -189,7 +205,11 @@
     "updated": "2024-08-10T22:37:58+02:00",
     "version": "(Europe) (En,Fr)",
     "fileName": "code-lyoko-fall-of-x-a-n-a-",
-    "titleId": "CLFP"
+    "titleId": "CLFP",
+    "genres": [
+      "Role-playing (RPG)",
+      "Adventure"
+    ]
   },
   {
     "author": "The Game Factory",
@@ -221,7 +241,11 @@
     "updated": "2024-08-10T22:24:58+02:00",
     "version": "(Europe) (En,Fr,Es,It)",
     "fileName": "code-lyoko",
-    "titleId": "AL5P"
+    "titleId": "AL5P",
+    "genres": [
+      "Role-playing (RPG)",
+      "Adventure"
+    ]
   },
   {
     "author": "Office Create",
@@ -253,7 +277,10 @@
     "updated": "2024-08-10T20:38:58+02:00",
     "version": "(Europe) (En,Fr,It)",
     "fileName": "cooking-mama",
-    "titleId": "ACCX"
+    "titleId": "ACCX",
+    "genres": [
+      "Simulator"
+    ]
   },
   {
     "author": "Nintendo",
@@ -285,7 +312,12 @@
     "updated": "2024-08-18T18:06:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "diddy-kong-racing-ds",
-    "titleId": "AWDP"
+    "titleId": "AWDP",
+    "genres": [
+      "Racing",
+      "Sport",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -317,7 +349,11 @@
     "updated": "2024-08-10T17:26:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It,Nl)",
     "fileName": "dr-kawashimas-brain-training-how-old-is-your-brain",
-    "titleId": "ANDP"
+    "titleId": "ANDP",
+    "genres": [
+      "Puzzle",
+      "Quiz/Trivia"
+    ]
   },
   {
     "author": "Nintendo",
@@ -349,7 +385,12 @@
     "updated": "2024-08-10T20:07:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "dragon-quest-ix---sentinels-of-the-starry-skies",
-    "titleId": "YDQP"
+    "titleId": "YDQP",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -381,7 +422,13 @@
     "updated": "2024-08-11T00:16:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "fire-emblem---shadow-dragon",
-    "titleId": "YFEP"
+    "titleId": "YFEP",
+    "genres": [
+      "Role-playing (RPG)",
+      "Strategy",
+      "Turn-based strategy (TBS)",
+      "Tactical"
+    ]
   },
   {
     "author": "Nintendo / Level-5",
@@ -413,7 +460,10 @@
     "updated": "2024-08-12T21:56:00+02:00",
     "version": "(France)",
     "fileName": "inazuma-eleven-2-tempete-de-feu",
-    "titleId": "BEEF"
+    "titleId": "BEEF",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Nintendo / Level-5",
@@ -445,7 +495,10 @@
     "updated": "2024-08-12T21:56:00+02:00",
     "version": "(France)",
     "fileName": "inazuma-eleven-2-tempete-de-glace",
-    "titleId": "BEBF"
+    "titleId": "BEBF",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Nintendo / Level-5",
@@ -477,7 +530,12 @@
     "updated": "2024-08-10T19:55:58+02:00",
     "version": "(France)",
     "fileName": "inazuma-eleven",
-    "titleId": "YEEF"
+    "titleId": "YEEF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Sport",
+      "Adventure"
+    ]
   },
   {
     "author": "Sensory Sweep Studios",
@@ -509,7 +567,10 @@
     "updated": "2024-08-09T21:49:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "jackassthe-game-ds",
-    "titleId": "YJKP"
+    "titleId": "YJKP",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Nintendo",
@@ -541,7 +602,13 @@
     "updated": "2024-08-13T15:39:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "kirby---mass-attack",
-    "titleId": "TADP"
+    "titleId": "TADP",
+    "genres": [
+      "Platform",
+      "Puzzle",
+      "Hack and slash/Beat 'em up",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -577,7 +644,11 @@
     "updated": "2024-08-10T15:38:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "kirby-super-star-ultra",
-    "titleId": "YKWP"
+    "titleId": "YKWP",
+    "genres": [
+      "Platform",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -609,7 +680,11 @@
     "updated": "2024-08-10T00:15:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "mario--luigi--bowsers-inside-story",
-    "titleId": "CLJP"
+    "titleId": "CLJP",
+    "genres": [
+      "Role-playing (RPG)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -641,7 +716,12 @@
     "updated": "2024-08-10T02:31:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "mario--luigi--partners-in-time",
-    "titleId": "ARMP"
+    "titleId": "ARMP",
+    "genres": [
+      "Puzzle",
+      "Role-playing (RPG)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo/Sega",
@@ -673,7 +753,10 @@
     "updated": "2024-08-10T18:10:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "mario--sonic-at-the-olympic-games",
-    "titleId": "AY9P"
+    "titleId": "AY9P",
+    "genres": [
+      "Sport"
+    ]
   },
   {
     "author": "Sega",
@@ -705,7 +788,10 @@
     "updated": "2024-08-15T21:59:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "mario--sonic-at-the-olympic-winter-games",
-    "titleId": "COLP"
+    "titleId": "COLP",
+    "genres": [
+      "Sport"
+    ]
   },
   {
     "author": "Nintendo",
@@ -737,7 +823,11 @@
     "updated": "2024-08-07T22:14:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "mario-kart-ds",
-    "titleId": "AMCP"
+    "titleId": "AMCP",
+    "genres": [
+      "Racing",
+      "Arcade"
+    ]
   },
   {
     "author": "Nintendo",
@@ -769,7 +859,14 @@
     "updated": "2024-08-09T21:49:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "mario-party-ds",
-    "titleId": "A8TP"
+    "titleId": "A8TP",
+    "genres": [
+      "Puzzle",
+      "Strategy",
+      "Turn-based strategy (TBS)",
+      "Adventure",
+      "Card & Board Game"
+    ]
   },
   {
     "author": "Nintendo",
@@ -805,7 +902,10 @@
     "updated": "2024-08-10T15:52:00+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It)",
     "fileName": "mario-slam-basketball",
-    "titleId": "AB3P"
+    "titleId": "AB3P",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Ubisoft",
@@ -841,7 +941,10 @@
     "updated": "2024-08-14T17:30:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "michael-jackson---the-experience",
-    "titleId": "BVNP"
+    "titleId": "BVNP",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Nintendo",
@@ -877,7 +980,10 @@
     "updated": "2024-08-08T23:02:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "new-super-mario-bros-",
-    "titleId": "A2DP"
+    "titleId": "A2DP",
+    "genres": [
+      "Platform"
+    ]
   },
   {
     "author": "Nintendo",
@@ -909,7 +1015,10 @@
     "updated": "2024-08-12T15:30:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "nintendogs-chihuahua--friends",
-    "titleId": "AD2P"
+    "titleId": "AD2P",
+    "genres": [
+      "Simulator"
+    ]
   },
   {
     "author": "Nintendo",
@@ -941,7 +1050,10 @@
     "updated": "2024-08-12T15:42:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "nintendogs-dachshund--friends",
-    "titleId": "ADGP"
+    "titleId": "ADGP",
+    "genres": [
+      "Simulator"
+    ]
   },
   {
     "author": "Nintendo",
@@ -973,7 +1085,10 @@
     "updated": "2024-08-12T15:55:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "nintendogs-dalmatian--friends",
-    "titleId": "AD7E"
+    "titleId": "AD7E",
+    "genres": [
+      "Simulator"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1005,7 +1120,10 @@
     "updated": "2024-08-12T00:13:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "nintendogs-labrador--friends",
-    "titleId": "AD3P"
+    "titleId": "AD3P",
+    "genres": [
+      "Simulator"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1037,7 +1155,10 @@
     "updated": "2024-08-14T17:22:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "picross-ds",
-    "titleId": "AXPP"
+    "titleId": "AXPP",
+    "genres": [
+      "Puzzle"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1069,7 +1190,12 @@
     "updated": "2024-08-07T17:25:20+02:00",
     "version": "(France)",
     "fileName": "pokemon-diamant",
-    "titleId": "ADAF"
+    "titleId": "ADAF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1101,7 +1227,12 @@
     "updated": "2024-08-07T17:25:20+02:00",
     "version": "(France)",
     "fileName": "pokemon-perle",
-    "titleId": "APAF"
+    "titleId": "APAF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1133,7 +1264,12 @@
     "updated": "2024-08-10T16:26:00+02:00",
     "version": "(France)",
     "fileName": "pokemon-platine",
-    "titleId": "CPUF"
+    "titleId": "CPUF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1165,7 +1301,11 @@
     "updated": "2024-08-23T15:47:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "pokemon-ranger",
-    "titleId": "ARGP"
+    "titleId": "ARGP",
+    "genres": [
+      "Role-playing (RPG)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1197,7 +1337,12 @@
     "updated": "2024-08-10T17:13:00+02:00",
     "version": "(France)",
     "fileName": "pokemon-version-argent-soulsilver",
-    "titleId": "IPGF"
+    "titleId": "IPGF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1229,7 +1374,10 @@
     "updated": "2024-08-12T21:32:00+02:00",
     "version": "(France)",
     "fileName": "pokemon-version-blanche-2",
-    "titleId": "IRDF"
+    "titleId": "IRDF",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1261,7 +1409,10 @@
     "updated": "2024-08-10T16:40:00+02:00",
     "version": "(France)",
     "fileName": "pokemon-version-blanche",
-    "titleId": "IRAF"
+    "titleId": "IRAF",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1293,7 +1444,12 @@
     "updated": "2024-08-12T21:32:00+02:00",
     "version": "(France)",
     "fileName": "pokemon-version-noire-2",
-    "titleId": "IREF"
+    "titleId": "IREF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1325,7 +1481,12 @@
     "updated": "2024-08-10T16:54:00+02:00",
     "version": "(France)",
     "fileName": "pokemon-version-noire",
-    "titleId": "IRBF"
+    "titleId": "IRBF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo / GameFreak",
@@ -1357,7 +1518,12 @@
     "updated": "2024-08-10T17:28:00+02:00",
     "version": "(France)",
     "fileName": "pokemon-version-or-heartgold",
-    "titleId": "IPKF"
+    "titleId": "IPKF",
+    "genres": [
+      "Role-playing (RPG)",
+      "Turn-based strategy (TBS)",
+      "Adventure"
+    ]
   },
   {
     "author": "Level-5",
@@ -1389,7 +1555,10 @@
     "updated": "2024-08-10T01:26:00+02:00",
     "version": "(France)",
     "fileName": "professeur-layton-et-la-boite-de-pandore",
-    "titleId": "YLTF"
+    "titleId": "YLTF",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Level-5",
@@ -1421,7 +1590,10 @@
     "updated": "2024-08-10T01:12:00+02:00",
     "version": "(France)",
     "fileName": "professeur-layton-et-lappel-du-spectre",
-    "titleId": "BLFF"
+    "titleId": "BLFF",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Level-5",
@@ -1453,7 +1625,12 @@
     "updated": "2024-08-12T23:32:00+02:00",
     "version": "(France)",
     "fileName": "professeur-layton-et-le-destin-perdu",
-    "titleId": "C3JF"
+    "titleId": "C3JF",
+    "genres": [
+      "Point-and-click",
+      "Puzzle",
+      "Visual Novel"
+    ]
   },
   {
     "author": "Sega",
@@ -1485,7 +1662,10 @@
     "updated": "2024-08-10T14:53:00+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It)",
     "fileName": "sonic-colours",
-    "titleId": "BXSP"
+    "titleId": "BXSP",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Sega",
@@ -1517,7 +1697,10 @@
     "updated": "2024-08-12T18:01:58+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It) (Rev )",
     "fileName": "sonic-rush-adventure",
-    "titleId": "A3YP"
+    "titleId": "A3YP",
+    "genres": [
+      "Platform"
+    ]
   },
   {
     "author": "Sega",
@@ -1549,7 +1732,10 @@
     "updated": "2024-08-10T00:35:58+02:00",
     "version": "(Europe) (En,Ja,Fr,De,Es,It)",
     "fileName": "sonic-rush",
-    "titleId": "ASCP"
+    "titleId": "ASCP",
+    "genres": [
+      "Platform"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1581,7 +1767,11 @@
     "updated": "2024-08-12T00:31:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "super-mario-64-ds",
-    "titleId": "ASMP"
+    "titleId": "ASMP",
+    "genres": [
+      "Platform",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1613,7 +1803,12 @@
     "updated": "2024-08-14T17:06:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "tetris-ds",
-    "titleId": "ATRP"
+    "titleId": "ATRP",
+    "genres": [
+      "Puzzle",
+      "Strategy",
+      "Arcade"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1645,7 +1840,11 @@
     "updated": "2024-08-12T18:53:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "the-legend-of-zelda-phantom-hourglass",
-    "titleId": "AZEP"
+    "titleId": "AZEP",
+    "genres": [
+      "Puzzle",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1677,7 +1876,11 @@
     "updated": "2024-08-12T18:38:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "the-legend-of-zelda-spirit-tracks",
-    "titleId": "BKIP"
+    "titleId": "BKIP",
+    "genres": [
+      "Puzzle",
+      "Adventure"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1709,7 +1912,10 @@
     "updated": "2024-08-18T21:36:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "wariomaster-of-disguise",
-    "titleId": "AWAP"
+    "titleId": "AWAP",
+    "genres": [
+      "game"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1745,7 +1951,10 @@
     "updated": "2024-08-10T16:30:00+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "warioware---touched",
-    "titleId": "AZWP"
+    "titleId": "AZWP",
+    "genres": [
+      "Arcade"
+    ]
   },
   {
     "author": "Nintendo",
@@ -1777,6 +1986,10 @@
     "updated": "2024-08-12T23:27:58+02:00",
     "version": "(Europe) (En,Fr,De,Es,It)",
     "fileName": "yoshis-island-ds",
-    "titleId": "AYWP"
+    "titleId": "AYWP",
+    "genres": [
+      "Platform",
+      "Adventure"
+    ]
   }
 ]

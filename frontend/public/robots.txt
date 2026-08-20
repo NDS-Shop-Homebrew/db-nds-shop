@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://db-nds-shop.fr/sitemap.xml

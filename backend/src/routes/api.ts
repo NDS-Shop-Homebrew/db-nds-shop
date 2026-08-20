@@ -14,13 +14,92 @@ const GAMES_JSON =
   process.env.GAMES_JSON_PATH ||
   path.resolve(__dirname, "../../../frontend/public/games.json");
 
-function loadGames(): any[] {
+// Stockage communautaire (favoris + demandes de jeux) — fichier JSON, écriture atomique
+const COMMUNITY_FILE =
+  process.env.COMMUNITY_DATA_FILE || path.resolve(__dirname, "../data/community.json");
+
+interface Community {
+  favorites: Record<string, string[]>;
+  requests: {
+    id: string;
+    games: { title: string; systems: string }[];
+    note: string;
+    requester: { id: string; username: string } | null;
+    createdAt: string;
+    votes: string[];
+  }[];
+}
+
+function readCommunity(): Community {
+  try {
+    const raw = JSON.parse(fs.readFileSync(COMMUNITY_FILE, "utf8"));
+    return {
+      favorites: raw.favorites || {},
+      requests: Array.isArray(raw.requests) ? raw.requests : [],
+    };
+  } catch {
+    return { favorites: {}, requests: [] };
+  }
+}
+
+function writeCommunity(data: Community) {
+  fs.mkdirSync(path.dirname(COMMUNITY_FILE), { recursive: true });
+  const tmp = COMMUNITY_FILE + ".tmp";
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2));
+  fs.renameSync(tmp, COMMUNITY_FILE);
+}
+
+export function loadGames(): any[] {
   try {
     return JSON.parse(fs.readFileSync(GAMES_JSON, "utf8"));
   } catch (err) {
     console.error(`❌ games.json illisible (${GAMES_JSON}):`, err);
     return [];
   }
+}
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+// Téléchargements .nds / .cia depuis le log nginx (30 jours) — mêmes logs que le back-office
+function downloadCounts(days = 30) {
+  const counts = { total: 0, today: 0, nds: 0, cia: 0, byGame: {} as Record<string, number>, last7: [0,0,0,0,0,0,0] };
+  const cutoff = Date.now() / 1000 - days * 86400;
+  const dayStart = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 1000;
+  const todayStart = dayStart(new Date());
+  const logPaths = [
+    process.env.NGINX_LOG,
+    "/var/log/nginx/access.log",
+    "/var/log/nginx/db-nds-shop.access.log",
+    "/srv/nds-shop/logs/access.log",
+  ].filter(Boolean) as string[];
+
+  const RE = /\[(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2})[^\]]*\].*?"GET (\S+\.(?:nds|cia))/;
+  for (const logPath of logPaths) {
+    if (!fs.existsSync(logPath)) continue;
+    try {
+      const lines = fs.readFileSync(logPath, "utf8").split("\n");
+      for (const line of lines) {
+        const m = line.match(RE);
+        if (!m) continue;
+        const mon = MONTHS.indexOf(m[2]);
+        if (mon < 0) continue;
+        const ts = new Date(Number(m[3]), mon, Number(m[1]), Number(m[4]), Number(m[5]), Number(m[6])).getTime() / 1000;
+        if (isNaN(ts) || ts < cutoff) continue;
+        const file = decodeURIComponent(m[7].replace(/^\/games\//, ""));
+        counts.total++;
+        if (ts >= todayStart) counts.today++;
+        if (file.endsWith(".nds")) counts.nds++;
+        else counts.cia++;
+        const game = file.split("/").pop() || "?";
+        counts.byGame[game] = (counts.byGame[game] || 0) + 1;
+        for (let i = 0; i < 7; i++) {
+          const start = todayStart - i * 86400;
+          if (ts >= start) { counts.last7[i]++; break; }
+        }
+      }
+    } catch {}
+  }
+  return counts;
 }
 
 // --- GET /api/v1/health ---
@@ -88,6 +167,15 @@ router.get("/stats", (_req, res) => {
       bySystem[s] = (bySystem[s] || 0) + 1;
     }
   }
+  const dl = downloadCounts();
+  const byGame: Record<string, number> = {};
+  for (const g of games) {
+    let n = 0;
+    for (const f of Object.keys(g.downloads || {})) {
+      n += dl.byGame[f.split("/").pop() || f] || 0;
+    }
+    if (n > 0) byGame[g.fileName] = n;
+  }
   res.json({
     games: games.length,
     systems: bySystem,
@@ -96,6 +184,14 @@ router.get("/stats", (_req, res) => {
       .filter(Boolean)
       .sort()
       .pop() || null,
+    downloads: {
+      total: dl.total,
+      today: dl.today,
+      nds: dl.nds,
+      cia: dl.cia,
+      byGame,
+      last7: dl.last7,
+    },
   });
 });
 
@@ -182,6 +278,17 @@ router.post("/request", async (req, res) => {
         return res.status(502).json({ error: "Échec de la création du post." });
       }
     }
+    // Persiste la demande localement (liste publique + votes)
+    const community = readCommunity();
+    community.requests.push({
+      id: crypto.randomUUID(),
+      games: gamesClean,
+      note: noteClean,
+      requester: requester ? { id: requester.id, username: requester.username } : null,
+      createdAt: new Date().toISOString(),
+      votes: [],
+    });
+    writeCommunity(community);
     res.json({ ok: true, count: gamesClean.length });
   } catch (err) {
     console.error("❌ Discord request error:", err);
@@ -303,6 +410,63 @@ router.get("/discord-guild", async (_req, res) => {
     console.error("❌ Failed to fetch Discord guild:", err);
     res.status(500).json({ error: "Failed to fetch guild" });
   }
+});
+
+// --- Favoris synchronisés (login requis) ---
+// GET /api/v1/favorites — liste des slugs favoris de l'utilisateur
+router.get("/favorites", (req, res) => {
+  const user = getSessionUser(req);
+  if (!user) return res.status(401).json({ error: "Connexion requise." });
+  const community = readCommunity();
+  res.json({ favorites: community.favorites[user.id] || [] });
+});
+
+// PUT /api/v1/favorites — remplace la liste des favoris
+router.put("/favorites", (req, res) => {
+  const user = getSessionUser(req);
+  if (!user) return res.status(401).json({ error: "Connexion requise." });
+  const { favorites } = req.body || {};
+  if (!Array.isArray(favorites) || favorites.some((f) => typeof f !== "string")) {
+    return res.status(400).json({ error: "favorites (array de strings) requis." });
+  }
+  const community = readCommunity();
+  community.favorites[user.id] = favorites;
+  writeCommunity(community);
+  res.json({ ok: true, favorites });
+});
+
+// --- Demandes de jeux (liste publique + votes) ---
+// GET /api/v1/requests — triées par votes décroissants
+router.get("/requests", (req, res) => {
+  const user = getSessionUser(req);
+  const community = readCommunity();
+  const list = community.requests
+    .slice()
+    .sort((a, b) => b.votes.length - a.votes.length || b.createdAt.localeCompare(a.createdAt))
+    .map((r) => ({
+      id: r.id,
+      games: r.games,
+      note: r.note,
+      requester: r.requester ? r.requester.username : null,
+      createdAt: r.createdAt,
+      votes: r.votes.length,
+      hasVoted: !!user && r.votes.includes(user.id),
+    }));
+  res.json(list);
+});
+
+// POST /api/v1/requests/:id/vote — toggle du vote (login requis, 1 vote par utilisateur)
+router.post("/requests/:id/vote", (req, res) => {
+  const user = getSessionUser(req);
+  if (!user) return res.status(401).json({ error: "Connexion requise." });
+  const community = readCommunity();
+  const entry = community.requests.find((r) => r.id === req.params.id);
+  if (!entry) return res.status(404).json({ error: "Demande introuvable." });
+  const idx = entry.votes.indexOf(user.id);
+  if (idx >= 0) entry.votes.splice(idx, 1);
+  else entry.votes.push(user.id);
+  writeCommunity(community);
+  res.json({ ok: true, votes: entry.votes.length, hasVoted: idx < 0 });
 });
 
 export default router;

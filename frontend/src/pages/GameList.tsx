@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Search, Grid3X3, List, ArrowUpDown, Sparkles, X, SearchX } from "lucide-react";
+import { Search, Grid3X3, List, ArrowUpDown, Sparkles, X, SearchX, Download } from "lucide-react";
 import { Skeleton } from "../components/ui/skeleton";
 import { Badge } from "../components/ui/badge";
 import { ToggleGroup, ToggleGroupItem } from "../components/ui/toggle-group";
@@ -12,6 +12,7 @@ import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTi
 import { InputGroup, InputGroupInput, InputGroupText } from "../components/ui/input-group";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 interface Game {
   fileName: string;
@@ -19,12 +20,14 @@ interface Game {
   author: string;
   version: string;
   systems: string[];
+  categories?: string[];
+  genres?: string[];
   icon: string;
   updated: string;
   screenshots?: { description: string; url: string }[];
 }
 
-type SortOption = "title" | "author" | "version" | "updated";
+type SortOption = "title" | "author" | "version" | "updated" | "popular";
 type ViewMode = "grid" | "list";
 
 function GameSkeleton() {
@@ -39,6 +42,7 @@ function GameSkeleton() {
 
 export default function GameList() {
   const { t, i18n } = useTranslation();
+  usePageMeta(t("gameList.title") + " — NDS-Shop");
   const [searchParams, setSearchParams] = useSearchParams();
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,6 +51,10 @@ export default function GameList() {
   const [search, setSearch] = useState("");
   const [view, setView] = useState<ViewMode>("grid");
   const [filterSystem, setFilterSystem] = useState<string>("all");
+  const [filterGenre, setFilterGenre] = useState<string>("all");
+  const [filterCategory, setFilterCategory] = useState<string>("all");
+  const [filterLetter, setFilterLetter] = useState<string>("all");
+  const [counts, setCounts] = useState<Record<string, number>>({});
 
   const regionFilter = searchParams.get("region") || "";
 
@@ -57,6 +65,10 @@ export default function GameList() {
         setGames(data);
         setLoading(false);
       });
+    fetch("/api/v1/stats")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((s) => setCounts(s?.downloads?.byGame || {}))
+      .catch(() => {});
   }, []);
 
   const systems = useMemo(() => {
@@ -65,6 +77,27 @@ export default function GameList() {
     return ["all", ...Array.from(s).sort()];
   }, [games]);
 
+  const genres = useMemo(() => {
+    const s = new Set<string>();
+    games.forEach((g) => g.genres?.forEach((gen) => s.add(gen)));
+    return ["all", ...Array.from(s).sort()];
+  }, [games]);
+
+  const categories = useMemo(() => {
+    const s = new Set<string>();
+    games.forEach((g) => g.categories?.forEach((c) => s.add(c)));
+    return ["all", ...Array.from(s).sort()];
+  }, [games]);
+
+  const letters = useMemo(() => {
+    const s = new Set<string>();
+    games.forEach((g) => s.add((g.title[0] || "").toUpperCase()));
+    return ["all", ...[...s].filter(Boolean).sort()];
+  }, [games]);
+
+  const catLabel = (c: string) =>
+    c === "game" ? t("gameList.cat.game") : c === "homebrew" ? t("gameList.cat.homebrew") : c === "emulator" ? t("gameList.cat.emulator") : c;
+
   const filtered = useMemo(() => {
     let result = [...games];
     if (search) {
@@ -72,6 +105,9 @@ export default function GameList() {
       result = result.filter((g) => g.title.toLowerCase().includes(q) || g.author.toLowerCase().includes(q));
     }
     if (filterSystem !== "all") result = result.filter((g) => g.systems?.includes(filterSystem));
+    if (filterGenre !== "all") result = result.filter((g) => g.genres?.includes(filterGenre));
+    if (filterCategory !== "all") result = result.filter((g) => g.categories?.includes(filterCategory));
+    if (filterLetter !== "all") result = result.filter((g) => (g.title[0] || "").toUpperCase() === filterLetter);
     if (regionFilter) result = result.filter((g) => g.version?.includes(regionFilter));
     result.sort((a, b) => {
       let cmp = 0;
@@ -79,12 +115,13 @@ export default function GameList() {
         case "author": cmp = a.author.localeCompare(b.author); break;
         case "version": cmp = a.version.localeCompare(b.version); break;
         case "updated": cmp = new Date(b.updated).getTime() - new Date(a.updated).getTime(); break;
+        case "popular": cmp = (counts[b.fileName] || 0) - (counts[a.fileName] || 0); break;
         default: cmp = a.title.localeCompare(b.title); break;
       }
       return sortDir === "desc" ? -cmp : cmp;
     });
     return result;
-  }, [games, search, sortBy, sortDir, filterSystem, regionFilter]);
+  }, [games, search, sortBy, sortDir, filterSystem, filterGenre, filterCategory, filterLetter, regionFilter, counts]);
 
   const toggleSort = (field: SortOption) => {
     if (sortBy === field) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -162,6 +199,54 @@ export default function GameList() {
               ))}
             </SelectContent>
           </Select>
+          <Select value={filterGenre} onValueChange={setFilterGenre}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={t("gameList.allGenres")} />
+            </SelectTrigger>
+            <SelectContent>
+              {genres.map((g) => (
+                <SelectItem key={g} value={g}>{g === "all" ? t("gameList.allGenres") : g}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select value={filterCategory} onValueChange={setFilterCategory}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={t("gameList.allCategories")} />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((c) => (
+                <SelectItem key={c} value={c}>{c === "all" ? t("gameList.allCategories") : catLabel(c)}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select value={filterLetter} onValueChange={setFilterLetter}>
+            <SelectTrigger className="w-[130px]">
+              <SelectValue placeholder={t("gameList.allLetters")} />
+            </SelectTrigger>
+            <SelectContent>
+              {letters.map((l) => (
+                <SelectItem key={l} value={l}>{l === "all" ? t("gameList.allLetters") : l}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Select
+            value={sortBy}
+            onValueChange={(v) => {
+              setSortBy(v as SortOption);
+              if (v === "popular") setSortDir("desc");
+            }}
+          >
+            <SelectTrigger className="w-[160px]">
+              <SelectValue placeholder={t("gameList.sort")} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="title">{t("gameList.name")}</SelectItem>
+              <SelectItem value="popular">{t("gameList.popular")}</SelectItem>
+              <SelectItem value="updated">{t("gameList.updated")}</SelectItem>
+              <SelectItem value="author">{t("gameList.author")}</SelectItem>
+              <SelectItem value="version">{t("gameList.version")}</SelectItem>
+            </SelectContent>
+          </Select>
           {regionFilter && (
             <Badge variant="secondary" className="cursor-pointer hover:bg-secondary/70" onClick={() => setSearchParams({})}>
               {regionFilter} <X size={14} />
@@ -178,7 +263,7 @@ export default function GameList() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {filtered.map((game, i) => (
             <motion.div key={game.fileName} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.02 }}>
-              <GameCard game={game} />
+              <GameCard game={game} downloads={counts[game.fileName]} />
             </motion.div>
           ))}
         </div>
@@ -192,6 +277,7 @@ export default function GameList() {
                   <SortHeader field="title" label={t("gameList.name")} />
                   <SortHeader field="author" label={t("gameList.author")} />
                   <TableHead className="hidden sm:table-cell whitespace-nowrap">{t("gameList.version")}</TableHead>
+                  <SortHeader field="popular" label={t("gameList.downloads")} />
                   <SortHeader field="updated" label={t("gameList.updated")} />
                 </TableRow>
               </TableHeader>
@@ -210,6 +296,14 @@ export default function GameList() {
                     <TableCell className="font-medium text-foreground">{game.title}</TableCell>
                     <TableCell className="text-muted-foreground">{game.author}</TableCell>
                     <TableCell className="text-muted-foreground hidden sm:table-cell whitespace-nowrap">{game.version}</TableCell>
+                    <TableCell className="text-muted-foreground whitespace-nowrap">
+                      {counts[game.fileName] != null && counts[game.fileName] > 0 && (
+                        <span className="inline-flex items-center gap-1">
+                          <Download size={13} className="text-primary" />
+                          {counts[game.fileName].toLocaleString()}
+                        </span>
+                      )}
+                    </TableCell>
                     <TableCell className="text-muted-foreground/60 text-xs whitespace-nowrap">
                       {new Date(game.updated).toLocaleDateString(i18n.language)}
                     </TableCell>

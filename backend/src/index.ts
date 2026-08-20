@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import cors from "cors";
 import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
-import apiRouter from "./routes/api.js";
+import apiRouter, { loadGames } from "./routes/api.js";
 import ndsdbRouter from "./routes/ndsdb.js";
 import authRouter from "./routes/auth.js";
 
@@ -59,6 +59,79 @@ app.use("/api/v1/auth", authRouter);
 
 // --- API v2 (ndsdb - metadata enrichie par serial) ---
 app.use("/api/v1/ndsdb", ndsdbRouter);
+
+// --- Embeds pour crawlers (Discord, Twitter, Telegram, Slack, SEO...) ---
+// En production, nginx envoie les requêtes de bots sur /game/* vers ce backend.
+// Les navigateurs normaux continuent de recevoir le SPA (index.html).
+const BOT_UA =
+  /(discordbot|twitterbot|facebookexternalhit|facebookcatalog|telegrambot|slackbot|whatsapp|viber|skypeuripreview|line|pinterest|linkedinbot|bingbot|googlebot|duckduckbot|baiduspider|yandexbot|curl|wget|python-requests|okhttp)/i;
+const SITE_URL = process.env.SITE_URL || "https://db-nds-shop.fr";
+const escapeHtml = (s: string) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const escapeXml = (s: string) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+
+// --- Flux RSS des nouveaux jeux ---
+app.get("/rss.xml", (_req, res) => {
+  const games = loadGames()
+    .filter((g) => g.updated)
+    .sort((a, b) => String(b.updated).localeCompare(String(a.updated)))
+    .slice(0, 30);
+  const items = games
+    .map((g) => {
+      const link = `${SITE_URL}/game/${escapeXml(g.fileName)}`;
+      const pub = new Date(g.updated).toUTCString();
+      return (
+        `<item><title>${escapeXml(g.title || "?")}</title>` +
+        `<link>${link}</link><guid>${link}</guid><pubDate>${pub}</pubDate>` +
+        `<description>${escapeXml([g.author, g.version].filter(Boolean).join(" · "))}</description></item>`
+      );
+    })
+    .join("");
+  res
+    .type("application/rss+xml")
+    .send(
+      `<?xml version="1.0" encoding="UTF-8"?>` +
+        `<rss version="2.0"><channel><title>NDS-Shop</title>` +
+        `<link>${SITE_URL}</link><description>Nouveaux jeux Nintendo DS disponibles sur NDS-Shop</description>` +
+        `<language>fr</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>` +
+        `${items}</channel></rss>`
+    );
+});
+
+app.get(/^\/game\/.+/, (req, res) => {
+  const ua = String(req.headers["user-agent"] || "");
+  if (!BOT_UA.test(ua)) return res.status(404).send("Not found");
+  const slug = decodeURIComponent(req.path.replace(/^\/game\//, ""));
+  const game = loadGames().find((g) => (g.fileName || g.slug) === slug);
+  const url = `${SITE_URL}/game/${encodeURIComponent(slug)}`;
+  if (!game) {
+    return res
+      .type("html")
+      .send(`<!doctype html><html><head><meta charset="utf-8"/><title>NDS-Shop</title>` +
+        `<meta property="og:title" content="NDS-Shop"/><meta property="og:url" content="${escapeHtml(url)}"/>` +
+        `<meta property="og:image" content="${SITE_URL}/logo.png"/></head><body></body></html>`);
+  }
+  const title = escapeHtml(game.title || "NDS-Shop");
+  const desc = escapeHtml([game.author, game.version].filter(Boolean).join(" · ") || "Jeu Nintendo DS sur NDS-Shop");
+  const image = game.icon ? escapeHtml(game.icon) : `${SITE_URL}/logo.png`;
+  res.type("html").send(
+    `<!doctype html><html lang="fr"><head><meta charset="utf-8"/>` +
+      `<title>${title} — NDS-Shop</title>` +
+      `<meta name="description" content="${desc}"/>` +
+      `<meta property="og:type" content="website"/>` +
+      `<meta property="og:site_name" content="NDS-Shop"/>` +
+      `<meta property="og:title" content="${title}"/>` +
+      `<meta property="og:description" content="${desc}"/>` +
+      `<meta property="og:url" content="${escapeHtml(url)}"/>` +
+      `<meta property="og:image" content="${image}"/>` +
+      `<meta name="twitter:card" content="summary"/>` +
+      `<meta name="twitter:title" content="${title}"/>` +
+      `<meta name="twitter:description" content="${desc}"/>` +
+      `<meta name="twitter:image" content="${image}"/>` +
+      `</head><body></body></html>`
+  );
+});
 
 // --- Lien court pour le QR code home (URL compacte = QR scannable par une console) ---
 // FBI n'aime pas les redirects → on proxy le .cia directement (binaire).

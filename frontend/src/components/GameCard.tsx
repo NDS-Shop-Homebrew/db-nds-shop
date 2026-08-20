@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart } from "lucide-react";
+import { Heart, Download } from "lucide-react";
 import SafeImg from "./SafeImg";
 
 interface Game {
@@ -15,6 +15,7 @@ interface GameCardProps {
   isFav?: boolean;
   onToggleFav?: (slug: string) => void;
   showAuthor?: boolean;
+  downloads?: number;
 }
 
 export function gameBoxart(game: Game) {
@@ -25,7 +26,7 @@ export function gameBoxart(game: Game) {
   );
 }
 
-export default function GameCard({ game, isFav, onToggleFav, showAuthor = true }: GameCardProps) {
+export default function GameCard({ game, isFav, onToggleFav, showAuthor = true, downloads }: GameCardProps) {
   return (
     <div className="relative group">
       <Link to={`/game/${game.fileName}`} className="block group">
@@ -36,6 +37,12 @@ export default function GameCard({ game, isFav, onToggleFav, showAuthor = true }
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             wrapperClassName="w-full h-full"
           />
+          {downloads != null && downloads > 0 && (
+            <span className="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-full bg-background/80 backdrop-blur px-2 py-0.5 text-[11px] font-medium text-foreground">
+              <Download size={11} className="text-primary" />
+              {downloads.toLocaleString()}
+            </span>
+          )}
         </div>
         <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-snug">{game.title}</h3>
         {showAuthor && game.author && (

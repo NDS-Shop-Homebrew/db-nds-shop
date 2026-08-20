@@ -11,6 +11,7 @@ import { Badge } from "../components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 interface Game {
   fileName: string;
@@ -36,11 +37,12 @@ function GameSkeleton() {
 
 export default function Home() {
   const { t, i18n } = useTranslation();
+  usePageMeta("NDS-Shop — " + t("home.tagline"));
   const [games, setGames] = useState<Game[]>([]);
   const [allGames, setAllGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [randomGame, setRandomGame] = useState<Game | null>(null);
-  const [stats, setStats] = useState<{ games: number; systems: Record<string, number> } | null>(null);
+  const [stats, setStats] = useState<{ games: number; systems: Record<string, number>; downloads?: { total: number } } | null>(null);
 
   useEffect(() => {
     fetch("/games.json")
@@ -132,6 +134,7 @@ export default function Home() {
           {[
             { label: t("home.stats.games"), value: stats?.games ?? allGames.length },
             { label: t("home.stats.systems"), value: Object.keys(stats?.systems || {}).length },
+            { label: t("home.stats.downloads"), value: stats?.downloads?.total?.toLocaleString(i18n.language) ?? "—" },
             { label: t("home.stats.updated"), value: new Date().toLocaleDateString(i18n.language) },
           ].map((stat) => (
             <div key={stat.label} className="text-center">

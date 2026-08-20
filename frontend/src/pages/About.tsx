@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { Badge } from "../components/ui/badge";
 import { API_BASE_URL } from "../config";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 
 interface DiscordUser {
@@ -115,6 +116,7 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function About() {
   const { t } = useTranslation();
+  usePageMeta(t("about.title") + " — NDS-Shop");
   const [members, setMembers] = useState<DiscordUser[]>([]);
   const [teamRoles, setTeamRoles] = useState<Record<string, string>>({});
   const [presence, setPresence] = useState<Record<string, Presence>>({});

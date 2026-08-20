@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "../components/ui/badge";
 import { Spinner } from "../components/ui/spinner";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../components/ui/tooltip";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 interface Endpoint {
   method: string;
@@ -49,6 +50,7 @@ const METHOD_COLORS: Record<string, string> = {
 
 export default function Docs() {
   const { t } = useTranslation();
+  usePageMeta(t("docs.title") + " — NDS-Shop");
   const [active, setActive] = useState<Endpoint | null>(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string>("");

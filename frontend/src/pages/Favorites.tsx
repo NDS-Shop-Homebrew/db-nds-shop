@@ -7,6 +7,8 @@ import { Skeleton } from "../components/ui/skeleton";
 import { Button } from "../components/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "../components/ui/empty";
 import GameCard from "../components/GameCard";
+import { usePageMeta } from "../hooks/usePageMeta";
+import { useFavorites } from "../hooks/useFavorites";
 
 interface Game {
   fileName: string;
@@ -19,27 +21,22 @@ interface Game {
 
 export default function Favorites() {
   const { t } = useTranslation();
-  const [games, setGames] = useState<Game[]>([]);
-  const [favs, setFavs] = useState<string[]>([]);
+  usePageMeta(t("nav.favorites") + " — NDS-Shop");
+  const { favs, toggle } = useFavorites();
+  const [allGames, setAllGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fav = JSON.parse(localStorage.getItem("nds-favs") || "[]");
-    setFavs(fav);
     fetch("/games.json")
       .then((res) => res.json())
       .then((all: Game[]) => {
-        setGames(all.filter((g) => fav.includes(g.fileName)));
+        setAllGames(all);
         setLoading(false);
       });
   }, []);
 
-  const removeFav = (slug: string) => {
-    const next = favs.filter((f) => f !== slug);
-    setFavs(next);
-    localStorage.setItem("nds-favs", JSON.stringify(next));
-    setGames((prev) => prev.filter((g) => g.fileName !== slug));
-  };
+  const games = allGames.filter((g) => favs.includes(g.fileName));
+  const removeFav = (slug: string) => toggle(slug);
 
   return (
     <div>
