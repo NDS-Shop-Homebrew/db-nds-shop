@@ -82,20 +82,19 @@ app.get("/rss.xml", (_req, res) => {
       const link = `${SITE_URL}/game/${escapeXml(g.fileName)}`;
       const pub = new Date(g.updated).toUTCString();
       return (
-        `<item><title>${escapeXml(g.title || "?")}</title>` +
-        `<link>${link}</link><guid>${link}</guid><pubDate>${pub}</pubDate>` +
-        `<description>${escapeXml([g.author, g.version].filter(Boolean).join(" · "))}</description></item>`
+        `\n  <item>\n    <title>${escapeXml(g.title || "?")}</title>\n` +
+        `    <link>${link}</link>\n    <guid>${link}</guid>\n    <pubDate>${pub}</pubDate>\n` +
+        `    <description>${escapeXml([g.author, g.version].filter(Boolean).join(" · "))}</description>\n  </item>`
       );
     })
     .join("");
   res
     .type("application/rss+xml")
     .send(
-      `<?xml version="1.0" encoding="UTF-8"?>` +
-        `<rss version="2.0"><channel><title>NDS-Shop</title>` +
-        `<link>${SITE_URL}</link><description>Nouveaux jeux Nintendo DS disponibles sur NDS-Shop</description>` +
-        `<language>fr</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate>` +
-        `${items}</channel></rss>`
+      `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>NDS-Shop</title>\n` +
+        `  <link>${SITE_URL}</link>\n  <description>Nouveaux jeux Nintendo DS disponibles sur NDS-Shop</description>\n` +
+        `  <language>fr</language>\n  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>` +
+        `${items}\n</channel>\n</rss>`
     );
 });
 
