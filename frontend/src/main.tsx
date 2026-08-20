@@ -6,7 +6,11 @@ import "./index.css";
 import "./i18n";
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js"));
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js", { updateViaCache: "none" }).catch((err) => {
+      console.error("SW registration failed:", err);
+    });
+  });
 }
 
 const root = createRoot(document.getElementById("root")!);

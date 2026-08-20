@@ -1,4 +1,4 @@
-const CACHE = "nds-shop-v1";
+const CACHE = "nds-shop-v2";
 
 self.addEventListener("install", () => self.skipWaiting());
 
