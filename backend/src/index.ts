@@ -14,8 +14,7 @@ const PORT = process.env.PORT || 3001;
 
 const isProduction = process.env.NODE_ENV === "production";
 
-// Derrière nginx (X-Forwarded-For) : requis par express-rate-limit
-app.set("trust proxy", true);
+app.set("trust proxy", 1);
 
 const allowedOrigins = ["https://db-nds-shop.fr", "http://localhost:5173"];
 
@@ -92,9 +91,42 @@ app.get("/rss.xml", (_req, res) => {
     .type("application/rss+xml")
     .send(
       `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>NDS-Shop</title>\n` +
-        `  <link>${SITE_URL}</link>\n  <description>New Nintendo DS games available on NDS-Shop</description>\n` +
-        `  <language>en</language>\n  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>` +
+        `  <link>${SITE_URL}</link>\n  <description>Nouveaux jeux Nintendo DS disponibles sur NDS-Shop</description>\n` +
+        `  <language>fr</language>\n  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>` +
         `${items}\n</channel>\n</rss>`
+    );
+});
+
+const STATIC_PAGES = [
+  { path: "", priority: "1.0" },
+  { path: "/game-list", priority: "0.8" },
+  { path: "/about", priority: "0.8" },
+  { path: "/request", priority: "0.8" },
+  { path: "/docs", priority: "0.8" },
+  { path: "/favorites", priority: "0.8" },
+  { path: "/tutorial", priority: "0.8" },
+  { path: "/privacy", priority: "0.8" },
+  { path: "/dmca", priority: "0.8" },
+];
+
+app.get("/sitemap.xml", (_req, res) => {
+  const staticUrls = STATIC_PAGES.map(
+    (p) => `\n<url><loc>${SITE_URL}${p.path}</loc><priority>${p.priority}</priority></url>`
+  ).join("");
+  const gameUrls = loadGames()
+    .filter((g) => g.fileName || g.slug)
+    .map((g) => {
+      const slug = encodeURIComponent(g.fileName || g.slug);
+      const lastmod = g.updated
+        ? `<lastmod>${escapeXml(String(g.updated).slice(0, 10))}</lastmod>`
+        : "";
+      return `\n<url><loc>${SITE_URL}/game/${slug}</loc>${lastmod}<priority>0.9</priority></url>`;
+    })
+    .join("");
+  res
+    .type("application/xml")
+    .send(
+      `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${staticUrls}${gameUrls}\n</urlset>`
     );
 });
 
@@ -138,14 +170,20 @@ const CIA_URL =
   process.env.CIA_URL ||
   "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia";
 
+let ciaCache: { buf: Buffer; at: number } | null = null;
+
 app.get("/d", async (_req, res) => {
   try {
-    const resp = await fetch(CIA_URL);
-    if (!resp.ok) throw new Error(`GitHub ${resp.status}`);
-    const buf = await resp.buffer();
+    if (!ciaCache || Date.now() - ciaCache.at > 10 * 60 * 1000) {
+      const resp = await fetch(CIA_URL, { signal: AbortSignal.timeout(15000) });
+      if (!resp.ok) throw new Error(`GitHub ${resp.status}`);
+      const buf = await resp.buffer();
+      if (buf.length > 100 * 1024 * 1024) throw new Error("Fichier trop volumineux");
+      ciaCache = { buf, at: Date.now() };
+    }
     res.setHeader("Content-Type", "application/octet-stream");
-    res.setHeader("Content-Length", buf.length);
-    res.send(buf);
+    res.setHeader("Content-Length", ciaCache.buf.length);
+    res.send(ciaCache.buf);
   } catch (err) {
     res.status(502).send(`Erreur téléchargement : ${(err as Error).message}`);
   }

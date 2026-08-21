@@ -2,12 +2,21 @@ import express from "express";
 import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
+import rateLimit from "express-rate-limit";
 import { fileURLToPath } from "url";
 import { getSessionUser } from "./auth.js";
 
 const router = express.Router();
 
 router.use(express.json());
+
+const requestLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Trop de demandes. Réessaie plus tard." },
+});
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const GAMES_JSON =
@@ -196,7 +205,7 @@ router.get("/stats", (_req, res) => {
 });
 
 // --- POST /api/v1/request ---
-router.post("/request", async (req, res) => {
+router.post("/request", requestLimiter, async (req, res) => {
   const { games, title, systems, note, lang } = req.body || {};
   const noteClean = String(note || "").trim();
 

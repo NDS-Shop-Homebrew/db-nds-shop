@@ -9,11 +9,17 @@ const DB_BASE = path.join(__dirname, "../../public/db/nds/base");
 
 const NS = "/api/v1/ndsdb";
 
+const SERIAL_RE = /^[A-Za-z0-9-]{1,20}$/;
+const NUM_RE = /^\d{1,4}$/;
+
 function getBaseUrl(req: any) {
   return `${req.protocol}://${req.get("host")}`;
 }
 
 function serialPath(serial: string) {
+  if (!SERIAL_RE.test(serial)) {
+    return path.join(DB_BASE, "__invalid_serial__");
+  }
   return path.join(DB_BASE, serial.toUpperCase());
 }
 
@@ -192,6 +198,7 @@ router.get("/screenshots/:serial/screen_u", (req, res) => {
 });
 
 router.get("/screenshots/:serial/screen_u/:num/:screen", (req, res) => {
+  if (!NUM_RE.test(req.params.num)) return res.status(400).json({ error: "Invalid number" });
   const sp = serialPath(req.params.serial);
   if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
   const screen = req.params.screen === "u" ? "upper" : "lower";
@@ -201,6 +208,7 @@ router.get("/screenshots/:serial/screen_u/:num/:screen", (req, res) => {
 });
 
 router.get("/screenshots/:serial/screen/:num", (req, res) => {
+  if (!NUM_RE.test(req.params.num)) return res.status(400).json({ error: "Invalid number" });
   const sp = serialPath(req.params.serial);
   if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
   const filePath = path.join(sp, "screenshots", `screenshot_${req.params.num}.jpg`);
@@ -229,6 +237,7 @@ router.get("/thumbnails/:serial/thumbs", (req, res) => {
 });
 
 router.get("/thumbnails/:serial/thumb/:num", (req, res) => {
+  if (!NUM_RE.test(req.params.num)) return res.status(400).json({ error: "Invalid number" });
   const sp = serialPath(req.params.serial);
   if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
   const filePath = path.join(sp, "thumbnails", `thumbnail_${req.params.num}.jpg`);
