@@ -209,7 +209,12 @@
     "addFav": "Add to favorites",
     "removeFav": "Remove from favorites",
     "share": "Copy link",
-    "downloadsCount": "{{count}} downloads"
+    "downloadsCount": "{{count}} downloads",
+    "details": "Details",
+    "developer": "Developer:",
+    "publisher": "Publisher:",
+    "region": "Region:",
+    "release": "Release:"
   },
   "privacy": {
     "title": "Privacy Policy",
