@@ -144,22 +144,9 @@ export default function GameDetail() {
       </div>
 
       {}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-        {[
-          { label: t("gameDetail.author"), value: game.author },
-          { label: t("gameDetail.version"), value: game.version },
-          { label: t("gameDetail.updated"), value: new Date(game.updated).toLocaleDateString(i18n.language) },
-          { label: t("gameDetail.systems"), value: game.systems?.join(", ") || "—" },
-        ].map((info) => (
-          <div key={info.label} className="rounded-xl border border-border bg-card p-3">
-            <p className="text-xs text-muted-foreground mb-0.5">{info.label}</p>
-            <p className="text-sm font-medium text-foreground truncate">{info.value}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="md:col-span-2 space-y-8">
+      <div className="grid grid-cols-3 gap-8">
+        <div className="space-y-8 md:col-span-2">
+          {}
           {}
           {game.downloads && Object.keys(game.downloads).length > 0 && (
             <div>
