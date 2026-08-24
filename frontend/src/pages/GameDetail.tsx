@@ -118,15 +118,15 @@ export default function GameDetail() {
       </Link>
 
       {}
-      <div className="relative rounded-2xl overflow-hidden mb-8 dsi-gradient">
+      <div className="relative rounded-2xl overflow-hidden mb-8">
         <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
         <div className="relative flex items-center gap-6 p-6 md:p-8 min-h-40">
           {boxart && (
-            <div className="w-36 h-44 md:w-44 md:h-52 shrink-0 rounded-xl overflow-hidden shadow-lg ring-4 ring-white/20 bg-white/10">
+            <div className="aspect-square shrink-0 rounded-xl overflow-hidden shadow-lg ring-4 ring-border bg-muted">
               <SafeImg
                 src={boxart}
                 alt={game.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 wrapperClassName="w-full h-full"
               />
             </div>

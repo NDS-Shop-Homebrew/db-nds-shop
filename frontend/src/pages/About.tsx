@@ -198,7 +198,7 @@ export default function About() {
   return (
     <div className="space-y-16">
       {}
-      <section className="dsi-gradient text-white">
+      <section className="dsi-gradient">
         <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,7 +209,7 @@ export default function About() {
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
               {t("about.title")}
             </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
               {t("about.description")}
             </p>
           </motion.div>

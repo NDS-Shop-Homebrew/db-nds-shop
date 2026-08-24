@@ -77,7 +77,7 @@ export default function Home() {
   return (
     <div>
       {}
-      <section className="dsi-gradient text-white">
+      <section className="dsi-gradient">
         <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -86,20 +86,20 @@ export default function Home() {
           >
             <img src="/logo.png" alt="NDS-Shop" className="w-16 h-16 mx-auto mb-4 rounded-2xl" />
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">NDS-Shop</h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-lg mx-auto mb-8">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto mb-8">
               {t("home.tagline")}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button
                 onClick={() => (window.location.href = "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia")}
-                className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg"
+                className="font-semibold px-8 py-6 text-lg"
               >
                 <Download className="w-5 h-5 mr-2" />
                 {t("home.download")}
               </Button>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-white/20 text-white hover:bg-white/30 border border-white/30 font-semibold px-8 py-6 text-lg">
+                  <Button className="font-semibold px-8 py-6 text-lg">
                     <QrCode className="w-5 h-5 mr-2" />
                     {t("home.scan")}
                   </Button>
@@ -165,7 +165,7 @@ export default function Home() {
                 <SafeImg
                   src={randomGame.screenshots?.find((s) => s.description === "Boxart")?.url || randomGame.icon}
                   alt=""
-                  className="w-14 h-14 rounded-lg object-cover"
+                  className="w-14 h-14 rounded-lg object-contain"
                   wrapperClassName="w-14 h-14 rounded-lg bg-muted shrink-0"
                 />
                 <div>

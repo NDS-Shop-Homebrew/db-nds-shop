@@ -81,13 +81,13 @@ export default function Docs() {
   return (
     <div>
       {}
-      <section className="dsi-gradient text-white">
+      <section className="dsi-gradient">
         <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("docs.title")}</h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-6">{t("docs.description")}</p>
-            <div className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-2 text-sm font-mono text-white/90">
-              <span className="text-white/60">{t("docs.base_url")} :</span>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6">{t("docs.description")}</p>
+            <div className="inline-flex items-center gap-2 rounded-xl bg-card border border-border px-4 py-2 text-sm font-mono text-foreground">
+              <span className="text-muted-foreground">{t("docs.base_url")} :</span>
               <span className="font-semibold">{BASE}</span>
             </div>
           </motion.div>
