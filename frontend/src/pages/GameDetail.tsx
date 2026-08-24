@@ -144,11 +144,64 @@ export default function GameDetail() {
       </div>
 
       {}
-      <div className="grid grid-cols-3 gap-8">
-        <div className="space-y-8 md:col-span-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-8">
           {}
-          {}
-          {game.downloads && Object.keys(game.downloads).length > 0 && (
+          {ndsdb && (() => {
+            
+            const langDesc = ndsdb[i18n.language === "fr" ? "description_fr" : "description_en"];
+            const desc = ndsdb.description_igdb || langDesc || ndsdb.description;
+            if (!desc) return null;
+            return (
+            <div>
+              <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <Book size={18} className="text-primary" /> À propos
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                {desc.slice(0, 800)}
+                {desc.length > 800 && (
+                  <span className="text-primary cursor-pointer hover:underline"
+                    onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(game?.title + " Nintendo DS")}`, "_blank")}>
+                    ... Lire plus
+                  </span>
+                )}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {ndsdb.genres?.filter(Boolean).map((g: string) => (
+                  <Badge key={g} variant="secondary">{g}</Badge>
+                ))}
+                {ndsdb.developer && (
+                  <Badge variant="outline">{ndsdb.developer}</Badge>
+                )}
+                {ndsdb.rating_system?.name && (
+                  <Badge variant="outline">{ndsdb.rating_system.name} : {ndsdb.rating_system.age}+</Badge>
+                )}
+                {ndsdb.release_date && (
+                  <Badge variant="outline">{t("gameDetail.release")} {ndsdb.release_date}</Badge>
+                )}
+              </div>
+            </div>
+            );
+          })()}
+          {gallery.length > 0 && (
+            <div>
+              <h2 className="text-lg font-bold mb-4">{t("gameDetail.screenshots")}</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {gallery.map((shot, i) => (
+                  <button key={i} onClick={() => setLightboxIdx(i)}
+                    className="aspect-[2/3] rounded-xl overflow-hidden ring-1 ring-border hover:ring-primary/50 transition-all group bg-muted/60">
+                  <SafeImg
+                    src={shot.url}
+                    alt=""
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    wrapperClassName="w-full h-full"
+                  />
+                </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
             <div>
               <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
                 <span className="flex items-center gap-3">
