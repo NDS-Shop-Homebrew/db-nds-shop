@@ -170,10 +170,6 @@ export default function RequestGame() {
         transition={{ duration: 0.4 }}
       >
         <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">{t("request.title")}</CardTitle>
-            <CardDescription>{t("request.subtitle")}</CardDescription>
-          </CardHeader>
           <CardContent className="space-y-4">
             <DiscordLogin />
 

@@ -88,5 +88,5 @@
 }
 
 .dsi-gradient {
-  background: linear-gradient(135deg, #0072CE 0%, #00A651 100%);
+  background: var(--secondary);
 }

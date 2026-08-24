@@ -10,6 +10,17 @@ const router = express.Router();
 
 router.use(express.json());
 
+// Cache-Control no-cache pour les données dynamiques
+// Garantit revalidation à chaque requête navigateur (même sans service worker)
+router.use('/games', (_req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  next();
+});
+router.use('/stats', (_req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  next();
+});
+
 const requestLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 5,
