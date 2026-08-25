@@ -18,6 +18,7 @@
     "noteLabel": "Note (optional)",
     "notePlaceholder": "A detail, a link, a description…",
     "submit": "Send request",
+    "submitting": "Sending…",
     "done": "Request sent! Thanks for your suggestion.",
     "error": "Something went wrong, please try again later.",
     "addAnother": "Add another game",

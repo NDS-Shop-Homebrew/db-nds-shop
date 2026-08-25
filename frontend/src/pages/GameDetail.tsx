@@ -151,10 +151,26 @@ export default function GameDetail() {
 
   if (!game) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-12 space-y-4">
-        <Skeleton className="h-8 w-1/3" />
-        <Skeleton className="h-56 rounded-xl" />
-        <Skeleton className="h-4 w-1/2" />
+      <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+        <Skeleton className="h-5 w-28" />
+        <div className="rounded-2xl bg-muted p-6 md:p-8 flex items-center gap-6">
+          <Skeleton className="w-28 h-28 rounded-xl shrink-0" />
+          <div className="space-y-3 flex-1 min-w-0">
+            <Skeleton className="h-8 w-2/3 max-w-sm" />
+            <Skeleton className="h-4 w-1/3" />
+            <Skeleton className="h-10 w-40 rounded-full" />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <Skeleton className="h-32 rounded-xl" />
+            <Skeleton className="aspect-[2/3] w-2/3 mx-auto rounded-xl" />
+          </div>
+          <div className="space-y-4">
+            <Skeleton className="h-44 rounded-xl" />
+            <Skeleton className="h-20 rounded-xl" />
+          </div>
+        </div>
       </div>
     );
   }
@@ -321,7 +337,7 @@ export default function GameDetail() {
 
         {/* Colonne latérale : Téléchargements & Catégories */}
         <div className="space-y-6">
-          <div>
+          <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
               <span className="flex items-center gap-3">
                 {t("gameDetail.download")}
@@ -375,14 +391,14 @@ export default function GameDetail() {
             </h2>
 
             {game.downloads && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3">
                 {Object.entries(game.downloads).map(([name, details]) => (
                   <a
                     key={name}
                     href={details.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-sm transition-all group"
+                    className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background hover:border-primary/30 hover:shadow-sm transition-all group"
                   >
                     <Download className="w-5 h-5 text-primary shrink-0" />
                     <div className="min-w-0 flex-1">

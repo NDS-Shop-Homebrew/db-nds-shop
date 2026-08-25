@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../co
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
+import { Skeleton } from "../components/ui/skeleton";
 import DiscordLogin from "../components/DiscordLogin";
 import { API_BASE_URL } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -77,13 +78,17 @@ export default function RequestGame() {
   const [note, setNote] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [requests, setRequests] = useState<RequestEntry[]>([]);
+  const [requestsLoading, setRequestsLoading] = useState(true);
   const [voteError, setVoteError] = useState(false);
 
   const loadRequests = () => {
     fetch(`${API_BASE_URL}/v1/requests`)
       .then((r) => r.json())
-      .then(setRequests)
-      .catch(() => {});
+      .then((data) => {
+        setRequests(data);
+        setRequestsLoading(false);
+      })
+      .catch(() => setRequestsLoading(false));
   };
 
   useEffect(() => {
@@ -248,8 +253,8 @@ export default function RequestGame() {
               />
             </div>
 
-            <Button onClick={submit} disabled={!canSubmit}>
-              <Send size={16} /> {t("request.submit")}
+            <Button onClick={submit} disabled={!canSubmit || status === "loading"} className="w-full">
+              <Send size={16} /> {status === "loading" ? t("request.submitting") : t("request.submit")}
             </Button>
             {status === "done" && (
               <p className="text-sm text-green-600 dark:text-green-400">{t("request.done")}</p>
@@ -275,9 +280,19 @@ export default function RequestGame() {
             <CardDescription>{t("request.listSubtitle")}</CardDescription>
           </CardHeader>
           <CardContent>
-            {requests.length === 0 && (
+            {requestsLoading ? (
+              <div className="space-y-3">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="rounded-lg border border-border p-3 space-y-2">
+                    <Skeleton className="h-4 w-2/3" />
+                    <Skeleton className="h-3 w-1/3" />
+                  </div>
+                ))}
+              </div>
+            ) : requests.length === 0 && (
               <p className="text-sm text-muted-foreground">{t("request.empty")}</p>
             )}
+            {!requestsLoading && (
             <ul className="space-y-3">
               {requests.map((r) => (
                 <li key={r.id} className="rounded-lg border border-border p-3 space-y-1.5">
@@ -302,6 +317,7 @@ export default function RequestGame() {
                 </li>
               ))}
             </ul>
+            )}
             {voteError && (
               <p className="text-xs text-red-600 dark:text-red-400 mt-3">{t("request.loginToVote")}</p>
             )}

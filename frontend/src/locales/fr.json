@@ -18,6 +18,7 @@
     "noteLabel": "Note (optionnel)",
     "notePlaceholder": "Une précision, un lien, une description…",
     "submit": "Envoyer la demande",
+    "submitting": "Envoi en cours…",
     "done": "Demande envoyée ! Merci pour votre suggestion.",
     "error": "Une erreur est survenue, réessayez plus tard.",
     "addAnother": "Ajouter un autre jeu",

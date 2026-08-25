@@ -77,8 +77,8 @@
   * {
     @apply border-border outline-ring/50;
   }
-  html {
-    /* ponytail: reserve la gouttiere de scrollbar -> pas de saut de layout quand les dropdowns Radix verrouillent le scroll */
+  html,
+  body {
     scrollbar-gutter: stable;
   }
   body {

@@ -253,9 +253,40 @@ export default function GameList() {
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {Array.from({ length: 12 }).map((_, i) => <GameSkeleton key={i} />)}
-        </div>
+        view === "grid" ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {Array.from({ length: 12 }).map((_, i) => <GameSkeleton key={i} />)}
+          </div>
+        ) : (
+          <div className="rounded-xl border border-border overflow-hidden bg-card">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-muted/50 hover:bg-muted/50">
+                    <TableHead className="w-14"></TableHead>
+                    <TableHead>{t("gameList.name")}</TableHead>
+                    <TableHead>{t("gameList.author")}</TableHead>
+                    <TableHead className="hidden sm:table-cell">{t("gameList.version")}</TableHead>
+                    <TableHead>{t("gameList.downloads")}</TableHead>
+                    <TableHead>{t("gameList.updated")}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <TableRow key={i}>
+                      <TableCell><Skeleton className="w-10 h-10 rounded-lg" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-36 max-w-full" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-24 max-w-full" /></TableCell>
+                      <TableCell className="hidden sm:table-cell"><Skeleton className="h-4 w-14" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-14" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-20" /></TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        )
       ) : view === "grid" ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {filtered.map((game, i) => (
