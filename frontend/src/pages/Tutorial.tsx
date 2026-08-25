@@ -8,8 +8,6 @@ interface Section {
   steps: string[];
 }
 
-// ⚠ Le contenu du tutoriel se modifie dans les fichiers de langue :
-//   src/locales/fr.json et src/locales/en.json (clé "tutorial.sections").
 export default function Tutorial() {
   const { t } = useTranslation();
   usePageMeta(t("tutorial.title") + " — NDS-Shop");
@@ -19,12 +17,12 @@ export default function Tutorial() {
 
   return (
     <div>
-      <section className="dsi-gradient text-white">
+      <section className="dsi-gradient">
         <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <BookOpen className="w-12 h-12 mx-auto mb-4" />
+            <BookOpen className="w-12 h-12 mx-auto mb-4 text-primary" />
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("tutorial.title")}</h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto">{t("tutorial.subtitle")}</p>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">{t("tutorial.subtitle")}</p>
           </motion.div>
         </div>
       </section>
