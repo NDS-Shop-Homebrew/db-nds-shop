@@ -1,0 +1,35 @@
+// Schéma Prisma du site db-nds-shop — MÊME base de données que upload.db-nds-shop.fr.
+// Les tables game_request / game_request_vote sont définies côté upload (source de vérité)
+// et répliquées ici, comme pour le bot.
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model GameRequest {
+  id            String            @id @default(cuid())
+  title         String
+  systems       String?
+  note          String?           @db.Text
+  requesterId   String?
+  requesterName String?
+  createdAt     DateTime          @default(now())
+  votes         GameRequestVote[]
+
+  @@index([title])
+  @@map("game_request")
+}
+
+model GameRequestVote {
+  requestId String
+  request   GameRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime    @default(now())
+
+  @@id([requestId, userId])
+  @@map("game_request_vote")
+}

@@ -5,6 +5,7 @@ import path from "path";
 import rateLimit from "express-rate-limit";
 import { fileURLToPath } from "url";
 import { getSessionUser } from "./auth.js";
+import prisma from "../lib/prisma.js";
 
 const router = express.Router();
 
@@ -34,31 +35,21 @@ const GAMES_JSON =
   process.env.GAMES_JSON_PATH ||
   path.resolve(__dirname, "../../../frontend/public/games.json");
 
-// Stockage communautaire (favoris + demandes de jeux) — fichier JSON, écriture atomique
+// Stockage des favoris — fichier JSON, écriture atomique
+// ponytail: les demandes de jeux sont en BDD Prisma (table game_request), les favoris restent en JSON
 const COMMUNITY_FILE =
   process.env.COMMUNITY_DATA_FILE || path.resolve(__dirname, "../data/community.json");
 
 interface Community {
   favorites: Record<string, string[]>;
-  requests: {
-    id: string;
-    games: { title: string; systems: string }[];
-    note: string;
-    requester: { id: string; username: string } | null;
-    createdAt: string;
-    votes: string[];
-  }[];
 }
 
 function readCommunity(): Community {
   try {
     const raw = JSON.parse(fs.readFileSync(COMMUNITY_FILE, "utf8"));
-    return {
-      favorites: raw.favorites || {},
-      requests: Array.isArray(raw.requests) ? raw.requests : [],
-    };
+    return { favorites: raw.favorites || {} };
   } catch {
-    return { favorites: {}, requests: [] };
+    return { favorites: {} };
   }
 }
 
@@ -298,17 +289,16 @@ router.post("/request", requestLimiter, async (req, res) => {
         return res.status(502).json({ error: "Échec de la création du post." });
       }
     }
-    // Persiste la demande localement (liste publique + votes)
-    const community = readCommunity();
-    community.requests.push({
-      id: crypto.randomUUID(),
-      games: gamesClean,
-      note: noteClean,
-      requester: requester ? { id: requester.id, username: requester.username } : null,
-      createdAt: new Date().toISOString(),
-      votes: [],
+    // Persiste les demandes en BDD (1 ligne par jeu, liste publique + votes)
+    await prisma.gameRequest.createMany({
+      data: gamesClean.map((g) => ({
+        title: g.title,
+        systems: g.systems || null,
+        note: noteClean || null,
+        requesterId: requester?.id ?? null,
+        requesterName: requester?.username ?? null,
+      })),
     });
-    writeCommunity(community);
     res.json({ ok: true, count: gamesClean.length });
   } catch (err) {
     console.error("❌ Discord request error:", err);
@@ -455,38 +445,58 @@ router.put("/favorites", (req, res) => {
   res.json({ ok: true, favorites });
 });
 
-// --- Demandes de jeux (liste publique + votes) ---
-// GET /api/v1/requests — triées par votes décroissants
-router.get("/requests", (req, res) => {
-  const user = getSessionUser(req);
-  const community = readCommunity();
-  const list = community.requests
-    .slice()
-    .sort((a, b) => b.votes.length - a.votes.length || b.createdAt.localeCompare(a.createdAt))
-    .map((r) => ({
+// --- Demandes de jeux (BDD Prisma, 1 ligne par jeu) ---
+// GET /api/v1/requests — triées par votes décroissants puis date
+router.get("/requests", async (req, res) => {
+  try {
+    const user = getSessionUser(req);
+    const rows = await prisma.gameRequest.findMany({
+      include: { votes: true },
+      orderBy: [
+        { votes: { _count: "desc" } },
+        { createdAt: "desc" },
+      ],
+    });
+    const list = rows.map((r) => ({
       id: r.id,
-      games: r.games,
+      title: r.title,
+      systems: r.systems,
       note: r.note,
-      requester: r.requester ? r.requester.username : null,
+      requester: r.requesterName,
       createdAt: r.createdAt,
       votes: r.votes.length,
-      hasVoted: !!user && r.votes.includes(user.id),
+      hasVoted: !!user && r.votes.some((v) => v.userId === user.id),
     }));
-  res.json(list);
+    res.json(list);
+  } catch (err) {
+    console.error("❌ GET /requests error:", err);
+    res.status(500).json({ error: "Erreur serveur." });
+  }
 });
 
 // POST /api/v1/requests/:id/vote — toggle du vote (login requis, 1 vote par utilisateur)
-router.post("/requests/:id/vote", (req, res) => {
+router.post("/requests/:id/vote", async (req, res) => {
   const user = getSessionUser(req);
   if (!user) return res.status(401).json({ error: "Connexion requise." });
-  const community = readCommunity();
-  const entry = community.requests.find((r) => r.id === req.params.id);
-  if (!entry) return res.status(404).json({ error: "Demande introuvable." });
-  const idx = entry.votes.indexOf(user.id);
-  if (idx >= 0) entry.votes.splice(idx, 1);
-  else entry.votes.push(user.id);
-  writeCommunity(community);
-  res.json({ ok: true, votes: entry.votes.length, hasVoted: idx < 0 });
+  try {
+    const existing = await prisma.gameRequestVote.findUnique({
+      where: { requestId_userId: { requestId: req.params.id, userId: user.id } },
+    });
+    if (existing) {
+      await prisma.gameRequestVote.delete({
+        where: { requestId_userId: { requestId: req.params.id, userId: user.id } },
+      });
+    } else {
+      await prisma.gameRequestVote.create({
+        data: { requestId: req.params.id, userId: user.id },
+      });
+    }
+    const count = await prisma.gameRequestVote.count({ where: { requestId: req.params.id } });
+    res.json({ ok: true, votes: count, hasVoted: !existing });
+  } catch (err) {
+    console.error("❌ vote error:", err);
+    res.status(500).json({ error: "Erreur serveur." });
+  }
 });
 
 export default router;

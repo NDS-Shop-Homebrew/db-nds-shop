@@ -21,8 +21,9 @@ interface CatalogGame {
 
 interface RequestEntry {
   id: string;
-  games: { title: string; systems: string }[];
-  note: string;
+  title: string;
+  systems: string | null;
+  note: string | null;
   requester: string | null;
   createdAt: string;
   votes: number;
@@ -46,8 +47,17 @@ const norm = (s: string) =>
     .replace(/\s+/g, " ")
     .trim();
 
-const baseTitle = (s: string) =>
-  norm(s).replace(/\s*(france|europe|usa|japan|asia|australia|en|fr|de|es|it|jp)\s*$/i, "").trim();
+const baseTitle = (s: string) => {
+  // ponytail: strip répété jusqu'à stabilité — sinon "Emeraude (Europe)" → "…emeraude"
+  // mais "Emeraude" seul → "…emerau" (le "de" d'Allemagne est striper d'un seul côté)
+  let out = norm(s);
+  let prev: string;
+  do {
+    prev = out;
+    out = out.replace(/\s*(france|europe|usa|japan|asia|australia|en|fr|de|es|it|jp)\s*$/i, "").trim();
+  } while (out !== prev);
+  return out;
+};
 
 function detectMatch(query: string, catalog: CatalogGame[]): Entry["match"] {
   const q = norm(query);
@@ -298,7 +308,7 @@ export default function RequestGame() {
                 <li key={r.id} className="rounded-lg border border-border p-3 space-y-1.5">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <p className="font-medium text-sm break-words">{r.games.map((g) => g.title).join(", ")}</p>
+                      <p className="font-medium text-sm break-words">{r.title}</p>
                       <p className="text-xs text-muted-foreground">
                         {r.requester ? `${t("request.by")} ${r.requester}` : t("request.anonymous")} ·{" "}
                         {new Date(r.createdAt).toLocaleDateString(i18n.language)}

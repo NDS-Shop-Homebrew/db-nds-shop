@@ -4,6 +4,7 @@
     "start": "tsx src/index.ts"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.3",
     "@types/cors": "^2.8.19",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
@@ -18,6 +19,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.3.3",
     "@types/node-fetch": "^2.6.13",
+    "prisma": "^6.19.3",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.12",
     "typescript": "^5.9.2"
