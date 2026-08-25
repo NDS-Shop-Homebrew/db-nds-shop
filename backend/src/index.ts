@@ -53,6 +53,10 @@ if (!DISCORD_BOT_TOKEN) {
 // --- API v1 (jeux) ---
 app.use("/api/v1", apiRouter);
 
+// --- Téléchargements trackés ---
+import downloadRouter from "./routes/download.js";
+app.use("/api/v1", downloadRouter);
+
 // --- Auth Discord (OAuth2) ---
 app.use("/api/v1/auth", authRouter);
 
