@@ -44,8 +44,8 @@
   --secondary-foreground: #0072CE;
   --muted: #F1F5F9;
   --muted-foreground: #64748B;
-  --accent: #00A651;
-  --accent-foreground: #FFFFFF;
+  --accent: #E8F4FD;
+  --accent-foreground: #0072CE;
   --destructive: #DC2626;
   --border: #E2E8F0;
   --input: #E2E8F0;
@@ -65,8 +65,8 @@
   --secondary-foreground: #60A5FA;
   --muted: #1E293B;
   --muted-foreground: #94A3B8;
-  --accent: #4ADE80;
-  --accent-foreground: #0F172A;
+  --accent: #1E3A5F;
+  --accent-foreground: #60A5FA;
   --destructive: #EF4444;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
@@ -76,6 +76,10 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  html {
+    /* ponytail: reserve la gouttiere de scrollbar -> pas de saut de layout quand les dropdowns Radix verrouillent le scroll */
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
