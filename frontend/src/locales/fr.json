@@ -183,6 +183,7 @@
     "route_games": "Liste tous les jeux du catalogue.",
     "route_game": "Détails d'un jeu par son slug.",
     "route_stats": "Statistiques globales (jeux, téléchargements…).",
+    "route_download": "Téléchargement d'une ROM (.nds/.cia) avec tracking",
     "route_team": "Liste des membres de l'équipe Discord.",
     "route_guild": "Informations du serveur Discord.",
     "route_ndsdb_version": "Version de la base de données NDSDB.",

@@ -22,6 +22,7 @@ const endpoints: { section: "games" | "ndsdb" | "discord"; items: Endpoint[] }[]
       { method: "GET", path: "/health", descKey: "docs.route_health", example: "/health" },
       { method: "GET", path: "/games", descKey: "docs.route_games", example: "/games" },
       { method: "GET", path: "/games/:slug", descKey: "docs.route_game", example: "/games/animal-crossing---wild-world" },
+      { method: "GET", path: "/download/:file", descKey: "docs.route_download", example: "/download/Kirby.nds" },
       { method: "GET", path: "/stats", descKey: "docs.route_stats", example: "/stats" },
     ],
   },
