@@ -37,3 +37,16 @@ model GameRequestVote {
   @@id([requestId, userId])
   @@map("game_request_vote")
 }
+
+model DownloadLog {
+  id        String   @id @default(cuid())
+  game      String
+  title     String?
+  userAgent String?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([game])
+  @@index([createdAt])
+  @@map("DownloadLog")
+}
