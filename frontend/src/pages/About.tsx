@@ -205,7 +205,6 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <img src="/logo.png" alt="NDS-Shop" className="w-16 h-16 mx-auto mb-4 rounded-2xl" />
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
               {t("about.title")}
             </h1>

@@ -1,7 +1,7 @@
 import { Card, CardContent } from "../components/ui/card";
 import { Alert, AlertDescription } from "../components/ui/alert";
 import { motion } from "framer-motion";
-import { FileText, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { usePageMeta } from "../hooks/usePageMeta";
 
@@ -23,9 +23,6 @@ export default function Dmca() {
       <section className="dsi-gradient">
         <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center mx-auto mb-4">
-              <FileText className="w-7 h-7 text-primary" />
-            </div>
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("dmca.title")}</h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">{t("dmca.subtitle")}</p>
           </motion.div>

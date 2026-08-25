@@ -1,6 +1,6 @@
 import { Card, CardContent } from "../components/ui/card";
 import { motion } from "framer-motion";
-import { Shield, Mail, FileText } from "lucide-react";
+import { Mail, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { usePageMeta } from "../hooks/usePageMeta";
 
@@ -51,9 +51,6 @@ export default function PrivacyPolicy() {
       <section className="dsi-gradient">
         <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="w-14 h-14 rounded-2xl bg-card border border-border flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-7 h-7 text-primary" />
-            </div>
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("privacy.title")}</h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">{t("privacy.subtitle")}</p>
           </motion.div>

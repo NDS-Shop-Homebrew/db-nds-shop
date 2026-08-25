@@ -2,13 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Search, Grid3X3, List, ArrowUpDown, Sparkles, X, SearchX, Download } from "lucide-react";
+import { Search, Grid3X3, List, ArrowUpDown, X, SearchX, Download } from "lucide-react";
 import { Skeleton } from "../components/ui/skeleton";
 import { Badge } from "../components/ui/badge";
 import { ToggleGroup, ToggleGroupItem } from "../components/ui/toggle-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
-import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "../components/ui/empty";
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "../components/ui/empty";
 import { InputGroup, InputGroupInput, InputGroupText } from "../components/ui/input-group";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
@@ -142,9 +142,6 @@ export default function GameList() {
       <section className="dsi-gradient">
         <div className="max-w-4xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="w-16 h-16 rounded-2xl bg-card border border-border flex items-center justify-center mx-auto mb-4">
-              <Sparkles className="w-8 h-8 text-primary" />
-            </div>
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">{t("gameList.title")}</h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">{t("gameList.subtitle")}</p>
           </motion.div>
@@ -282,7 +279,7 @@ export default function GameList() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filtered.map((game, i) => (
+                {filtered.map((game) => (
                   <TableRow
                     key={game.fileName}
                     onClick={() => (window.location.href = `/game/${game.fileName}`)}

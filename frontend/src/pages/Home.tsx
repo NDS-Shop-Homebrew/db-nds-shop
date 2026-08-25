@@ -84,7 +84,6 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <img src="/logo.png" alt="NDS-Shop" className="w-16 h-16 mx-auto mb-4 rounded-2xl" />
             <h1 className="text-3xl md:text-5xl font-extrabold mb-4">NDS-Shop</h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto mb-8">
               {t("home.tagline")}
