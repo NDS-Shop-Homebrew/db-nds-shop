@@ -3,7 +3,11 @@ import { Request, Response, NextFunction } from 'express';
 
 const prisma = new PrismaClient();
 
-export async function trackDownload(req: Request, res: Response, next: NextFunction) {
+/**
+ * Middleware to track ROM downloads in the database.
+ * Creates a DownloadLog entry for each download request.
+ */
+export = async function trackDownload(req: Request, res: Response, next: NextFunction) {
   const { game } = req.params;
   const userAgent = req.headers['user-agent'] || 'unknown';
   const ip = req.ip || req.connection?.remoteAddress || 'unknown';
@@ -22,4 +26,4 @@ export async function trackDownload(req: Request, res: Response, next: NextFunct
   }
 
   next();
-}
+};
