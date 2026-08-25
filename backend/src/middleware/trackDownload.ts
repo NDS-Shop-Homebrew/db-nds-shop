@@ -4,14 +4,14 @@ import { Request, Response, NextFunction } from 'express';
 const prisma = new PrismaClient();
 
 export async function trackDownload(req: Request, res: Response, next: NextFunction) {
-  const { game } = req.params;
+  const { file } = req.params;  // <-- Changé de 'game' à 'file'
   const userAgent = req.headers['user-agent'] || 'unknown';
   const ip = req.ip || req.connection?.remoteAddress || 'unknown';
 
   try {
     await prisma.downloadLog.create({
       data: {
-        game,
+        game: file,
         title: (req.query.title as string) || undefined,
         userAgent,
         ip,
