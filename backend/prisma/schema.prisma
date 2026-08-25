@@ -1,6 +1,10 @@
 // Schéma Prisma du site db-nds-shop — MÊME base de données que upload.db-nds-shop.fr.
 // Les tables game_request / game_request_vote sont définies côté upload (source de vérité)
 // et répliquées ici, comme pour le bot.
+//
+// ⚠️ Schéma PARTIEL : ne JAMAIS lancer `prisma db push` depuis ce repo.
+// Prisma verrait toutes les autres tables (user, session, bot_*, …) comme « en trop »
+// et les SUPPRIMERAIT avec leurs données. `db push` uniquement depuis upload.db-nds-shop.fr/backend.
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
