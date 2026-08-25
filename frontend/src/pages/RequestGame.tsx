@@ -95,7 +95,7 @@ export default function RequestGame() {
     fetch(`${API_BASE_URL}/v1/requests`)
       .then((r) => r.json())
       .then((data) => {
-        setRequests(data);
+        setRequests(Array.isArray(data) ? data : []);
         setRequestsLoading(false);
       })
       .catch(() => setRequestsLoading(false));
