@@ -11,8 +11,8 @@ layout: app
 qr:
   Professeur Layton et l'Appel du Spectre (France).nds: https://db-nds-shop.fr/qr/professeur-layton-et-lappel-du-spectre-france-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Professeur%20Layton%20et%20l%27Appel%20du%20Spectre%20%28France%29.png/Professeur%20Layton%20et%20l%27Appel%20du%20Spectre%20%28France%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20l'Appel%20du%20Spectre%20(France).nds.png
 stars: 0
 systems:
 - DS

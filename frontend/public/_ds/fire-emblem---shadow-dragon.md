@@ -11,8 +11,8 @@ layout: app
 qr:
   Fire Emblem Shadow Dragon (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/fire-emblem-shadow-dragon-europe-enfrdeesit-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Fire%20Emblem%20-%20Shadow%20Dragon%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Fire%20Emblem%20-%20Shadow%20Dragon%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Fire%20Emblem%20Shadow%20Dragon%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
 stars: 0
 systems:
 - DS

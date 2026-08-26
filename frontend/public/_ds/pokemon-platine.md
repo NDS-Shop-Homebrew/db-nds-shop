@@ -11,8 +11,8 @@ layout: app
 qr:
   Pokemon Version Platine (France) [b].nds: https://db-nds-shop.fr/qr/pokemon-version-platine-france-b-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Pokemon%20-%20Version%20Platine%20%28France%29.png/Pokemon%20-%20Version%20Platine%20%28France%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.nds.png
 stars: 0
 systems:
 - DS

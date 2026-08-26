@@ -11,8 +11,8 @@ layout: app
 qr:
   Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/legend-of-zelda-the-spirit-tracks-europe-enfrdeesit-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Legend%20of%20Zelda%2C%20The%20-%20Spirit%20Tracks%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Legend%20of%20Zelda%2C%20The%20-%20Spirit%20Tracks%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Legend%20of%20Zelda%2C%20The%20Spirit%20Tracks%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
 stars: 0
 systems:
 - DS

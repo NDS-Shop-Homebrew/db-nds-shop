@@ -11,8 +11,8 @@ layout: app
 qr:
   Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/mario--luigi-bowsers-inside-story-europe-enfrdeesit-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Mario%20_%20Luigi%20-%20Bowser%27s%20Inside%20Story%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png/Mario%20_%20Luigi%20-%20Bowser%27s%20Inside%20Story%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Luigi%20Bowser's%20Inside%20Story%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
 stars: 0
 systems:
 - DS

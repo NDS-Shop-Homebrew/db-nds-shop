@@ -11,8 +11,8 @@ layout: app
 qr:
   Code Lyoko (Europe) (En,Fr,Es,It).nds: https://db-nds-shop.fr/qr/code-lyoko-europe-enfresit-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Code%20Lyoko%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.png/Code%20Lyoko%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20(Europe)%20(En%2CFr%2CEs%2CIt).nds.png
 stars: 0
 systems:
 - DS

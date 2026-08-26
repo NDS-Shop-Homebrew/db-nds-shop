@@ -11,8 +11,8 @@ layout: app
 qr:
   Inazuma Eleven 2 - Tempete de Feu (France) (France).nds: https://db-nds-shop.fr/qr/inazuma-eleven-2---tempete-de-feu-france-france-nds.png
 screenshots:
-- description: Screenshot
-  url: https://db-nds-shop.fr/assets/images/screenshots/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20%28France%29.png/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20%28France%29.png
+- description: Boxart
+  url: https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20(France).nds.png
 stars: 0
 systems:
 - DS

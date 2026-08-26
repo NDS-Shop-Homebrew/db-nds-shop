@@ -28,6 +28,11 @@ from typing import Tuple
 from unidecode import unidecode
 from unistore import StoreEntry, UniStore
 
+# Import DB client
+import sys
+sys.path.insert(0, path.dirname(__file__))
+from db_client import get_db
+
 DOWNLOAD_BLACKLIST = r"(\.3ds$|\.apk|\.appimage|\.dmg|\.exe|\.ipa|\.love|\.nro|\.opk|\.pkg|\.smdh|\.vpk|\.xz|armhf|elf|linux|macos|osx|PS3|PSP|switch|ubuntu|vita|wii|win|x86_64|xbox)"
 
 
@@ -201,11 +206,9 @@ def retroarchUniStore(docsDir: str, tempDir: str) -> None:
 
 
 def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> None:
-	# Load app list json
-	source = []
-	for item in listdir(sourceFolder):
-		with open(path.join(sourceFolder, item)) as f:
-			source.append(json.load(f))
+	# Load app list from database
+	db = get_db()
+	source = db.fetch_all_games()
 
 	# Old data json
 	oldData = None
