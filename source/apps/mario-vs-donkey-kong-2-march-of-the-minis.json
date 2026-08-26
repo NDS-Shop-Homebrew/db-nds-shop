@@ -3,7 +3,7 @@
   "author": "Nintendo",
   "developer": "Nintendo Software Technology",
   "publisher": "Nintendo",
-  "version": "(Europe) (En,Fr,De,Es,It)",
+  "version": "(Europe)",
   "titleId": "A2MP",
   "systems": [
     "NDS",
@@ -57,5 +57,5 @@
       }
     ]
   },
-  "updated": "2026-08-26T15:20:30+02:00"
+  "updated": "2026-08-26T15:20:55+02:00"
 }
