@@ -63,7 +63,7 @@ const endpoints: {
         method: "GET",
         path: "/download/:file",
         descKey: "docs.route_download",
-        example: "/download/Kirby.nds",
+        example: "/download/Kirby%20-%20Power%20Paintbrush%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
       },
       {
         method: "GET",

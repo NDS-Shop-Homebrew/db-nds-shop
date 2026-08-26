@@ -6,7 +6,7 @@
 
 | Route | Méthode | Description | Exemple |
 |-------|---------|-------------|---------|
-| `/api/v1/download/:file` | GET | Télécharge une ROM (.nds/.cia) et track le téléchargement. | `/api/v1/download/Kirby.nds` |
+| `/api/v1/download/:file` | GET | Télécharge une ROM (.nds/.cia) et track le téléchargement. | `/api/v1/download/Kirby%20-%20Power%20Paintbrush%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds` |
 
 **Exemple de réponse** :
 Le fichier est servi directement (pas de JSON).
