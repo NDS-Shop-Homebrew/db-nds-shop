@@ -63,7 +63,8 @@ const endpoints: {
         method: "GET",
         path: "/download/:file",
         descKey: "docs.route_download",
-        example: "/download/Kirby%20-%20Power%20Paintbrush%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
+        example:
+          "/download/Kirby%20-%20Power%20Paintbrush%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
       },
       {
         method: "GET",
@@ -136,7 +137,6 @@ export default function Docs() {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const test = async (endpoint: Endpoint) => {
-    // Annule la requête en cours si on relance
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
@@ -147,34 +147,46 @@ export default function Docs() {
     setLoading(true);
     setResponse("");
 
+    const isDownloadRoute = endpoint.path.startsWith("/download");
+
     try {
       const r = await fetch(`${BASE}${endpoint.example}`, {
+        method: isDownloadRoute ? "HEAD" : endpoint.method,
         signal: controller.signal,
       });
 
+      if (controller.signal.aborted) return;
+
       const contentType = r.headers.get("content-type") || "";
+      const contentLength = r.headers.get("content-length");
 
       if (contentType.includes("application/json")) {
         const data = await r.json();
         setResponse(JSON.stringify(data, null, 2));
       } else {
-        // Gestion des flux binaires (fichiers ROM .nds, .cia, archives, etc.)
-        const blob = await r.blob();
-        const sizeMb = (blob.size / (1024 * 1024)).toFixed(2);
+        const bytes = contentLength ? parseInt(contentLength, 10) : 0;
+        const sizeMb =
+          bytes > 0
+            ? (bytes / (1024 * 1024)).toFixed(2) + " MB"
+            : "Taille inconnue (stream)";
+
         setResponse(
-          `// Binary file received (${r.status} ${r.statusText})\n` +
-          `Content-Type: ${contentType || "application/octet-stream"}\n` +
-          `Payload Size: ${sizeMb} MB (${blob.size.toLocaleString()} bytes)`
+          `// Fichier binaire détecté (${r.status} ${r.statusText})\n` +
+            `Content-Type: ${contentType || "application/octet-stream"}\n` +
+            `Content-Length: ${bytes ? `${bytes.toLocaleString()} octets (~${sizeMb})` : "N/A"}\n\n` +
+            `[Requête HEAD effectuée : aucun transfert de données inutile]`,
         );
       }
     } catch (e: unknown) {
       if (e instanceof Error && e.name === "AbortError") {
-        return; // Requête annulée, pas d'erreur à afficher
+        return;
       }
       const errorMessage = e instanceof Error ? e.message : String(e);
       setResponse(`${t("docs.error")} : ${errorMessage}`);
     } finally {
-      setLoading(false);
+      if (abortControllerRef.current === controller) {
+        setLoading(false);
+      }
     }
   };
 

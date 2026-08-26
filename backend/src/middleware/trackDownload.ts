@@ -4,7 +4,11 @@ import { Request, Response, NextFunction } from 'express';
 const prisma = new PrismaClient();
 
 export async function trackDownload(req: Request, res: Response, next: NextFunction) {
-  const { file } = req.params;  // <-- Changé de 'game' à 'file'
+  if (req.method === 'HEAD') {
+    return next();
+  }
+
+  const { file } = req.params;
   const userAgent = req.headers['user-agent'] || 'unknown';
   const ip = req.ip || req.connection?.remoteAddress || 'unknown';
 
