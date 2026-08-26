@@ -1,22 +1,33 @@
 ---
 author: Nintendo / GameFreak
+boxart: null
 categories:
 - game
+color: null
+color_bg: null
+descriptionMd: ''
+developer: null
 downloads:
   Pokemon Version Blanche 2 (France) (NDSi Enhanced).nds:
+    size: null
     url: https://db-nds-shop.fr/games/Pokemon%20Version%20Blanche%202%20(France)%20(NDSi%20Enhanced).nds
+genres: []
 icon: https://db-nds-shop.fr/assets/images/icons/pokemonblanc2.png
-image: https://db-nds-shop.fr/assets/images/icons/pokemonblanc2.png
+id: cmt9xrpyv00719cogb55mdnsd
+image: null
 layout: app
+publisher: null
 qr:
   Pokemon Version Blanche 2 (France) (NDSi Enhanced).nds: https://db-nds-shop.fr/qr/pokemon-version-blanche-2-france-ndsi-enhanced-nds.png
 screenshots:
 - description: Boxart
+  order: 0
   url: https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Blanche%202%20(France)%20(NDSi%20Enhanced).nds.png
 stars: 0
 systems:
 - DS
 title: Pokemon Version Blanche 2
-updated: '2024-08-12T21:32:00+02:00'
+titleId: IRDF
+updated: '2026-08-26T11:40:03.945000'
 version: (France)
 ---

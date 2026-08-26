@@ -20,7 +20,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // Helper to generate slug from title
-function webName(name: string): string {
+function webName(name) {
   return name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")

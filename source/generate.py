@@ -57,6 +57,8 @@ def iconName(name: str) -> str:
 
 def byteCount(bytes: int) -> str:
 	"""Converts an int number of bytes to a str with the largest appropriate unit"""
+	if bytes is None:
+		return ""
 	power = 1024
 	n = 0
 	power_labels = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
@@ -205,20 +207,24 @@ def retroarchUniStore(docsDir: str, tempDir: str) -> None:
 	unistoreRA.save(path.join(docsDir, "unistore", "retroarch.unistore"))
 
 
-def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> None:
+def main(docsDir: str, ghToken: str, priorityOnlyMode: bool) -> None:
 	# Load app list from database
 	db = get_db()
 	source = db.fetch_all_games()
 
 	# Old data json
 	oldData = None
-	with open(path.join(docsDir, "data", "full.json"), "r", encoding="utf8") as file:
-		oldData = json.load(file)
+	# If old data doesn't exist, start with empty list
+	if path.exists(path.join(docsDir, "data", "full.json")):
+		with open(path.join(docsDir, "data", "full.json"), "r", encoding="utf8") as file:
+			oldData = json.load(file)
+	else:
+		oldData = []
 
 	output = []
 	iconIndex = 0
 	names = {}  # GitHub name cache
-	tempDir = path.join(path.dirname(sourceFolder), "temp")
+	tempDir = path.join(docsDir, "temp") # Changed from sourceFolder to docsDir
 	header = {"Authorization": f"token {ghToken}"} if ghToken else None
 	# Les dossiers QR sont générés (gitignore) et peuvent être absents après un clean
 	for qrSub in ["", "prerelease", "nightly"]:
@@ -599,22 +605,28 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 
 			# Ensure URLs don't have spaces
 			for item in ["avatar", "download_page", "icon", "image", "source", "website", "wiki"]:
-				if item in app:
+				if item in app and app[item] is not None:
 					app[item] = requote_uri(app[item])
 
-			# Check for screenshots
+			# Check for screenshots (from BDD if present, otherwise fallback)
+			if "screenshots" not in app:
+				app["screenshots"] = []
+
 			folder_name = iconName(app["title"])
-			if path.exists(path.join(docsDir, "assets", "images", "screenshots", folder_name)):
-				if "screenshots" not in app:
-					app["screenshots"] = []
-				dirlist = listdir(path.join(docsDir, "assets", "images", "screenshots", folder_name))
+			folder_path = path.join(docsDir, "assets", "images", "screenshots", folder_name)
+			
+			if path.exists(folder_path):
+				dirlist = listdir(folder_path)
 				dirlist.sort()
 				for screenshot in dirlist:
 					if screenshot[-3:] in ["png", "gif", "jpg", "peg", "iff", "bmp"]:
-						app["screenshots"].append({
-							"url": f"https://db-nds-shop.fr/assets/images/screenshots/{urllib.parse.quote(folder_name)}/{urllib.parse.quote(screenshot)}",
-							"description": screenshot[:screenshot.rfind(".")].capitalize().replace("-", " ")
-						})
+						url = f"https://db-nds-shop.fr/assets/images/screenshots/{urllib.parse.quote(folder_name)}/{urllib.parse.quote(screenshot)}"
+						# Add only if not already present
+						if not any(s['url'] == url for s in app["screenshots"]):
+							app["screenshots"].append({
+								"url": url,
+								"description": screenshot[:screenshot.rfind(".")].capitalize().replace("-", " ")
+							})
 
 			# Format update notes with GitHub's API
 			if "update_notes_md" in app and "update_notes" not in app:
@@ -649,7 +661,7 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 					app["image"] += "&size=128"
 
 			# Get image size
-			if "image_length" not in app and "image" in app:
+			if "image_length" not in app and "image" in app and app["image"] is not None:
 				localPath = siteLocalPath(docsDir, app["image"])
 				if localPath:
 					app["image_length"] = path.getsize(localPath)
@@ -699,14 +711,14 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 								hsv[2] = min(0.5, hsv[2])
 								app["color_bg"] = "#%02x%02x%02x" % (*[round(x * 255) for x in hsv_to_rgb(*hsv)],)
 
-							if "icon" in app and app["icon"].endswith(".bmp"):
+							if "icon" in app and app["icon"] is not None and app["icon"].endswith(".bmp"):
 								copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
 								app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{urllib.parse.quote(webName(app['title']) + '.png')}"
-							elif "icon_static" not in app and "icon" in app and app["icon"].endswith(".gif"):
+							elif "icon_static" not in app and "icon" in app and app["icon"] is not None and app["icon"].endswith(".gif"):
 								copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
 								app["icon_static"] = f"https://db-nds-shop.fr/assets/images/icons/{urllib.parse.quote(webName(app['title']) + '.png')}"
 
-							if "image" in app and app["image"].endswith(".bmp"):
+							if "image" in app and app["image"] is not None and app["image"].endswith(".bmp"):
 								app["image"] = app["icon"]
 
 						iconIndex += 1
@@ -990,13 +1002,10 @@ if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    default_source = config['DEFAULT'].get('source', 'apps')
     default_docs = config['DEFAULT'].get('docs', '../frontend/public/')
     default_token = config['DEFAULT'].get('token', '')
 
-    argParser = ArgumentParser(description="Generates the Universal-DB website and UniStores from a JSON")
-    argParser.add_argument("source", metavar="apps", type=str, default=default_source, nargs='?',
-                           help="source JSON folder (default: %(default)s)")
+    argParser = ArgumentParser(description="Generates the Universal-DB website and UniStores from database")
     argParser.add_argument("docs", metavar="../docs", type=str, default=default_docs, nargs='?',
                            help="location to output to (default: %(default)s)")
     argParser.add_argument("--token", "-t", type=str, default=default_token,
@@ -1006,4 +1015,4 @@ if __name__ == "__main__":
 
     args = argParser.parse_args()
 
-    main(args.source, args.docs, args.token, args.priority)
+    main(args.docs, args.token, args.priority)
