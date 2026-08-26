@@ -15,6 +15,17 @@ import {
 import path from "node:path";
 import { buildManifest } from "./lib/manifest.mjs";
 import { extractIconPng } from "./lib/extractIcon.mjs";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+// Helper to generate slug from title
+function webName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
 
 const COMMIT =
   process.env.LIBRETRO_THUMBNAILS_COMMIT ||
@@ -246,28 +257,35 @@ async function pool(items, limit, fn) {
 }
 
 // ---- main ----
-const apps = readdirSync(appsDir)
-  .filter((f) => f.endsWith(".json"))
-  .sort();
+// Load games from database instead of JSON files
+const allGames = await prisma.game.findMany({
+  include: {
+    screenshots: true,
+    downloads: true,
+    scripts: true,
+  },
+});
+
 const manifest = buildManifest(appsDir);
 const entryByRom = new Map(manifest.map((e) => [e.rom, e]));
 
 const games = [];
-for (const file of apps) {
-  const app = JSON.parse(readFileSync(path.join(appsDir, file), "utf8"));
-  const dlKey = Object.keys(app.downloads || {}).find((k) => /\.(nds|dsi)$/i.test(k));
+for (const game of allGames) {
+  // Find download key (nds/dsi file)
+  const dlKey = game.downloads.find((d) => /\.(nds|dsi)$/i.test(d.fileName));
   if (!dlKey) continue;
-  const entry = entryByRom.get(decodeName(app.downloads[dlKey]?.url || ""));
+  const entry = entryByRom.get(decodeName(dlKey.url || ""));
   if (!entry) continue;
-  const boxartStep = (app.screenshots || []).find((s) => s?.description === "Boxart");
+  
+  const boxartScreenshot = game.screenshots.find((s) => s.description === "Boxart");
   games.push({
-    app,
-    file,
-    dlKey,
+    app: game,
+    file: "", // not used anymore
+    dlKey: dlKey.fileName,
     entry,
     romName: entry.rom,
-    iconName: app.icon && !app.icon.startsWith("data:") ? decodeName(app.icon) : `${iconName(app.title)}.png`,
-    boxartName: boxartStep ? decodeName(boxartStep.url) : null,
+    iconName: game.iconUrl ? decodeName(game.iconUrl) : `${iconName(game.title)}.png`,
+    boxartName: boxartScreenshot ? decodeName(boxartScreenshot.url) : null,
   });
 }
 console.log(`Jeux à traiter : ${games.length}`);
@@ -285,7 +303,7 @@ if (doIcons) {
       const iconPath = path.join(iconsDir, g.iconName);
       if (existsSync(iconPath)) {
         summary.icons++;
-        continue; // déjà extraite, on saute (gain de temps)
+        continue;
       }
       const romPath = path.join(romsDir, g.romName);
       if (!existsSync(romPath)) {
@@ -295,12 +313,12 @@ if (doIcons) {
       try {
         writeFileSync(iconPath, extractIconPng(readFileSync(romPath)));
         summary.icons++;
-        // Met à jour le JSON source avec l'URL de l'icône (remplace le data: base64)
-        if (g.app.icon && g.app.icon.startsWith("data:")) {
-          const iconUrl = `https://db-nds-shop.fr/assets/images/icons/${encodeURIComponent(g.iconName)}`;
-          g.app.icon = iconUrl;
-          writeFileSync(path.join(appsDir, g.file), JSON.stringify(g.app, null, 2));
-        }
+        // Met à jour la BDD avec l'URL de l'icône
+        const iconUrl = `https://db-nds-shop.fr/assets/images/icons/${encodeURIComponent(g.iconName)}`;
+        await prisma.game.update({
+          where: { slug: webName(g.app.title) },
+          data: { iconUrl },
+        });
       } catch (e) {
         summary.iconsMiss.push(`${g.file}: ${e.message}`);
       }
@@ -324,11 +342,16 @@ if (doBoxart) {
         const boxartName = g.boxartName || `${g.romName}.png`;
         writeFileSync(path.join(boxartDir, boxartName), data);
         if (!g.boxartName) {
-          // Nouveau jeu sans entrée Boxart → on l'ajoute dans son JSON source
+          // Nouveau jeu sans entrée Boxart → on l'ajoute en BDD
           const url = `https://db-nds-shop.fr/assets/images/boxart/${encodeURIComponent(boxartName)}`;
-          g.app.screenshots = g.app.screenshots || [];
-          g.app.screenshots.push({ url, description: "Boxart" });
-          writeFileSync(path.join(appsDir, g.file), JSON.stringify(g.app, null, 2));
+          await prisma.gameScreenshot.create({
+            data: {
+              gameId: (await prisma.game.findUnique({ where: { slug: webName(g.app.title) } })).id,
+              description: "Boxart",
+              url,
+              order: 0,
+            },
+          });
         }
         return `ok (${n})`;
       }
@@ -369,14 +392,35 @@ if (doScreenshots) {
     const names = name ? [name] : candidates(g.romName);
 
     let downloaded = 0;
+    const screenshotUrls = [];
     for (const n of names) {
       const data = await tryFetch("Named_Snaps", n);
       if (data) {
         writeFileSync(path.join(folder, `${next}.png`), data);
+        const url = `https://db-nds-shop.fr/assets/images/screenshots/${encodeURIComponent(folderName)}/${next}.png`;
+        screenshotUrls.push({ description: `Screenshot ${next}`, url, order: next - 1 });
         downloaded++;
         next++;
       }
       await sleep(1500);
+    }
+    if (downloaded > 0) {
+      // Save screenshot URLs to DB
+      const game = await prisma.game.findUnique({ where: { slug: webName(g.app.title) } });
+      if (game) {
+        // Clear existing screenshots for this game (except boxart)
+        await prisma.gameScreenshot.deleteMany({ where: { gameId: game.id, description: { not: "Boxart" } } });
+        for (const s of screenshotUrls) {
+          await prisma.gameScreenshot.create({
+            data: {
+              gameId: game.id,
+              description: s.description,
+              url: s.url,
+              order: s.order,
+            },
+          });
+        }
+      }
     }
     return downloaded > 0 ? "ok" : "miss";
   });
@@ -404,3 +448,5 @@ if (summary.iconsMiss.length) {
   console.log("\nIcônes RATÉES :");
   summary.iconsMiss.forEach((m) => console.log(" - " + m));
 }
+
+await prisma.$disconnect();
