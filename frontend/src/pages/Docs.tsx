@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Badge } from "../components/ui/badge";
@@ -133,16 +133,44 @@ export default function Docs() {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string>("");
   const [copied, setCopied] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const test = async (endpoint: Endpoint) => {
+    // Annule la requête en cours si on relance
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     setActive(endpoint);
     setLoading(true);
     setResponse("");
+
     try {
-      const r = await fetch(`${BASE}${endpoint.example}`);
-      const text = await r.text();
-      setResponse(text ? JSON.stringify(JSON.parse(text), null, 2) : "(empty)");
+      const r = await fetch(`${BASE}${endpoint.example}`, {
+        signal: controller.signal,
+      });
+
+      const contentType = r.headers.get("content-type") || "";
+
+      if (contentType.includes("application/json")) {
+        const data = await r.json();
+        setResponse(JSON.stringify(data, null, 2));
+      } else {
+        // Gestion des flux binaires (fichiers ROM .nds, .cia, archives, etc.)
+        const blob = await r.blob();
+        const sizeMb = (blob.size / (1024 * 1024)).toFixed(2);
+        setResponse(
+          `// Binary file received (${r.status} ${r.statusText})\n` +
+          `Content-Type: ${contentType || "application/octet-stream"}\n` +
+          `Payload Size: ${sizeMb} MB (${blob.size.toLocaleString()} bytes)`
+        );
+      }
     } catch (e: unknown) {
+      if (e instanceof Error && e.name === "AbortError") {
+        return; // Requête annulée, pas d'erreur à afficher
+      }
       const errorMessage = e instanceof Error ? e.message : String(e);
       setResponse(`${t("docs.error")} : ${errorMessage}`);
     } finally {
