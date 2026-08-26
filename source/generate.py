@@ -7,6 +7,7 @@ import re
 import requests
 import yaml
 import configparser
+import urllib.parse
 
 from argparse import ArgumentParser
 from bs4 import BeautifulSoup
@@ -572,17 +573,17 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 			# Process format strings in downloads if needed
 			if "eval_downloads" in app and app["eval_downloads"]:
 				if "download_page" in app and type(app["download_page"]) == str:
-					app["download_page"] = eval(app["download_page"])
+					app["download_page"] = urllib.parse.quote(eval(app["download_page"]), safe=":/")
 				if "downloads" in app:
 					for item in app["downloads"]:
 						if type(app["downloads"][item]["url"]) == str:
-							app["downloads"][item]["url"] = eval(app["downloads"][item]["url"])
+							app["downloads"][item]["url"] = urllib.parse.quote(eval(app["downloads"][item]["url"]), safe=":/")
 			if "eval_scripts" in app and app["eval_scripts"]:
 				if "scripts" in app:
 					for script in app["scripts"]:
 						for function in app["scripts"][script]:
 							if function["type"] == "downloadFile" and type(function["file"]) == str:
-								function["file"] = eval(function["file"])
+								function["file"] = urllib.parse.quote(eval(function["file"]), safe=":/")
 			if "eval_notes_md" in app and app["eval_notes_md"]:
 				if "update_notes_md" in app:
 					app["update_notes_md"] = eval(app["update_notes_md"])
@@ -599,15 +600,16 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 					app[item] = requote_uri(app[item])
 
 			# Check for screenshots
-			if path.exists(path.join(docsDir, "assets", "images", "screenshots", webName(app["title"]))):
+			folder_name = iconName(app["title"])
+			if path.exists(path.join(docsDir, "assets", "images", "screenshots", folder_name)):
 				if "screenshots" not in app:
 					app["screenshots"] = []
-				dirlist = listdir(path.join(docsDir, "assets", "images", "screenshots", webName(app["title"])))
+				dirlist = listdir(path.join(docsDir, "assets", "images", "screenshots", folder_name))
 				dirlist.sort()
 				for screenshot in dirlist:
 					if screenshot[-3:] in ["png", "gif", "jpg", "peg", "iff", "bmp"]:
 						app["screenshots"].append({
-							"url": f"https://db-nds-shop.fr/assets/images/screenshots/{webName(app['title'])}/{screenshot}",
+							"url": f"https://db-nds-shop.fr/assets/images/screenshots/{urllib.parse.quote(folder_name)}/{urllib.parse.quote(screenshot)}",
 							"description": screenshot[:screenshot.rfind(".")].capitalize().replace("-", " ")
 						})
 
@@ -632,10 +634,10 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 			# Check for local icon / image
 			for ext in (".png", ".gif"):
 				if (not app.get("icon") or app.get("icon", "").startswith("data:")) and path.exists(path.join(docsDir, "assets", "images", "icons", iconName(app['title']) + ext)):
-					app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{iconName(app['title'])}{ext}"
+					app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{urllib.parse.quote(iconName(app['title']) + ext)}"
 
 			if "image" not in app and path.exists(path.join(docsDir, "assets", "images", "images", f"{webName(app['title'])}.png")):
-				app["image"] = f"https://db-nds-shop.fr/assets/images/images/{webName(app['title'])}.png"
+				app["image"] = f"https://db-nds-shop.fr/assets/images/images/{urllib.parse.quote(webName(app['title']) + '.png')}"
 			elif "image" not in app and "icon" in app:
 				app["image"] = app["icon"]
 			elif "image" not in app and "avatar" in app:
@@ -696,10 +698,10 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 
 							if "icon" in app and app["icon"].endswith(".bmp"):
 								copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
-								app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{webName(app['title'])}.png"
+								app["icon"] = f"https://db-nds-shop.fr/assets/images/icons/{urllib.parse.quote(webName(app['title']) + '.png')}"
 							elif "icon_static" not in app and "icon" in app and app["icon"].endswith(".gif"):
 								copyfile(path.join(tempDir, "48", f"{iconIndex}.png"), path.join(docsDir, "assets", "images", "icons", f"{webName(app['title'])}.png"))
-								app["icon_static"] = f"https://db-nds-shop.fr/assets/images/icons/{webName(app['title'])}.png"
+								app["icon_static"] = f"https://db-nds-shop.fr/assets/images/icons/{urllib.parse.quote(webName(app['title']) + '.png')}"
 
 							if "image" in app and app["image"].endswith(".bmp"):
 								app["image"] = app["icon"]
@@ -739,7 +741,7 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 						qr.save(path.join(docsDir, "assets", "images", "qr", f"{webName(item)}.png"))
 						if "qr" not in app:
 							app["qr"] = {}
-						app["qr"][item] = f"https://db-nds-shop.fr/qr/{webName(item)}.png"
+						app["qr"][item] = f"https://db-nds-shop.fr/qr/{urllib.parse.quote(webName(item) + '.png')}"
 
 			if "prerelease" in app:
 				for item in app["prerelease"]["downloads"]:
@@ -764,7 +766,7 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 						qr.save(path.join(docsDir, "assets", "images", "qr", "prerelease", f"{webName(item)}.png"))
 						if "qr" not in app["prerelease"]:
 							app["prerelease"]["qr"] = {}
-						app["prerelease"]["qr"][item] = f"https://db-nds-shop.fr/qr/prerelease/{webName(item)}.png"
+						app["prerelease"]["qr"][item] = f"https://db-nds-shop.fr/qr/prerelease/{urllib.parse.quote(webName(item) + '.png')}"
 
 			if "nightly" in app:
 				for item in app["nightly"]["downloads"]:
@@ -787,7 +789,7 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 						qr.save(path.join(docsDir, "assets", "images", "qr", "nightly", f"{webName(item)}.png"))
 						if "qr" not in app["nightly"]:
 							app["nightly"]["qr"] = {}
-						app["nightly"]["qr"][item] = f"https://db-nds-shop.fr/assets/images/qr/nightly/{webName(item)}.png"
+						app["nightly"]["qr"][item] = f"https://db-nds-shop.fr/assets/images/qr/nightly/{urllib.parse.quote(webName(item) + '.png')}"
 
 		# Add to output json
 		output.append(app)

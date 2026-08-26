@@ -295,6 +295,12 @@ if (doIcons) {
       try {
         writeFileSync(iconPath, extractIconPng(readFileSync(romPath)));
         summary.icons++;
+        // Met à jour le JSON source avec l'URL de l'icône (remplace le data: base64)
+        if (g.app.icon && g.app.icon.startsWith("data:")) {
+          const iconUrl = `https://db-nds-shop.fr/assets/images/icons/${encodeURIComponent(g.iconName)}`;
+          g.app.icon = iconUrl;
+          writeFileSync(path.join(appsDir, g.file), JSON.stringify(g.app, null, 2));
+        }
       } catch (e) {
         summary.iconsMiss.push(`${g.file}: ${e.message}`);
       }
