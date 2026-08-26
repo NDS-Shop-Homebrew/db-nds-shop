@@ -953,6 +953,32 @@ def main(sourceFolder, docsDir: str, ghToken: str, priorityOnlyMode: bool) -> No
 	with open(path.join(docsDir, "data", "full.json"), "w", encoding="utf8") as file:
 		json.dump(output, file, sort_keys=True, ensure_ascii=False)
 
+	# Generate DSi text database (db.txt)
+	db_lines = []
+	for app in output:
+		for fname, dl in app.get("downloads", {}).items():
+			if not fname.lower().endswith(".nds"):
+				continue
+			boxart = ""
+			if app.get("screenshots"):
+				boxart = app["screenshots"][0].get("url", "")
+			db_lines.append("\t".join([
+				app.get("title", ""),
+				app.get("systems", ["DS"])[0],
+				app.get("version", ""),
+				app.get("version", ""),
+				app.get("author", ""),
+				dl.get("url", ""),
+				fname,
+				str(dl.get("size", 0)),
+				boxart,
+			]))
+	with open(path.join(docsDir, "db.txt"), "w", encoding="utf8") as f:
+		f.write("1\n\t\n")
+		f.write("\n".join(db_lines))
+		f.write("\n")
+	print(f"DSi db.txt: {len(db_lines)} entries")
+
 
 if __name__ == "__main__":
 	
