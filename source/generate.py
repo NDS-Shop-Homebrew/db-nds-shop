@@ -28,10 +28,9 @@ from typing import Tuple
 from unidecode import unidecode
 from unistore import StoreEntry, UniStore
 
-# Import DB client
-import sys
-sys.path.insert(0, path.dirname(__file__))
-from db_client import get_db
+# Import API client
+import requests
+
 
 DOWNLOAD_BLACKLIST = r"(\.3ds$|\.apk|\.appimage|\.dmg|\.exe|\.ipa|\.love|\.nro|\.opk|\.pkg|\.smdh|\.vpk|\.xz|armhf|elf|linux|macos|osx|PS3|PSP|switch|ubuntu|vita|wii|win|x86_64|xbox)"
 

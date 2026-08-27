@@ -1,1 +1,12 @@
-{"author": "Rinzler", "description": "db-nds-shop - An online database of DS games in NDS-Shop", "dsSheet": "db-nds-shop.tdx", "dsSheetURL": "https://db-nds-shop.fr/unistore/db-nds-shop.tdx", "file": "db-nds-shop.unistore", "infoURL": "https://db-nds-shop.fr/unistore/db-nds-shop.json", "revision": 186, "sheet": "db-nds-shop.t3x", "sheetURL": "https://db-nds-shop.fr/unistore/db-nds-shop.t3x", "title": "db-nds-shop", "url": "https://db-nds-shop.fr/unistore/db-nds-shop.unistore", "version": 3}
+{
+  "info": {
+    "title": "NDS-Shop",
+    "author": "NDS-Shop Team",
+    "description": "Universal Nintendo DS/3DS Homebrew Store",
+    "url": "https://db-nds-shop.fr/unistore/db-nds-shop.json",
+    "sheet_url": "https://db-nds-shop.fr/unistore/db-nds-shop.t3x",
+    "icon_url": "https://db-nds-shop.fr/unistore/icon.png",
+    "cover_url": "https://db-nds-shop.fr/unistore/cover.png"
+  },
+  "entries": []
+}

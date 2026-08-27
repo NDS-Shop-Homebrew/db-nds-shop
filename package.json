@@ -1,0 +1,21 @@
+{
+  "name": "db-nds-shop",
+  "version": "1.0.0",
+  "description": "Base de données de jeux Nintendo DS/3DS avec site web, UniStores et pipeline de build automatisé.",
+  "type": "module",
+  "scripts": {
+    "generate": "tsx source/generate.ts",
+    "generate:games": "tsx source/generate_games.ts",
+    "generate:md": "tsx tools/nds-to-cia/update_md_screenshots.ts",
+    "build": "npm run generate && npm run generate:games && npm run generate:md"
+  },
+  "dependencies": {
+    "@nds-shop/prisma": "file:../packages/prisma",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "tsx": "^4.23.12",
+    "typescript": "^5.9.2"
+  }
+}
