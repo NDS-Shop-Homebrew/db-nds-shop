@@ -142,10 +142,10 @@
         ]
       },
       {
-        "title": "Install the SD card fowarder pack",
+        "title": "Install the SD card forwarder pack",
         "steps": [
           "Open the Universal-Updater app.",
-          "Search for the \"SD card fowarder pack\" in the software list.",
+          "Search for the \"SD card forwarder pack\" in the software list.",
           "Select it and install it.",
           "This pack makes NDS games display correctly (icons, titles) in the console's HOME menu."
         ]
@@ -170,8 +170,13 @@
     "sections": {
       "games": "Games",
       "ndsdb": "NDSDB",
-      "discord": "Discord"
+      "discord": "Discord",
+      "community": "Community"
     },
+    "sections_games_desc": "Endpoints to browse the catalog, search ROMs, and download files.",
+    "sections_ndsdb_desc": "Technical metadata from NDSDB (serials, box arts, screenshots).",
+    "sections_discord_desc": "Discord guild information and live member activity.",
+    "sections_community_desc": "Game requests and community votes.",
     "try": "Try it",
     "request": "Request",
     "response": "Response",
@@ -180,19 +185,23 @@
     "copy": "Copy",
     "copied": "Copied!",
     "route_health": "Checks whether the API is online.",
-    "route_games": "Lists all games in the catalog.",
-    "route_game": "Game details by slug.",
+    "route_games": "Lists games with pagination and query filters (?limit, ?search, ?system).",
+    "route_game": "Game details by slug or ID.",
     "route_stats": "Global statistics (games, downloads…).",
-    "route_download": "Download a ROM (.nds/.cia) with tracking",
+    "route_download": "Download a ROM (.nds/.cia) with tracking.",
     "route_team": "Lists Discord team members.",
     "route_guild": "Discord server information.",
+    "route_presence": "Live Discord presence status (via Lanyard / Bot).",
+    "route_requests": "List of game requests and user votes.",
     "route_ndsdb_version": "NDSDB database version.",
     "route_ndsdb_stats": "NDSDB database statistics.",
     "route_ndsdb_category": "Statistics by category.",
-    "route_ndsdb_metadata": "Game metadata by serial number.",
+    "route_ndsdb_metadata": "Game metadata by serial number (e.g. A2DP).",
+    "route_ndsdb_images": "Direct access to official game assets (boxart, banner, icon).",
+    "route_ndsdb_screens": "List of screenshot URLs for a game.",
     "param_slug": "Game slug (e.g. animal-crossing---wild-world)",
     "param_serial": "Game serial number (e.g. A2DP)",
-    "param_category": "Category (only: base)",
+    "param_category": "Category (e.g. base)",
     "param_meta": "Metadata file name (e.g. meta.json)",
     "no_content": "Nothing to display."
   },
@@ -259,7 +268,7 @@
     "contactText": "For any question about privacy or how the site works, contact us:",
     "contactMail": "nds-shop@proton.me",
     "updates": "6. Policy Updates",
-    "updatesText": "This policy may be updated if the site evolves. Changes will be posted on this page. Last updated: August 2026"
+    "updatesText": "This policy may be updated if the site evolves. Changes will be posted on this page."
   },
   "dmca": {
     "title": "DMCA Policy",
@@ -308,7 +317,7 @@
     "legal": "Legal",
     "privacyPolicy": "Privacy Policy",
     "dmca": "DMCA Notice",
-    "copyright": "©  {{year}} NDS-Shop. All rights reserved.",
+    "copyright": "© {{year}} NDS-Shop. All rights reserved.",
     "developedBy": "Developed with ❤️ by {{author}}",
     "version": "Version:",
     "rss": "RSS feed of new games"

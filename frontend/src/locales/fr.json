@@ -97,7 +97,7 @@
     "description": "NDS-Shop est votre plateforme de référence pour les jeux Nintendo DS, mise à jour régulièrement avec les nouvelles sorties et des téléchargements faciles d'accès.",
     "team": "Notre équipe",
     "play": "Joue à",
-    "listen": "Ecoute",
+    "listen": "Écoute",
     "watch": "Regarde",
     "stream": "Stream",
     "roadmap": "Roadmap",
@@ -142,10 +142,10 @@
         ]
       },
       {
-        "title": "Installer le SD card fowarder pack",
+        "title": "Installer le SD card forwarder pack",
         "steps": [
           "Ouvre l'application Universal-Updater.",
-          "Recherche le « SD card fowarder pack » dans la liste des logiciels.",
+          "Recherche le « SD card forwarder pack » dans la liste des logiciels.",
           "Sélectionne-le et installe-le.",
           "Ce pack permet d'afficher correctement les jeux NDS (icônes, titres) dans le menu HOME de la console."
         ]
@@ -170,8 +170,13 @@
     "sections": {
       "games": "Jeux",
       "ndsdb": "NDSDB",
-      "discord": "Discord"
+      "discord": "Discord",
+      "community": "Communauté"
     },
+    "sections_games_desc": "Routes pour explorer le catalogue, rechercher des ROMs et télécharger.",
+    "sections_ndsdb_desc": "Accès aux métadonnées techniques NDSDB (séries, jaquettes, captures).",
+    "sections_discord_desc": "Informations du serveur Discord et présences des membres.",
+    "sections_community_desc": "Demandes de jeux et interactions avec la communauté.",
     "try": "Tester",
     "request": "Requête",
     "response": "Réponse",
@@ -180,19 +185,23 @@
     "copy": "Copier",
     "copied": "Copié !",
     "route_health": "Vérifie que l'API est en ligne.",
-    "route_games": "Liste tous les jeux du catalogue.",
-    "route_game": "Détails d'un jeu par son slug.",
+    "route_games": "Liste les jeux avec pagination et filtres (?limit, ?search, ?system).",
+    "route_game": "Détails d'un jeu par son slug ou son ID.",
     "route_stats": "Statistiques globales (jeux, téléchargements…).",
-    "route_download": "Téléchargement d'une ROM (.nds/.cia) avec tracking",
+    "route_download": "Téléchargement d'une ROM (.nds/.cia) avec tracking.",
     "route_team": "Liste des membres de l'équipe Discord.",
     "route_guild": "Informations du serveur Discord.",
+    "route_presence": "Présence Discord en direct (via Lanyard / Bot).",
+    "route_requests": "Liste des demandes de jeux et votes.",
     "route_ndsdb_version": "Version de la base de données NDSDB.",
     "route_ndsdb_stats": "Statistiques de la base NDSDB.",
     "route_ndsdb_category": "Statistiques par catégorie.",
-    "route_ndsdb_metadata": "Métadonnées d'un jeu par son numéro de série.",
+    "route_ndsdb_metadata": "Métadonnées d'un jeu par son code de série (ex : A2DP).",
+    "route_ndsdb_images": "Accès direct aux images officielles (boxart, bannière, icône).",
+    "route_ndsdb_screens": "Liste des captures d'écran du jeu.",
     "param_slug": "Slug du jeu (ex : animal-crossing---wild-world)",
     "param_serial": "Numéro de série du jeu (ex : A2DP)",
-    "param_category": "Catégorie (seule : base)",
+    "param_category": "Catégorie (ex : base)",
     "param_meta": "Nom du fichier de métadonnées (ex : meta.json)",
     "no_content": "Aucun contenu à afficher."
   },
@@ -259,7 +268,7 @@
     "contactText": "Pour toute question relative à la vie privée ou au fonctionnement du site, contactez-nous :",
     "contactMail": "nds-shop@proton.me",
     "updates": "6. Mises à jour de la politique",
-    "updatesText": "Cette politique peut être mise à jour si le site évolue. Les modifications seront affichées sur cette page. Dernière mise à jour : août 2026"
+    "updatesText": "Cette politique peut être mise à jour si le site évolue. Les modifications seront affichées sur cette page."
   },
   "dmca": {
     "title": "Politique DMCA",
@@ -308,7 +317,7 @@
     "legal": "Légal",
     "privacyPolicy": "Politique de Confidentialité",
     "dmca": "Avis DMCA",
-    "copyright": "©  {{year}} NDS-Shop. Tous droits réservés.",
+    "copyright": "© {{year}} NDS-Shop. Tous droits réservés.",
     "developedBy": "Développé avec ❤️ par {{author}}",
     "version": "Version :",
     "rss": "Flux RSS des nouveaux jeux"

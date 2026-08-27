@@ -15,9 +15,7 @@ import RequestGame from "./pages/RequestGame";
 export default function App() {
   return (
     <Routes>
-      {}
       <Route element={<Layout />}>
-        {}
         <Route index element={<Home />} />
         <Route path="/game-list" element={<GameList />} />
         <Route path="/game/:slug" element={<GameDetail />} />
@@ -26,14 +24,10 @@ export default function App() {
         <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/docs" element={<Docs />} />
         <Route path="/request" element={<RequestGame />} />
-
-        {}
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/dmca" element={<DMCA />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
-
-      {}
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

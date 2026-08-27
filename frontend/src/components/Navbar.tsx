@@ -6,6 +6,7 @@ import { DarkModeToggle } from "./DarkModeToggle";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import { useFavorites } from "../hooks/useFavorites";
 
 const links = [
   { to: "/", labelKey: "nav.home" },
@@ -19,11 +20,13 @@ const links = [
 export function NavBar() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const { favs } = useFavorites();
   const [scrolled, setScrolled] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -33,18 +36,25 @@ export function NavBar() {
     localStorage.setItem("appLang", next);
   };
 
+  const closeMenu = () => setSheetOpen(false);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 dark:bg-background/95 backdrop-blur border-b border-border" : "bg-transparent"
+        scrolled
+          ? "bg-white/95 dark:bg-background/95 backdrop-blur border-b border-border shadow-xs"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 h-16">
         <Link to="/" className="flex items-center gap-2.5 group">
           <img src="/logo.png" alt="NDS-Shop" className="w-8 h-8 rounded-lg" />
-          <span className="font-bold text-lg text-foreground hidden sm:inline">NDS-Shop</span>
+          <span className="font-bold text-lg text-foreground hidden sm:inline">
+            NDS-Shop
+          </span>
         </Link>
 
+        {/* Navigation Desktop */}
         <nav className="hidden md:flex items-center gap-1">
           {links.map((link) => (
             <Link
@@ -59,13 +69,26 @@ export function NavBar() {
               {t(link.labelKey)}
             </Link>
           ))}
+
           <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
-            <Link to="/favorites" className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-red-500" title={t("nav.favorites")}>
+            <Link
+              to="/favorites"
+              className="relative p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-red-500"
+              title={t("nav.favorites")}
+              aria-label={t("nav.favorites")}
+            >
               <Heart size={18} />
+              {favs.length > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-4 h-4 px-1 rounded-full bg-red-500 text-[10px] font-bold text-white flex items-center justify-center">
+                  {favs.length}
+                </span>
+              )}
             </Link>
             <button
+              type="button"
               onClick={toggleLang}
-              className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors"
+              aria-label="Changer la langue"
+              className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors cursor-pointer"
             >
               {i18n.language === "en" ? "FR" : "EN"}
             </button>
@@ -73,9 +96,15 @@ export function NavBar() {
           </div>
         </nav>
 
-        <Sheet>
+        {/* Menu Mobile */}
+        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Menu" className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Menu"
+              className="md:hidden"
+            >
               <Menu size={22} />
             </Button>
           </SheetTrigger>
@@ -86,6 +115,7 @@ export function NavBar() {
                 <Link
                   key={link.to}
                   to={link.to}
+                  onClick={closeMenu}
                   className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                     location.pathname === link.to
                       ? "bg-secondary text-primary"
@@ -95,18 +125,35 @@ export function NavBar() {
                   {t(link.labelKey)}
                 </Link>
               ))}
+
               <Separator className="my-2" />
-              <div className="flex items-center gap-3 px-4 py-2">
-                <Link to="/favorites" className="flex items-center gap-2 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors">
-                  <Heart size={16} /> {t("nav.favorites")}
-                </Link>
-                <button
-                  onClick={toggleLang}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors"
+
+              <div className="flex flex-col gap-2 px-2 py-1">
+                <Link
+                  to="/favorites"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors"
                 >
-                  {i18n.language === "en" ? "FR" : "EN"}
-                </button>
-                <DarkModeToggle />
+                  <span className="flex items-center gap-2">
+                    <Heart size={16} className="text-red-500" /> {t("nav.favorites")}
+                  </span>
+                  {favs.length > 0 && (
+                    <span className="px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 text-xs font-bold">
+                      {favs.length}
+                    </span>
+                  )}
+                </Link>
+
+                <div className="flex items-center justify-between px-3 py-2">
+                  <button
+                    type="button"
+                    onClick={toggleLang}
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors cursor-pointer"
+                  >
+                    {i18n.language === "en" ? "Passer en Français" : "Switch to English"}
+                  </button>
+                  <DarkModeToggle />
+                </div>
               </div>
             </nav>
           </SheetContent>

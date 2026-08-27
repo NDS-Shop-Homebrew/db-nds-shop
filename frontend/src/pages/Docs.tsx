@@ -32,10 +32,18 @@ interface Endpoint {
   example: string;
 }
 
-const BASE = "https://db-nds-shop.fr/api/v1";
+interface ResponseState {
+  status?: number;
+  statusText?: string;
+  duration?: number;
+  data: string;
+}
+
+const API_BASE = (import.meta as any).env?.VITE_API_URL || "https://db-nds-shop.fr";
+const BASE = `${API_BASE}/api/v1`;
 
 const endpoints: {
-  section: "games" | "ndsdb" | "discord";
+  section: "games" | "ndsdb" | "community";
   items: Endpoint[];
 }[] = [
   {
@@ -51,7 +59,7 @@ const endpoints: {
         method: "GET",
         path: "/games",
         descKey: "docs.route_games",
-        example: "/games",
+        example: "/games?limit=5",
       },
       {
         method: "GET",
@@ -91,21 +99,33 @@ const endpoints: {
       },
       {
         method: "GET",
-        path: "/ndsdb/stats/category/:category",
-        descKey: "docs.route_ndsdb_category",
-        example: "/ndsdb/stats/category/base",
-      },
-      {
-        method: "GET",
         path: "/ndsdb/metadata/:serial",
         descKey: "docs.route_ndsdb_metadata",
         example: "/ndsdb/metadata/A2DP",
       },
+      {
+        method: "GET",
+        path: "/ndsdb/images/:serial/:type",
+        descKey: "docs.route_ndsdb_images",
+        example: "/ndsdb/images/A2DP/front_boxart",
+      },
+      {
+        method: "GET",
+        path: "/ndsdb/screenshots/:serial/screens",
+        descKey: "docs.route_ndsdb_screens",
+        example: "/ndsdb/screenshots/A2DP/screens",
+      },
     ],
   },
   {
-    section: "discord",
+    section: "community",
     items: [
+      {
+        method: "GET",
+        path: "/requests",
+        descKey: "docs.route_requests",
+        example: "/requests",
+      },
       {
         method: "GET",
         path: "/team",
@@ -132,7 +152,7 @@ export default function Docs() {
   usePageMeta(t("docs.title") + " — NDS-Shop");
   const [active, setActive] = useState<Endpoint | null>(null);
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState<string>("");
+  const [response, setResponse] = useState<ResponseState | null>(null);
   const [copied, setCopied] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -145,9 +165,10 @@ export default function Docs() {
 
     setActive(endpoint);
     setLoading(true);
-    setResponse("");
+    setResponse(null);
 
     const isDownloadRoute = endpoint.path.startsWith("/download");
+    const startTime = performance.now();
 
     try {
       const r = await fetch(`${BASE}${endpoint.example}`, {
@@ -157,32 +178,46 @@ export default function Docs() {
 
       if (controller.signal.aborted) return;
 
+      const duration = Math.round(performance.now() - startTime);
       const contentType = r.headers.get("content-type") || "";
       const contentLength = r.headers.get("content-length");
 
       if (contentType.includes("application/json")) {
         const data = await r.json();
-        setResponse(JSON.stringify(data, null, 2));
+        setResponse({
+          status: r.status,
+          statusText: r.statusText,
+          duration,
+          data: JSON.stringify(data, null, 2),
+        });
       } else {
         const bytes = contentLength ? parseInt(contentLength, 10) : 0;
         const sizeMb =
           bytes > 0
-            ? (bytes / (1024 * 1024)).toFixed(2) + " MB"
+            ? (bytes / (1024 * 1024)).toFixed(2) + " Mo"
             : "Taille inconnue (stream)";
 
-        setResponse(
-          `// Fichier binaire détecté (${r.status} ${r.statusText})\n` +
+        setResponse({
+          status: r.status,
+          statusText: r.statusText,
+          duration,
+          data:
+            `// Fichier binaire / média (${r.status} ${r.statusText})\n` +
             `Content-Type: ${contentType || "application/octet-stream"}\n` +
             `Content-Length: ${bytes ? `${bytes.toLocaleString()} octets (~${sizeMb})` : "N/A"}\n\n` +
-            `[Requête HEAD effectuée : aucun transfert de données inutile]`,
-        );
+            `[Requête HEAD effectuée : aucun téléchargement de données superflues]`,
+        });
       }
     } catch (e: unknown) {
-      if (e instanceof Error && e.name === "AbortError") {
-        return;
-      }
+      if (e instanceof Error && e.name === "AbortError") return;
+      const duration = Math.round(performance.now() - startTime);
       const errorMessage = e instanceof Error ? e.message : String(e);
-      setResponse(`${t("docs.error")} : ${errorMessage}`);
+      setResponse({
+        status: 500,
+        statusText: "Client Error",
+        duration,
+        data: `${t("docs.error")} : ${errorMessage}`,
+      });
     } finally {
       if (abortControllerRef.current === controller) {
         setLoading(false);
@@ -212,7 +247,7 @@ export default function Docs() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
               {t("docs.description")}
             </p>
-            <div className="inline-flex items-center gap-2 rounded-xl bg-card border border-border px-4 py-2 text-sm font-mono text-foreground">
+            <div className="inline-flex items-center gap-2 rounded-xl bg-card border border-border px-4 py-2 text-sm font-mono text-foreground shadow-sm">
               <span className="text-muted-foreground">
                 {t("docs.base_url")} :
               </span>
@@ -227,10 +262,11 @@ export default function Docs() {
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="games">{t("docs.sections.games")}</TabsTrigger>
             <TabsTrigger value="ndsdb">{t("docs.sections.ndsdb")}</TabsTrigger>
-            <TabsTrigger value="discord">
-              {t("docs.sections.discord")}
+            <TabsTrigger value="community">
+              {t("docs.sections.community") || "Communauté"}
             </TabsTrigger>
           </TabsList>
+
           {endpoints.map((group) => (
             <TabsContent key={group.section} value={group.section}>
               <Card>
@@ -245,7 +281,7 @@ export default function Docs() {
                     {group.items.map((endpoint) => (
                       <div
                         key={endpoint.path}
-                        className="rounded-xl border border-border bg-card overflow-hidden"
+                        className="rounded-xl border border-border bg-card overflow-hidden shadow-xs"
                       >
                         <div className="flex flex-wrap items-center gap-3 p-4">
                           <Badge className={METHOD_COLORS[endpoint.method]}>
@@ -267,10 +303,10 @@ export default function Docs() {
                         </div>
 
                         {active?.path === endpoint.path && (
-                          <div className="border-t border-border p-4 space-y-4">
+                          <div className="border-t border-border p-4 space-y-4 bg-muted/20">
                             <div>
                               <div className="flex items-center justify-between mb-2">
-                                <p className="text-xs font-semibold uppercase text-muted-foreground">
+                                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                   {t("docs.request")}
                                 </p>
                                 <TooltipProvider>
@@ -279,10 +315,10 @@ export default function Docs() {
                                       <button
                                         onClick={() =>
                                           copyCode(
-                                            `curl "${BASE}${endpoint.example}"`,
+                                            `curl "${BASE}${endpoint.example}"`
                                           )
                                         }
-                                        className="text-xs font-medium text-primary hover:underline"
+                                        className="text-xs font-medium text-primary hover:underline cursor-pointer"
                                       >
                                         {copied
                                           ? t("docs.copied")
@@ -297,23 +333,45 @@ export default function Docs() {
                                   </Tooltip>
                                 </TooltipProvider>
                               </div>
-                              <pre className="rounded-lg bg-muted p-3 text-sm font-mono overflow-x-auto">
+                              <pre className="rounded-lg bg-muted p-3 text-sm font-mono overflow-x-auto border border-border">
                                 <code>{`curl "${BASE}${endpoint.example}"`}</code>
                               </pre>
                             </div>
+
                             <div>
-                              <p className="text-xs font-semibold uppercase text-muted-foreground mb-2">
-                                {t("docs.response")}
-                              </p>
-                              <pre className="rounded-lg bg-muted p-3 text-sm font-mono overflow-x-auto max-h-80">
+                              <div className="flex items-center justify-between mb-2">
+                                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                  {t("docs.response")}
+                                </p>
+                                {response?.status && (
+                                  <div className="flex items-center gap-2">
+                                    <Badge
+                                      variant={
+                                        response.status < 400
+                                          ? "default"
+                                          : "destructive"
+                                      }
+                                      className="text-xs"
+                                    >
+                                      {response.status} {response.statusText}
+                                    </Badge>
+                                    {response.duration != null && (
+                                      <span className="text-xs text-muted-foreground font-mono">
+                                        {response.duration} ms
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                              <pre className="rounded-lg bg-muted p-3 text-sm font-mono overflow-x-auto max-h-80 border border-border">
                                 {loading ? (
-                                  <span className="flex items-center gap-2">
+                                  <span className="flex items-center gap-2 text-muted-foreground">
                                     <Spinner className="size-4" />{" "}
                                     {t("docs.load")}
                                   </span>
                                 ) : (
                                   <code>
-                                    {response || t("docs.no_content")}
+                                    {response?.data || t("docs.no_content")}
                                   </code>
                                 )}
                               </pre>

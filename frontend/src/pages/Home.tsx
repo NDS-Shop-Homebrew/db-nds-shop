@@ -5,15 +5,29 @@ import { QRCodeSVG } from "qrcode.react";
 import { Download, QrCode, Shuffle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../components/ui/button";
-import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "../components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+} from "../components/ui/dialog";
 import { Skeleton } from "../components/ui/skeleton";
 import { Badge } from "../components/ui/badge";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../components/ui/accordion";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
 import { usePageMeta } from "../hooks/usePageMeta";
 
+const API_BASE = (import.meta as any).env?.VITE_API_URL || "";
+
 interface Game {
+  id?: string;
   fileName: string;
   title: string;
   author: string;
@@ -42,33 +56,63 @@ export default function Home() {
   const [allGames, setAllGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [randomGame, setRandomGame] = useState<Game | null>(null);
-  const [stats, setStats] = useState<{ games: number; systems: Record<string, number>; downloads?: { total: number } } | null>(null);
+  const [stats, setStats] = useState<{
+    games: number;
+    systems: Record<string, number>;
+    downloads?: { total: number };
+  } | null>(null);
+
+  const normalizeGame = (g: any): Game => ({
+    id: g.id || g.fileName,
+    fileName: g.fileName || g.id,
+    title: g.title || "",
+    author: g.author || "",
+    version: g.version || "",
+    systems: Array.isArray(g.systems) ? g.systems : [],
+    categories: Array.isArray(g.categories) ? g.categories : [],
+    icon: g.icon || g.iconUrl || "",
+    updated: g.updated || g.updatedAt || "",
+    screenshots: (g.screenshots || []).map((s: any) => ({
+      description: s.description || "",
+      url: s.url || "",
+    })),
+  });
 
   useEffect(() => {
-    fetch("/games.json")
-      .then((res) => res.json())
-      .then((allGames: Game[]) => {
-        setAllGames(allGames);
-        const sorted = [...allGames].sort(
+    fetch(`${API_BASE}/api/v1/games`)
+      .then((res) => (res.ok ? res.json() : { games: [] }))
+      .then((data: { games?: any[] } | any[]) => {
+        const list = (Array.isArray(data) ? data : data.games || []).map(normalizeGame);
+        setAllGames(list);
+        const sorted = [...list].sort(
           (a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime()
         );
         setGames(sorted.slice(0, 6));
-        setLoading(false);
-      });
+      })
+      .catch((err) => console.error("Failed to load games:", err))
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
-    fetch("/api/v1/stats")
+    fetch(`${API_BASE}/api/v1/stats`)
       .then((r) => (r.ok ? r.json() : null))
       .then(setStats)
       .catch(() => {});
   }, []);
 
   const pickRandom = () => {
-    fetch("/games.json")
-      .then((res) => res.json())
-      .then((all: Game[]) => {
-        setRandomGame(all[Math.floor(Math.random() * all.length)]);
+    if (allGames.length > 0) {
+      setRandomGame(allGames[Math.floor(Math.random() * allGames.length)]);
+      return;
+    }
+
+    fetch(`${API_BASE}/api/v1/games`)
+      .then((res) => (res.ok ? res.json() : { games: [] }))
+      .then((data: { games?: any[] } | any[]) => {
+        const list = (Array.isArray(data) ? data : data.games || []).map(normalizeGame);
+        if (list.length > 0) {
+          setRandomGame(list[Math.floor(Math.random() * list.length)]);
+        }
       });
   };
 
@@ -76,7 +120,6 @@ export default function Home() {
 
   return (
     <div>
-      {}
       <section className="dsi-gradient">
         <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div
@@ -90,7 +133,10 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button
-                onClick={() => (window.location.href = "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia")}
+                onClick={() =>
+                  (window.location.href =
+                    "https://github.com/NDS-Shop-Homebrew/NDS-Shop/releases/latest/download/NDS-Shop.cia")
+                }
                 className="font-semibold px-8 py-6 text-lg"
               >
                 <Download className="w-5 h-5 mr-2" />
@@ -105,9 +151,13 @@ export default function Home() {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-lg">
                   <DialogTitle className="sr-only">{t("home.scan")}</DialogTitle>
-                  <DialogDescription className="sr-only">{t("home.scan_instructions")}</DialogDescription>
+                  <DialogDescription className="sr-only">
+                    {t("home.scan_instructions")}
+                  </DialogDescription>
                   <div className="flex flex-col items-center p-4">
-                    <p className="mb-4 text-center text-muted-foreground">{t("home.scan_instructions")}</p>
+                    <p className="mb-4 text-center text-muted-foreground">
+                      {t("home.scan_instructions")}
+                    </p>
                     <div className="bg-white p-4 rounded-xl">
                       <QRCodeSVG
                         value="https://db-nds-shop.fr/d"
@@ -127,14 +177,23 @@ export default function Home() {
         </div>
       </section>
 
-      {}
       <div className="max-w-4xl mx-auto px-4 -mt-6 mb-12">
         <div className="bg-card border border-border rounded-xl shadow-sm p-6 flex flex-wrap justify-center gap-8">
           {[
             { label: t("home.stats.games"), value: stats?.games ?? allGames.length },
-            { label: t("home.stats.systems"), value: Object.keys(stats?.systems || {}).length },
-            { label: t("home.stats.downloads"), value: stats?.downloads?.total?.toLocaleString(i18n.language) ?? "—" },
-            { label: t("home.stats.updated"), value: new Date().toLocaleDateString(i18n.language) },
+            {
+              label: t("home.stats.systems"),
+              value: Object.keys(stats?.systems || {}).length,
+            },
+            {
+              label: t("home.stats.downloads"),
+              value:
+                stats?.downloads?.total?.toLocaleString(i18n.language) ?? "—",
+            },
+            {
+              label: t("home.stats.updated"),
+              value: new Date().toLocaleDateString(i18n.language),
+            },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="text-2xl font-bold text-primary">{stat.value}</p>
@@ -144,32 +203,37 @@ export default function Home() {
         </div>
       </div>
 
-      {}
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <div className="flex flex-col items-center gap-4">
-          <Button
-            onClick={pickRandom}
-            variant="outline"
-            className="gap-2"
-          >
+          <Button onClick={pickRandom} variant="outline" className="gap-2">
             <Shuffle className="w-4 h-4" />
             {t("home.random")}
           </Button>
           {randomGame && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
               <Link
-                to={`/game/${randomGame.fileName}`}
+                to={`/game/${randomGame.fileName || randomGame.id}`}
                 className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors"
               >
                 <SafeImg
-                  src={randomGame.screenshots?.find((s) => s.description === "Boxart")?.url || randomGame.icon}
+                  src={
+                    randomGame.screenshots?.find((s) => s.description === "Boxart")
+                      ?.url || randomGame.icon
+                  }
                   alt=""
                   className="w-14 h-14 rounded-lg object-contain"
                   wrapperClassName="w-14 h-14 rounded-lg bg-muted shrink-0"
                 />
                 <div>
-                  <p className="font-semibold text-foreground">{randomGame.title}</p>
-                  <p className="text-sm text-muted-foreground">{randomGame.author}</p>
+                  <p className="font-semibold text-foreground">
+                    {randomGame.title}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {randomGame.author}
+                  </p>
                 </div>
               </Link>
             </motion.div>
@@ -177,12 +241,18 @@ export default function Home() {
         </div>
       </div>
 
-      {}
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <div className="flex flex-wrap justify-center gap-3">
           {regions.map((region) => (
-            <Link key={region} to={`/game-list?region=${encodeURIComponent(region)}`} className="inline-flex">
-              <Badge variant="outline" className="px-5 py-2 text-sm font-medium cursor-pointer hover:border-primary/50 hover:text-primary">
+            <Link
+              key={region}
+              to={`/game-list?region=${encodeURIComponent(region)}`}
+              className="inline-flex"
+            >
+              <Badge
+                variant="outline"
+                className="px-5 py-2 text-sm font-medium cursor-pointer hover:border-primary/50 hover:text-primary"
+              >
                 {region}
               </Badge>
             </Link>
@@ -190,7 +260,6 @@ export default function Home() {
         </div>
       </div>
 
-      {}
       <div className="max-w-7xl mx-auto px-4 mb-20">
         <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-primary" />
@@ -201,7 +270,7 @@ export default function Home() {
             ? Array.from({ length: 6 }).map((_, i) => <GameSkeleton key={i} />)
             : games.map((game, i) => (
                 <motion.div
-                  key={game.fileName}
+                  key={game.fileName || game.id || i}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
@@ -212,7 +281,6 @@ export default function Home() {
         </div>
       </div>
 
-      {}
       <div className="max-w-3xl mx-auto px-4 mb-20">
         <h2 className="text-xl font-bold text-foreground mb-6 text-center">
           {t("home.faq.title")}
@@ -229,8 +297,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
             >
-              <AccordionItem value={`faq-${i}`} className="rounded-xl border border-border bg-card px-5 shadow-sm">
-                <AccordionTrigger className="font-semibold text-foreground">{t(item.q)}</AccordionTrigger>
+              <AccordionItem
+                value={`faq-${i}`}
+                className="rounded-xl border border-border bg-card px-5 shadow-sm"
+              >
+                <AccordionTrigger className="font-semibold text-foreground">
+                  {t(item.q)}
+                </AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
                   {t(item.a)}
                 </AccordionContent>

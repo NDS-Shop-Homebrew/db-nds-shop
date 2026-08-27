@@ -3,23 +3,42 @@
   "short_name": "NDS-Shop",
   "description": "Téléchargez des jeux Nintendo DS directement sur votre console 3DS.",
   "start_url": "/",
+  "id": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#0b1020",
   "theme_color": "#0b1020",
   "lang": "fr",
-  "id": "/",
+  "dir": "ltr",
+  "categories": ["games", "utilities", "entertainment"],
   "icons": [
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Liste des jeux",
+      "short_name": "Jeux",
+      "description": "Parcourir le catalogue de jeux",
+      "url": "/game-list",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Mes favoris",
+      "short_name": "Favoris",
+      "description": "Voir mes jeux favoris",
+      "url": "/favorites",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

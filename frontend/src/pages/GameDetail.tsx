@@ -25,18 +25,34 @@ import SafeImg from "../components/SafeImg";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useFavorites } from "../hooks/useFavorites";
 
+const API_BASE = import.meta.env.VITE_API_URL || "";
+
+function resolveAssetUrl(url?: string | null): string {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  return `${API_BASE}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
 interface DownloadItem {
-  size: number;
-  size_str: string;
+  size?: number;
+  size_str?: string;
   url: string;
 }
 
 interface Screenshot {
   description: string;
+  order?: number;
+  url: string;
+}
+
+interface ApiScreenshot {
+  description?: string;
+  order?: number;
   url: string;
 }
 
 interface Game {
+  id?: string;
   fileName: string;
   title: string;
   author: string;
@@ -44,14 +60,25 @@ interface Game {
   titleId?: string;
   systems: string[];
   categories?: string[];
-  icon: string;
-  image: string;
-  color: string;
-  color_bg: string;
+  icon?: string;
+  iconUrl?: string;
+  image?: string;
+  imageUrl?: string;
+  boxartUrl?: string;
+  color?: string;
+  colorBg?: string;
+  color_bg?: string;
   updated: string;
   downloads?: Record<string, DownloadItem>;
-  qr?: Record<string, string>;
   screenshots?: Screenshot[];
+}
+
+interface ApiGameResponse extends Omit<Game, "screenshots"> {
+  screenshots?: ApiScreenshot[];
+}
+
+interface GamesApiResponse {
+  games?: ApiGameResponse[];
 }
 
 interface NdsdbMeta {
@@ -69,6 +96,12 @@ interface NdsdbMeta {
   rating_system?: { name?: string; age?: string };
 }
 
+interface StatsResponse {
+  downloads?: {
+    byGame?: Record<string, number>;
+  };
+}
+
 export default function GameDetail() {
   const { slug } = useParams<{ slug: string }>();
   const [game, setGame] = useState<Game | null>(null);
@@ -79,12 +112,39 @@ export default function GameDetail() {
   const { favs, toggle } = useFavorites();
 
   useEffect(() => {
-    fetch("/games.json")
-      .then((res) => res.json())
-      .then((games: Game[]) => {
-        setAllGames(games);
-        setGame(games.find((g) => g.fileName === slug) || null);
-      });
+    if (!slug) return;
+
+    fetch(`${API_BASE}/api/v1/games/${encodeURIComponent(slug)}`)
+      .then((res) => (res.ok ? (res.json() as Promise<ApiGameResponse>) : null))
+      .then((data) => {
+        if (!data) return setGame(null);
+        setGame({
+          ...data,
+          screenshots: (data.screenshots || []).map((s: ApiScreenshot) => ({
+            description: s.description || "",
+            order: s.order,
+            url: s.url,
+          })),
+        });
+      })
+      .catch((err: unknown) => console.error("Error fetching game detail:", err));
+
+    fetch(`${API_BASE}/api/v1/games`)
+      .then((res) => (res.ok ? (res.json() as Promise<GamesApiResponse | ApiGameResponse[]>) : { games: [] }))
+      .then((data) => {
+        const list = Array.isArray(data) ? data : data.games || [];
+        setAllGames(
+          list.map((g: ApiGameResponse) => ({
+            ...g,
+            screenshots: (g.screenshots || []).map((s: ApiScreenshot) => ({
+              description: s.description || "",
+              order: s.order,
+              url: s.url,
+            })),
+          }))
+        );
+      })
+      .catch((err: unknown) => console.error("Error fetching related games:", err));
   }, [slug]);
 
   const [ndsdb, setNdsdb] = useState<NdsdbMeta | null>(null);
@@ -95,39 +155,42 @@ export default function GameDetail() {
       setNdsdb(null);
       return;
     }
-    fetch(`/api/v1/ndsdb/metadata/${game.titleId}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then(setNdsdb);
+    fetch(`${API_BASE}/api/v1/ndsdb/metadata/${game.titleId}`)
+      .then((r) => (r.ok ? (r.json() as Promise<NdsdbMeta>) : null))
+      .then(setNdsdb)
+      .catch(() => setNdsdb(null));
   }, [game?.titleId]);
 
   useEffect(() => {
     if (!game) return;
-    fetch("/api/v1/stats")
-      .then((r) => (r.ok ? r.json() : null))
+    fetch(`${API_BASE}/api/v1/stats`)
+      .then((r) => (r.ok ? (r.json() as Promise<StatsResponse>) : null))
       .then((s) => setDlCount(s?.downloads?.byGame?.[game.fileName] ?? null))
-      .catch((e) => {
+      .catch((e: unknown) => {
         console.error(e);
       });
   }, [game?.fileName, game]);
 
   const boxart =
-    game?.screenshots?.find((s) => s.description === "Boxart")?.url || null;
+    resolveAssetUrl(game?.boxartUrl) ||
+    resolveAssetUrl(game?.screenshots?.find((s) => s.description === "Boxart")?.url) ||
+    resolveAssetUrl(game?.iconUrl || game?.icon);
 
   const gallery = useMemo(() => {
-    const shots = (game?.screenshots || []).filter(
-      (s) => s.description !== "Boxart",
-    );
+    const shots = (game?.screenshots || [])
+      .filter((s) => s.description !== "Boxart")
+      .map((s) => ({ ...s, url: resolveAssetUrl(s.url) }));
     return shots.length ? shots : [];
   }, [game]);
 
   const related = useMemo(() => {
     if (!game) return [];
     return allGames
-      .filter((g) => g.fileName !== game.fileName)
+      .filter((g) => (g.fileName || g.id) !== (game.fileName || game.id))
       .filter(
         (g) =>
           g.author === game.author ||
-          g.systems?.some((s) => game.systems?.includes(s)),
+          g.systems?.some((s) => game.systems?.includes(s))
       )
       .slice(0, 6);
   }, [game, allGames]);
@@ -141,7 +204,7 @@ export default function GameDetail() {
       if (e.key === "ArrowRight")
         setLightboxIdx((lightboxIdx + 1) % gallery.length);
     },
-    [lightboxIdx, gallery.length],
+    [lightboxIdx, gallery.length]
   );
 
   useEffect(() => {
@@ -175,7 +238,7 @@ export default function GameDetail() {
     );
   }
 
-  const isFav = favs.includes(game.fileName);
+  const isFav = favs.includes(game.fileName || game.id || "");
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -186,7 +249,6 @@ export default function GameDetail() {
         <ArrowLeft size={16} /> {t("gameDetail.back")}
       </Link>
 
-      {/* Header du jeu */}
       <div className="relative rounded-2xl overflow-hidden mb-8 bg-muted">
         <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
         <div className="relative flex items-center gap-6 p-6 md:p-8 min-h-40">
@@ -219,10 +281,8 @@ export default function GameDetail() {
         </div>
       </div>
 
-      {/* Contenu principal */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-8">
-          {/* Section À propos */}
           {ndsdb &&
             (() => {
               const langDesc =
@@ -244,8 +304,10 @@ export default function GameDetail() {
                         className="text-primary cursor-pointer hover:underline ml-1"
                         onClick={() =>
                           window.open(
-                            `https://www.google.com/search?q=${encodeURIComponent(game?.title + " Nintendo DS")}`,
-                            "_blank",
+                            `https://www.google.com/search?q=${encodeURIComponent(
+                              game?.title + " Nintendo DS"
+                            )}`,
+                            "_blank"
                           )
                         }
                       >
@@ -277,7 +339,6 @@ export default function GameDetail() {
               );
             })()}
 
-          {/* Galerie d'images */}
           {gallery.length > 0 && (
             <div>
               <h2 className="text-lg font-bold mb-4">
@@ -301,41 +362,8 @@ export default function GameDetail() {
               </div>
             </div>
           )}
-
-          {/* QR Codes */}
-          {game.qr && Object.keys(game.qr).length > 0 && (
-            <div>
-              <h2 className="text-lg font-bold mb-4">
-                {t("gameDetail.qr_code")}
-              </h2>
-              <div className="flex flex-wrap gap-4">
-                {Object.entries(game.qr).map(([name, url]) => (
-                  <a
-                    key={name}
-                    href={url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex flex-col items-center gap-1.5 group"
-                  >
-                    <div className="w-40 h-40 rounded-xl bg-white p-2 ring-1 ring-border overflow-hidden group-hover:ring-primary/50 transition-all">
-                      <SafeImg
-                        src={url}
-                        alt={name}
-                        className="w-full h-full object-contain"
-                        wrapperClassName="w-full h-full"
-                      />
-                    </div>
-                    <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
-                      {name}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
-        {/* Colonne latérale : Téléchargements & Catégories */}
         <div className="space-y-6">
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
@@ -352,7 +380,7 @@ export default function GameDetail() {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button
-                        onClick={() => toggle(game.fileName)}
+                        onClick={() => toggle(game.fileName || game.id || "")}
                         className={`p-2 rounded-lg border transition-colors ${
                           isFav
                             ? "bg-red-50 border-red-200 text-red-500 dark:bg-red-500/10 dark:border-red-500/30"
@@ -390,33 +418,43 @@ export default function GameDetail() {
               </div>
             </h2>
 
-            {game.downloads && (
+            {game.downloads && Object.keys(game.downloads).length > 0 && (
               <div className="grid grid-cols-1 gap-3">
-                {Object.entries(game.downloads).map(([name, details]) => (
-                  <a
-                    key={name}
-                    href={details.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background hover:border-primary/30 hover:shadow-sm transition-all group"
-                  >
-                    <Download className="w-5 h-5 text-primary shrink-0" />
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-foreground truncate">
-                        {name}
-                      </p>
-                      {details.size_str && (
-                        <p className="text-xs text-muted-foreground">
-                          {details.size_str}
+                {Object.entries(game.downloads).map(([name, details]) => {
+                  const dlUrl = details.url.startsWith("http")
+                    ? details.url
+                    : `${API_BASE}${details.url.startsWith("/") ? "" : "/"}${details.url}`;
+
+                  return (
+                    <a
+                      key={name}
+                      href={dlUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background hover:border-primary/30 hover:shadow-sm transition-all group"
+                    >
+                      <Download className="w-5 h-5 text-primary shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium text-foreground truncate">
+                          {name}
                         </p>
-                      )}
-                    </div>
-                    <ExternalLink
-                      size={14}
-                      className="text-muted-foreground group-hover:text-primary transition-colors shrink-0"
-                    />
-                  </a>
-                ))}
+                        {details.size_str ? (
+                          <p className="text-xs text-muted-foreground">
+                            {details.size_str}
+                          </p>
+                        ) : details.size ? (
+                          <p className="text-xs text-muted-foreground">
+                            {(details.size / (1024 * 1024)).toFixed(1)} Mo
+                          </p>
+                        ) : null}
+                      </div>
+                      <ExternalLink
+                        size={14}
+                        className="text-muted-foreground group-hover:text-primary transition-colors shrink-0"
+                      />
+                    </a>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -438,19 +476,21 @@ export default function GameDetail() {
         </div>
       </div>
 
-      {/* Jeux similaires */}
       {related.length > 0 && (
         <div className="mt-16">
           <h2 className="text-lg font-bold mb-6">{t("gameDetail.related")}</h2>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
             {related.map((g) => (
-              <GameCard key={g.fileName} game={g} showAuthor={false} />
+              <GameCard
+                key={g.fileName || g.id}
+                game={g}
+                showAuthor={false}
+              />
             ))}
           </div>
         </div>
       )}
 
-      {/* Lightbox / Visionneuse de captures d'écran */}
       {lightboxIdx !== null && gallery[lightboxIdx] && (
         <Dialog open onOpenChange={(open) => !open && setLightboxIdx(null)}>
           <DialogTitle className="sr-only">{game.title}</DialogTitle>
@@ -462,7 +502,7 @@ export default function GameDetail() {
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIdx(
-                  (lightboxIdx - 1 + gallery.length) % gallery.length,
+                  (lightboxIdx - 1 + gallery.length) % gallery.length
                 );
               }}
               className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"

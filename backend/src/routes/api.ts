@@ -12,13 +12,12 @@ const router = express.Router();
 router.use(express.json());
 
 // Cache-Control no-cache pour les données dynamiques
-// Garantit revalidation à chaque requête navigateur (même sans service worker)
-router.use('/games', (_req, res, next) => {
-  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+router.use("/games", (_req, res, next) => {
+  res.setHeader("Cache-Control", "no-cache, must-revalidate");
   next();
 });
-router.use('/stats', (_req, res, next) => {
-  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+router.use("/stats", (_req, res, next) => {
+  res.setHeader("Cache-Control", "no-cache, must-revalidate");
   next();
 });
 
@@ -31,14 +30,11 @@ const requestLimiter = rateLimit({
 });
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const GAMES_JSON =
-  process.env.GAMES_JSON_PATH ||
-  path.resolve(__dirname, "../../../frontend/public/games.json");
 
-// Stockage des favoris — fichier JSON, écriture atomique
-// ponytail: les demandes de jeux sont en BDD Prisma (table game_request), les favoris restent en JSON
+// Stockage des favoris
 const COMMUNITY_FILE =
-  process.env.COMMUNITY_DATA_FILE || path.resolve(__dirname, "../data/community.json");
+  process.env.COMMUNITY_DATA_FILE ||
+  path.resolve(__dirname, "../data/community.json");
 
 interface Community {
   favorites: Record<string, string[]>;
@@ -60,150 +56,207 @@ function writeCommunity(data: Community) {
   fs.renameSync(tmp, COMMUNITY_FILE);
 }
 
-export function loadGames(): any[] {
+// Fonction utilitaire pour parser du JSON sécurisé
+function safeJsonParse<T>(val: any, fallback: T): T {
+  if (!val) return fallback;
+  if (typeof val !== "string") return val as T;
   try {
-    return JSON.parse(fs.readFileSync(GAMES_JSON, "utf8"));
-  } catch (err) {
-    console.error(`❌ games.json illisible (${GAMES_JSON}):`, err);
-    return [];
+    return JSON.parse(val);
+  } catch {
+    return fallback;
   }
 }
 
-const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
-// Téléchargements .nds / .cia depuis le log nginx (30 jours) — mêmes logs que le back-office
-function downloadCounts(days = 30) {
-  const counts = { total: 0, today: 0, nds: 0, cia: 0, byGame: {} as Record<string, number>, last7: [0,0,0,0,0,0,0] };
-  const cutoff = Date.now() / 1000 - days * 86400;
-  const dayStart = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 1000;
-  const todayStart = dayStart(new Date());
-  const logPaths = [
-    process.env.NGINX_LOG,
-    "/var/log/nginx/access.log",
-    "/var/log/nginx/db-nds-shop.access.log",
-    "/srv/nds-shop/logs/access.log",
-  ].filter(Boolean) as string[];
-
-  const RE = /\[(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2})[^\]]*\].*?"GET (\S+\.(?:nds|cia))/;
-  for (const logPath of logPaths) {
-    if (!fs.existsSync(logPath)) continue;
-    try {
-      const lines = fs.readFileSync(logPath, "utf8").split("\n");
-      for (const line of lines) {
-        const m = line.match(RE);
-        if (!m) continue;
-        const mon = MONTHS.indexOf(m[2]);
-        if (mon < 0) continue;
-        const ts = new Date(Number(m[3]), mon, Number(m[1]), Number(m[4]), Number(m[5]), Number(m[6])).getTime() / 1000;
-        if (isNaN(ts) || ts < cutoff) continue;
-        const file = decodeURIComponent(m[7].replace(/^\/games\//, ""));
-        counts.total++;
-        if (ts >= todayStart) counts.today++;
-        if (file.endsWith(".nds")) counts.nds++;
-        else counts.cia++;
-        const game = file.split("/").pop() || "?";
-        counts.byGame[game] = (counts.byGame[game] || 0) + 1;
-        for (let i = 0; i < 7; i++) {
-          const start = todayStart - i * 86400;
-          if (ts >= start) { counts.last7[i]++; break; }
-        }
-      }
-    } catch {}
+// Transformateur de modèle Prisma -> Format API Frontend
+function formatGameForApi(game: any) {
+  const downloads: Record<string, { url: string; size?: number }> = {};
+  if (Array.isArray(game.downloads)) {
+    for (const d of game.downloads) {
+      downloads[d.filename] = {
+        url: d.url,
+        size: d.size ? Number(d.size) : undefined,
+      };
+    }
   }
-  return counts;
+
+  const scripts: Record<string, any[]> = {};
+  if (Array.isArray(game.scripts)) {
+    for (const sc of game.scripts) {
+      if (!scripts[sc.name]) scripts[sc.name] = [];
+      scripts[sc.name].push({
+        type: sc.type,
+        file: sc.file,
+        output: sc.output || undefined,
+      });
+    }
+  }
+
+  const screenshots = Array.isArray(game.screenshots)
+    ? game.screenshots.map((s: any) => ({ url: s.url, order: s.order }))
+    : [];
+
+  return {
+    id: game.id,
+    slug: game.id,
+    fileName: game.id,
+    title: game.title,
+    titleId: game.titleId,
+    version: game.version,
+    author: game.author,
+    developer: game.developer,
+    publisher: game.publisher,
+    description: game.descriptionMd,
+    descriptionMd: game.descriptionMd,
+    systems: safeJsonParse(game.systems, ["DS"]),
+    genres: safeJsonParse(game.genres, []),
+    categories: safeJsonParse(game.categories, ["game"]),
+    color: game.color,
+    colorBg: game.colorBg,
+    priority: game.priority,
+    stars: game.stars,
+    icon: game.iconUrl,
+    iconUrl: game.iconUrl,
+    image: game.imageUrl,
+    imageUrl: game.imageUrl,
+    boxart: game.boxartUrl,
+    boxartUrl: game.boxartUrl,
+    screenshots,
+    downloads,
+    scripts,
+    updated: game.updatedAt,
+    updatedAt: game.updatedAt,
+    created: game.createdAt,
+    createdAt: game.createdAt,
+  };
 }
 
 // --- GET /api/v1/health ---
-router.get("/health", (_req, res) => {
-  res.json({ status: "ok", gamesJson: fs.existsSync(GAMES_JSON) });
+router.get("/health", async (_req, res) => {
+  try {
+    const count = await prisma.game.count();
+    res.json({ status: "ok", db: true, totalGames: count });
+  } catch (err: any) {
+    res.status(500).json({ status: "error", db: false, error: err.message });
+  }
 });
 
 // --- GET /api/v1/games ---
 // Query params: ?search=, ?region=, ?system=, ?limit=, ?offset=
-router.get("/games", (req, res) => {
-  const { search, region, system, limit, offset } = req.query;
-  let games = loadGames();
+router.get("/games", async (req, res) => {
+  try {
+    const { search, region, system, limit, offset } = req.query;
 
-  const q = String(search || "").toLowerCase();
-  if (q) {
-    games = games.filter(
-      (g) =>
-        (g.title || "").toLowerCase().includes(q) ||
-        (g.author || "").toLowerCase().includes(q) ||
-        (g.fileName || "").toLowerCase().includes(q)
-    );
-  }
-  if (region) {
-    games = games.filter((g) =>
-      String(g.version || "").toLowerCase().includes(String(region).toLowerCase())
-    );
-  }
-  if (system) {
-    games = games.filter(
-      (g) =>
-        Array.isArray(g.systems) &&
-        g.systems.some((s: string) =>
-          s.toLowerCase().includes(String(system).toLowerCase())
-        )
-    );
-  }
+    const where: any = {};
 
-  const off = Math.max(0, parseInt(String(offset || "0"), 10) || 0);
-  const lim = Math.min(100, parseInt(String(limit || "0"), 10) || 0);
-  const total = games.length;
-  const page = lim > 0 ? games.slice(off, off + lim) : games.slice(off);
+    const q = String(search || "").trim();
+    if (q) {
+      where.OR = [
+        { title: { contains: q } },
+        { author: { contains: q } },
+        { id: { contains: q } },
+      ];
+    }
 
-  res.json({
-    total,
-    offset: off,
-    limit: lim || null,
-    count: page.length,
-    games: page,
-  });
+    if (region) {
+      where.version = { contains: String(region) };
+    }
+
+    if (system) {
+      where.systems = { contains: String(system) };
+    }
+
+    const off = Math.max(0, parseInt(String(offset || "0"), 10) || 0);
+    const lim = Math.min(100, parseInt(String(limit || "0"), 10) || 0);
+
+    const [total, games] = await Promise.all([
+      prisma.game.count({ where }),
+      prisma.game.findMany({
+        where,
+        include: {
+          downloads: true,
+          screenshots: { orderBy: { order: "asc" } },
+          scripts: true,
+        },
+        orderBy: [{ priority: "desc" }, { title: "asc" }],
+        skip: off,
+        take: lim > 0 ? lim : undefined,
+      }),
+    ]);
+
+    const formatted = games.map(formatGameForApi);
+
+    res.json({
+      total,
+      offset: off,
+      limit: lim || null,
+      count: formatted.length,
+      games: formatted,
+    });
+  } catch (err: any) {
+    console.error("❌ GET /games error:", err);
+    res.status(500).json({ error: "Erreur lors de la récupération des jeux" });
+  }
 });
 
 // --- GET /api/v1/games/:slug ---
-router.get("/games/:slug", (req, res) => {
-  const game = loadGames().find((g) => (g.slug || g.fileName) === req.params.slug);
-  if (!game) return res.status(404).json({ error: "Jeu introuvable" });
-  res.json(game);
+router.get("/games/:slug", async (req, res) => {
+  try {
+    const game = await prisma.game.findUnique({
+      where: { id: req.params.slug },
+      include: {
+        downloads: true,
+        screenshots: { orderBy: { order: "asc" } },
+        scripts: true,
+      },
+    });
+
+    if (!game) {
+      return res.status(404).json({ error: "Jeu introuvable" });
+    }
+
+    res.json(formatGameForApi(game));
+  } catch (err: any) {
+    console.error(`❌ GET /games/${req.params.slug} error:`, err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
 });
 
 // --- GET /api/v1/stats ---
-router.get("/stats", (_req, res) => {
-  const games = loadGames();
-  const bySystem: Record<string, number> = {};
-  for (const g of games) {
-    for (const s of g.systems || []) {
-      bySystem[s] = (bySystem[s] || 0) + 1;
+router.get("/stats", async (_req, res) => {
+  try {
+    const [totalGames, games] = await Promise.all([
+      prisma.game.count(),
+      prisma.game.findMany({
+        select: {
+          id: true,
+          systems: true,
+          updatedAt: true,
+        },
+      }),
+    ]);
+
+    const bySystem: Record<string, number> = {};
+    let lastUpdated: Date | null = null;
+
+    for (const g of games) {
+      const systems = safeJsonParse<string[]>(g.systems, ["DS"]);
+      for (const s of systems) {
+        bySystem[s] = (bySystem[s] || 0) + 1;
+      }
+      if (!lastUpdated || g.updatedAt > lastUpdated) {
+        lastUpdated = g.updatedAt;
+      }
     }
+
+    res.json({
+      games: totalGames,
+      systems: bySystem,
+      lastUpdated: lastUpdated ? lastUpdated.toISOString() : null,
+    });
+  } catch (err: any) {
+    console.error("❌ GET /stats error:", err);
+    res.status(500).json({ error: "Erreur lors du calcul des statistiques" });
   }
-  const dl = downloadCounts();
-  const byGame: Record<string, number> = {};
-  for (const g of games) {
-    let n = 0;
-    for (const f of Object.keys(g.downloads || {})) {
-      n += dl.byGame[f.split("/").pop() || f] || 0;
-    }
-    if (n > 0) byGame[g.fileName] = n;
-  }
-  res.json({
-    games: games.length,
-    systems: bySystem,
-    lastUpdated: games
-      .map((g) => g.updated)
-      .filter(Boolean)
-      .sort()
-      .pop() || null,
-    downloads: {
-      total: dl.total,
-      today: dl.today,
-      nds: dl.nds,
-      cia: dl.cia,
-      byGame,
-      last7: dl.last7,
-    },
-  });
 });
 
 // --- POST /api/v1/request ---
@@ -239,57 +292,73 @@ router.post("/request", requestLimiter, async (req, res) => {
   }
 
   const token = getBotToken();
-  if (!token) {
-    return res.status(503).json({ error: "Token du bot non configuré." });
+  const requester = getSessionUser(req);
+
+  if (token) {
+    const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
+    const forumName = process.env.DISCORD_FORUM_CHANNEL || "game-requests";
+
+    try {
+      const channels = await fetch(
+        `https://discord.com/api/v10/guilds/${guildId}/channels`,
+        { headers: { Authorization: `Bot ${token}` } }
+      );
+      if (channels.ok) {
+        const channelList = await safeJson<any[]>(channels);
+        const forum = channelList.find((c) => c.type === 15 && c.name === forumName);
+        if (forum) {
+          const pendingTag = (forum.available_tags || []).find((t: any) =>
+            t.name.includes("Demandé")
+          );
+
+          for (const g of gamesClean) {
+            const payload = {
+              name: g.title.slice(0, 100),
+              applied_tags: pendingTag ? [pendingTag.id] : [],
+              message: {
+                embeds: [
+                  {
+                    title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
+                    color: 0x00b0f4,
+                    description: `**${g.title}**${g.systems ? `\n*${g.systems}*` : ""}${
+                      noteClean ? `\n\n${noteClean}` : ""
+                    }`,
+                    fields: requester
+                      ? [
+                          {
+                            name: lang === "fr" ? "Demandeur" : "Requester",
+                            value: requester.id,
+                            inline: true,
+                          },
+                        ]
+                      : [],
+                    footer: { text: "via db-nds-shop.fr" },
+                    timestamp: new Date().toISOString(),
+                  },
+                ],
+              },
+            };
+            await fetch(
+              `https://discord.com/api/v10/channels/${forum.id}/threads`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bot ${token}`,
+                },
+                body: JSON.stringify(payload),
+              }
+            );
+          }
+        }
+      }
+    } catch (err) {
+      console.error("⚠️ Discord post error (non bloquant):", err);
+    }
   }
 
-  const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
-  const forumName = process.env.DISCORD_FORUM_CHANNEL || "game-requests";
-
+  // Persiste les demandes en base MySQL
   try {
-    const channels = await fetch(`https://discord.com/api/v10/guilds/${guildId}/channels`, {
-      headers: { Authorization: `Bot ${token}` },
-    });
-    if (!channels.ok) throw new Error(`Discord channels ${channels.status}`);
-    const channelList = await safeJson<any[]>(channels);
-    const forum = channelList.find((c) => c.type === 15 && c.name === forumName);
-    if (!forum) {
-      return res.status(404).json({ error: `Forum #${forumName} introuvable.` });
-    }
-    const pendingTag = (forum.available_tags || []).find((t: any) => t.name.includes("Demandé"));
-
-    const requester = getSessionUser(req);
-
-    for (const g of gamesClean) {
-      const payload = {
-        name: g.title.slice(0, 100),
-        applied_tags: pendingTag ? [pendingTag.id] : [],
-        message: {
-          embeds: [
-            {
-              title: lang === "fr" ? "🎮 Demande de jeu" : "🎮 Game request",
-              color: 0x00b0f4,
-              description: `**${g.title}**${g.systems ? `\n*${g.systems}*` : ""}${noteClean ? `\n\n${noteClean}` : ""}`,
-              fields: requester
-                ? [{ name: lang === "fr" ? "Demandeur" : "Requester", value: requester.id, inline: true }]
-                : [],
-              footer: { text: "via db-nds-shop.fr" },
-              timestamp: new Date().toISOString(),
-            },
-          ],
-        },
-      };
-      const response = await fetch(`https://discord.com/api/v10/channels/${forum.id}/threads`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bot ${token}` },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        console.error("❌ Discord forum post failed:", response.status, await response.text());
-        return res.status(502).json({ error: "Échec de la création du post." });
-      }
-    }
-    // Persiste les demandes en BDD (1 ligne par jeu, liste publique + votes)
     await prisma.gameRequest.createMany({
       data: gamesClean.map((g) => ({
         title: g.title,
@@ -301,13 +370,12 @@ router.post("/request", requestLimiter, async (req, res) => {
     });
     res.json({ ok: true, count: gamesClean.length });
   } catch (err) {
-    console.error("❌ Discord request error:", err);
-    res.status(500).json({ error: "Erreur serveur." });
+    console.error("❌ SQL Insert Request Error:", err);
+    res.status(500).json({ error: "Erreur enregistrement demande." });
   }
 });
 
 // --- GET /api/v1/team ---
-// Liste des IDs Discord de l'équipe (fichier écrit par le back-office upload)
 const TEAM_MEMBERS_FILE =
   process.env.TEAM_MEMBERS_FILE || "/srv/nds-shop/team-members.json";
 
@@ -317,7 +385,6 @@ router.get("/team", (_req, res) => {
       return res.json({ members: [], updatedAt: null });
     }
     const data = JSON.parse(fs.readFileSync(TEAM_MEMBERS_FILE, "utf8"));
-    // Rétrocompat : ancien format { discordIds: [] }
     if (Array.isArray(data.discordIds)) {
       return res.json({
         members: data.discordIds.map((id: string) => ({ id, role: "" })),
@@ -330,7 +397,7 @@ router.get("/team", (_req, res) => {
   }
 });
 
-// --- Discord ---
+// --- Discord helpers ---
 const getBotToken = () => process.env.DISCORD_BOT_TOKEN || "";
 
 async function safeJson<T>(response: any): Promise<T> {
@@ -342,7 +409,7 @@ async function safeJson<T>(response: any): Promise<T> {
   }
 }
 
-// GET /api/v1/discord-user/:id — profil public d'un utilisateur
+// GET /api/v1/discord-user/:id
 router.get("/discord-user/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -366,18 +433,16 @@ router.get("/discord-user/:id", async (req, res) => {
       public_flags: data.public_flags,
     });
   } catch (err) {
-    console.error("❌ Failed to fetch Discord user:", err);
     res.status(500).json({ error: "Failed to fetch from Discord" });
   }
 });
 
-// GET /api/v1/discord-presence/:id — statut/activité via Lanyard
+// GET /api/v1/discord-presence/:id
 router.get("/discord-presence/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const response = await fetch(`https://api.lanyard.rest/v1/users/${id}`);
     if (response.status === 404) {
-      // Utilisateur non suivi par Lanyard → statut inconnu
       return res.json({ discord_status: "offline", activities: [] });
     }
     if (!response.ok) {
@@ -386,12 +451,11 @@ router.get("/discord-presence/:id", async (req, res) => {
     const data = await safeJson<any>(response);
     res.json(data.data);
   } catch (err) {
-    console.error("❌ Failed to fetch Lanyard presence:", err);
     res.status(500).json({ error: "Failed to fetch presence" });
   }
 });
 
-// GET /api/v1/discord-guild — infos du serveur Discord
+// GET /api/v1/discord-guild
 router.get("/discord-guild", async (_req, res) => {
   const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
   try {
@@ -417,13 +481,11 @@ router.get("/discord-guild", async (_req, res) => {
         : null,
     });
   } catch (err) {
-    console.error("❌ Failed to fetch Discord guild:", err);
     res.status(500).json({ error: "Failed to fetch guild" });
   }
 });
 
-// --- Favoris synchronisés (login requis) ---
-// GET /api/v1/favorites — liste des slugs favoris de l'utilisateur
+// --- Favoris ---
 router.get("/favorites", (req, res) => {
   const user = getSessionUser(req);
   if (!user) return res.status(401).json({ error: "Connexion requise." });
@@ -431,7 +493,6 @@ router.get("/favorites", (req, res) => {
   res.json({ favorites: community.favorites[user.id] || [] });
 });
 
-// PUT /api/v1/favorites — remplace la liste des favoris
 router.put("/favorites", (req, res) => {
   const user = getSessionUser(req);
   if (!user) return res.status(401).json({ error: "Connexion requise." });
@@ -445,17 +506,13 @@ router.put("/favorites", (req, res) => {
   res.json({ ok: true, favorites });
 });
 
-// --- Demandes de jeux (BDD Prisma, 1 ligne par jeu) ---
-// GET /api/v1/requests — triées par votes décroissants puis date
+// --- Demandes de jeux ---
 router.get("/requests", async (req, res) => {
   try {
     const user = getSessionUser(req);
     const rows = await prisma.gameRequest.findMany({
       include: { votes: true },
-      orderBy: [
-        { votes: { _count: "desc" } },
-        { createdAt: "desc" },
-      ],
+      orderBy: [{ votes: { _count: "desc" } }, { createdAt: "desc" }],
     });
     const list = rows.map((r) => ({
       id: r.id,
@@ -469,32 +526,35 @@ router.get("/requests", async (req, res) => {
     }));
     res.json(list);
   } catch (err) {
-    console.error("❌ GET /requests error:", err);
     res.status(500).json({ error: "Erreur serveur." });
   }
 });
 
-// POST /api/v1/requests/:id/vote — toggle du vote (login requis, 1 vote par utilisateur)
 router.post("/requests/:id/vote", async (req, res) => {
   const user = getSessionUser(req);
   if (!user) return res.status(401).json({ error: "Connexion requise." });
   try {
     const existing = await prisma.gameRequestVote.findUnique({
-      where: { requestId_userId: { requestId: req.params.id, userId: user.id } },
+      where: {
+        requestId_userId: { requestId: req.params.id, userId: user.id },
+      },
     });
     if (existing) {
       await prisma.gameRequestVote.delete({
-        where: { requestId_userId: { requestId: req.params.id, userId: user.id } },
+        where: {
+          requestId_userId: { requestId: req.params.id, userId: user.id },
+        },
       });
     } else {
       await prisma.gameRequestVote.create({
         data: { requestId: req.params.id, userId: user.id },
       });
     }
-    const count = await prisma.gameRequestVote.count({ where: { requestId: req.params.id } });
+    const count = await prisma.gameRequestVote.count({
+      where: { requestId: req.params.id },
+    });
     res.json({ ok: true, votes: count, hasVoted: !existing });
   } catch (err) {
-    console.error("❌ vote error:", err);
     res.status(500).json({ error: "Erreur serveur." });
   }
 });

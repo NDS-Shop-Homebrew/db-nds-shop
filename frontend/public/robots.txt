@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /api/
+Disallow: /auth/
+Disallow: /v1/
+
 Sitemap: https://db-nds-shop.fr/sitemap.xml

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Image as ImageIcon } from "lucide-react";
 
-interface SafeImgProps {
+interface SafeImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src?: string;
   alt?: string;
   className?: string;
@@ -15,15 +15,24 @@ export default function SafeImg({
   className = "",
   wrapperClassName = "",
   fallback,
+  loading = "lazy",
+  decoding = "async",
+  ...props
 }: SafeImgProps) {
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
 
   if (!src || failed) {
     return (
       <div
-        className={`flex items-center justify-center text-muted-foreground ${wrapperClassName || "w-full h-full"}`}
+        className={`flex items-center justify-center text-muted-foreground ${
+          wrapperClassName || "w-full h-full"
+        }`}
       >
-        {fallback ?? <ImageIcon size={28} />}
+        {fallback ?? <ImageIcon className="size-6 opacity-40" />}
       </div>
     );
   }
@@ -32,9 +41,11 @@ export default function SafeImg({
     <img
       src={src}
       alt={alt}
-      loading="lazy"
+      loading={loading}
+      decoding={decoding}
       onError={() => setFailed(true)}
       className={className}
+      {...props}
     />
   );
 }

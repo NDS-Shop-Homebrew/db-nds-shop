@@ -1,18 +1,20 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
 const router = express.Router();
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_BASE = path.join(__dirname, "../../public/db/nds/base");
+
+// Chemin vers le dossier centralisé NDSDB
+const DB_BASE =
+  process.env.NDSDB_PATH ||
+  path.resolve(process.cwd(), "../../storage/ndsdb");
 
 const NS = "/api/v1/ndsdb";
 
 const SERIAL_RE = /^[A-Za-z0-9-]{1,20}$/;
 const NUM_RE = /^\d{1,4}$/;
 
-function getBaseUrl(req: any) {
+function getBaseUrl(req: express.Request) {
   return `${req.protocol}://${req.get("host")}`;
 }
 
@@ -23,7 +25,16 @@ function serialPath(serial: string) {
   return path.join(DB_BASE, serial.toUpperCase());
 }
 
-function getMediaUrls(serialPath: string, serial: string, baseUrl: string) {
+function findImageFile(dir: string, baseName: string): string | null {
+  const exts = [".jpg", ".png", ".jpeg", ".webp"];
+  for (const ext of exts) {
+    const p = path.join(dir, `${baseName}${ext}`);
+    if (fs.existsSync(p)) return p;
+  }
+  return null;
+}
+
+function getMediaUrls(serialDirPath: string, serial: string, baseUrl: string) {
   const media: any = {
     banner: `${baseUrl}${NS}/images/${serial}/banner`,
     icon: `${baseUrl}${NS}/images/${serial}/icon`,
@@ -32,32 +43,46 @@ function getMediaUrls(serialPath: string, serial: string, baseUrl: string) {
     screenshots: { compiled: [], uncompiled: { upper: [], lower: [] } },
     thumbnails: [],
   };
+
   try {
-    const screenFiles = fs.readdirSync(path.join(serialPath, "screenshots"));
+    const screenFiles = fs.readdirSync(path.join(serialDirPath, "screenshots"));
     media.screenshots.compiled = screenFiles
       .filter((f: string) => f.startsWith("screenshot_"))
       .sort()
-      .map((f: string) => `${baseUrl}${NS}/screenshots/${serial}/screen/${f.match(/\d+/)?.[0]}`);
+      .map(
+        (f: string) =>
+          `${baseUrl}${NS}/screenshots/${serial}/screen/${f.match(/\d+/)?.[0]}`
+      );
   } catch {}
+
   try {
-    const uncompiledFiles = fs.readdirSync(path.join(serialPath, "screenshots_uncompiled"));
+    const uncompiledFiles = fs.readdirSync(
+      path.join(serialDirPath, "screenshots_uncompiled")
+    );
     uncompiledFiles.forEach((file: string) => {
-      const match = file.match(/screenshot_(\d+)_(upper|lower)\.jpg/);
+      const match = file.match(/screenshot_(\d+)_(upper|lower)\.(jpg|png|webp)/i);
       if (match) {
         const type = match[2] === "upper" ? "upper" : "lower";
-        media.screenshots.uncompiled[type].push(`${baseUrl}${NS}/screenshots/${serial}/screen_u/${match[1]}/${match[2][0]}`);
+        media.screenshots.uncompiled[type].push(
+          `${baseUrl}${NS}/screenshots/${serial}/screen_u/${match[1]}/${match[2][0]}`
+        );
       }
     });
     media.screenshots.uncompiled.upper.sort();
     media.screenshots.uncompiled.lower.sort();
   } catch {}
+
   try {
-    const thumbFiles = fs.readdirSync(path.join(serialPath, "thumbnails"));
+    const thumbFiles = fs.readdirSync(path.join(serialDirPath, "thumbnails"));
     media.thumbnails = thumbFiles
       .filter((f: string) => f.startsWith("thumbnail_"))
       .sort()
-      .map((f: string) => `${baseUrl}${NS}/thumbnails/${serial}/thumb/${f.match(/\d+/)?.[0]}`);
+      .map(
+        (f: string) =>
+          `${baseUrl}${NS}/thumbnails/${serial}/thumb/${f.match(/\d+/)?.[0]}`
+      );
   } catch {}
+
   return media;
 }
 
@@ -73,13 +98,20 @@ router.get("/version", (_req, res) => {
 // ============================================================
 router.get("/stats/stats", (_req, res) => {
   try {
-    const stats: any = { total: 0, categories: {} };
+    if (!fs.existsSync(DB_BASE)) {
+      return res.json({ total: 0, categories: { base: 0 } });
+    }
     const serials = fs
       .readdirSync(DB_BASE)
-      .filter((s) => s !== "Example" && fs.statSync(path.join(DB_BASE, s)).isDirectory());
-    stats.categories["base"] = serials.length;
-    stats.total = serials.length;
-    res.json(stats);
+      .filter(
+        (s) =>
+          s !== "Example" &&
+          fs.statSync(path.join(DB_BASE, s)).isDirectory()
+      );
+    res.json({
+      total: serials.length,
+      categories: { base: serials.length },
+    });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
@@ -88,11 +120,20 @@ router.get("/stats/stats", (_req, res) => {
 router.get("/stats/category/:category", (req, res) => {
   try {
     if (req.params.category !== "base") {
-      return res.status(400).json({ error: "Invalid category", validCategories: ["base"] });
+      return res
+        .status(400)
+        .json({ error: "Invalid category", validCategories: ["base"] });
+    }
+    if (!fs.existsSync(DB_BASE)) {
+      return res.status(404).json({ error: "No titles found" });
     }
     const serials = fs
       .readdirSync(DB_BASE)
-      .filter((s) => s !== "Example" && fs.statSync(path.join(DB_BASE, s)).isDirectory())
+      .filter(
+        (s) =>
+          s !== "Example" &&
+          fs.statSync(path.join(DB_BASE, s)).isDirectory()
+      )
       .sort();
     if (!serials.length) return res.status(404).json({ error: "No titles found" });
     res.json({ category: "base", count: serials.length, serials });
@@ -107,8 +148,11 @@ router.get("/stats/category/:category", (req, res) => {
 router.get("/metadata/:serial/meta/:meta", (req, res) => {
   try {
     const sp = serialPath(req.params.serial);
-    if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
-    const meta = JSON.parse(fs.readFileSync(path.join(sp, "meta.json"), "utf-8"));
+    const metaPath = path.join(sp, "meta.json");
+    if (!fs.existsSync(metaPath)) {
+      return res.status(404).json({ error: "Serial not found" });
+    }
+    const meta = JSON.parse(fs.readFileSync(metaPath, "utf-8"));
     if (meta[req.params.meta] === undefined) {
       return res.status(404).json({
         error: "Metadata field not found",
@@ -124,8 +168,11 @@ router.get("/metadata/:serial/meta/:meta", (req, res) => {
 router.get("/metadata/:serial", (req, res) => {
   try {
     const sp = serialPath(req.params.serial);
-    if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
-    const meta = JSON.parse(fs.readFileSync(path.join(sp, "meta.json"), "utf-8"));
+    const metaPath = path.join(sp, "meta.json");
+    if (!fs.existsSync(metaPath)) {
+      return res.status(404).json({ error: "Serial not found" });
+    }
+    const meta = JSON.parse(fs.readFileSync(metaPath, "utf-8"));
     const media = getMediaUrls(sp, req.params.serial.toUpperCase(), getBaseUrl(req));
     res.json({ ...meta, media });
   } catch (err: any) {
@@ -144,8 +191,8 @@ router.get("/images/:serial/:type", (req, res) => {
   if (!IMAGE_TYPES.includes(req.params.type)) {
     return res.status(400).json({ error: "Invalid type", validTypes: IMAGE_TYPES });
   }
-  const filePath = path.join(sp, `${req.params.type}.jpg`);
-  if (!fs.existsSync(filePath)) return res.status(404).json({ error: "Image not found" });
+  const filePath = findImageFile(sp, req.params.type);
+  if (!filePath) return res.status(404).json({ error: "Image not found" });
   res.sendFile(filePath);
 });
 
@@ -160,9 +207,12 @@ router.get("/screenshots/:serial/screens", (req, res) => {
     if (!fs.existsSync(dir)) return res.json({ count: 0, screenshots: [] });
     const shots = fs
       .readdirSync(dir)
-      .filter((f: string) => f.startsWith("screenshot_") && f.endsWith(".jpg"))
+      .filter((f: string) => f.startsWith("screenshot_"))
       .sort()
-      .map((f: string) => `${getBaseUrl(req)}${NS}/screenshots/${req.params.serial}/screen/${f.match(/\d+/)?.[0]}`);
+      .map(
+        (f: string) =>
+          `${getBaseUrl(req)}${NS}/screenshots/${req.params.serial}/screen/${f.match(/\d+/)?.[0]}`
+      );
     res.json({ count: shots.length, screenshots: shots });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
@@ -174,10 +224,15 @@ router.get("/screenshots/:serial/screen_u", (req, res) => {
     const sp = serialPath(req.params.serial);
     if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
     const dir = path.join(sp, "screenshots_uncompiled");
-    if (!fs.existsSync(dir)) return res.json({ count: { upper: 0, lower: 0, total: 0 }, screenshots: { upper: [], lower: [] } });
+    if (!fs.existsSync(dir))
+      return res.json({
+        count: { upper: 0, lower: 0, total: 0 },
+        screenshots: { upper: [], lower: [] },
+      });
+
     const shots: any = { upper: [], lower: [] };
     fs.readdirSync(dir).forEach((file: string) => {
-      const match = file.match(/screenshot_(\d+)_(upper|lower)\.jpg/);
+      const match = file.match(/screenshot_(\d+)_(upper|lower)\.(jpg|png|webp)/i);
       if (match) {
         const type = match[2] === "upper" ? "upper" : "lower";
         shots[type].push({
@@ -189,7 +244,11 @@ router.get("/screenshots/:serial/screen_u", (req, res) => {
     shots.upper.sort((a: any, b: any) => a.number - b.number);
     shots.lower.sort((a: any, b: any) => a.number - b.number);
     res.json({
-      count: { upper: shots.upper.length, lower: shots.lower.length, total: shots.upper.length + shots.lower.length },
+      count: {
+        upper: shots.upper.length,
+        lower: shots.lower.length,
+        total: shots.upper.length + shots.lower.length,
+      },
       screenshots: shots,
     });
   } catch (err: any) {
@@ -202,8 +261,11 @@ router.get("/screenshots/:serial/screen_u/:num/:screen", (req, res) => {
   const sp = serialPath(req.params.serial);
   if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
   const screen = req.params.screen === "u" ? "upper" : "lower";
-  const filePath = path.join(sp, "screenshots_uncompiled", `screenshot_${req.params.num}_${screen}.jpg`);
-  if (!fs.existsSync(filePath)) return res.status(404).json({ error: "Screenshot not found" });
+  const filePath = findImageFile(
+    path.join(sp, "screenshots_uncompiled"),
+    `screenshot_${req.params.num}_${screen}`
+  );
+  if (!filePath) return res.status(404).json({ error: "Screenshot not found" });
   res.sendFile(filePath);
 });
 
@@ -211,8 +273,11 @@ router.get("/screenshots/:serial/screen/:num", (req, res) => {
   if (!NUM_RE.test(req.params.num)) return res.status(400).json({ error: "Invalid number" });
   const sp = serialPath(req.params.serial);
   if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
-  const filePath = path.join(sp, "screenshots", `screenshot_${req.params.num}.jpg`);
-  if (!fs.existsSync(filePath)) return res.status(404).json({ error: "Screenshot not found" });
+  const filePath = findImageFile(
+    path.join(sp, "screenshots"),
+    `screenshot_${req.params.num}`
+  );
+  if (!filePath) return res.status(404).json({ error: "Screenshot not found" });
   res.sendFile(filePath);
 });
 
@@ -227,9 +292,12 @@ router.get("/thumbnails/:serial/thumbs", (req, res) => {
     if (!fs.existsSync(dir)) return res.json({ count: 0, thumbnails: [] });
     const thumbs = fs
       .readdirSync(dir)
-      .filter((f: string) => f.startsWith("thumbnail_") && f.endsWith(".jpg"))
+      .filter((f: string) => f.startsWith("thumbnail_"))
       .sort()
-      .map((f: string) => `${getBaseUrl(req)}${NS}/thumbnails/${req.params.serial}/thumb/${f.match(/\d+/)?.[0]}`);
+      .map(
+        (f: string) =>
+          `${getBaseUrl(req)}${NS}/thumbnails/${req.params.serial}/thumb/${f.match(/\d+/)?.[0]}`
+      );
     res.json({ count: thumbs.length, thumbnails: thumbs });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
@@ -240,8 +308,11 @@ router.get("/thumbnails/:serial/thumb/:num", (req, res) => {
   if (!NUM_RE.test(req.params.num)) return res.status(400).json({ error: "Invalid number" });
   const sp = serialPath(req.params.serial);
   if (!fs.existsSync(sp)) return res.status(404).json({ error: "Serial not found" });
-  const filePath = path.join(sp, "thumbnails", `thumbnail_${req.params.num}.jpg`);
-  if (!fs.existsSync(filePath)) return res.status(404).json({ error: "Thumbnail not found" });
+  const filePath = findImageFile(
+    path.join(sp, "thumbnails"),
+    `thumbnail_${req.params.num}`
+  );
+  if (!filePath) return res.status(404).json({ error: "Thumbnail not found" });
   res.sendFile(filePath);
 });
 

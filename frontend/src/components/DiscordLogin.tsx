@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LogOut } from "lucide-react";
 import { Button } from "./ui/button";
-import { API_BASE_URL } from "../config";
+
+const API_BASE = import.meta.env.VITE_API_URL || "";
+const AUTH_URL = `${API_BASE}/api/v1/auth`;
 
 interface Me {
   loggedIn: boolean;
@@ -22,14 +24,17 @@ export default function DiscordLogin() {
   const [me, setMe] = useState<Me>({ loggedIn: false, user: null });
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/v1/auth/me`)
-      .then((r) => r.json())
-      .then(setMe)
+    fetch(`${AUTH_URL}/me`, { credentials: "include" })
+      .then((r) => (r.ok ? r.json() : { loggedIn: false, user: null }))
+      .then((data: Me) => setMe(data))
       .catch(() => {});
   }, []);
 
   const logout = async () => {
-    await fetch(`${API_BASE_URL}/v1/auth/logout`, { method: "POST" });
+    await fetch(`${AUTH_URL}/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
     setMe({ loggedIn: false, user: null });
   };
 
@@ -40,15 +45,21 @@ export default function DiscordLogin() {
           <p>
             {t("request.loggedAs")} <strong>{me.user?.username}</strong>
           </p>
-          <Button variant="outline" size="sm" onClick={logout}>
+          <Button variant="outline" size="sm" onClick={logout} className="cursor-pointer">
             <LogOut size={14} /> {t("request.logout")}
           </Button>
         </div>
       ) : (
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <p>{t("request.loginHint")}</p>
-          <Button size="sm" onClick={() => { window.location.href = `${API_BASE_URL}/v1/auth/discord`; }}>
-            <DiscordIcon className="w-4 h-4" /> {t("request.loginDiscord")}
+          <p className="text-muted-foreground">{t("request.loginHint")}</p>
+          <Button
+            size="sm"
+            onClick={() => {
+              window.location.href = `${AUTH_URL}/discord`;
+            }}
+            className="cursor-pointer bg-[#5865F2] hover:bg-[#4752C4] text-white"
+          >
+            <DiscordIcon className="w-4 h-4 mr-1.5" /> {t("request.loginDiscord")}
           </Button>
         </div>
       )}
