@@ -14,6 +14,68 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Game {
+  id            String            @id
+  slug          String            @unique
+  title         String
+  titleId       String?
+  version       String?
+  author        String?
+  developer     String?
+  publisher     String?
+  descriptionMd String?           @db.Text
+  systems       Json
+  genres        Json
+  categories    Json
+  color         String?
+  colorBg       String?
+  priority      Boolean           @default(false)
+  stars         Int               @default(0)
+  iconUrl       String?
+  imageUrl      String?
+  boxartUrl     String?
+  updatedAt     DateTime          @updatedAt
+  createdAt     DateTime          @default(now())
+  screenshots   GameScreenshot[]
+  downloads     GameDownload[]
+  scripts       GameScript[]
+
+  @@map("game")
+}
+
+model GameScreenshot {
+  id          String @id
+  gameId      String
+  game        Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  description String
+  url         String
+  order       Int
+
+  @@map("game_screenshot")
+}
+
+model GameDownload {
+  id       String @id
+  gameId   String
+  game     Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  fileName String
+  url      String
+  size     BigInt?
+  type     String
+
+  @@map("game_download")
+}
+
+model GameScript {
+  id     String @id
+  gameId String @map("gameId")
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  name   String
+  script Json
+
+  @@map("game_script")
+}
+
 model GameRequest {
   id            String            @id @default(cuid())
   title         String

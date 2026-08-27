@@ -24,9 +24,9 @@ qr:
 screenshots: []
 stars: 0
 systems:
-- NDS
+- DS
 title: Mario vs. Donkey Kong 2 - March of the Minis
 titleId: A2MP
 updated: '2026-08-26T11:40:03.592000'
-version: '1.0'
+version: (Europe) (En,Fr,De,Es,It)
 ---

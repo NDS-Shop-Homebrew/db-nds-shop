@@ -1685,6 +1685,44 @@
     }
   },
   {
+    "title": "Mario vs. Donkey Kong 2 - March of the Minis",
+    "titleId": "A2MP",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "author": "Nintendo",
+    "developer": "Nintendo Software Technology",
+    "publisher": "Nintendo",
+    "description": "",
+    "systems": [
+      "DS"
+    ],
+    "genres": [
+      "Puzzle",
+      "Platformer"
+    ],
+    "categories": [
+      "game"
+    ],
+    "color": "#e74c3c",
+    "color_bg": "#c0392b",
+    "priority": false,
+    "stars": 0,
+    "icon": "data:image/png;base64,placeholder",
+    "image": "https://db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png",
+    "boxart": "https://db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png",
+    "website": null,
+    "wiki": null,
+    "source": null,
+    "license": null,
+    "screenshots": [],
+    "downloads": {
+      "Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": 67108864
+      }
+    },
+    "scripts": {}
+  },
+  {
     "title": "Michael Jackson - The Experience",
     "titleId": "BVNP",
     "version": "(Europe) (En,Fr,De,Es,It)",

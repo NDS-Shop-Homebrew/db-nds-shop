@@ -17,3 +17,16 @@ frontend/public/games/
 
 # Tooling caches
 tools/nds-to-cia/cache/
+
+# Local dev scripts (not shared)
+*.bat
+
+# Tools Prisma client (generated locally, schema in backend/)
+tools/nds-to-cia/node_modules/
+tools/nds-to-cia/prisma/
+tools/nds-to-cia/package.json
+tools/nds-to-cia/package-lock.json
+tools/nds-to-cia/.env
+
+# Archived source files (old JSON sources, replaced by MySQL DB)
+archive/

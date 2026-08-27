@@ -19,14 +19,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Helper to generate slug from title
-function webName(name) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
 const COMMIT =
   process.env.LIBRETRO_THUMBNAILS_COMMIT ||
   "f4792152a0848920ac26c90054cdf4c6c62554a8";
