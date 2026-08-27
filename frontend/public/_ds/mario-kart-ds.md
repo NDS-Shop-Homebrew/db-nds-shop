@@ -1,33 +1,65 @@
 ---
-author: Nintendo
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Mario Kart DS (Europe) (En,Fr,De,Es,It).nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/mariokartds.png
-id: cmt9xrpsx004j9cogqciunlv9
-image: null
-layout: app
-publisher: null
-qr:
-  Mario Kart DS (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/mario-kart-ds-europe-enfrdeesit-nds.png
-screenshots:
-- description: Boxart
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/boxart/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
-stars: 0
-systems:
-- DS
-title: Mario Kart DS
-titleId: AMCP
-updated: '2026-08-26T11:40:03.525000'
-version: (Europe) (En,Fr,De,Es,It)
+
+  title:  Mario Kart DS,
+  author:  Nintendo,
+  developer:  ,
+  publisher:  ,
+  version:  (Europe) (En,Fr,De,Es,It),
+  titleId:  AMCP,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/mariokartds.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Mario Kart DS (Europe) (En,Fr,De,Es,It).nds:  {
+      url:  https: //db-nds-shop.fr/games/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      order:  0
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Mario Kart DS (Europe) (En Fr De Es It).nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
+      output:  /roms/nds/Mario Kart DS (Europe) (En,Fr,De,Es,It).nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia,
+      output:  /Mario Kart DS (Europe) (En,Fr,De,Es,It).cia
+    },
+    {
+      type:  installCia,
+      file:  /Mario Kart DS (Europe) (En,Fr,De,Es,It).cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Mario Kart DS (Europe) (En,Fr,De,Es,It).cia,
+      output:  null
+    }
+  ]
+
 ---
+
+

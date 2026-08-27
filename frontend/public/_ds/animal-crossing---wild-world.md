@@ -1,33 +1,65 @@
 ---
-author: Nintendo
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Welcome%20to%20Animal%20Crossing%20Wild%20World%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/animalcrossingwildworld.png
-id: cmt9xrq6c00al9cogc7hqo1yk
-image: null
-layout: app
-publisher: null
-qr:
-  Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/welcome-to-animal-crossing-wild-world-europe-enfrdeesit-nds.png
-screenshots:
-- description: Boxart
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/boxart/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
-stars: 0
-systems:
-- DS
-title: Animal Crossing - Wild World
-titleId: ADMP
-updated: '2026-08-26T11:40:04.353000'
-version: (Europe) (En,Fr,De,Es,It)
+
+  title:  Animal Crossing - Wild World,
+  author:  Nintendo,
+  developer:  ,
+  publisher:  ,
+  version:  (Europe) (En,Fr,De,Es,It),
+  titleId:  ADMP,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/animalcrossingwildworld.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds:  {
+      url:  https: //db-nds-shop.fr/games/Welcome%20to%20Animal%20Crossing%20Wild%20World%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      order:  0
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Welcome%20to%20Animal%20Crossing%20Wild%20World%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
+      output:  /roms/nds/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia,
+      output:  /Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).cia
+    },
+    {
+      type:  installCia,
+      file:  /Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).cia,
+      output:  null
+    }
+  ]
+
 ---
+
+

@@ -1,1 +1,3490 @@
-[]
+[
+  {
+    "title": "Animal Crossing - Wild World",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "ADMP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/animalcrossingwildworld.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Welcome%20to%20Animal%20Crossing%20Wild%20World%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Welcome%20to%20Animal%20Crossing%20Wild%20World%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Beyblade Metal Fusion Cyber Pegasus",
+    "author": "Nintendo / HUDSON",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe)",
+    "titleId": "BBUP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/beyblademetalfusioncyberpegasus.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Beyblade Metal Fusion Cyber Pegasus (Europe) [b].nds": {
+        "url": "https://db-nds-shop.fr/games/Beyblade%20Metal%20Fusion%20Cyber%20Pegasus%20%28Europe%29%20%5Bb%5D.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Beyblade%20Metal%20Fusion%20Cyber%20Pegasus%20(Europe).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Beyblade%20Metal%20Fusion%20Cyber%20Pegasus%20(Europe).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Beyblade Metal Fusion Cyber Pegasus (Europe) [b].nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Beyblade%20Metal%20Fusion%20Cyber%20Pegasus%20%28Europe%29%20%5Bb%5D.nds",
+        "output": "/roms/nds/Beyblade Metal Fusion Cyber Pegasus (Europe) [b].nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Beyblade%20Metal%20Fusion%20Cyber%20Pegasus%20(Europe)%20%5Bb%5D.cia",
+        "output": "/Beyblade Metal Fusion Cyber Pegasus (Europe) [b].cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Beyblade Metal Fusion Cyber Pegasus (Europe) [b].cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Beyblade Metal Fusion Cyber Pegasus (Europe) [b].cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Bomberman Land 1",
+    "author": "Rising Star Games",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "ABXP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/bombermanland1.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
+        "output": "/roms/nds/Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Bomberman Land 2",
+    "author": "Rising Star Games",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "YB2P",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/bombermanland2.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Bomberman Land Touch! 2 (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Bomberman%20Land%20Touch!%202%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Bomberman%20Land%20Touch!%202%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Bomberman%20Land%20Touch!%202%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Bomberman Land Touch! 2 (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Bomberman%20Land%20Touch!%202%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
+        "output": "/roms/nds/Bomberman Land Touch! 2 (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Bomberman%20Land%20Touch!%202%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Bomberman Land Touch! 2 (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Bomberman Land Touch! 2 (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Bomberman Land Touch! 2 (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Chrono Trigger",
+    "author": "Square Enix",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr)",
+    "titleId": "YQUP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/chronotrigger.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Chrono Trigger (Europe) (En,Fr).nds": {
+        "url": "https://db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Chrono Trigger (Europe) (En,Fr).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds",
+        "output": "/roms/nds/Chrono Trigger (Europe) (En,Fr).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Chrono%20Trigger%20(Europe)%20(En%2CFr).cia",
+        "output": "Chrono Trigger (Europe) (En,Fr).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Chrono Trigger (Europe) (En,Fr).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Chrono Trigger (Europe) (En,Fr).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Code Lyoko",
+    "author": "The Game Factory",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,Es,It)",
+    "titleId": "AL5P",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/codelyoko.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Code Lyoko (Europe) (En,Fr,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Code%20Lyoko%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20(Europe)%20(En%2CFr%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20(Europe)%20(En%2CFr%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Code Lyoko (Europe) (En,Fr,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Code%20Lyoko%20%28Europe%29%20%28En%2CFr%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Code Lyoko (Europe) (En,Fr,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Code%20Lyoko%20(Europe)%20(En%2CFr%2CEs%2CIt).cia",
+        "output": "/Code Lyoko (Europe) (En,Fr,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Code Lyoko (Europe) (En,Fr,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Code Lyoko (Europe) (En,Fr,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Code Lyoko: Fall of X.A.N.A.",
+    "author": "The Game Factory",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr)",
+    "titleId": "CLFP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/codelyokoxana.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds": {
+        "url": "https://db-nds-shop.fr/games/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20%28Europe%29%20%28En%2CFr%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20(Europe)%20(En%2CFr).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20(Europe)%20(En%2CFr).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20%28Europe%29%20%28En%2CFr%29.nds",
+        "output": "/roms/nds/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20(Europe)%20(En%2CFr).cia",
+        "output": "/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Cooking Mama",
+    "author": "Office Create",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,It)",
+    "titleId": "ACCX",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/cookingmama.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Cooking Mama (Europe) (En,Fr,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Cooking Mama (Europe) (En,Fr,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.nds",
+        "output": "/roms/nds/Cooking Mama (Europe) (En,Fr,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).cia",
+        "output": "/Cooking Mama (Europe) (En,Fr,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Cooking Mama (Europe) (En,Fr,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Cooking Mama (Europe) (En,Fr,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Diddy Kong Racing DS",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AWDP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/diddykongracing.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Diddy Kong Racing DS (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Diddy%20Kong%20Racing%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Diddy%20Kong%20Racing%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Diddy%20Kong%20Racing%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Diddy Kong Racing DS (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Diddy%20Kong%20Racing%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Diddy Kong Racing DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Diddy%20Kong%20Racing%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Diddy Kong Racing DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Diddy Kong Racing DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Diddy Kong Racing DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Dr Kawashima's Brain Training: How Old Is Your Brain",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It,Nl)",
+    "titleId": "ANDP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/drkawashimabrain.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Dr Kawashima's Brain Training How Old Is Your Brain.nds": {
+        "url": "https://db-nds-shop.fr/games/Dr%20Kawashima%27s%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Dr%20Kawashima's%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Dr%20Kawashima's%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Dr Kawashima's Brain Training How Old Is Your Brain.nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Dr%20Kawashima%27s%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds",
+        "output": "/roms/nds/Dr Kawashima's Brain Training How Old Is Your Brain.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Dr%20Kawashima's%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.cia",
+        "output": "/Dr Kawashima's Brain Training How Old Is Your Brain.cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Dr Kawashima's Brain Training How Old Is Your Brain.cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Dr Kawashima's Brain Training How Old Is Your Brain.cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Dragon Quest IX - Sentinels of the Starry Skies",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "YDQP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/dragonquestix.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Dragon Quest IX Sentinels of the Starry Skies.nds": {
+        "url": "https://db-nds-shop.fr/games/Dragon%20Quest%20IX%20Sentinels%20of%20the%20Starry%20Skies.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Dragon%20Quest%20IXSentinels%20of%20the%20Starry%20Skies.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Dragon%20Quest%20IX%20Sentinels%20of%20the%20Starry%20Skies.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Dragon Quest IX Sentinels of the Starry Skies.nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Dragon%20Quest%20IX%20Sentinels%20of%20the%20Starry%20Skies.nds",
+        "output": "/roms/nds/Dragon Quest IX Sentinels of the Starry Skies.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Dragon%20Quest%20IX%20Sentinels%20of%20the%20Starry%20Skies.cia",
+        "output": "/Dragon Quest IX Sentinels of the Starry Skies.cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Dragon Quest IX Sentinels of the Starry Skies.cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Dragon Quest IX Sentinels of the Starry Skies.cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Fire Emblem - Shadow Dragon",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "YFEP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/shadowemblemdragon.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Fire Emblem Shadow Dragon (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Fire%20Emblem%20Shadow%20Dragon%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Fire%20Emblem%20Shadow%20Dragon%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Fire%20Emblem%20Shadow%20Dragon%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Fire Emblem Shadow Dragon (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Fire%20Emblem%20Shadow%20Dragon%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Fire Emblem Shadow Dragon (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Fire%20Emblem%20Shadow%20Dragon%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Fire Emblem Shadow Dragon (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Fire Emblem Shadow Dragon (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Fire Emblem Shadow Dragon (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Inazuma Eleven",
+    "author": "Nintendo / Level-5",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "YEEF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/inazumaeleven.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Inazuma Eleven (France).nds": {
+        "url": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20%28France%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%20(France).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%20(France).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Inazuma Eleven (France).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20%28France%29.nds",
+        "output": "/roms/nds/Inazuma Eleven (France).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Inazuma%20Eleven%20(France).cia",
+        "output": "/Inazuma Eleven (France).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Inazuma Eleven (France).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Inazuma Eleven (France).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Inazuma Eleven 2 Tempete de Feu",
+    "author": "Nintendo / Level-5",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "BEEF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/inazumaeleventempetedefeu.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Inazuma Eleven 2 - Tempete de Feu (France) (France).nds": {
+        "url": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Feu%20%28France%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20(France).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20(France).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Inazuma Eleven 2 - Tempete de Feu (France).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Feu%20%28France%29.nds",
+        "output": "/roms/nds/Inazuma Eleven 2 - Tempete de Feu (France) (France).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Inazuma%20Eleven%20Tempete%20de%20Feu%20(France).cia",
+        "output": "/Inazuma Eleven Tempete de Feu (France).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Inazuma Eleven Tempete de Feu (France).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Inazuma Eleven Tempete de Feu (France).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Inazuma Eleven 2 Tempete de Glace",
+    "author": "Nintendo / Level-5",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "BEBF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/inazumaeleventempetedeglace.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Inazuma Eleven 2 - Tempete de Glace (France) (France).nds": {
+        "url": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Glace%20%28France%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Glace%20(France).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Glace%20(France).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Inazuma Eleven 2 - Tempete de Glace (France).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Glace%20%28France%29.nds",
+        "output": "/roms/nds/Inazuma Eleven 2 - Tempete de Glace (France) (France).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Inazuma%20Eleven%20Tempete%20de%20Glace%20(France).cia",
+        "output": "/Inazuma Eleven Tempete de Glace (France).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Inazuma Eleven Tempete de Glace (France).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Inazuma Eleven Tempete de Glace (France).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "JackassThe Game DS",
+    "author": "Sensory Sweep Studios",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "YJKP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/jackassthegameds.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Jackass The Game DS (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Jackass%20The%20Game%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Jackass%20The%20Game%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Jackass%20The%20Game%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Jackass The Game DS (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Jackass%20The%20Game%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Jackass The Game DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Jackass%20The%20Game%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Jackass The Game DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Jackass The Game DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Jackass The Game DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Kirby - Mass Attack",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "TADP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/kirbymassattack.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Kirby%20Mass%20Attack%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Kirby%20Mass%20Attack%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Kirby%20Mass%20Attack%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Kirby%20Mass%20Attack%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Kirby%20Mass%20Attack%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Kirby Mass Attack (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Kirby Super Star Ultra",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "YKWP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/kirbysuperstarultra.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Kirby%20Super%20Star%20Ultra%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/screenshots/kirbysuperstarultra/kirbysuperstarultra.png",
+        "order": 0
+      },
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Kirby%20Super%20Star%20Ultra%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 1
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Kirby%20Super%20Star%20Ultra%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Kirby%20Super%20Star%20Ultra%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Kirby%20Super%20Star%20Ultra%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario Kart DS",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AMCP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/mariokartds.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Mario Kart DS (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario Kart DS (Europe) (En Fr De Es It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20Kart%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Mario Kart DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20Kart%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario Kart DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario Kart DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario Kart DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario & Luigi : Bowser's Inside Story",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "CLJP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/mario%26luigibowsersinsidestory.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20%26%20Luigi%20Bowser%27s%20Inside%20Story%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Luigi%20Bowser's%20Inside%20Story%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Luigi%20Bowser's%20Inside%20Story%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20%26%20Luigi%20Bowser%27s%20Inside%20Story%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20%26%20Luigi%20Bowser's%20Inside%20Story%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario & Luigi Bowser's Inside Story (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario & Luigi : Partners In Time",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "ARMP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/mario%26luigipartnersintime.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Mario & Luigi Partners in Time (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20%26%20Luigi%20Partners%20in%20Time%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Luigi%20Partners%20in%20Time%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Luigi%20Partners%20in%20Time%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario & Luigi Partners in Time (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20%26%20Luigi%20Partners%20in%20Time%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Mario & Luigi Partners in Time (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20%26%20Luigi%20Partners%20in%20Time%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario & Luigi Partners in Time (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario & Luigi Partners in Time (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario & Luigi Partners in Time (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario Party DS",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "A8TP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/mariopartyds.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Mario Party DS (Europe) (En,Fr,De,Es,It) (Rev ).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20Party%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%20%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20Party%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt)%20(Rev%20).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20Party%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt)%20(Rev%20).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario Party DS (Europe) (En,Fr,De,Es,It) (Rev ).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20Party%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%20%29.nds",
+        "output": "/roms/nds/Mario Party DS (Europe) (En,Fr,De,Es,It) (Rev ).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20Party%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt)%20(Rev%20).cia",
+        "output": "/Mario Party DS (Europe) (En,Fr,De,Es,It) (Rev ).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario Party DS (Europe) (En,Fr,De,Es,It) (Rev ).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario Party DS (Europe) (En,Fr,De,Es,It) (Rev ).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario Slam Basketball",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Ja,Fr,De,Es,It)",
+    "titleId": "AB3P",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/marioslambasketball.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Mario Slam Basketball (Europe) (En,Ja,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20Slam%20Basketball%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/screenshots/marioslambasketball/marioslambasketball.png",
+        "order": 0
+      },
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20Slam%20Basketball%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 1
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20Slam%20Basketball%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario Slam Basketball (Europe) (En,Ja,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20Slam%20Basketball%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Mario Slam Basketball (Europe) (En,Ja,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20Slam%20Basketball%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario Slam Basketball (Europe) (En,Ja,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario Slam Basketball (Europe) (En,Ja,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario Slam Basketball (Europe) (En,Ja,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario & Sonic at the Olympic Games",
+    "author": "Nintendo/Sega",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AY9P",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/mario%26sonicolympicgames.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario & Sonic at the Olympic Winter Games",
+    "author": "Sega",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "COLP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/mario%26sonicwinterjo.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Mario & Sonic at the Olympic Winter Games.nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario & Sonic at the Olympic Winter Games.nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.nds",
+        "output": "/roms/nds/Mario & Sonic at the Olympic Winter Games.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20%26%20Sonic%20at%20the%20Olympic%20Winter%20Games.cia",
+        "output": "/Mario & Sonic at the Olympic Winter Games.cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario & Sonic at the Olympic Winter Games.cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario & Sonic at the Olympic Winter Games.cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Mario vs. Donkey Kong 2 - March of the Minis",
+    "author": "Nintendo",
+    "developer": "Nintendo Software Technology",
+    "publisher": "Nintendo",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "A2MP",
+    "systems": [
+      "NDS",
+      "DS"
+    ],
+    "genres": [
+      "Puzzle",
+      "Platformer"
+    ],
+    "categories": [
+      "game"
+    ],
+    "color": "#e74c3c",
+    "color_bg": "#c0392b",
+    "priority": false,
+    "stars": 0,
+    "icon": "data:image/png;base64,placeholder",
+    "image": "https://db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png",
+    "boxart": "https://db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png",
+    "downloads": {
+      "Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": 67108864
+      }
+    },
+    "screenshots": [],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
+        "output": "/roms/nds/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Michael Jackson - The Experience",
+    "author": "Ubisoft",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "BVNP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/michaeljackson.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Michael%20Jackson%20The%20Experience%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/screenshots/michaeljackson/michaeljackson.png",
+        "order": 0
+      },
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Michael%20Jackson%20The%20Experience%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 1
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Michael%20Jackson%20The%20Experience%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Michael JacksonThe Experience (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Michael%20Jackson%20The%20Experience%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Michael%20Jackson%20The%20Experience%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "New Super Mario Bros.",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "A2DP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/newsupermariobros.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/New%20Super%20Mario%20Bros.%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/screenshots/newsupermariobros/newsupermariobros.png",
+        "order": 0
+      },
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/New%20Super%20Mario%20Bros.%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 1
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/New%20Super%20Mario%20Bros.%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/New%20Super%20Mario%20Bros.%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/New%20Super%20Mario%20Bros.%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/New Super Mario Bros. (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/New Super Mario Bros. (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/New Super Mario Bros. (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Nintendogs Chihuahua & Friends",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AD2P",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/nintendogschihuahua.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Nintendogs Chihuahua & Friends (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Nintendogs%20Chihuahua%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Chihuahua%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Chihuahua%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Nintendogs Chihuahua & Friends (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Nintendogs%20Chihuahua%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Nintendogs Chihuahua & Friends (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Nintendogs%20Chihuahua%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Nintendogs Chihuahua & Friends (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Nintendogs Chihuahua & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Nintendogs Chihuahua & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Nintendogs Dachshund & Friends",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "ADGP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/nintendogsdaschund.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Nintendogs Dachshund & Friends (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Nintendogs%20Dachshund%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Dachshund%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Dachshund%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Nintendogs Dachshund & Friends (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Nintendogs%20Dachshund%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Nintendogs Dachshund & Friends (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Nintendogs%20Dachshund%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Nintendogs Dachshund & Friends (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Nintendogs Dachshund & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Nintendogs Dachshund & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Nintendogs Dalmatian & Friends",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AD7E",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/nintendogsdalmatian.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Nintendogs Dalmatian & Friends (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Nintendogs%20Dalmatian%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Dalmatian%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Dalmatian%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Nintendogs Dalmatian & Friends (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Nintendogs%20Dalmatian%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Nintendogs Dalmatian & Friends (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Nintendogs%20Dalmatian%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Nintendogs Dalmatian & Friends (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Nintendogs Dalmatian & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Nintendogs Dalmatian & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Nintendogs Labrador & Friends",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AD3P",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/nintendongslabrador.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Nintendogs Labrador & Friends (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Nintendogs%20Labrador%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Labrador%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Nintendogs%20Labrador%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Nintendogs Labrador & Friends (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Nintendogs%20Labrador%20%26%20Friends%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Nintendogs Labrador & Friends (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Nintendogs%20Labrador%20%26%20Friends%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Nintendogs Labrador & Friends (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Nintendogs Labrador & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Nintendogs Labrador & Friends (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Picross DS",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AXPP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/picrossds.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Picross DS (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Picross%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Picross%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Picross%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Picross DS (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Picross%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Picross DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Picross%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Picross DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Picross DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Picross DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Diamant",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "ADAF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemondiamant.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Diamant (France) (Rev ).nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Diamant%20%28France%29%20%28Rev%20%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Diamant%20(France)%20(Rev%20).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Diamant%20(France)%20(Rev%20).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Diamant (France) (Rev ).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Diamant%20%28France%29%20%28Rev%20%29.nds",
+        "output": "/roms/nds/Pokemon Version Diamant (France) (Rev ).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Diamant%20(France)%20(Rev%20).cia",
+        "output": "/Pokemon Version Diamant (France) (Rev ).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Diamant (France) (Rev ).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Diamant (France) (Rev ).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Perle",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "APAF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonperle.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Perle (France) (Rev ).nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Perle%20%28France%29%20%28Rev%20%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Perle%20(France)%20(Rev%20).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Perle%20(France)%20(Rev%20).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Perle (France) (Rev ).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Perle%20%28France%29%20%28Rev%20%29.nds",
+        "output": "/roms/nds/Pokemon Version Perle (France) (Rev ).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Perle%20(France)%20(Rev%20).cia",
+        "output": "/Pokemon Version Perle (France) (Rev ).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Perle (France) (Rev ).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Perle (France) (Rev ).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Platine",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "CPUF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonplatine.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Platine (France) [b].nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Platine%20%28France%29%20%5Bb%5D.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Platine (France) [b].nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Platine%20%28France%29%20%5Bb%5D.nds",
+        "output": "/roms/nds/Pokemon Version Platine (France) [b].nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.cia",
+        "output": "/Pokemon Version Platine (France) [b].cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Platine (France) [b].cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Platine (France) [b].cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Ranger",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "ARGP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonranger.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Ranger (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Ranger%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Ranger%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Ranger%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Ranger (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Ranger%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Pokemon Ranger (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Ranger%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.cia",
+        "output": "/Pokemon Ranger (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Ranger (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Ranger (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Version Argent SoulSilver",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "IPGF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonargent.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Argent SoulSilver (France) [b].nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Argent SoulSilver (France) [b].nds).png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.nds",
+        "output": "/roms/nds/Pokemon Version Argent SoulSilver (France) [b].nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Argent%20SoulSilver%20%28France%29%20%5Bb%5D.cia",
+        "output": "/Pokemon Version Argent SoulSilver (France) [b].cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Argent SoulSilver (France) [b].cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Argent SoulSilver (France) [b].cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Version Blanche",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "IRAF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonblanc.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Blanche (France) (NDSi Enhanced).nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Blanche%20%28France%29%20%28NDSi%20Enhanced%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Blanche%20(France)%20(NDSi%20Enhanced).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Blanche%20(France)%20(NDSi%20Enhanced).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Blanche (France) (NDSi Enhanced).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Blanche%20%28France%29%20%28NDSi%20Enhanced%29.nds",
+        "output": "/roms/nds/Pokemon Version Blanche (France) (NDSi Enhanced).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Blanche%20(France)%20(NDSi%20Enhanced).cia",
+        "output": "/Pokemon Version Blanche (France) (NDSi Enhanced).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Blanche (France) (NDSi Enhanced).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Blanche (France) (NDSi Enhanced).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Version Blanche 2",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "IRDF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonblanc2.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Blanche 2 (France) (NDSi Enhanced).nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Blanche%202%20(France)%20(NDSi%20Enhanced).nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Blanche%202%20(France)%20(NDSi%20Enhanced).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Blanche%202%20(France)%20(NDSi%20Enhanced).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Blanche 2 (France) (NDSi Enhanced).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Blanche%202%20(France)%20(NDSi%20Enhanced).nds",
+        "output": "/roms/nds/Pokemon-Version-Blanche-2-France-NDSi-Enhanced.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Blanche%202%20(France)%20(NDSi%20Enhanced).cia",
+        "output": "/Pokemon Version Blanche 2 (France) (NDSi Enhanced).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Blanche 2 (France) (NDSi Enhanced).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Blanche 2 (France) (NDSi Enhanced).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Version Noire",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "IRBF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonnoire.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Noire (France) (NDSi Enhanced).nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Noire%20%28France%29%20%28NDSi%20Enhanced%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Noire%20(France)%20(NDSi%20Enhanced).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Noire%20(France)%20(NDSi%20Enhanced).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Noire (France) (NDSi Enhanced).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Noire%20%28France%29%20%28NDSi%20Enhanced%29.nds",
+        "output": "/roms/nds/Pokemon Version Noire (France) (NDSi Enhanced).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Noire%20(France)%20(NDSi%20Enhanced).cia",
+        "output": "/Pokemon Version Noire (France) (NDSi Enhanced).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Noire (France) (NDSi Enhanced).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Noire (France) (NDSi Enhanced).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Version Noire 2",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "IREF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemonnoir2.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Noire 2 (France) (NDSi Enhanced).nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Noire 2 (France) (NDSi Enhanced).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).nds",
+        "output": "/roms/nds/Pokemon-Version-Noire-2-France-NDSi-Enhanced.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Noire%202%20(France)%20(NDSi%20Enhanced).cia",
+        "output": "/Pokemon Version Noire 2 (France) (NDSi Enhanced).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Noire 2 (France) (NDSi Enhanced).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Noire 2 (France) (NDSi Enhanced).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Pokemon Version Or HeartGold",
+    "author": "Nintendo / GameFreak",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "IPKF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/pokemongold.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Pokemon Version Or HeartGold (France) [b].nds": {
+        "url": "https://db-nds-shop.fr/games/Pokemon%20Version%20Or%20HeartGold%20%28France%29%20%5Bb%5D.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Or%20HeartGold%20(France)%20%5Bb%5D.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Or%20HeartGold%20(France)%20%5Bb%5D.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Pokemon Version Or HeartGold (France) [b].nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Pokemon%20Version%20Or%20HeartGold%20%28France%29%20%5Bb%5D.nds",
+        "output": "/roms/nds/Pokemon Version Or HeartGold (France) [b].nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Pokemon%20Version%20Or%20HeartGold%20(France)%20%5Bb%5D.cia",
+        "output": "/Pokemon Version Or HeartGold (France) [b].cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Pokemon Version Or HeartGold (France) [b].cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Pokemon Version Or HeartGold (France) [b].cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Professeur Layton et l'Appel du Spectre",
+    "author": "Level-5",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "BLFF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/professeurlaytonetlappelduspectre.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Professeur Layton et l'Appel du Spectre (France).nds": {
+        "url": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20l%27Appel%20du%20Spectre%20%28France%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20l'Appel%20du%20Spectre%20(France).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20l'Appel%20du%20Spectre%20(France).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/professeurlaytonetlappelduspectre.nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20l%27Appel%20du%20Spectre%20%28France%29.nds",
+        "output": "/roms/nds/Professeur Layton et l'Appel du Spectre (France).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Professeur%20Layton%20et%20l'Appel%20du%20Spectre%20(France).cia",
+        "output": "/Professeur Layton et l'Appel du Spectre (France).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Professeur Layton et l'Appel du Spectre (France).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Professeur Layton et l'Appel du Spectre (France).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Professeur Layton et la Boite de Pandore",
+    "author": "Level-5",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "YLTF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/professeurlaytonetlaboitedepandore.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Professeur Layton et la Boite de Pandore (France) [b].nds": {
+        "url": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20%28France%29%20%5Bb%5D.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20(France)%20%5Bb%5D.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20(France)%20%5Bb%5D.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/professeurlaytonetlaboitedepandore.nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20%28France%29%20%5Bb%5D.nds",
+        "output": "/roms/nds/Professeur Layton et la Boite de Pandore (France) [b].nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20(France)%20%5Bb%5D.cia",
+        "output": "/Professeur Layton et la Boite de Pandore (France) [b].cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Professeur Layton et la Boite de Pandore (France) [b].cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Professeur Layton et la Boite de Pandore (France) [b].cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Professeur Layton et le Destin Perdu",
+    "author": "Level-5",
+    "developer": "",
+    "publisher": "",
+    "version": "(France)",
+    "titleId": "C3JF",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/professeurlaytonetledestinperdu.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Professeur Layton et le Destin Perdu (France).nds": {
+        "url": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20le%20Destin%20Perdu%20%28France%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20le%20Destin%20Perdu%20(France).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20le%20Destin%20Perdu%20(France).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Professeur Layton et le Destin Perdu (France).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Professeur%20Layton%20et%20le%20Destin%20Perdu%20%28France%29.nds",
+        "output": "/roms/nds/Professeur Layton et le Destin Perdu (France).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Professeur%20Layton%20et%20le%20Destin%20Perdu%20(France).cia",
+        "output": "/Professeur Layton et le Destin Perdu (France).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Professeur Layton et le Destin Perdu (France).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Professeur Layton et le Destin Perdu (France).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Sonic Colours",
+    "author": "Sega",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Ja,Fr,De,Es,It)",
+    "titleId": "BXSP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/soniccolours.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Sonic Colours (Europe) (En,Ja,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Sonic%20Colours%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Sonic%20Colours%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Sonic%20Colours%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Sonic Colours (Europe) (En,Ja,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Sonic%20Colours%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Sonic Colours (Europe) (En,Ja,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Sonic%20Colours%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Sonic Colours (Europe) (En,Ja,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Sonic Colours (Europe) (En,Ja,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Sonic Colours (Europe) (En,Ja,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Sonic Rush",
+    "author": "Sega",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Ja,Fr,De,Es,It)",
+    "titleId": "ASCP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/sonicrush.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Sonic Rush (Europe) (En,Ja,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Sonic%20Rush%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Sonic%20Rush%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Sonic%20Rush%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Sonic Rush (Europe) (En,Ja,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Sonic%20Rush%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Sonic Rush (Europe) (En,Ja,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Sonic%20Rush%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Sonic Rush (Europe) (En,Ja,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Sonic Rush (Europe) (En,Ja,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Sonic Rush (Europe) (En,Ja,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Sonic Rush Adventure",
+    "author": "Sega",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Ja,Fr,De,Es,It) (Rev )",
+    "titleId": "A3YP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/sonicrushadventure.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).nds": {
+        "url": "https://db-nds-shop.fr/games/Sonic%20Rush%20Adventure%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%20%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Sonic%20Rush%20Adventure%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt)%20(Rev%20).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Sonic%20Rush%20Adventure%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt)%20(Rev%20).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Sonic%20Rush%20Adventure%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%20%29.nds",
+        "output": "/roms/nds/Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Sonic%20Rush%20Adventure%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt)%20(Rev%20).cia",
+        "output": "/Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Sonic Rush Adventure (Europe) (En,Ja,Fr,De,Es,It) (Rev ).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Spider-Man 2",
+    "author": "test",
+    "developer": "test",
+    "publisher": "test",
+    "version": "(Europe)",
+    "titleId": "AS2E",
+    "systems": [
+      "DS"
+    ],
+    "genres": [
+      "test"
+    ],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAKHklEQVR4nN2af0xW1xnHn2mQpiEvaURRa7WD4UDT/tNi1pm4Jr6arNbF1ZqmdNZmLkNtYjfMKpthspmoc2UqFodWC210q66O2Q5YKyikWlvjj0walcYfSBXhDUFkm4TCfHafm89tDm/fF/HXlu5Nbrice873+33Oec5znnPuFRHR271Gi+hyEd0jog0i2iai3SKqXHbfyrM91B19B3i5br5Rhog+JaJLRbRARF8R0VoRPY34f3oie0X0On97KGujTi1tCsB4Csy7akCSiI4V0UyvNxeK6LsiGhHRf4loJz3cLKJnRbRRRE/S48f428izZup20jYC1kKwx8J1xw2YKqJrRfRDEb2AAOvd8yJaJaJFIrpEROeK6DQRfVREJ4poFvfTeLaEulW07QXrAthr4bpjBtwHcak31CdE9JqIXhTR/SK6CRd4WkSnIHaMiCaL6DAHYxhlY6gzhTZLwdgP5jU4SuG873YNSBHR6SL6NxFt8Qj/gQvs9oZ+MX6b5AgcJaIPiugEEU0X0XFc6ZQ9SJ3AwCQwFoPZDEcLnNPRcMsGLMCHrwBa792/JKKPiegIEU1ExHgRneVFm2We4Nc9F9gnon+mdzdxv49ny6g7nraJYD0Gdj1cV+BecCsGpNCwWkS7RPSc13vlIpqDC6QQBmfhBsWIPERda3MGMfXcBziHqFtM21lgpYCdA1eAU42WAUbiyz4/HesN4DNvmHeI6EwRHSKi94jo/dR5S0SbnHjvXtaLR7la4tRpAmM6mPfAMRPOz9BwjDpx5kT/grn43xV6YQfDmwyBhbpnRHQjUaTnNgzoAWMjmJlwJMO5Aw1X0DR3IAOSCF+lELYwlDMBtB6aIaK/pfwdFqbeKFG9xHZzna1c9c7q/O+oum1glYM9A65kuMsdPaVoTIplwFhi8AkiQT3+OBSwJwCI0GsfeKHwExG9xDB3Ec8vi+hxiF/mKscNLNa3O/UvgfEBmBE4noBzKBrq0XQCjWNjGZDJQnKNcPYSkyoQXwZBLytoIxPRxNVx2Yq6U0QrRfQv+Pdb3Fdy/45TvxyMRjCD0StzjMhCSzPaPkRrPwMyWMovsKDsxgdTsDYH8oizclqP/tIjWSei75MuWA8d8fz5FL4fRKGjlB2hTgNt1oFxzFnZI3DlwJ2Clt1ou4DWDNeAOfRQJ6viYmLzSK88m1VzFaSXmViWkP3OC4GbRbQGlxjsJO6izWaMqAXzMhyr4MxGwwg07UdjJZq/MGAZD/pYeDJYYB73yn8C0MPE7J2Q1+G39neXl+N03IQBHbRxMWrAngVXNtyPoyUDbX1oXeYaUEhIa2JxSeKaTcqbzv/B4rUCf+8kPa7GLdqjYnzgQu5a0U7datp2grXCWdSS4CxAQ6BnKVg9aPYNGE1u3kmG+DR5ii31z3qT62fkL6FQSFNTUzUhIcEPZUVEkHNEnUp8uQMXOepM4qOUdVCnkjbnwCgiPBq2cRjXKLifRcswtFWh9ZVgU7QcH2wFaAqz33oj1yN53ltohotoOBzWvLw8nyCJVPmntL3M8JfjGuYOrzlh9DXKdlFnJ21qwZhIDxu2cRjXcLhz0ZKMtiK01rKzkz0MZTO5epAS/9qbPCX4mvXGokWL9MCBA1pUVKQzZszQ4ffeqw8PGaKLEGh1X3Vi/l5nIdtLWTl1Smhjbb8dCumscNjHN2zjsPtRcJegJUjFl6D1NNtTCfawZ1mqx+B/e/Bfi9MPmM8VFmrwKysr08mTJ+vIkSN1fGKiP9FWej34e3q5nUUqmMSXKNtFnZVMzoxQSLOzs3XLli3a2Nj4Bb5xPQB3PVrS0TYXrW3MJQn2sI3smpJZKCxrPMBkGRNlQHt7u9bV1em8efP0m2lp+nUm3BuEwRaiS2DAecrep47VtTbfDYd98efPn9fu7u5+BoyB+wBaMtE2Da3BHlu6mdUNbP2G4ZN/Z6L9htzENcB+V69e1erqai0oKNDvh8M6MxTyI8l7LFjHHQOOU/Ye0cbqWpvi4mK/513xgQH3w30cLRPR9ihae8itJEiqjuFjQuVPsHQTu6r8/Hzt6urSvr6+fmQmwHrRXOG5UEi3ieifiBa1XFWU2bPn4riN/QzbOIxrHNyNaJmEtiy0Bkmkb8B1rJoYZcCnjgE5OTm+2xiB+7PeMxcwQfPCYX+I15B0LedaS5k9mxfHbexn2MZhXIEBn0YZMBGt1wMDurHmpONCE1gd9zpRaOrUqbphwwZta2vT6J8Jsd4sLS72BT4TCunPnShk91Zmz0rjuI39DNs4jCuIQnvRMgFt2WjtDVyoNcYkHs9wb2QhsVzkG2lpumDBAm1qavoSsetO20pKdNq4cf5EDeaA3VuZPYt2G/dn2MZhXCPg3oiW8TEmcWu8MGoZ4I+91TPP28/+QETTbDuXmOiHzlOnTsUVYL169qOPtDgzU//gGGD3VmbPYvV88DNs4zCuNLjz0JISL4zGWsiC7K+IHrB8/BGLxenpWlFRoa2trTEFWHldRYXmp6f7S/0eLru3srobtDVs43gEzo1oCLLjmAtZrFQiMMB67jBpgOXgk1JT9eW8PK2pqekXkYLoUV9To6vy8nRuaqpP9CqXf2KXmuo/q4/T1jAN2zgWwnkYDYEBMVOJWMlckL4WEL8N6E0RfTEhwSfIzc3tF5GC6LEiN9cXujwhwccMDLB7K7NnK+K0NUzDNo434TyChiC9j5nMDZROP0+qa4dSB70o9VdvVZ3vxeHvZWXpD3NydHt+vlYWFurO/Hz9RU6OLs3K8ndYW0kbAhfaRZk9szpWdydtDcOwDHM+HAfhfBcNA6bTN9rQrBbRPzJhLB3YTnR4yEaEbPNFdki/oof2sfwHk/gQZVXUmRPV9iEwt8PRAOfqwW5oBtpSfgegaoa1jAxxK4Ls7Ga90+v78NEmx4AmyvY5o7GetlX8XwL2YbhWwz2oLeVAm/pRnBCspOFBNuZnqHuahSbY326jrMHZkTWwqX+dOptpcxqMM2AehGMlnKMGu6kf6FhlKEd6T3JmczHqMOs6w76GFXcdQmqdHVktZeuos4Y216MOuS7C8SScQwd7rDLQwdbXALKl/AXcIBJF3MLwV+EuttuqcHZkFZQ1UaeMNm5HRMB+Aa6hcA/6YOtGR4shEqofiejbzhlRhJS3mhzlc3KUj51c6GPKPqdONW1cjLfBngTXTR8tDuZwN3Cn+fRkc9QmPeK41aU4xyqRqEOAZrDmO25zS4e7gzleD9zJNtzfIpK4m/TgzWQPwmIZ0Bt1CLAerOGO29zW8fpgXnCEHJebTbK1w3nB0UHGGO8Fxw7azHZcInSnXnD8X7xickfiK/2ST77qr1ndK9aL7j4ntsd60Z3FHjY7zovuJie3uWsvut11wv3UIMideuJ8auB+ZnAyzqcGPU5uc9c/NXCvDJIpm5CFcT726In64CPWxx6FYMz5b3zsMdD1v/zc5j+yv6s2u4GLegAAAABJRU5ErkJggg==",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Spider-Man 2 (USA).nds": {
+        "url": "https://db-nds-shop.fr/api/v1/download/Spider-Man%202%20(USA).nds",
+        "size": null
+      }
+    },
+    "screenshots": [],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Spider-Man%202%20(USA).nds",
+        "output": "/roms/nds/Spider-Man 2 (USA).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Spider-Man%202%20(USA).cia",
+        "output": "/Spider-Man 2 (USA).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Spider-Man 2 (USA).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Spider-Man 2 (USA).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Super Mario 64 DS",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "ASMP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/mario64ds.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Super Mario DS (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Super%20Mario%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Super%20Mario%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Super%20Mario%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Super MarioDS (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Super%20Mario%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Super Mario DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Super%20Mario%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Super Mario DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Super Mario DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Super Mario DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Tetris DS",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "ATRP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/tetrisds.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Tetris DS (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Tetris%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Tetris%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Tetris%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Tetris DS (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Tetris%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Tetris DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Tetris%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Tetris DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Tetris DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Tetris DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "The Legend of Zelda: Phantom Hourglass",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AZEP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/zeldaphantom.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Legend of Zelda, The Phantom Hourglass.nds": {
+        "url": "https://db-nds-shop.fr/games/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Legend of Zelda, The Phantom Hourglass.nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.nds",
+        "output": "/roms/nds/Legend of Zelda, The Phantom Hourglass.nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Legend%20of%20Zelda%2C%20The%20Phantom%20Hourglass.cia",
+        "output": "/Legend of Zelda, The Phantom Hourglass.cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Legend of Zelda, The Phantom Hourglass.cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Legend of Zelda, The Phantom Hourglass.cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "The Legend of Zelda: Spirit Tracks",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "BKIP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/zeldaspirits.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Legend%20of%20Zelda%2C%20The%20Spirit%20Tracks%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Legend%20of%20Zelda%2C%20The%20Spirit%20Tracks%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Legend%20of%20Zelda%2C%20The%20Spirit%20Tracks%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Legend of Zelda, TheSpirit Tracks (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Legend%20of%20Zelda%2C%20The%20Spirit%20Tracks%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Legend%20of%20Zelda%2C%20The%20Spirit%20Tracks%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Legend of Zelda, The Spirit Tracks (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "WarioMaster of Disguise",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AWAP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/wariomasterofdisguise.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Wario Master of Disguise (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Wario%20Master%20of%20Disguise%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Wario%20Master%20of%20Disguise%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Wario%20Master%20of%20Disguise%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Wario Master of Disguise (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Wario%20Master%20of%20Disguise%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Wario Master of Disguise (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Wario%20Master%20of%20Disguise%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Wario Master of Disguise (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Wario Master of Disguise (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Wario Master of Disguise (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "WarioWare - Touched!",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AZWP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/wariowaretouched.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/WarioWareTouched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/screenshots/wariowaretouched/wariowaretouched.png",
+        "order": 0
+      },
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 1
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/WarioWareTouched%21%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/WarioWareTouched! (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/WarioWareTouched!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/WarioWareTouched! (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/WarioWareTouched! (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/WarioWareTouched! (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  },
+  {
+    "title": "Yoshi's Island DS",
+    "author": "Nintendo",
+    "developer": "",
+    "publisher": "",
+    "version": "(Europe) (En,Fr,De,Es,It)",
+    "titleId": "AYWP",
+    "systems": [
+      "DS"
+    ],
+    "genres": [],
+    "categories": [
+      "game"
+    ],
+    "color": "",
+    "color_bg": "",
+    "priority": false,
+    "stars": 0,
+    "icon": "https://db-nds-shop.fr/assets/images/icons/yoshisisland.png",
+    "image": "",
+    "boxart": "",
+    "downloads": {
+      "Yoshi's Island DS (Europe) (En,Fr,De,Es,It).nds": {
+        "url": "https://db-nds-shop.fr/games/Yoshi%27s%20Island%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "size": null
+      }
+    },
+    "screenshots": [
+      {
+        "url": "https://db-nds-shop.fr/assets/images/boxart/Yoshi%27s%20Island%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "order": 0
+      }
+    ],
+    "scripts": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Yoshi%27s%20Island%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Yoshi%27s%20Island%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+        "output": "/roms/nds/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Yoshi%27s%20Island%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Yoshi's Island DS (Europe) (En,Fr,De,Es,It).cia",
+        "output": null
+      }
+    ]
+  }
+]

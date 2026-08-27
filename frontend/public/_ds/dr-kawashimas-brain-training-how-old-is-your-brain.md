@@ -1,33 +1,65 @@
 ---
-author: Nintendo
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Dr Kawashima's Brain Training How Old Is Your Brain.nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Dr%20Kawashima%27s%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/drkawashimabrain.png
-id: cmt9xrpmg001k9cog0zx99rrt
-image: null
-layout: app
-publisher: null
-qr:
-  Dr Kawashima's Brain Training How Old Is Your Brain.nds: https://db-nds-shop.fr/qr/dr-kawashimas-brain-training-how-old-is-your-brain-nds.png
-screenshots:
-- description: Boxart
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/boxart/Dr%20Kawashima's%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds.png
-stars: 0
-systems:
-- DS
-title: 'Dr Kawashima''s Brain Training: How Old Is Your Brain'
-titleId: ANDP
-updated: '2026-08-26T11:40:03.192000'
-version: (Europe) (En,Fr,De,Es,It,Nl)
+
+  title:  Dr Kawashima's Brain Training:  How Old Is Your Brain,
+  author:  Nintendo,
+  developer:  ,
+  publisher:  ,
+  version:  (Europe) (En,Fr,De,Es,It,Nl),
+  titleId:  ANDP,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/drkawashimabrain.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Dr Kawashima's Brain Training How Old Is Your Brain.nds:  {
+      url:  https: //db-nds-shop.fr/games/Dr%20Kawashima%27s%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Dr%20Kawashima's%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds.png,
+      order:  0
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Dr%20Kawashima's%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Dr Kawashima's Brain Training How Old Is Your Brain.nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Dr%20Kawashima%27s%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.nds,
+      output:  /roms/nds/Dr Kawashima's Brain Training How Old Is Your Brain.nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Dr%20Kawashima's%20Brain%20Training%20How%20Old%20Is%20Your%20Brain.cia,
+      output:  /Dr Kawashima's Brain Training How Old Is Your Brain.cia
+    },
+    {
+      type:  installCia,
+      file:  /Dr Kawashima's Brain Training How Old Is Your Brain.cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Dr Kawashima's Brain Training How Old Is Your Brain.cia,
+      output:  null
+    }
+  ]
+
 ---
+
+

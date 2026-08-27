@@ -1,33 +1,65 @@
 ---
-author: Nintendo / Level-5
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Inazuma Eleven 2 - Tempete de Feu (France) (France).nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Feu%20%28France%29.nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/inazumaeleventempetedefeu.png
-id: cmt9xrpnp00259cogz0q38e06
-image: null
-layout: app
-publisher: null
-qr:
-  Inazuma Eleven 2 - Tempete de Feu (France) (France).nds: https://db-nds-shop.fr/qr/inazuma-eleven-2---tempete-de-feu-france-france-nds.png
-screenshots:
-- description: Boxart
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20(France).nds.png
-stars: 0
-systems:
-- DS
-title: Inazuma Eleven 2 Tempete de Feu
-titleId: BEEF
-updated: '2026-08-26T11:40:03.258000'
-version: (France)
+
+  title:  Inazuma Eleven 2 Tempete de Feu,
+  author:  Nintendo / Level-5,
+  developer:  ,
+  publisher:  ,
+  version:  (France),
+  titleId:  BEEF,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/inazumaeleventempetedefeu.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Inazuma Eleven 2 - Tempete de Feu (France) (France).nds:  {
+      url:  https: //db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Feu%20%28France%29.nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20(France).nds.png,
+      order:  0
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%202%20-%20Tempete%20de%20Feu%20(France).nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Inazuma Eleven 2 - Tempete de Feu (France).nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Inazuma%20Eleven%20Tempete%20de%20Feu%20%28France%29.nds,
+      output:  /roms/nds/Inazuma Eleven 2 - Tempete de Feu (France) (France).nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Inazuma%20Eleven%20Tempete%20de%20Feu%20(France).cia,
+      output:  /Inazuma Eleven Tempete de Feu (France).cia
+    },
+    {
+      type:  installCia,
+      file:  /Inazuma Eleven Tempete de Feu (France).cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Inazuma Eleven Tempete de Feu (France).cia,
+      output:  null
+    }
+  ]
+
 ---
+
+

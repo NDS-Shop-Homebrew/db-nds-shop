@@ -1,33 +1,65 @@
 ---
-author: The Game Factory
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20%28Europe%29%20%28En%2CFr%29.nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/codelyokoxana.png
-id: cmt9xrpkt000s9cog3xi3dz1r
-image: null
-layout: app
-publisher: null
-qr:
-  Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds: https://db-nds-shop.fr/qr/code-lyoko-fall-of-x-a-n-a--europe-enfr-nds.png
-screenshots:
-- description: Boxart
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20(Europe)%20(En%2CFr).nds.png
-stars: 0
-systems:
-- DS
-title: 'Code Lyoko: Fall of X.A.N.A.'
-titleId: CLFP
-updated: '2026-08-26T11:40:03.100000'
-version: (Europe) (En,Fr)
+
+  title:  Code Lyoko:  Fall of X.A.N.A.,
+  author:  The Game Factory,
+  developer:  ,
+  publisher:  ,
+  version:  (Europe) (En,Fr),
+  titleId:  CLFP,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/codelyokoxana.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds:  {
+      url:  https: //db-nds-shop.fr/games/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20%28Europe%29%20%28En%2CFr%29.nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20(Europe)%20(En%2CFr).nds.png,
+      order:  0
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20(Europe)%20(En%2CFr).nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20%28Europe%29%20%28En%2CFr%29.nds,
+      output:  /roms/nds/Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Code%20Lyoko%20Fall%20of%20X.A.N.A.%20(Europe)%20(En%2CFr).cia,
+      output:  /Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).cia
+    },
+    {
+      type:  installCia,
+      file:  /Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Code Lyoko Fall of X.A.N.A. (Europe) (En,Fr).cia,
+      output:  null
+    }
+  ]
+
 ---
+
+

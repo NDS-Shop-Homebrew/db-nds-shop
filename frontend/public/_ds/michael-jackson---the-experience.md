@@ -1,36 +1,69 @@
 ---
-author: Ubisoft
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Michael%20Jackson%20The%20Experience%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/michaeljackson.png
-id: cmt9xrpui00569cog7mt0xg7h
-image: null
-layout: app
-publisher: null
-qr:
-  Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).nds: https://db-nds-shop.fr/qr/michael-jackson-the-experience-europe-enfrdeesit-nds.png
-screenshots:
-- description: Game preview
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/screenshots/michaeljackson/michaeljackson.png
-- description: Boxart
-  order: 1
-  url: https://db-nds-shop.fr/assets/images/boxart/Michael%20Jackson%20The%20Experience%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png
-stars: 0
-systems:
-- DS
-title: Michael Jackson - The Experience
-titleId: BVNP
-updated: '2026-08-26T11:40:03.600000'
-version: (Europe) (En,Fr,De,Es,It)
+
+  title:  Michael Jackson - The Experience,
+  author:  Ubisoft,
+  developer:  ,
+  publisher:  ,
+  version:  (Europe) (En,Fr,De,Es,It),
+  titleId:  BVNP,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/michaeljackson.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).nds:  {
+      url:  https: //db-nds-shop.fr/games/Michael%20Jackson%20The%20Experience%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/screenshots/michaeljackson/michaeljackson.png,
+      order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Michael%20Jackson%20The%20Experience%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      order:  1
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Michael%20Jackson%20The%20Experience%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Michael JacksonThe Experience (Europe) (En,Fr,De,Es,It).nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Michael%20Jackson%20The%20Experience%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
+      output:  /roms/nds/Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Michael%20Jackson%20The%20Experience%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia,
+      output:  /Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).cia
+    },
+    {
+      type:  installCia,
+      file:  /Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Michael Jackson The Experience (Europe) (En,Fr,De,Es,It).cia,
+      output:  null
+    }
+  ]
+
 ---
+
+

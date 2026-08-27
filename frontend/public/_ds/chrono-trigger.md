@@ -1,33 +1,65 @@
 ---
-author: Square Enix
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Chrono Trigger (Europe) (En,Fr).nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/chronotrigger.png
-id: cmt9xrpkf000l9cogk0oprarl
-image: null
-layout: app
-publisher: null
-qr:
-  Chrono Trigger (Europe) (En,Fr).nds: https://db-nds-shop.fr/qr/chrono-trigger-europe-enfr-nds.png
-screenshots:
-- description: Boxart
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png
-stars: 0
-systems:
-- DS
-title: Chrono Trigger
-titleId: YQUP
-updated: '2026-08-26T11:40:03.080000'
-version: (Europe) (En,Fr)
+
+  title:  Chrono Trigger,
+  author:  Square Enix,
+  developer:  ,
+  publisher:  ,
+  version:  (Europe) (En,Fr),
+  titleId:  YQUP,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/chronotrigger.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Chrono Trigger (Europe) (En,Fr).nds:  {
+      url:  https: //db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png,
+      order:  0
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Chrono Trigger (Europe) (En,Fr).nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds,
+      output:  /roms/nds/Chrono Trigger (Europe) (En,Fr).nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Chrono%20Trigger%20(Europe)%20(En%2CFr).cia,
+      output:  Chrono Trigger (Europe) (En,Fr).cia
+    },
+    {
+      type:  installCia,
+      file:  /Chrono Trigger (Europe) (En,Fr).cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Chrono Trigger (Europe) (En,Fr).cia,
+      output:  null
+    }
+  ]
+
 ---
+
+

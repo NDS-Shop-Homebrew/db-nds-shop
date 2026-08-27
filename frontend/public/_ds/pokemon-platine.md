@@ -1,33 +1,65 @@
 ---
-author: Nintendo / GameFreak
-boxart: null
-categories:
-- game
-color: null
-color_bg: null
-descriptionMd: ''
-developer: null
-downloads:
-  Pokemon Version Platine (France) [b].nds:
-    size: null
-    url: https://db-nds-shop.fr/games/Pokemon%20Version%20Platine%20%28France%29%20%5Bb%5D.nds
-genres: []
-icon: https://db-nds-shop.fr/assets/images/icons/pokemonplatine.png
-id: cmt9xrq1s008e9cog0xszs3dw
-image: null
-layout: app
-publisher: null
-qr:
-  Pokemon Version Platine (France) [b].nds: https://db-nds-shop.fr/qr/pokemon-version-platine-france-b-nds.png
-screenshots:
-- description: Boxart
-  order: 0
-  url: https://db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.nds.png
-stars: 0
-systems:
-- DS
-title: Pokemon Platine
-titleId: CPUF
-updated: '2026-08-26T11:40:04.113000'
-version: (France)
+
+  title:  Pokemon Platine,
+  author:  Nintendo / GameFreak,
+  developer:  ,
+  publisher:  ,
+  version:  (France),
+  titleId:  CPUF,
+  systems:  [
+    DS
+  ],
+  genres:  [],
+  categories:  [
+    game
+  ],
+  color:  ,
+  color_bg:  ,
+  priority:  false,
+  stars:  0,
+  icon:  https: //db-nds-shop.fr/assets/images/icons/pokemonplatine.png,
+  image:  ,
+  boxart:  ,
+  downloads:  {
+    Pokemon Version Platine (France) [b].nds:  {
+      url:  https: //db-nds-shop.fr/games/Pokemon%20Version%20Platine%20%28France%29%20%5Bb%5D.nds,
+      size:  null
+    }
+  },
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.nds.png,
+      order:  0
+    }
+  ],
+  scripts:  [
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/assets/images/boxart/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.nds.png,
+      output:  /_nds/TwiLightMenu/boxart/Pokemon Version Platine (France) [b].nds.png
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/games/Pokemon%20Version%20Platine%20%28France%29%20%5Bb%5D.nds,
+      output:  /roms/nds/Pokemon Version Platine (France) [b].nds
+    },
+    {
+      type:  downloadFile,
+      file:  https: //db-nds-shop.fr/forwarder/Pokemon%20Version%20Platine%20(France)%20%5Bb%5D.cia,
+      output:  /Pokemon Version Platine (France) [b].cia
+    },
+    {
+      type:  installCia,
+      file:  /Pokemon Version Platine (France) [b].cia,
+      output:  null
+    },
+    {
+      type:  deleteFile,
+      file:  /Pokemon Version Platine (France) [b].cia,
+      output:  null
+    }
+  ]
+
 ---
+
+
