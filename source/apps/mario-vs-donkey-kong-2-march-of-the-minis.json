@@ -1,0 +1,61 @@
+{
+  "title": "Mario vs. Donkey Kong 2 - March of the Minis",
+  "author": "Nintendo",
+  "developer": "Nintendo Software Technology",
+  "publisher": "Nintendo",
+  "version": "(Europe) (En,Fr,De,Es,It)",
+  "titleId": "A2MP",
+  "systems": [
+    "NDS",
+    "DS"
+  ],
+  "genres": [
+    "Puzzle",
+    "Platformer"
+  ],
+  "categories": [
+    "game"
+  ],
+  "color": "#e74c3c",
+  "color_bg": "#c0392b",
+  "priority": false,
+  "stars": 0,
+  "icon": "data:image/png;base64,placeholder",
+  "image": "https://db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png",
+  "boxart": "https://db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png",
+  "downloads": {
+    "Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds": {
+      "url": "https://db-nds-shop.fr/games/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds",
+      "size": 67108864
+    }
+  },
+  "screenshots": [],
+  "scripts": {
+    "Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds": [
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/assets/images/boxart/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png",
+        "output": "/_nds/TwiLightMenu/boxart/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds.png"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/games/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds",
+        "output": "/roms/nds/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds"
+      },
+      {
+        "type": "downloadFile",
+        "file": "https://db-nds-shop.fr/forwarder/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).cia",
+        "output": "/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "installCia",
+        "file": "/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).cia"
+      },
+      {
+        "type": "deleteFile",
+        "file": "/Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).cia"
+      }
+    ]
+  },
+  "updated": "2026-08-26T15:22:29+02:00"
+}
