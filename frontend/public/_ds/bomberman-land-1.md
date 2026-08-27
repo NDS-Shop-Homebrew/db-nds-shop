@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/bombermanland1.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/bomberman-land-1-front.png,
   downloads:  {
     Bomberman Land Touch! (Europe) (En,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Bomberman%20Land%20Touch!%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/bomberman-land-1-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/bomberman-land-1-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

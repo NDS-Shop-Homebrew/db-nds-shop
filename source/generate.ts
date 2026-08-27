@@ -1,67 +1,95 @@
-import { PrismaClient } from '@nds-shop/prisma';
-import fs from 'fs';
-import path from 'path';
+import { PrismaClient } from "@nds-shop/prisma";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const prisma = new PrismaClient();
 
 async function generate() {
   const games = await prisma.game.findMany({
     include: {
-      screenshots: true,
+      screenshots: {
+        orderBy: { order: "asc" },
+      },
       downloads: true,
       scripts: true,
     },
   });
 
-  console.log(`Found ${games.length} games`);
+  console.log(`Trouvé : ${games.length} jeux`);
 
-  // Output directory
-  const docsDir = path.resolve(__dirname, '..', 'frontend', 'public');
-  const dsDir = path.join(docsDir, '_ds');
+  // Dossier de sortie
+  const docsDir = path.resolve(__dirname, "..", "frontend", "public");
+  const dsDir = path.join(docsDir, "_ds");
   if (!fs.existsSync(dsDir)) fs.mkdirSync(dsDir, { recursive: true });
 
-  // Generate _ds/*.md files
+  // 1. Génération des fichiers Markdown _ds/*.md
   for (const game of games) {
-    const slug = game.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const slug =
+      game.slug || game.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     const mdPath = path.join(dsDir, `${slug}.md`);
-    
-    const content = `---
-title: "${game.title}"
-author: "${game.author}"
-developer: "${game.developer}"
-publisher: "${game.publisher}"
-version: "${game.version}"
-titleId: "${game.titleId}"
-systems: ${JSON.stringify(JSON.parse(game.systems))}
-genres: ${JSON.stringify(JSON.parse(game.genres))}
-categories: ${JSON.stringify(JSON.parse(game.categories))}
-color: "${game.color}"
-color_bg: "${game.colorBg}"
-priority: ${game.priority}
-stars: ${game.stars}
-icon: "${game.iconUrl}"
-image: "${game.imageUrl}"
-boxart: "${game.boxartUrl}"
-downloads: ${JSON.stringify(Object.fromEntries(game.downloads.map(d => [d.filename, { url: d.url, size: Number(d.size) }])), null, 2)}
-screenshots: ${JSON.stringify(game.screenshots.map(s => ({ url: s.url, order: s.order })), null, 2)}
-scripts: ${JSON.stringify(game.scripts.map(s => ({ type: s.type, file: s.file, output: s.output })), null, 2)}
----`;
 
-    fs.writeFileSync(mdPath, content);
-    console.log(`Generated: ${mdPath}`);
+    const downloadsMap = Object.fromEntries(
+      game.downloads.map((d) => [
+        d.fileName,
+        { url: d.url, size: d.size ? Number(d.size) : undefined, type: d.type },
+      ]),
+    );
+
+    const screenshotsList = game.screenshots.map((s) => ({
+      description: s.description,
+      url: s.url,
+      order: s.order,
+    }));
+
+    const scriptsList = game.scripts.map((s) => ({
+      name: s.name,
+      script: s.script,
+    }));
+
+    const content = `---
+title: ${JSON.stringify(game.title || "")}
+author: ${JSON.stringify(game.author || "")}
+developer: ${JSON.stringify(game.developer || "")}
+publisher: ${JSON.stringify(game.publisher || "")}
+version: ${JSON.stringify(game.version || "")}
+titleId: ${JSON.stringify(game.titleId || "")}
+systems: ${JSON.stringify(game.systems || [])}
+genres: ${JSON.stringify(game.genres || [])}
+categories: ${JSON.stringify(game.categories || [])}
+color: ${JSON.stringify(game.color || "")}
+color_bg: ${JSON.stringify(game.colorBg || "")}
+priority: ${Boolean(game.priority)}
+stars: ${game.stars || 0}
+icon: ${JSON.stringify(game.iconUrl || "")}
+image: ${JSON.stringify(game.imageUrl || "")}
+boxart: ${JSON.stringify(game.boxartUrl || "")}
+downloads: ${JSON.stringify(downloadsMap, null, 2)}
+screenshots: ${JSON.stringify(screenshotsList, null, 2)}
+scripts: ${JSON.stringify(scriptsList, null, 2)}
+---
+`;
+
+    fs.writeFileSync(mdPath, content, "utf8");
+    console.log(`Généré : ${mdPath}`);
   }
 
-  // Generate games.json for frontend
-  const gamesJson = games.map(g => ({
+  // 2. Génération de games.json pour le frontend
+  const gamesJson = games.map((g) => ({
+    id: g.id,
+    slug: g.slug,
     title: g.title,
     author: g.author,
     developer: g.developer,
     publisher: g.publisher,
     version: g.version,
     titleId: g.titleId,
-    systems: JSON.parse(g.systems),
-    genres: JSON.parse(g.genres),
-    categories: JSON.parse(g.categories),
+    systems: g.systems || [],
+    genres: g.genres || [],
+    categories: g.categories || [],
     color: g.color,
     color_bg: g.colorBg,
     priority: g.priority,
@@ -69,21 +97,32 @@ scripts: ${JSON.stringify(game.scripts.map(s => ({ type: s.type, file: s.file, o
     icon: g.iconUrl,
     image: g.imageUrl,
     boxart: g.boxartUrl,
-    downloads: Object.fromEntries(g.downloads.map(d => [d.filename, { url: d.url, size: Number(d.size) }])),
-    screenshots: g.screenshots.map(s => ({ url: s.url, order: s.order })),
-    scripts: g.scripts.map(s => ({ type: s.type, file: s.file, output: s.output })),
+    downloads: Object.fromEntries(
+      g.downloads.map((d) => [
+        d.fileName,
+        { url: d.url, size: d.size ? Number(d.size) : undefined, type: d.type },
+      ]),
+    ),
+    screenshots: g.screenshots.map((s) => ({
+      description: s.description,
+      url: s.url,
+      order: s.order,
+    })),
+    scripts: g.scripts.map((s) => ({
+      name: s.name,
+      script: s.script,
+    })),
+    updated: g.updatedAt.toISOString(),
   }));
 
-  fs.writeFileSync(
-    path.join(docsDir, 'games.json'),
-    JSON.stringify(gamesJson, null, 2)
-  );
-  console.log('Generated: games.json');
+  const gamesJsonPath = path.join(docsDir, "games.json");
+  fs.writeFileSync(gamesJsonPath, JSON.stringify(gamesJson, null, 2), "utf8");
+  console.log(`Généré : ${gamesJsonPath}`);
 
   await prisma.$disconnect();
 }
 
-generate().catch(e => {
-  console.error(e);
+generate().catch((e) => {
+  console.error("Erreur génération:", e);
   process.exit(1);
 });

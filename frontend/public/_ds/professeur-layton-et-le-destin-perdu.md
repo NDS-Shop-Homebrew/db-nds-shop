@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/professeurlaytonetledestinperdu.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/professeur-layton-et-le-destin-perdu-front.png,
   downloads:  {
     Professeur Layton et le Destin Perdu (France).nds:  {
       url:  https: //db-nds-shop.fr/games/Professeur%20Layton%20et%20le%20Destin%20Perdu%20%28France%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20le%20Destin%20Perdu%20(France).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/professeur-layton-et-le-destin-perdu-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/professeur-layton-et-le-destin-perdu-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

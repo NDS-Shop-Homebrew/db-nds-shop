@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/mario%26sonicolympicgames.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/mario-sonic-at-the-olympic-games-front.png,
   downloads:  {
     Mario & Sonic at the Olympic Games (Europe) (En,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Mario%20%26%20Sonic%20at%20the%20Olympic%20Games%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/mario-sonic-at-the-olympic-games-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/mario-sonic-at-the-olympic-games-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

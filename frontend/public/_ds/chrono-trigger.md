@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/chronotrigger.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/chrono-trigger-front.png,
   downloads:  {
     Chrono Trigger (Europe) (En,Fr).nds:  {
       url:  https: //db-nds-shop.fr/games/Chrono%20Trigger%20(Europe)%20(En,Fr).nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Chrono%20Trigger%20(Europe)%20(En%2CFr).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/chrono-trigger-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/chrono-trigger-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

@@ -21,16 +21,25 @@
   color_bg:  #c0392b,
   priority:  false,
   stars:  0,
-  icon:  data: image/png;base64,placeholder,
+  icon:  https: //db-nds-shop.fr/assets/icons/mario-vs-donkey-kong-2-march-of-the-minis.png,
   image:  https: //db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png,
-  boxart:  https: //db-nds-shop.fr/assets/images/boxart/mario-vs-dk-2.png,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/mario-vs-donkey-kong-2-march-of-the-minis-front.png,
   downloads:  {
     Mario vs. Donkey Kong 2 - March of the Minis (Europe) (En,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Mario%20vs.%20Donkey%20Kong%202%20-%20March%20of%20the%20Minis%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
       size:  67108864
     }
   },
-  screenshots:  [],
+  screenshots:  [
+    {
+      url:  https: //db-nds-shop.fr/assets/boxarts/mario-vs-donkey-kong-2-march-of-the-minis-front.png,
+      order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/mario-vs-donkey-kong-2-march-of-the-minis-snap-1.png,
+      order:  1
+    }
+  ],
   scripts:  [
     {
       type:  downloadFile,

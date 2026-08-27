@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/marioslambasketball.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/mario-slam-basketball-front.png,
   downloads:  {
     Mario Slam Basketball (Europe) (En,Ja,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Mario%20Slam%20Basketball%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds,
@@ -28,11 +28,11 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/screenshots/marioslambasketball/marioslambasketball.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/mario-slam-basketball-front.png,
       order:  0
     },
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Mario%20Slam%20Basketball%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/screenshots/mario-slam-basketball-snap-1.png,
       order:  1
     }
   ],

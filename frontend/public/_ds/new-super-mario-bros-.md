@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/newsupermariobros.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/new-super-mario-bros-front.png,
   downloads:  {
     New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/New%20Super%20Mario%20Bros.%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
@@ -28,11 +28,11 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/screenshots/newsupermariobros/newsupermariobros.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/new-super-mario-bros-front.png,
       order:  0
     },
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/New%20Super%20Mario%20Bros.%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/screenshots/new-super-mario-bros-snap-1.png,
       order:  1
     }
   ],

@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/animalcrossingwildworld.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/animal-crossing-wild-world-front.png,
   downloads:  {
     Welcome to Animal Crossing Wild World (Europe) (En,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Welcome%20to%20Animal%20Crossing%20Wild%20World%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Welcome%20to%20Animal%20Crossing%20Wild%20World%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/animal-crossing-wild-world-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/animal-crossing-wild-world-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

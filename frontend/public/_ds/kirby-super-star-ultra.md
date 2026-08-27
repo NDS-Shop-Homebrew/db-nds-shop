@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/kirbysuperstarultra.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/kirby-super-star-ultra-front.png,
   downloads:  {
     Kirby Super Star Ultra (Europe) (En,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Kirby%20Super%20Star%20Ultra%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
@@ -28,11 +28,11 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/screenshots/kirbysuperstarultra/kirbysuperstarultra.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/kirby-super-star-ultra-front.png,
       order:  0
     },
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Kirby%20Super%20Star%20Ultra%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/screenshots/kirby-super-star-ultra-snap-1.png,
       order:  1
     }
   ],

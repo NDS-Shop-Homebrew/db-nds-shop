@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/cookingmama.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/cooking-mama-front.png,
   downloads:  {
     Cooking Mama (Europe) (En,Fr,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Cooking%20Mama%20%28Europe%29%20%28En%2CFr%2CIt%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Cooking%20Mama%20(Europe)%20(En%2CFr%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/cooking-mama-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/cooking-mama-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

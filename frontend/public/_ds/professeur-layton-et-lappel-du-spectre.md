@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/professeurlaytonetlappelduspectre.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/professeur-layton-et-l-appel-du-spectre-front.png,
   downloads:  {
     Professeur Layton et l'Appel du Spectre (France).nds:  {
       url:  https: //db-nds-shop.fr/games/Professeur%20Layton%20et%20l%27Appel%20du%20Spectre%20%28France%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20l'Appel%20du%20Spectre%20(France).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/professeur-layton-et-l-appel-du-spectre-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/professeur-layton-et-l-appel-du-spectre-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/dragonquestix.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/dragon-quest-ix-sentinels-of-the-starry-skies-front.png,
   downloads:  {
     Dragon Quest IX Sentinels of the Starry Skies.nds:  {
       url:  https: //db-nds-shop.fr/games/Dragon%20Quest%20IX%20Sentinels%20of%20the%20Starry%20Skies.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Dragon%20Quest%20IXSentinels%20of%20the%20Starry%20Skies.nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/dragon-quest-ix-sentinels-of-the-starry-skies-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/dragon-quest-ix-sentinels-of-the-starry-skies-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

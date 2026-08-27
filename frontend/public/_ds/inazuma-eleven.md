@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/inazumaeleven.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/inazuma-eleven-front.png,
   downloads:  {
     Inazuma Eleven (France).nds:  {
       url:  https: //db-nds-shop.fr/games/Inazuma%20Eleven%20%28France%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Inazuma%20Eleven%20(France).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/inazuma-eleven-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/inazuma-eleven-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

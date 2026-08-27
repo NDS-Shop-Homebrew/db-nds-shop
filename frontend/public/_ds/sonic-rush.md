@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/sonicrush.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/sonic-rush-front.png,
   downloads:  {
     Sonic Rush (Europe) (En,Ja,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Sonic%20Rush%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Sonic%20Rush%20(Europe)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/sonic-rush-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/sonic-rush-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

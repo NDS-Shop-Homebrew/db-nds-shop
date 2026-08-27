@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/pokemonranger.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/pokemon-ranger-front.png,
   downloads:  {
     Pokemon Ranger (Europe) (En,Fr,De,Es,It).nds:  {
       url:  https: //db-nds-shop.fr/games/Pokemon%20Ranger%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Pokemon%20Ranger%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt).png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/pokemon-ranger-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/pokemon-ranger-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

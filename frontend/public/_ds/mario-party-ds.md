@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/mariopartyds.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/mario-party-ds-front.png,
   downloads:  {
     Mario Party DS (Europe) (En,Fr,De,Es,It) (Rev ).nds:  {
       url:  https: //db-nds-shop.fr/games/Mario%20Party%20DS%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%20%29.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Mario%20Party%20DS%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt)%20(Rev%20).nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/mario-party-ds-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/mario-party-ds-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [

@@ -19,7 +19,7 @@
   stars:  0,
   icon:  https: //db-nds-shop.fr/assets/images/icons/professeurlaytonetlaboitedepandore.png,
   image:  ,
-  boxart:  ,
+  boxart:  https: //db-nds-shop.fr/assets/boxarts/professeur-layton-et-la-boite-de-pandore-front.png,
   downloads:  {
     Professeur Layton et la Boite de Pandore (France) [b].nds:  {
       url:  https: //db-nds-shop.fr/games/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20%28France%29%20%5Bb%5D.nds,
@@ -28,8 +28,12 @@
   },
   screenshots:  [
     {
-      url:  https: //db-nds-shop.fr/assets/images/boxart/Professeur%20Layton%20et%20la%20Boite%20de%20Pandore%20(France)%20%5Bb%5D.nds.png,
+      url:  https: //db-nds-shop.fr/assets/boxarts/professeur-layton-et-la-boite-de-pandore-front.png,
       order:  0
+    },
+    {
+      url:  https: //db-nds-shop.fr/assets/screenshots/professeur-layton-et-la-boite-de-pandore-snap-1.png,
+      order:  1
     }
   ],
   scripts:  [
