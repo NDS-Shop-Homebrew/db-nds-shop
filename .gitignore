@@ -30,3 +30,4 @@ tools/nds-to-cia/.env
 
 # Archived source files (old JSON sources, replaced by MySQL DB)
 archive/
+source/apps/*.json
