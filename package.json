@@ -10,7 +10,7 @@
     "build": "npm run generate && npm run generate:games && npm run generate:md"
   },
   "dependencies": {
-    "@nds-shop/prisma": "file:../packages/prisma",
+    "@nds-shop/prisma": "github:NDS-Shop-Homebrew/prisma",
     "yaml": "^2.7.0"
   },
   "devDependencies": {
