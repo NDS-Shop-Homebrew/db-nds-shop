@@ -183,7 +183,7 @@ app.get(/^\/game\/.+/, async (req, res) => {
       .send(
         `<!doctype html><html><head><meta charset="utf-8"/><title>NDS-Shop</title>` +
           `<meta property="og:title" content="NDS-Shop"/><meta property="og:url" content="${escapeHtml(url)}"/>` +
-          `<meta property="og:image" content="${SITE_URL}/logo.png"/></head><body></body></html>`
+          `<meta property="og:image" content="${SITE_URL}/assets/logo.png"/></head><body></body></html>`
       );
   }
 
@@ -192,7 +192,7 @@ app.get(/^\/game\/.+/, async (req, res) => {
     [game.author, game.version].filter(Boolean).join(" · ") ||
       "Jeu Nintendo DS sur NDS-Shop"
   );
-  const image = game.iconUrl ? escapeHtml(game.iconUrl) : `${SITE_URL}/logo.png`;
+  const image = game.iconUrl ? escapeHtml(game.iconUrl) : `${SITE_URL}/assets/logo.png`;
 
   res.type("html").send(
     `<!doctype html><html lang="fr"><head><meta charset="utf-8"/>` +
