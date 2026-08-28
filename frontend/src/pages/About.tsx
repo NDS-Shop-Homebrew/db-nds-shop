@@ -199,7 +199,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="space-y-16">
+    <div className="flex flex-col gap-16">
       <section className="dsi-gradient">
         <div className="max-w-5xl mx-auto px-4 py-20 md:py-28 text-center">
           <motion.div
@@ -217,7 +217,7 @@ export default function About() {
         </div>
       </section>
 
-      <div className="p-8 max-w-6xl mx-auto space-y-16">
+      <div className="p-8 max-w-6xl mx-auto flex flex-col gap-16">
         {guild && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -351,7 +351,7 @@ export default function About() {
                     )}
 
                     {userPresence?.activities?.length ? (
-                      <div className="mt-4 space-y-2 w-full">
+                      <div className="mt-4 flex flex-col gap-2 w-full">
                         {userPresence.activities.map((activity, i) => (
                           <div
                             key={i}

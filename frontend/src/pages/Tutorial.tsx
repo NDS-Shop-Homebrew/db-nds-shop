@@ -35,7 +35,7 @@ export default function Tutorial() {
         </div>
       </section>
 
-      <div className="max-w-3xl mx-auto px-4 py-12 space-y-8">
+      <div className="max-w-3xl mx-auto px-4 py-12 flex flex-col gap-8">
         {sections.map((section, i) => (
           <div
             key={section.title || i}
@@ -45,7 +45,7 @@ export default function Tutorial() {
               <ListOrdered size={20} className="text-primary" />
               {i + 1}. {section.title}
             </h2>
-            <ol className="space-y-4">
+            <ol className="flex flex-col gap-4">
               {Array.isArray(section.steps) &&
                 section.steps.map((step, j) => (
                   <li key={j} className="flex gap-3">

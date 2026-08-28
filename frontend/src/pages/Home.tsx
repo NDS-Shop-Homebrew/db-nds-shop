@@ -41,7 +41,7 @@ interface Game {
 
 function GameSkeleton() {
   return (
-    <div className="space-y-3">
+    <div className="flex flex-col gap-3">
       <Skeleton className="aspect-square rounded-xl" />
       <Skeleton className="h-3 w-3/4" />
       <Skeleton className="h-3 w-1/2" />
@@ -285,7 +285,7 @@ export default function Home() {
         <h2 className="text-xl font-bold text-foreground mb-6 text-center">
           {t("home.faq.title")}
         </h2>
-        <Accordion type="multiple" className="space-y-4">
+        <Accordion type="multiple" className="flex flex-col gap-4">
           {[
             { q: "home.faq.q1", a: "home.faq.a1" },
             { q: "home.faq.q2", a: "home.faq.a2" },

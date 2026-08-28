@@ -24,6 +24,7 @@ import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useFavorites } from "../hooks/useFavorites";
+import { Button } from "../components/ui/button";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 
@@ -214,22 +215,22 @@ export default function GameDetail() {
 
   if (!game) {
     return (
-      <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+      <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8">
         <Skeleton className="h-5 w-28" />
         <div className="rounded-2xl bg-muted p-6 md:p-8 flex items-center gap-6">
           <Skeleton className="w-28 h-28 rounded-xl shrink-0" />
-          <div className="space-y-3 flex-1 min-w-0">
+          <div className="flex flex-col gap-3 flex-1 min-w-0">
             <Skeleton className="h-8 w-2/3 max-w-sm" />
             <Skeleton className="h-4 w-1/3" />
             <Skeleton className="h-10 w-40 rounded-full" />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             <Skeleton className="h-32 rounded-xl" />
             <Skeleton className="aspect-[2/3] w-2/3 mx-auto rounded-xl" />
           </div>
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             <Skeleton className="h-44 rounded-xl" />
             <Skeleton className="h-20 rounded-xl" />
           </div>
@@ -282,7 +283,7 @@ export default function GameDetail() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-8">
+        <div className="flex flex-col gap-8">
           {ndsdb &&
             (() => {
               const langDesc =
@@ -346,10 +347,11 @@ export default function GameDetail() {
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {gallery.map((shot, i) => (
-                  <button
+                  <Button
                     key={i}
+                    variant="ghost"
                     onClick={() => setLightboxIdx(i)}
-                    className="aspect-[2/3] rounded-xl overflow-hidden ring-1 ring-border hover:ring-primary/50 transition-all group bg-muted/60"
+                    className="aspect-[2/3] w-auto h-auto p-0 rounded-xl overflow-hidden ring-1 ring-border hover:ring-primary/50 hover:bg-muted/60 dark:hover:bg-muted/60 group bg-muted/60"
                   >
                     <SafeImg
                       src={shot.url}
@@ -357,14 +359,14 @@ export default function GameDetail() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       wrapperClassName="w-full h-full"
                     />
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
           )}
         </div>
 
-        <div className="space-y-6">
+        <div className="flex flex-col gap-6">
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="text-lg font-bold mb-4 flex items-center justify-between">
               <span className="flex items-center gap-3">
@@ -379,12 +381,14 @@ export default function GameDetail() {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button
+                      <Button
+                        variant="ghost"
+                        size="icon"
                         onClick={() => toggle(game.fileName || game.id || "")}
-                        className={`p-2 rounded-lg border transition-colors ${
+                        className={`rounded-lg border ${
                           isFav
-                            ? "bg-red-50 border-red-200 text-red-500 dark:bg-red-500/10 dark:border-red-500/30"
-                            : "border-border text-muted-foreground hover:text-red-400"
+                            ? "bg-red-50 border-red-200 text-red-500 hover:bg-red-50 hover:text-red-500 dark:bg-red-500/10 dark:border-red-500/30 dark:hover:bg-red-500/10"
+                            : "border-border text-muted-foreground hover:text-red-400 hover:bg-transparent dark:hover:bg-transparent"
                         }`}
                         aria-label="Favori"
                       >
@@ -392,7 +396,7 @@ export default function GameDetail() {
                           size={18}
                           fill={isFav ? "currentColor" : "none"}
                         />
-                      </button>
+                      </Button>
                     </TooltipTrigger>
                     <TooltipContent>
                       {isFav
@@ -402,15 +406,17 @@ export default function GameDetail() {
                   </Tooltip>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button
+                      <Button
+                        variant="ghost"
+                        size="icon"
                         onClick={() =>
                           navigator.clipboard?.writeText(window.location.href)
                         }
-                        className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary transition-colors"
+                        className="rounded-lg border border-border text-muted-foreground hover:text-primary hover:bg-transparent dark:hover:bg-transparent"
                         aria-label="Partager"
                       >
                         <Share2 size={18} />
-                      </button>
+                      </Button>
                     </TooltipTrigger>
                     <TooltipContent>{t("gameDetail.share")}</TooltipContent>
                   </Tooltip>
@@ -498,38 +504,44 @@ export default function GameDetail() {
             showCloseButton={false}
             className="sm:max-w-none border-0 bg-transparent p-0 shadow-none"
           >
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIdx(
                   (lightboxIdx - 1 + gallery.length) % gallery.length
                 );
               }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 hover:text-white text-white"
             >
               <ChevronLeft size={28} />
-            </button>
+            </Button>
             <img
               src={gallery[lightboxIdx].url}
               alt=""
               className="max-w-[90vw] max-h-[90vh] rounded-xl mx-auto"
               onClick={(e) => e.stopPropagation()}
             />
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIdx((lightboxIdx + 1) % gallery.length);
               }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 hover:text-white text-white"
             >
               <ChevronRight size={28} />
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setLightboxIdx(null)}
-              className="absolute top-4 right-4 text-white/60 hover:text-white text-2xl"
+              className="absolute top-4 right-4 text-2xl text-white/60 hover:text-white hover:bg-transparent dark:hover:bg-transparent"
             >
               ✕
-            </button>
+            </Button>
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/60">
               {lightboxIdx + 1} / {gallery.length}
             </div>

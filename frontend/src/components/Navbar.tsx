@@ -48,7 +48,7 @@ export function NavBar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 h-16">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <img src="/logo.png" alt="NDS-Shop" className="w-8 h-8 rounded-lg" />
+          <img src="/assets/logo.png" alt="NDS-Shop" className="w-8 h-8 rounded-lg" />
           <span className="font-bold text-lg text-foreground hidden sm:inline">
             NDS-Shop
           </span>
@@ -84,14 +84,16 @@ export function NavBar() {
                 </span>
               )}
             </Link>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               onClick={toggleLang}
               aria-label="Changer la langue"
-              className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors cursor-pointer"
+              className="rounded-lg text-xs cursor-pointer"
             >
               {i18n.language === "en" ? "FR" : "EN"}
-            </button>
+            </Button>
             <DarkModeToggle />
           </div>
         </nav>
@@ -145,13 +147,15 @@ export function NavBar() {
                 </Link>
 
                 <div className="flex items-center justify-between px-3 py-2">
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="sm"
                     onClick={toggleLang}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border hover:bg-muted transition-colors cursor-pointer"
+                    className="rounded-lg text-xs cursor-pointer"
                   >
                     {i18n.language === "en" ? "Passer en Français" : "Switch to English"}
-                  </button>
+                  </Button>
                   <DarkModeToggle />
                 </div>
               </div>

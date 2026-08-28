@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Heart, Download } from "lucide-react";
 import SafeImg from "./SafeImg";
+import { Button } from "./ui/button";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 
@@ -77,14 +78,16 @@ export default function GameCard({
       </Link>
 
       {onToggleFav && (
-        <button
+        <Button
           type="button"
+          variant="ghost"
+          size="icon"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             onToggleFav(gameKey);
           }}
-          className={`absolute top-2 right-2 p-1.5 rounded-full bg-background/85 backdrop-blur transition-all cursor-pointer shadow-xs ${
+          className={`absolute top-2 right-2 rounded-full bg-background/85 backdrop-blur hover:bg-background/85 dark:hover:bg-background/85 cursor-pointer shadow-xs ${
             isFav
               ? "text-red-500 opacity-100"
               : "text-muted-foreground opacity-0 group-hover:opacity-100 hover:text-red-400"
@@ -93,7 +96,7 @@ export default function GameCard({
           title={isFav ? "Retirer des favoris" : "Ajouter aux favoris"}
         >
           <Heart size={16} fill={isFav ? "currentColor" : "none"} />
-        </button>
+        </Button>
       )}
     </div>
   );

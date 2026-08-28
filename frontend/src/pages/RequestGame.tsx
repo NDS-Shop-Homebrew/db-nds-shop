@@ -213,23 +213,25 @@ export default function RequestGame() {
           transition={{ duration: 0.4 }}
         >
           <Card>
-            <CardContent className="space-y-4">
+            <CardContent className="flex flex-col gap-4">
               <DiscordLogin />
 
               {entries.map((entry, i) => (
-                <div key={i} className="space-y-2 rounded-lg border border-border p-3">
+                <div key={i} className="flex flex-col gap-2 rounded-lg border border-border p-3">
                   <div className="flex items-center justify-between">
                     <Label className="text-sm font-medium">
                       {entries.length > 1 ? `${t("request.gameLabel")} ${i + 1}` : t("request.gameLabel")}
                     </Label>
                     {entries.length > 1 && (
-                      <button
+                      <Button
                         onClick={() => removeEntry(i)}
-                        className="text-muted-foreground hover:text-destructive transition-colors cursor-pointer"
+                        variant="ghost"
+                        size="icon"
+                        className="text-muted-foreground hover:text-destructive hover:bg-transparent dark:hover:bg-transparent cursor-pointer"
                         title={t("request.remove")}
                       >
                         <X size={16} />
-                      </button>
+                      </Button>
                     )}
                   </div>
                   <Input
@@ -284,7 +286,7 @@ export default function RequestGame() {
                 {t("request.maxGames", { count: MAX_GAMES })}
               </p>
 
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <Label className="text-sm font-medium">{t("request.noteLabel")}</Label>
                 <textarea
                   value={note}
@@ -324,9 +326,9 @@ export default function RequestGame() {
             </CardHeader>
             <CardContent>
               {requestsLoading ? (
-                <div className="space-y-3">
+                <div className="flex flex-col gap-3">
                   {Array.from({ length: 3 }).map((_, i) => (
-                    <div key={i} className="rounded-lg border border-border p-3 space-y-2">
+                    <div key={i} className="rounded-lg border border-border p-3 flex flex-col gap-2">
                       <Skeleton className="h-4 w-2/3" />
                       <Skeleton className="h-3 w-1/3" />
                     </div>
@@ -336,9 +338,9 @@ export default function RequestGame() {
                 <p className="text-sm text-muted-foreground">{t("request.empty")}</p>
               )}
               {!requestsLoading && (
-                <ul className="space-y-3">
+                <ul className="flex flex-col gap-3">
                   {requests.map((r) => (
-                    <li key={r.id} className="rounded-lg border border-border p-3 space-y-1.5">
+                    <li key={r.id} className="rounded-lg border border-border p-3 flex flex-col gap-1.5">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <p className="font-medium text-sm break-words">{r.title}</p>

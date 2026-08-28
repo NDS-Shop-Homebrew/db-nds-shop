@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <img src="/logo.png" alt="NDS-Shop" className="w-7 h-7 rounded-lg" />
+              <img src="/assets/logo.png" alt="NDS-Shop" className="w-7 h-7 rounded-lg" />
               <span className="font-bold text-foreground">NDS-Shop</span>
             </div>
             <p className="text-sm text-muted-foreground">
@@ -58,7 +58,7 @@ export default function Footer() {
 
           <div>
             <h4 className="font-semibold text-sm text-foreground mb-3">{t("footer.links")}</h4>
-            <div className="space-y-2 text-sm">
+            <div className="flex flex-col gap-2 text-sm">
               <Link to="/game-list" className="block text-muted-foreground hover:text-primary transition-colors">
                 {t("nav.gameList")}
               </Link>

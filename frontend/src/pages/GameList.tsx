@@ -80,7 +80,7 @@ type ViewMode = "grid" | "list";
 
 function GameSkeleton() {
   return (
-    <div className="space-y-3">
+    <div className="flex flex-col gap-3">
       <Skeleton className="aspect-square rounded-xl" />
       <Skeleton className="h-3 w-3/4" />
       <Skeleton className="h-3 w-1/2" />

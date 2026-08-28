@@ -39,7 +39,7 @@ interface ResponseState {
   data: string;
 }
 
-const API_BASE = (import.meta as any).env?.VITE_API_URL || "https://db-nds-shop.fr";
+const API_BASE = (import.meta.env as Record<string, unknown>)?.VITE_API_URL as string || "https://db-nds-shop.fr";
 const BASE = `${API_BASE}/api/v1`;
 
 const endpoints: {
@@ -257,7 +257,7 @@ export default function Docs() {
         </div>
       </section>
 
-      <div className="p-8 max-w-6xl mx-auto space-y-12">
+      <div className="p-8 max-w-6xl mx-auto flex flex-col gap-12">
         <Tabs defaultValue="games" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="games">{t("docs.sections.games")}</TabsTrigger>
@@ -277,7 +277,7 @@ export default function Docs() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
+                  <div className="flex flex-col gap-3">
                     {group.items.map((endpoint) => (
                       <div
                         key={endpoint.path}
@@ -303,7 +303,7 @@ export default function Docs() {
                         </div>
 
                         {active?.path === endpoint.path && (
-                          <div className="border-t border-border p-4 space-y-4 bg-muted/20">
+                          <div className="border-t border-border p-4 flex flex-col gap-4 bg-muted/20">
                             <div>
                               <div className="flex items-center justify-between mb-2">
                                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -312,18 +312,19 @@ export default function Docs() {
                                 <TooltipProvider>
                                   <Tooltip>
                                     <TooltipTrigger asChild>
-                                      <button
-                                        onClick={() =>
-                                          copyCode(
-                                            `curl "${BASE}${endpoint.example}"`
-                                          )
-                                        }
-                                        className="text-xs font-medium text-primary hover:underline cursor-pointer"
-                                      >
-                                        {copied
-                                          ? t("docs.copied")
-                                          : t("docs.copy")}
-                                      </button>
+                                      <Button
+                                          variant="link"
+                                          onClick={() =>
+                                            copyCode(
+                                              `curl "${BASE}${endpoint.example}"`
+                                            )
+                                          }
+                                          className="text-xs font-medium cursor-pointer h-auto px-0 py-0"
+                                        >
+                                          {copied
+                                            ? t("docs.copied")
+                                            : t("docs.copy")}
+                                        </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
                                       {copied

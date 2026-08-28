@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
         </div>
       </section>
 
-      <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
+      <div className="max-w-4xl mx-auto px-4 py-10 flex flex-col gap-8">
         <Card className="bg-muted/40 border-border">
           <CardContent className="p-5">
             <h2 className="font-semibold mb-3">
@@ -97,10 +97,10 @@ export default function PrivacyPolicy() {
           </CardContent>
         </Card>
 
-        <div className="space-y-6">
+        <div className="flex flex-col gap-6">
           {sections.map((section) => (
             <Card key={section.id} id={section.id} className="scroll-mt-24">
-              <CardContent className="space-y-3 p-6">
+              <CardContent className="flex flex-col gap-3 p-6">
                 <h2 className="text-lg font-semibold text-foreground">
                   {section.title}
                 </h2>
