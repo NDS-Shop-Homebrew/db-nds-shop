@@ -4,8 +4,8 @@ const STATIC_ASSETS = [
   "/",
   "/index.html",
   "/manifest.webmanifest",
-  "/favicon.ico",
-  "/logo.png"
+  "/assets/favicon.ico",
+  "/assets/logo.png"
 ];
 
 self.addEventListener("install", (e) => {

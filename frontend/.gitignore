@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-public/unistore/32
-public/unistore/48
+public/unistore/*
+public/data/*
+public/games.json
+public/db.txt
