@@ -9,8 +9,7 @@ import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTi
 import GameCard from "../components/GameCard";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useFavorites } from "../hooks/useFavorites";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
+import { API_BASE } from "../config";
 
 interface RawGameApi {
   id?: string;

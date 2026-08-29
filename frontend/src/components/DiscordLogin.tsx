@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LogOut } from "lucide-react";
 import { Button } from "./ui/button";
+import { API_BASE } from "../config";
 
-const API_BASE = import.meta.env.VITE_API_URL || "";
 const AUTH_URL = `${API_BASE}/api/v1/auth`;
 
 interface Me {

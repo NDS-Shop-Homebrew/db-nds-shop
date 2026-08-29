@@ -2,14 +2,7 @@ import { Link } from "react-router-dom";
 import { Heart, Download } from "lucide-react";
 import SafeImg from "./SafeImg";
 import { Button } from "./ui/button";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
-
-function resolveAssetUrl(url?: string | null): string {
-  if (!url) return "";
-  if (url.startsWith("http://") || url.startsWith("https://")) return url;
-  return `${API_BASE}${url.startsWith("/") ? "" : "/"}${url}`;
-}
+import { resolveAssetUrl } from "../config";
 
 export interface Game {
   id?: string;

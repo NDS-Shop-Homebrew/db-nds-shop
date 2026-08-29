@@ -9,8 +9,7 @@ import { Label } from "../components/ui/label";
 import { Skeleton } from "../components/ui/skeleton";
 import DiscordLogin from "../components/DiscordLogin";
 import { usePageMeta } from "../hooks/usePageMeta";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
+import { API_BASE } from "../config";
 
 interface CatalogGame {
   fileName: string;

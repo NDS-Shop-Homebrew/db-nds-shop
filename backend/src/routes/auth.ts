@@ -18,7 +18,11 @@ function clientSecret(): string {
 }
 
 function sessionSecret(): string {
-  return process.env.SESSION_SECRET || "default_nds_shop_jwt_secret_dev";
+  const secret = process.env.SESSION_SECRET;
+  if (!secret && process.env.NODE_ENV === "production") {
+    throw new Error("SESSION_SECRET must be set in production");
+  }
+  return secret || "default_nds_shop_jwt_secret_dev";
 }
 
 function parseCookies(header?: string): Record<string, string> {

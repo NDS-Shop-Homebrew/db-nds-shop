@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-const API_BASE = import.meta.env.VITE_API_URL || "";
+import { API_BASE } from "../config";
 const BASE_URL = `${API_BASE}/api/v1`;
 const FAV_KEY = "nds-favs";
 
@@ -23,6 +23,11 @@ const writeLocal = (favs: string[]) => {
 export function useFavorites() {
   const [favs, setFavs] = useState<string[]>(readLocal);
   const [loggedIn, setLoggedIn] = useState(false);
+  // ponytail: ref des favoris courants pour le sync debounce
+  const favsRef = useRef(favs);
+  favsRef.current = favs;
+  const loggedInRef = useRef(loggedIn);
+  loggedInRef.current = loggedIn;
 
   useEffect(() => {
     let cancelled = false;
@@ -67,23 +72,26 @@ export function useFavorites() {
         const next = prev.includes(slug)
           ? prev.filter((s) => s !== slug)
           : [...prev, slug];
-
         writeLocal(next);
-
-        if (loggedIn) {
-          fetch(`${BASE_URL}/favorites`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({ favorites: next }),
-          }).catch(() => {});
-        }
-
         return next;
       });
     },
-    [loggedIn]
+    []
   );
+
+  // ponytail: sync serveur debounced — envoie l'état courant (ref) une seule fois par rafale
+  useEffect(() => {
+    if (!loggedInRef.current) return;
+    const timer = setTimeout(() => {
+      fetch(`${BASE_URL}/favorites`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ favorites: favsRef.current }),
+      }).catch(() => {});
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [favs]);
 
   return { favs, toggle, loggedIn };
 }

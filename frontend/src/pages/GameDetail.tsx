@@ -25,14 +25,7 @@ import SafeImg from "../components/SafeImg";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useFavorites } from "../hooks/useFavorites";
 import { Button } from "../components/ui/button";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
-
-function resolveAssetUrl(url?: string | null): string {
-  if (!url) return "";
-  if (url.startsWith("http://") || url.startsWith("https://")) return url;
-  return `${API_BASE}${url.startsWith("/") ? "" : "/"}${url}`;
-}
+import { API_BASE, resolveAssetUrl } from "../config";
 
 interface DownloadItem {
   size?: number;
@@ -105,7 +98,7 @@ interface StatsResponse {
 
 export default function GameDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const [game, setGame] = useState<Game | null>(null);
+  const [game, setGame] = useState<Game | null | undefined>(undefined);
   const [allGames, setAllGames] = useState<Game[]>([]);
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const { t, i18n } = useTranslation();
@@ -213,7 +206,7 @@ export default function GameDetail() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  if (!game) {
+  if (game === undefined) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8">
         <Skeleton className="h-5 w-28" />
@@ -235,6 +228,16 @@ export default function GameDetail() {
             <Skeleton className="h-20 rounded-xl" />
           </div>
         </div>
+      </div>
+    );
+  }
+
+  if (game === null) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-16 flex flex-col items-center gap-4 text-center">
+        <p className="text-4xl">?</p>
+        <h1 className="text-xl font-bold">{t("gameDetail.notFound", "Jeu introuvable")}</h1>
+        <Link to="/game-list" className="text-sm text-primary hover:underline">{t("gameDetail.back")}</Link>
       </div>
     );
   }

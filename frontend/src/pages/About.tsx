@@ -6,8 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { Badge } from "../components/ui/badge";
 import { DiscordIcon } from "../components/DiscordLogin";
 import { usePageMeta } from "../hooks/usePageMeta";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
+import { API_BASE } from "../config";
 
 interface DiscordUser {
   id: string;

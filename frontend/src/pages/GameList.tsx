@@ -10,17 +10,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "../components/ui/empty";
 import { InputGroup, InputGroupInput, InputGroupText } from "../components/ui/input-group";
+import { Pagination } from "../components/ui/pagination";
 import GameCard from "../components/GameCard";
 import SafeImg from "../components/SafeImg";
 import { usePageMeta } from "../hooks/usePageMeta";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
-
-function resolveAssetUrl(url?: string | null): string {
-  if (!url) return "";
-  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:")) return url;
-  return `${API_BASE}${url.startsWith("/") ? "" : "/"}${url}`;
-}
+import { API_BASE, resolveAssetUrl } from "../config";
 
 interface Screenshot {
   description: string;
@@ -104,6 +98,8 @@ export default function GameList() {
   const [filterCategory, setFilterCategory] = useState<string>("all");
   const [filterLetter, setFilterLetter] = useState<string>("all");
   const [counts, setCounts] = useState<Record<string, number>>({});
+  const [page, setPage] = useState(1);
+  const PAGE_SIZE = 36;
 
   const regionFilter = searchParams.get("region") || "";
 
@@ -233,6 +229,16 @@ export default function GameList() {
     counts,
   ]);
 
+  // ponytail: reset à la page 1 dès que les filtres changent
+  useEffect(() => {
+    setPage(1);
+  }, [search, sortBy, sortDir, filterSystem, filterGenre, filterCategory, filterLetter, regionFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const pageItems = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const pageStart = filtered.length === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
+  const pageEnd = Math.min(page * PAGE_SIZE, filtered.length);
+
   const toggleSort = (field: SortOption) => {
     if (sortBy === field) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
     else {
@@ -288,7 +294,9 @@ export default function GameList() {
               {t("gameList.title")}
               {!loading && (
                 <span className="text-sm font-normal text-muted-foreground">
-                  {" "}({filtered.length})
+                  {filtered.length > 0
+                    ? ` (${pageStart}–${pageEnd} / ${filtered.length})`
+                    : " (0)"}
                 </span>
               )}
             </p>
@@ -458,7 +466,7 @@ export default function GameList() {
           )
         ) : view === "grid" ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {filtered.map((game, i) => (
+            {pageItems.map((game, i) => (
               <motion.div
                 key={game.slug || game.fileName || game.id}
                 initial={{ opacity: 0, y: 10 }}
@@ -486,7 +494,7 @@ export default function GameList() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filtered.map((game) => (
+                  {pageItems.map((game) => (
                     <TableRow
                       key={game.slug || game.fileName || game.id}
                       onClick={() => navigate(`/game/${encodeURIComponent(game.slug || game.fileName || game.id || "")}`)}
@@ -529,6 +537,8 @@ export default function GameList() {
             </div>
           </div>
         )}
+
+        <Pagination page={page} totalPages={totalPages} onPage={setPage} />
 
         {!loading && filtered.length === 0 && (
           <Empty className="border-border mt-8">

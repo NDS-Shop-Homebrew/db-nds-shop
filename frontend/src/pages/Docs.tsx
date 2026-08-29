@@ -39,7 +39,7 @@ interface ResponseState {
   data: string;
 }
 
-const API_BASE = (import.meta.env as Record<string, unknown>)?.VITE_API_URL as string || "https://db-nds-shop.fr";
+import { API_BASE } from "../config";
 const BASE = `${API_BASE}/api/v1`;
 
 const endpoints: {

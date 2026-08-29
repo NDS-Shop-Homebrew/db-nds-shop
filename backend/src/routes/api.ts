@@ -166,7 +166,7 @@ router.get("/games", async (req, res) => {
     }
 
     const off = Math.max(0, parseInt(String(offset || "0"), 10) || 0);
-    const lim = Math.min(100, parseInt(String(limit || "0"), 10) || 0);
+    const lim = Math.min(100, parseInt(String(limit || "50"), 10) || 50);
 
     const [total, games] = await Promise.all([
       prisma.game.count({ where }),
@@ -222,8 +222,15 @@ router.get("/games/:slug", async (req, res) => {
 });
 
 // --- GET /api/v1/stats ---
+// ponytail: cache en mémoire 60s, suffisant pour des stats
+let statsCache: { body: string; at: number } | null = null;
+
 router.get("/stats", async (_req, res) => {
   try {
+    if (statsCache && Date.now() - statsCache.at < 60_000) {
+      return res.setHeader("Content-Type", "application/json").send(statsCache.body);
+    }
+
     const [totalGames, games] = await Promise.all([
       prisma.game.count(),
       prisma.game.findMany({
@@ -248,11 +255,14 @@ router.get("/stats", async (_req, res) => {
       }
     }
 
-    res.json({
+    const body = JSON.stringify({
       games: totalGames,
       systems: bySystem,
       lastUpdated: lastUpdated ? lastUpdated.toISOString() : null,
     });
+    statsCache = { body, at: Date.now() };
+
+    res.setHeader("Content-Type", "application/json").send(body);
   } catch (err: any) {
     console.error("❌ GET /stats error:", err);
     res.status(500).json({ error: "Erreur lors du calcul des statistiques" });
@@ -409,11 +419,15 @@ async function safeJson<T>(response: any): Promise<T> {
   }
 }
 
+// ponytail: timeout 5s sur tous les fetch Discord
+const fetcher = (url: string, init: any = {}) =>
+  fetch(url, { ...init, signal: AbortSignal.timeout(5000) });
+
 // GET /api/v1/discord-user/:id
 router.get("/discord-user/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const response = await fetch(`https://discord.com/api/v10/users/${id}`, {
+    const response = await fetcher(`https://discord.com/api/v10/users/${id}`, {
       headers: { Authorization: `Bot ${getBotToken()}` },
     });
     if (!response.ok) {
@@ -441,7 +455,7 @@ router.get("/discord-user/:id", async (req, res) => {
 router.get("/discord-presence/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const response = await fetch(`https://api.lanyard.rest/v1/users/${id}`);
+    const response = await fetcher(`https://api.lanyard.rest/v1/users/${id}`);
     if (response.status === 404) {
       return res.json({ discord_status: "offline", activities: [] });
     }
@@ -455,11 +469,15 @@ router.get("/discord-presence/:id", async (req, res) => {
   }
 });
 
-// GET /api/v1/discord-guild
+// ponytail: cache 60s du guild
+let guildCache: { body: string; at: number } | null = null;
 router.get("/discord-guild", async (_req, res) => {
   const guildId = process.env.DISCORD_GUILD_ID || "1271186486070345843";
   try {
-    const response = await fetch(
+    if (guildCache && Date.now() - guildCache.at < 60_000) {
+      return res.setHeader("Content-Type", "application/json").send(guildCache.body);
+    }
+    const response = await fetcher(
       `https://discord.com/api/v10/guilds/${guildId}?with_counts=true`,
       { headers: { Authorization: `Bot ${getBotToken()}` } }
     );
@@ -467,7 +485,7 @@ router.get("/discord-guild", async (_req, res) => {
       return res.status(response.status).json({ error: "Failed to fetch guild" });
     }
     const data = await safeJson<any>(response);
-    res.json({
+    const body = JSON.stringify({
       id: data.id,
       name: data.name,
       icon: data.icon
@@ -480,6 +498,8 @@ router.get("/discord-guild", async (_req, res) => {
         ? `https://discord.gg/${data.vanity_url_code}`
         : null,
     });
+    guildCache = { body, at: Date.now() };
+    res.setHeader("Content-Type", "application/json").send(body);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch guild" });
   }
