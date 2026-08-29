@@ -1,102 +1,38 @@
 # db-nds-shop
 
-Base de données de jeux Nintendo DS/3DS avec site web, UniStores et pipeline de build automatisé.
+Site web public de **NDS-Shop** : catalogue de jeux Nintendo DS/3DS, fiches, téléchargements, UniStore.
 
-## Architecture
+Ce repo contient uniquement le **site public** (`backend/` + `frontend/`). Le schéma BDD, le pipeline de build et l'API de génération vivent ailleurs (voir `PROMPT.md` / `MEMORY.md` à la racine de `NDS-Shop-all-project`).
 
-```
-MySQL (source de vérité)
-  ├── game                (titres, métadonnées, icons, screenshots)
-  ├── game_screenshot     (screenshots par jeu)
-  ├── game_download       (ROMs/forwarders par jeu)
-  └── game_script         (scripts d'installation par jeu)
+## Composants
 
-Python (pipeline de build)
-  ├── generate.py         → _ds/*.md, _nds/*.md, data/full.json, UniStores, QR
-  ├── generate_games.py   → games.json (API frontend)
-  └── update_md_screenshots.py → sync screenshots BDD ↔ disque
-
-Node.js (assets)
-  └── nds-assets.mjs      → extraction icons/boxarts/screenshots depuis ROMs → BDD
-```
+| Dossier | Rôle | Port |
+|---|---|---|
+| `backend/` | API Express + Prisma (`@nds-shop/prisma`), sert les assets `storage/` en `/assets` | 3001 |
+| `frontend/` | Site React 19 + Vite + Tailwind v4 + shadcn/ui | 5174 |
 
 ## Développement local
 
-### Prérequis
-- Python 3.12+ avec les dépendances de `requirements.txt`
-- Node.js 18+
-- MySQL / MariaDB (via Laragon recommandé)
-- La base `ndsshop` créée et peuplée
+Prérequis : Node.js 20+, MySQL (Laragon), base `ndsshop`.
 
-### Lancer les serveurs
-```
-test.bat
-```
-Ou manuellement :
 ```bash
-# Frontend
-cd frontend && npm run dev
-
-# Backend
-cd backend && npm run start
+cd backend && npm run dev     # :3001
+cd frontend && npm run dev    # :5174
 ```
 
-## Build complet
+Ou lancer tout l'écosystème : `launch-all.bat` à la racine du projet.
 
-### Windows
-```bash
-nds-build.bat
-# Avec ROMs :
-nds-build.bat --roms "D:\chemin\vers\roms"
-```
+Variables : `backend/.env` (`SITE_URL`, `MEDIA_STORAGE_PATH=…/storage/assets`, `SESSION_SECRET`), `frontend/.env`.
 
-### Linux
-```bash
-./scripts/nds-build.sh
-# Avec ROMs :
-./scripts/nds-build.sh /chemin/vers/roms
-```
+## Schéma BDD
 
-### Étapes du build
-1. Git pull (branche courante)
-2. Extraction assets depuis ROMs (si `--roms` fourni) : icons, boxarts, screenshots → BDD
-3. Génération des pages Markdown + QR codes + UniStores
-4. Mise à jour des screenshots BDD + export `games.json`
-5. Génération des forwarders .cia (si `--roms` fourni)
+Source de vérité = le package partagé `../prisma` (racine du projet). **Ne jamais lancer `prisma db push` depuis ce repo.**
 
-## Structure des fichiers
+## Pipeline de build
 
-```
-db-nds-shop/
-├── backend/              # API Express + Prisma
-├── frontend/             # Site web React + Vite
-├── frontend/public/
-│   ├── _ds/              # Pages Markdown jeux (systeme DS)
-│   ├── _nds/             # Pages Markdown jeux (systeme NDS)
-│   ├── _3ds/             # Pages Markdown jeux (systeme 3DS)
-│   ├── data/full.json    # Données enrichies complètes
-│   ├── games.json        # API listes des jeux
-│   └── unistore/         # Fichiers UniStore
-├── source/               # Scripts Python de build
-│   ├── generate.py       # Générateur principal
-│   ├── generate_games.py # Export games.json
-│   └── db_client.py      # Client MySQL
-├── tools/
-│   └── nds-to-cia/       # Extraction assets depuis ROMs (Node.js + Prisma)
-├── scripts/              # Scripts Linux
-├── archive/              # Anciens fichiers JSON (obsolète, source remplacée par BDD)
-└── config.ini            # Config locale (token GitHub, paths)
-```
+Les scripts de build (MD, games.json, UniStore, atlases, forwarders CIA) sont dans `api.db-nds-shop/src/scripts/` (TypeScript). La génération des données passe par l'API Hono (`POST /api/build/unistore`) ou le CLI (`cli.ts`).
 
 ## Ajouter un jeu
 
-1. Insérer les métadonnées dans MySQL (via adminer, phpMyAdmin ou le site upload)
-2. Ajouter les ROMs dans le dossier de ROMs
-3. Lancer le build avec `--roms` pour extraire les assets automatiquement
-4. Ou manuellement : screenshots dans `frontend/public/assets/images/screenshots/{slug}/`
-
-## Notes techniques
-
-- `backend/prisma/schema.prisma` : schéma **partiel** (ne contient que Game + tables liées + GameRequest). Ne jamais lancer `prisma db push` depuis ce repo.
-- `config.ini` :token GitHub pour l'API (rate limits plus élevés)
-- Les images (icons, boxarts, screenshots, QR) ne sont pas commitées, déployées directement sur le serveur
+1. Uploader les métadonnées + ROM via l'admin `upload.db-nds-shop.fr`
+2. Les assets (icônes, boxarts, screenshots, forwards CIA) sont extraits automatiquement puis stockés dans `storage/`

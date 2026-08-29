@@ -1,36 +1,15 @@
 *__pycache__
-config.ini
 .venv
 *.env
 *temp/
 sent_games.txt
 
-# Generated binaries (forwarders), deployed to the server like the images
-frontend/public/forwarder/
-
-# Images: never committed, deployed straight to the server (see compile.bat)
-frontend/public/assets/images/icons/
-frontend/public/assets/images/boxart/
-frontend/public/assets/images/screenshots/
-frontend/public/assets/images/qr/
-frontend/public/games/
-
-# Tooling caches
-tools/nds-to-cia/cache/
-
 # Local dev scripts (not shared)
 *.bat
 
-# Tools Prisma client (generated locally, schema in backend/)
-tools/nds-to-cia/node_modules/
-tools/nds-to-cia/prisma/
-tools/nds-to-cia/package.json
-tools/nds-to-cia/package-lock.json
-tools/nds-to-cia/.env
-
 # Archived source files (old JSON sources, replaced by MySQL DB)
+# Conservés sur disque/local (et serveur Debian) en attendant le réimport
 archive/
-source/apps/*.json
 
 # Logs
 logs
