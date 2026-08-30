@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@nds-shop/prisma": "file:../../prisma",
+    "@nds-shop-homebrew/prisma": "^1.0.0",
     "@types/cors": "^2.8.19",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",

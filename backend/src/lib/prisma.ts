@@ -1,4 +1,4 @@
-import { PrismaClient } from "@nds-shop/prisma";
+import { PrismaClient } from "@nds-shop-homebrew/prisma";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
